@@ -1,3 +1,8 @@
-cyberwar
+"CyberWar:2025"
+A Defense Analysis Thesis/Capstone Wargame
 
-Testing
+Development Start Date: 05 July 2017
+
+Created and developed by:
+- David "Ty" Long (dtlong@nps.edu)
+- Chris Mulch (cmmulch@nps.edu)
