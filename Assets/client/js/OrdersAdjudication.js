@@ -36,6 +36,7 @@
  * Success/Fail = Defender / (Attack[PLAYER] + Defense[PLAYER]) << Repeat until Defender or one Attacker succeeds
  *
  * PvP Dual/Multi on Empty Server
- * Success/Fail =
+ *                  [B]       [A, C, D, ...]
+ * Success/Fail = Defense / (Attack + Defense)
  *
  */
