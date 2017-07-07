@@ -74,7 +74,7 @@ function captureOddsOneVsMany(defense, attack1, attack2, attack3, attack4, attac
   odds = Math.round(defense/(attackSum + defense)*100);
 }
 
-//Using Vue Directives for testing now.
+//Using Vue for testing.
 new Vue({
   el: '#app',
   data: {
