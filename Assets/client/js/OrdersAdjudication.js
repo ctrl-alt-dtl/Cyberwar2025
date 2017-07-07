@@ -24,18 +24,22 @@
  */
 
 /**
- * PvP Dual Combat
+ * >>> PvP Dual Combat <<<
  *                  [B]            [A]
  * Success/Fail = Defense / (Attack + Defense)
  *
  *                  [B]            [A]
  * Success/Fail = Defense / (SUM(Attack[1]:Attack[4]) + Defense)
  *
- * PvP Multi Combat
+ * TODO: Factor in alliance combat (attack and supported roles)
+ *
+ *
+ * >>> PvP Multi Combat <<<
  *                  [B]             [A, C, D, ...]
  * Success/Fail = Defender / (Attack[PLAYER] + Defense[PLAYER]) << Repeat until Defender or one Attacker succeeds
  *
- * PvP Dual/Multi on Empty Server
+ *
+ * >>> PvP Dual/Multi on Empty Server <<<
  *                  [B]       [A, C, D, ...]
  * Success/Fail = Defense / (Attack + Defense)
  *
@@ -48,7 +52,7 @@ function diceRoll(){
   return dice = Math.floor(Math.random() * 100) + 1;
 }
 
-// This is an A->B scenario in which B is the defender.
+// This is an A->B scenario, in which A is the sole attacker.
 function captureOddsOneVsOne(defense, attack){
   dice = diceRoll();
   odds = Math.round(defense/(attack + defense)*100);
@@ -62,6 +66,8 @@ function captureOddsOneVsOne(defense, attack){
   }
 }
 
+// This is an A+[n]->B scenario, in which A has multiple servers attacking.
+// Could also be used when there's an alliance formed between two or more players.
 function captureOddsOneVsMany(defense, attack1, attack2, attack3, attack4, attack5){
   dice = diceRoll();
   attackSum = attack1 + attack2 + attack3 + attack4 + attack5;
@@ -72,21 +78,19 @@ function captureOddsOneVsMany(defense, attack1, attack2, attack3, attack4, attac
 new Vue({
   el: '#app',
   data: {
-    a1result: '',
-    a2result: '',
-    a3result: '',
-    a4result: '',
-    a5result: '',
+    a1result: '', a2result: '', a3result: '', a4result: '', a5result: '',
     defender: '',
-    attacker1: '',
-    attacker2: '',
-    attacker3: '',
-    attacker4: '',
-    attacker5: ''
+    attacker1: '', attacker2: '', attacker3: '', attacker4: '', attacker5: '',
+    greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
+    green: '', blue: '', purple: '', red: '', orange: '', yellow: ''
   },
   methods: {
     btnSubmit() {
-      captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1));
+      if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1)) == 'Success') {
+        this.a1result = "Success";
+      } else {
+        this.a1result = "Fail";
+      }
     }
   }
 });

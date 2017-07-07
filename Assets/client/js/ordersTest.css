@@ -6,7 +6,7 @@
     margin-bottom: 20px;
     float: left;
 }
-.container-center {
+.container-right {
     width: 200px;
     margin-top: 10px;
     margin-right: 30px;
@@ -14,19 +14,11 @@
     margin-bottom: 0px;
     float: left;
 }
-.container-right {
-    width: 80px;
-    margin-top: 10px;
-    margin-right: 30px;
-    margin-left: auto;
-    margin-bottom: 0px;
-    float: left;
-}
 
-.success {
+.Success {
     color: green;
 }
 
-.failed {
+.Fail {
     color: red;
 }
