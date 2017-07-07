@@ -40,3 +40,53 @@
  * Success/Fail = Defense / (Attack + Defense)
  *
  */
+
+var dice, odds, attackSum = 0;
+
+// 100 sided die for calculation
+function diceRoll(){
+  return dice = Math.floor(Math.random() * 100) + 1;
+}
+
+// This is an A->B scenario in which B is the defender.
+function captureOddsOneVsOne(defense, attack){
+  dice = diceRoll();
+  odds = Math.round(defense/(attack + defense)*100);
+  if(odds > dice){
+    console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
+    return 'Success';
+  }
+  else if (odds <= dice){
+    console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Fail to Defender!')
+    return 'Fail';
+  }
+}
+
+function captureOddsOneVsMany(defense, attack1, attack2, attack3, attack4, attack5){
+  dice = diceRoll();
+  attackSum = attack1 + attack2 + attack3 + attack4 + attack5;
+  odds = Math.round(defense/(attackSum + defense)*100);
+}
+
+//Using Vue Directives for testing now.
+new Vue({
+  el: '#app',
+  data: {
+    a1result: '',
+    a2result: '',
+    a3result: '',
+    a4result: '',
+    a5result: '',
+    defender: '',
+    attacker1: '',
+    attacker2: '',
+    attacker3: '',
+    attacker4: '',
+    attacker5: ''
+  },
+  methods: {
+    btnSubmit() {
+      captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1));
+    }
+  }
+});

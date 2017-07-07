@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="ordersTest.css">
+</head>
+<body>
+<div id="app">
+    <div id="input-defender" class="container-left">
+        <p>Defender: </p>
+        <input type="text" id="defender" v-model="defender">
+        <button v-on:click="btnSubmit">Calculate Results</button>
+    </div>
+    <div id="input-attackers" class="container-center">
+        <p>Attacker 1: {{ a1result }}</p>
+        <input type="text" id="attacker1" v-model="attacker1">
+        <p>Attacker 2: {{ a2result}} </p>
+        <input type="text" id="attacker2" v-model="attacker2">
+        <p>Attacker 3: {{ a3result}} </p>
+        <input type="text" id="attacker3" v-model="attacker3">
+        <p>Attacker 4: {{ a4result}}</p>
+        <input type="text" id="attacker4" v-model="attacker4">
+        <p>Attacker 5: {{ a5result}}</p>
+        <input type="text" id="attacker5" v-model="attacker5">
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="OrdersAdjudication.js"></script>
+
+</body>
+</html>
