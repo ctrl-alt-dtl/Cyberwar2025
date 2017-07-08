@@ -45,6 +45,7 @@
  *
  */
 
+// Initialization
 var dice, odds, attackSum = 0;
 
 // 100 sided die for calculation
@@ -58,11 +59,11 @@ function captureOddsOneVsOne(defense, attack){
   odds = Math.round(defense/(attack + defense)*100);
   if(odds > dice){
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
-    return 'Success';
+    return true;
   }
   else if (odds <= dice){
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Fail to Defender!')
-    return 'Fail';
+    return false;
   }
 }
 
@@ -79,14 +80,15 @@ new Vue({
   el: '#app',
   data: {
     a1result: '', a2result: '', a3result: '', a4result: '', a5result: '',
-    defender: '',
+    defender: '', defenderResult: '',
     attacker1: '', attacker2: '', attacker3: '', attacker4: '', attacker5: '',
     greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
     green: '', blue: '', purple: '', red: '', orange: '', yellow: ''
   },
   methods: {
     btnSubmit() {
-      if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1)) == 'Success') {
+      // Success and Failure are pointed to Defender, but the Attacker shows the result.
+      if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1)) == false) {
         this.a1result = "Success";
       } else {
         this.a1result = "Fail";
