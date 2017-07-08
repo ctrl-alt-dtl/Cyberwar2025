@@ -13,19 +13,29 @@
         <p>Defender: </p>
         <input type="text" id="defender" v-model="defender">
         <button v-on:click="btnSubmit">Calculate Results</button>
+        <p> {{ resultOdds }}</p>
     </div>
     <div id="input-attacker" class="container-right">
         <p> DUAL-COMBAT </p>
-        <p v-bind:class="a1result">Attacker 1: {{ a1result }}</p>
-        <input type="text" id="attacker1" v-model="attacker1">
-        <p>Attacker 2: {{ a2result}} </p>
-        <input type="text" id="attacker2" v-model="attacker2">
-        <p>Attacker 3: {{ a3result}} </p>
-        <input type="text" id="attacker3" v-model="attacker3">
-        <p>Attacker 4: {{ a4result}}</p>
-        <input type="text" id="attacker4" v-model="attacker4">
-        <p>Attacker 5: {{ a5result}}</p>
-        <input type="text" id="attacker5" v-model="attacker5">
+        <div>
+            <p v-bind:class="a1result">Attacker: {{ a1result }}</p>
+            <input type="text" id="attacker" v-model="attacker">
+        </div>
+        <div>
+            </br>
+            <p> MULTI-SERVER </p>
+            <p v-bind:class="s1result">Server 1: {{ s1result }}</p>
+            <input type="text" id="server1" v-model="server1" maxlength="1">
+            <p>Server 2: {{ s2result}} </p>
+            <input type="text" id="server2" v-model="server2" maxlength="1">
+            <p>Server 3: {{ s3result}} </p>
+            <input type="text" id="server3" v-model="server3" maxlength="1">
+            <p>Server 4: {{ s4result}}</p>
+            <input type="text" id="server4" v-model="server4" maxlength="1">
+            <p>Server 5: {{ s5result}}</p>
+            <input type="text" id="server5" v-model="server5" maxlength="1">
+        </div>
+
     </div>
     <div id="input-attackers" class="container-right">
         <p> MULTI-COMBAT </p>
