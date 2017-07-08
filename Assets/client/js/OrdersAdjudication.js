@@ -55,7 +55,7 @@ var server1, server2, server3, server4, server5 = 0;
 var polycolor = '';
 
 // 100 sided die for calculation
-function diceRoll(){
+function diceRoll() {
   return dice = Math.floor(Math.random() * 100) + 1;
 }
 
@@ -65,11 +65,11 @@ function captureOddsOneVsOne(defense, attack){
   odds = Math.round(defense/(attack + defense)*100);
   //this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
-  if(odds > dice){
+  if(odds > dice) {
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
     return true;
   }
-  else if (odds <= dice){
+  else if (odds <= dice) {
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Fail to Defender!')
     return false;
   }
@@ -84,11 +84,11 @@ function captureOddsOneVsMany(defense, server1, server2, server3, server4, serve
   //console.log(odds, defense, server1, server2, server3, server4, server5, attackSum);
   //this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
-  if(odds > dice){
+  if(odds > dice) {
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
     return true;
   }
-  else if (odds <= dice){
+  else if (odds <= dice) {
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Fail to Defender!')
     return false;
   }
@@ -113,41 +113,50 @@ new Vue({
   methods: {
     btnSubmit() {
 
-      // Success and Failure are pointed to Defender, but the Attacker shows the result.
-      if (this.defender && this.attacker){
-        if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
-          this.a1result = "Success";
-          this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
-          polycolor = 'red';
-        } else {
-          this.a1result = "Fail";
-          this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
-          polycolor = 'green';
+      if(this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) {
+        alert("Too many variables!");
+        location.reload();
+      } else {
+        // Success and Failure are pointed to Defender, but the Attacker shows the result.
+        if (this.defender && this.attacker) {
+          if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
+            this.a1result = "Success";
+            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            polycolor = 'red';
+          } else {
+            this.a1result = "Fail";
+            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            polycolor = 'green';
+          }
+
+          //SVG Hexagon Test
+          var draw = SVG('#svg').size(300, 300);
+          var polyline = draw.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
+          polyline.fill(polycolor).move(20, 20);
+          polyline.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
+        } else if (!this.defender && !this.server1) {
+          alert("Check your inputs!");
         }
 
-        //SVG Hexagon Test
-        var draw = SVG('#svg').size(300, 300);
-        var polyline = draw.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
-        polyline.fill(polycolor).move(20, 20);
-        polyline.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
-      }
-
-      //Multiple 'A' servers against a single 'B' server.
-      if (this.defender && this.server1){
-        if(captureOddsOneVsMany(
-            parseInt(this.defender),
-            parseInt(this.server1),
-            parseInt(this.server2),
-            parseInt(this.server3),
-            parseInt(this.server4),
-            parseInt(this.server5)) === false){
-          this.s1result = "Success";
-          this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
-          polycolor = 'red';
-        } else {
-          this.s1result = "Fail";
-          this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
-          polycolor = 'green';
+        //Multiple 'A' servers against a single 'B' server.
+        if (this.defender && this.server1) {
+          if(captureOddsOneVsMany(
+              parseInt(this.defender),
+              parseInt(this.server1),
+              parseInt(this.server2),
+              parseInt(this.server3),
+              parseInt(this.server4),
+              parseInt(this.server5)) === false) {
+            this.s1result = "Success";
+            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            polycolor = 'red';
+          } else {
+            this.s1result = "Fail";
+            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            polycolor = 'green';
+          }
+        } else if (!this.defender && !this.attacker) {
+          alert("Check your inputs!");
         }
       }
     }

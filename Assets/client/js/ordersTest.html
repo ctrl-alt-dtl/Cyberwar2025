@@ -11,7 +11,7 @@
     <div id="input-defender" class="container-left">
         <p> Fill in the values: </p>
         <p>Defender: </p>
-        <input type="text" id="defender" v-model="defender">
+        <input type="text" id="defender" v-model="defender" maxlength="1">
         <button v-on:click="btnSubmit">Calculate Results</button>
         <p> {{ resultOdds }}</p>
     </div>
@@ -19,7 +19,7 @@
         <p> DUAL-COMBAT </p>
         <div>
             <p v-bind:class="a1result">Attacker: {{ a1result }}</p>
-            <input type="text" id="attacker" v-model="attacker">
+            <input type="text" id="attacker" v-model="attacker" maxlength="1">
         </div>
         <div>
             </br>
