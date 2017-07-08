@@ -97,6 +97,7 @@ new Vue({
   }
 });
 
+//SVG Hexagon Test
 var draw = SVG('#svg').size(600, 600);
 var polyline = draw.polyline([[300,150],[225,280],[75,280],[0,150],[75,20],[225,20], [300,150]]);
 polyline.fill('none').move(20, 20);
