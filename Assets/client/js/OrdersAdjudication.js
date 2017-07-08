@@ -98,7 +98,7 @@ new Vue({
 });
 
 //SVG Hexagon Test
-var draw = SVG('#svg').size(600, 600);
-var polyline = draw.polyline([[300,150],[225,280],[75,280],[0,150],[75,20],[225,20], [300,150]]);
-polyline.fill('none').move(20, 20);
-polyline.stroke({ color: '#f06', width: 4, linecap: 'round', linejoin: 'round' });
+var draw = SVG('#svg').size(300, 300);
+var polyline = draw.polyline([[80,65],[73,78],[58,78],[50,65],[58,52],[73,52], [80,65]]);
+polyline.fill('blue').move(20, 20);
+polyline.stroke({ color: '#f06', width: 2, linecap: 'round', linejoin: 'round' });
