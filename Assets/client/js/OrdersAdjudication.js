@@ -89,19 +89,27 @@ new Vue({
   methods: {
     btnSubmit() {
       // Success and Failure are pointed to Defender, but the Attacker shows the result.
-      if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1)) == false) {
-        this.a1result = "Success";
-        polycolor = 'red';
-      } else {
-        this.a1result = "Fail";
-        polycolor = 'green';
+      if (this.defender){
+        if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker1)) == false) {
+          this.a1result = "Success";
+          polycolor = 'red';
+        } else {
+          this.a1result = "Fail";
+          polycolor = 'green';
+        }
+        //SVG Hexagon Test
+        var draw = SVG('#svg').size(300, 300);
+        var polyline = draw.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
+        polyline.fill(polycolor).move(20, 20);
+        polyline.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
       }
-      //SVG Hexagon Test
-      var draw = SVG('#svg').size(300, 300);
-      var polyline = draw.polyline([[80,65],[73,78],[58,78],[50,65],[58,52],[73,52], [80,65]]);
-      polyline.fill(polycolor).move(20, 20);
-      polyline.stroke({ color: '#f06', width: 2, linecap: 'round', linejoin: 'round' });
     }
   }
 });
+
+//SVG static placeholder, will be overwritten by update.
+var draw = SVG('#svg').size(300, 300);
+var polyline = draw.polyline([[80,65],[73,78],[58,78],[50,65],[58,52],[73,52], [80,65]]);
+polyline.fill('white').move(20, 20);
+polyline.stroke({ color: '#000', width: 2, linecap: 'round', linejoin: 'round' });
 
