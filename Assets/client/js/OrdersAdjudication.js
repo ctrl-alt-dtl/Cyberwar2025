@@ -121,10 +121,12 @@ new Vue({
         if (this.defender && this.attacker) {
           if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
             this.a1result = "Success";
+            this.defenderResult = "Fail";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'red';
           } else {
             this.a1result = "Fail";
+            this.defenderResult = "Success";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'green';
           }
@@ -148,10 +150,12 @@ new Vue({
               parseInt(this.server4),
               parseInt(this.server5)) === false) {
             this.s1result = "Success";
+            this.defenderResult = "Fail";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'red';
           } else {
             this.s1result = "Fail";
+            this.defenderResult = "Success";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'green';
           }

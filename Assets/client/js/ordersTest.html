@@ -10,7 +10,7 @@
 <div id="app">
     <div id="input-defender" class="container-left">
         <p> Fill in the values: </p>
-        <p>Defender: </p>
+        <p v-bind:class="defenderResult">Defender: {{ defenderResult }}</p>
         <input type="text" id="defender" v-model="defender" maxlength="1">
         <button v-on:click="btnSubmit">Calculate Results</button>
         <p> {{ resultOdds }}</p>
