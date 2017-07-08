@@ -105,8 +105,8 @@ new Vue({
   el: '#app',
   data: {
     a1result: '', s1result: '', s2result: '', s3result: '', s4result: '', s5result: '',
-    defender: '', defenderResult: '', resultOdds: '',
-    attacker: '', server1: 0, server2: 0, server3: 0, server4: 0, server5: 0,
+    defender: 0, defenderResult: '', resultOdds: '',
+    attacker: 0, server1: 0, server2: 0, server3: 0, server4: 0, server5: 0,
     greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
     green: '', blue: '', purple: '', red: '', orange: '', yellow: ''
   },
@@ -116,6 +116,7 @@ new Vue({
       if(this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) {
         alert("Too many variables!");
         location.reload();
+
       } else {
         // Success and Failure are pointed to Defender, but the Attacker shows the result.
         if (this.defender && this.attacker) {
@@ -124,6 +125,7 @@ new Vue({
             this.defenderResult = "Fail";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'red';
+
           } else {
             this.a1result = "Fail";
             this.defenderResult = "Success";
@@ -136,9 +138,10 @@ new Vue({
           var polyline = draw.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
           polyline.fill(polycolor).move(20, 20);
           polyline.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
+
         } else if (!this.defender && !this.server1) {
           alert("Check your inputs!");
-        }
+        } // End captureOddsOneVsOne()
 
         //Multiple 'A' servers against a single 'B' server.
         if (this.defender && this.server1) {
@@ -153,15 +156,18 @@ new Vue({
             this.defenderResult = "Fail";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'red';
+
           } else {
             this.s1result = "Fail";
             this.defenderResult = "Success";
             this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
             polycolor = 'green';
+
           }
+
         } else if (!this.defender && !this.attacker) {
           alert("Check your inputs!");
-        }
+        } // End captureOddsOneVsMany()
       }
     }
   }
