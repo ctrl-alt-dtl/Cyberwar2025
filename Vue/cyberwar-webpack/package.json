@@ -18,6 +18,8 @@
     "socket.io": "^2.0.3",
     "socketio": "^1.0.0",
     "svg.js": "^2.6.2",
+    "svg.path.js": "^0.6.2",
+    "svg.shapes.js": "^1.0.0",
     "vue": "^2.3.4",
     "vue-awesome": "^2.3.1",
     "vue-router": "^2.3.1",
