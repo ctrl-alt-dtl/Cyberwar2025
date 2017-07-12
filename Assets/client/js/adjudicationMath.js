@@ -67,7 +67,7 @@ function diceRoll() {
 function captureOddsOneVsOne(defender, attacker){
   dice = diceRoll();
   odds = Math.round(defender/(attacker + defender)*100);
-  //this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
+  // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
   if(odds > dice) {
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
@@ -85,8 +85,8 @@ function captureOddsOneVsMany(defender, server1, server2, server3, server4, serv
   dice = diceRoll();
   attackSum = server1 + server2 + server3 + server4 + server5;
   odds = Math.round(defender/(attackSum + defender)*100);
-  //console.log(odds, defense, server1, server2, server3, server4, server5, attackSum);
-  //this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
+  // console.log(odds, defense, server1, server2, server3, server4, server5, attackSum);
+  // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
   if(odds > dice) {
     console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
