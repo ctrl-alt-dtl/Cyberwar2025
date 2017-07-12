@@ -40,17 +40,17 @@
     <div id="input-attackers" class="container-right">
         <p> MULTI-COMBAT </p>
         <p v-bind:class="greenResult">Green: {{ greenResult}}</p>
-        <input type="text" id="green" v-model="green">
+        <input type="text" id="plGreen" v-model="plGreen">
         <p v-bind:class="blueResult">Blue: {{ blueResult }}</p>
-        <input type="text" id="blue" v-model="blue">
+        <input type="text" id="plBlue" v-model="plBlue">
         <p>Purple: {{ purpleResult}} </p>
-        <input type="text" id="purple" v-model="purple">
+        <input type="text" id="plPurple" v-model="plPurple">
         <p>Red: {{ redResult}} </p>
-        <input type="text" id="red" v-model="red">
+        <input type="text" id="plRed" v-model="plRed">
         <p>Orange: {{ orangeResult}}</p>
-        <input type="text" id="orange" v-model="orange">
+        <input type="text" id="plOrange" v-model="plOrange">
         <p>Yellow: {{ yellowResult}}</p>
-        <input type="text" id="yellow" v-model="yellow">
+        <input type="text" id="plYellow" v-model="plYellow">
 
     </div>
     <svg id="#svg"></svg>
@@ -66,7 +66,7 @@ Latest version of Vue:
 <script src="../../lib/vue.js"></script>
 <script src="../../lib/snap.svg.js"></script>
 <script src="../../lib/svg/svg.js"></script>
-<script src="OrdersAdjudication.js"></script>
+<script src="adjudicationMath.js"></script>
 
 </body>
 </html>

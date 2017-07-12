@@ -51,7 +51,11 @@
 
 // Initialization
 var dice, odds, attackSum = 0;
+var diceAboveGreen, diceAboveBlue, diceAbovePurple, diceAboveRed, diceAboveOrange, diceAboveYellow = 0;
+var defender, attacker = 0
 var server1, server2, server3, server4, server5 = 0;
+// 'pl' stands for player
+var plGreen, plBlue, plPurple, plRed, plOrange, plYellow = 0;
 var polycolor = '';
 
 // 100 sided die for calculation
@@ -60,9 +64,9 @@ function diceRoll() {
 }
 
 // This is an A->B scenario, in which A is the sole attacker.
-function captureOddsOneVsOne(defense, attack){
+function captureOddsOneVsOne(defender, attacker){
   dice = diceRoll();
-  odds = Math.round(defense/(attack + defense)*100);
+  odds = Math.round(defender/(attacker + defender)*100);
   //this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
   if(odds > dice) {
@@ -77,10 +81,10 @@ function captureOddsOneVsOne(defense, attack){
 
 // This is an A+[n]->B scenario, in which A has multiple servers attacking.
 // Could also be used when there's an alliance formed between two or more players.
-function captureOddsOneVsMany(defense, server1, server2, server3, server4, server5){
+function captureOddsOneVsMany(defender, server1, server2, server3, server4, server5){
   dice = diceRoll();
   attackSum = server1 + server2 + server3 + server4 + server5;
-  odds = Math.round(defense/(attackSum + defense)*100);
+  odds = Math.round(defender/(attackSum + defender)*100);
   //console.log(odds, defense, server1, server2, server3, server4, server5, attackSum);
   //this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
@@ -94,6 +98,36 @@ function captureOddsOneVsMany(defense, server1, server2, server3, server4, serve
   }
 }
 
+// This is an A->B<-C,[...] scenario, in which multiple players attack the defender.
+// The max amount of attacks if five, but they can be from each player or from two or more from a sole player.
+// For example: pBlue attack is 8 (2x level 4 servers), pRed is 4, and the defender pOrange is 4.
+// The first roll goes to pBlue, since they have a higher margin of success.
+// However, both attacks will adjudicated simultaneously and compared at the end. The highest number out of all rolls
+// that are above zero is considered the winner and takes control of that server.
+// However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
+function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow){
+  dice = diceRoll();
+  if(plGreen != 0){
+    diceAboveGreen = Math.round(defender/(plGreen + defender)*100);
+  }
+  if(plBlue != 0){
+    diceAboveBlue = Math.round(defender/(plBlue + defender)*100);
+  }
+  if(plPurple != 0){
+    diceAbovePurple = Math.round(defender/(plPurple + defender)*100);
+  }
+  if(plRed != 0){
+    diceAboveRed = Math.round(defender/(plRed + defender)*100);
+  }
+  if(plOrange != 0){
+    diceAboveOrange = Math.round(defender/(plOrange + defender)*100);
+  }
+  if(plYellow != 0){
+    diceAboveYellow = Math.round(defender/(plYellow + defender)*100);
+  }
+
+
+}
 
 
 /**
@@ -108,12 +142,14 @@ new Vue({
     defender: 0, defenderResult: '', resultOdds: '',
     attacker: 0, server1: 0, server2: 0, server3: 0, server4: 0, server5: 0,
     greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
-    green: '', blue: '', purple: '', red: '', orange: '', yellow: ''
+    plGreen: 0, plBlue: 0, plPurple: 0, plRed: 0, plOrange: 0, plYellow: 0
   },
   methods: {
     btnSubmit() {
 
-      if(this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) {
+      // Input checking. We do not want extra inputs to confuse our math.
+      if((this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) ||
+        (this.plGreen || this.plBlue || this.plPurple || this.plRed || this.plOrange || this.plYellow)) {
         alert("Too many variables!");
         location.reload();
 
@@ -133,17 +169,17 @@ new Vue({
             polycolor = 'green';
           }
 
-          //SVG Hexagon Test
+          // SVG Hexagon Test
           var draw = SVG('#svg').size(300, 300);
           var polyline = draw.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
           polyline.fill(polycolor).move(20, 20);
           polyline.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
 
-        } else if (!this.defender && !this.server1) {
+        } else if (!this.defender && (!this.server1 && !this.plBlue)) {
           alert("Check your inputs!");
         } // End captureOddsOneVsOne()
 
-        //Multiple 'A' servers against a single 'B' server.
+        // Multiple 'A' servers against a single 'B' server.
         if (this.defender && this.server1) {
           if(captureOddsOneVsMany(
               parseInt(this.defender),
@@ -165,9 +201,23 @@ new Vue({
 
           }
 
-        } else if (!this.defender && !this.attacker) {
+        } else if (!this.defender && (!this.attacker && !this.plBlue)) {
           alert("Check your inputs!");
         } // End captureOddsOneVsMany()
+
+        // Multi-player/Multi-combat. Many servers (A, C, D, ...) against a single 'B' server.
+        if (this.defender && (this.plGreen || this.plBlue || this.plPurple || this.plRed || plOrange || plYellow)){
+          if(captureMultiCombat(
+              parseInt(this.defender),
+              parseInt(this.plGreen),
+              parseInt(this.plBlue),
+              parseInt(this.plPurple),
+              parseInt(this.plRed),
+              parseInt(this.plOrange),
+              parseInt(this.plYellow)) === false){
+
+          }
+        }
       }
     }
   }
@@ -175,7 +225,8 @@ new Vue({
 
 //SVG static placeholder, will be overwritten by update.
 var draw = SVG('#svg').size(300, 300);
-var polyline = draw.polyline([[80,65],[73,78],[58,78],[50,65],[58,52],[73,52], [80,65]]);
+//                              BR       BR      BL      CL     TL       TR       TR
+var polyline = draw.polyline([[80,65],[73,78],[56,78],[50,65],[58,52],[73,52], [80,65]]);
 polyline.fill('white').move(20, 20);
 polyline.stroke({ color: '#000', width: 2, linecap: 'round', linejoin: 'round' });
 
