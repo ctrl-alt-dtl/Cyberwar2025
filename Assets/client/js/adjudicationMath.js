@@ -56,6 +56,7 @@ var defender, attacker = 0
 var server1, server2, server3, server4, server5 = 0;
 // 'pl' stands for player
 var plGreen, plBlue, plPurple, plRed, plOrange, plYellow = 0;
+var greenResult, blueResult, purpleResult, redResult, orangeResult, yellowResult = 0;
 var polycolor = '';
 
 // 100 sided die for calculation
@@ -66,7 +67,8 @@ function diceRoll() {
 // This is an A->B scenario, in which A is the sole attacker.
 function captureOddsOneVsOne(defender, attacker){
   dice = diceRoll();
-  odds = Math.round(defender/(attacker + defender)*100);
+  odds = Math.round(defender / (attacker + defender) * 100);
+
   // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
   if(odds > dice) {
@@ -84,7 +86,8 @@ function captureOddsOneVsOne(defender, attacker){
 function captureOddsOneVsMany(defender, server1, server2, server3, server4, server5){
   dice = diceRoll();
   attackSum = server1 + server2 + server3 + server4 + server5;
-  odds = Math.round(defender/(attackSum + defender)*100);
+  odds = Math.round(defender / (attackSum + defender) * 100);
+
   // console.log(odds, defense, server1, server2, server3, server4, server5, attackSum);
   // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
@@ -98,6 +101,14 @@ function captureOddsOneVsMany(defender, server1, server2, server3, server4, serv
   }
 }
 
+// Helper function for captureMultiCombat()
+function multiCombatPerPlayer(defender, attacker){
+  dice = diceRoll();
+  diceAbove = Math.round(defender/(attacker + defender) * 100);
+  margin = dice - (100 * diceAbove);
+  return margin;
+}
+
 // This is an A->B<-C,[...] scenario, in which multiple players attack the defender.
 // The max amount of attacks if five, but they can be from each player or from two or more from a sole player.
 // For example: pBlue attack is 8 (2x level 4 servers), pRed is 4, and the defender pOrange is 4.
@@ -106,24 +117,31 @@ function captureOddsOneVsMany(defender, server1, server2, server3, server4, serv
 // that are above zero is considered the winner and takes control of that server.
 // However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
 function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow){
-  dice = diceRoll();
   if(plGreen != 0){
-    diceAboveGreen = Math.round(defender/(plGreen + defender)*100);
+    // dice = diceRoll();
+    // diceAboveGreen = Math.round(defender / (plGreen + defender) * 100);
+    greenResult = multiCombatPerPlayer(defender, plGreen);
+
   }
   if(plBlue != 0){
-    diceAboveBlue = Math.round(defender/(plBlue + defender)*100);
+    dice = diceRoll();
+    diceAboveBlue = Math.round(defender / (plBlue + defender) * 100);
   }
   if(plPurple != 0){
-    diceAbovePurple = Math.round(defender/(plPurple + defender)*100);
+    dice = diceRoll();
+    diceAbovePurple = Math.round(defender / (plPurple + defender) * 100);
   }
   if(plRed != 0){
-    diceAboveRed = Math.round(defender/(plRed + defender)*100);
+    dice = diceRoll();
+    diceAboveRed = Math.round(defender / (plRed + defender) * 100);
   }
   if(plOrange != 0){
-    diceAboveOrange = Math.round(defender/(plOrange + defender)*100);
+    dice = diceRoll();
+    diceAboveOrange = Math.round(defender / (plOrange + defender) * 100);
   }
   if(plYellow != 0){
-    diceAboveYellow = Math.round(defender/(plYellow + defender)*100);
+    dice = diceRoll();
+    diceAboveYellow = Math.round(defender / (plYellow + defender) * 100);
   }
 
 
