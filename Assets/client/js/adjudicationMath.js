@@ -249,7 +249,8 @@ hex1poly.fill('white').move(20, 20);
 hex1poly.stroke({ color: '#000', width: 2, linecap: 'round', linejoin: 'round' });
 
 var hex2 = SVG('#hex2').size(300, 300);
-//                              ST      P1        P2          P3          P4         P5       EP
+//                         Start Point   P1        P2          P3          P4         P5      End Pt.
 var hex2poly = hex2.polyline([[100,0],[200,0], [240, 75], [200, 150], [100, 150], [60, 75], [100, 0]]);
-hex2poly.fill('black').move(0, 0)
-hex2poly.stroke({color: '#06F', width: 3, linecap: 'butt', linejoin: 'butt'});
+//                       (Right, Down)
+hex2poly.fill('black').move(5, 5)
+hex2poly.stroke({color: '#f06', width: 3, linecap: 'round', linejoin: 'round'});
