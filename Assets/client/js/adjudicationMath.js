@@ -170,10 +170,10 @@ new Vue({
           }
 
           // SVG Hexagon Test
-          var draw = SVG('#svg').size(300, 300);
-          var polyline = draw.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
-          polyline.fill(polycolor).move(20, 20);
-          polyline.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
+          var hex1 = SVG('#hex1').size(100, 100);
+          var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
+          hex1poly.fill(polycolor).move(20, 20);
+          hex1poly.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
 
         } else if (!this.defender && (!this.server1 && !this.plBlue)) {
           alert("Check your inputs!");
@@ -224,9 +224,14 @@ new Vue({
 });
 
 //SVG static placeholder, will be overwritten by update.
-var draw = SVG('#svg').size(300, 300);
+var hex1 = SVG('#hex1').size(100, 100);
 //                              BR       BR      BL      CL     TL       TR       TR
-var polyline = draw.polyline([[80,65],[73,78],[56,78],[50,65],[58,52],[73,52], [80,65]]);
-polyline.fill('white').move(20, 20);
-polyline.stroke({ color: '#000', width: 2, linecap: 'round', linejoin: 'round' });
+var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
+hex1poly.fill('white').move(20, 20);
+hex1poly.stroke({ color: '#000', width: 2, linecap: 'round', linejoin: 'round' });
 
+var hex2 = SVG('#hex2').size(300, 300);
+//                              ST      P1        P2          P3          P4         P5       EP
+var hex2poly = hex2.polyline([[100,0],[200,0], [240, 75], [200, 150], [100, 150], [60, 75], [100, 0]]);
+hex2poly.fill('black').move(0, 0)
+hex2poly.stroke({color: '#06F', width: 3, linecap: 'butt', linejoin: 'butt'});
