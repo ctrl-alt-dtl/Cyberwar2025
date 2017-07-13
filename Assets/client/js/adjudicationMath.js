@@ -50,11 +50,12 @@
  */
 
 // Initialization
-var dice, odds, attackSum = 0;
-var diceAboveGreen, diceAboveBlue, diceAbovePurple, diceAboveRed, diceAboveOrange, diceAboveYellow = 0;
+var dice, odds, attackSum, diceAbove, margin = 0;
+var greenMargin, blueMargin, diceAbovePurple, diceAboveRed, diceAboveOrange, diceAboveYellow = 0;
 var defender, attacker = 0
 var server1, server2, server3, server4, server5 = 0;
 // 'pl' stands for player
+var attackerName = '';
 var plGreen, plBlue, plPurple, plRed, plOrange, plYellow = 0;
 var greenResult, blueResult, purpleResult, redResult, orangeResult, yellowResult = 0;
 var polycolor = '';
@@ -72,11 +73,11 @@ function captureOddsOneVsOne(defender, attacker){
   // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
   if(odds > dice) {
-    console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
+    console.log('Dice: ' + dice + ' Odds: ' + odds + ': Success to Defender!')
     return true;
   }
   else if (odds <= dice) {
-    console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Fail to Defender!')
+    console.log('Dice: ' + dice + ' Odds: ' + odds + ': Fail to Defender!')
     return false;
   }
 }
@@ -92,22 +93,25 @@ function captureOddsOneVsMany(defender, server1, server2, server3, server4, serv
   // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
   if(odds > dice) {
-    console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Success to Defender!')
+    console.log('Dice: ' + dice + ' Odds: ' + odds + ': Success to Defender!')
     return true;
   }
   else if (odds <= dice) {
-    console.log('Dice: ' + dice + ' ' + 'Odds: ' + odds + ': Fail to Defender!')
+    console.log('Dice: ' + dice + ' Odds: ' + odds + ': Fail to Defender!')
     return false;
   }
 }
 
 // Helper function for captureMultiCombat()
-function multiCombatPerPlayer(defender, attacker){
+function multiCombatPerPlayer(defender, attacker, attackerName){
   dice = diceRoll();
-  diceAbove = Math.round(defender/(attacker + defender) * 100);
-  margin = dice - (100 * diceAbove);
+  diceAbove = Math.round(defender / (defender + attacker) * 100);
+  margin = dice -  diceAbove;
+  console.log('Attacker: ' + attackerName + ' Dice: ' + dice + ' Dice Above: ' + diceAbove + '% Margin: ' + margin);
   return margin;
 }
+
+// TODO: FIX THIS!
 
 // This is an A->B<-C,[...] scenario, in which multiple players attack the defender.
 // The max amount of attacks if five, but they can be from each player or from two or more from a sole player.
@@ -117,31 +121,50 @@ function multiCombatPerPlayer(defender, attacker){
 // that are above zero is considered the winner and takes control of that server.
 // However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
 function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow){
-  if(plGreen != 0){
+  // TODO: Conditions to hit the multiCombatPerPlayer is not right. If 0 then still calculate the margin of success.
+  if(plGreen !== 0){
     // dice = diceRoll();
     // diceAboveGreen = Math.round(defender / (plGreen + defender) * 100);
-    greenResult = multiCombatPerPlayer(defender, plGreen);
+    greenMargin = multiCombatPerPlayer(defender, plGreen, 'Green');
+    console.log("Green Margin: " + greenMargin);
+  }
+  if(plBlue !== 0){
+    blueMargin = multiCombatPerPlayer(defender, plBlue, 'Blue');
+    console.log("Blue Margin: " + blueMargin);
+  }
+  if(plPurple !== 0){
+    diceAbovePurple = multiCombatPerPlayer(defender, plPurple, 'Purple');
+  }
+  if(plRed !== 0){
+    diceAboveRed = multiCombatPerPlayer(defender, plRed, 'Red');
+  }
+  if(plOrange !== 0){
+    diceAboveOrange = multiCombatPerPlayer(defender, plOrange, 'Orange');
+  }
+  if(plYellow !== 0){
+    diceAboveYellow = multiCombatPerPlayer(defender, plYellow, 'Yellow');
+  }
 
-  }
-  if(plBlue != 0){
-    dice = diceRoll();
-    diceAboveBlue = Math.round(defender / (plBlue + defender) * 100);
-  }
-  if(plPurple != 0){
-    dice = diceRoll();
-    diceAbovePurple = Math.round(defender / (plPurple + defender) * 100);
-  }
-  if(plRed != 0){
-    dice = diceRoll();
-    diceAboveRed = Math.round(defender / (plRed + defender) * 100);
-  }
-  if(plOrange != 0){
-    dice = diceRoll();
-    diceAboveOrange = Math.round(defender / (plOrange + defender) * 100);
-  }
-  if(plYellow != 0){
-    dice = diceRoll();
-    diceAboveYellow = Math.round(defender / (plYellow + defender) * 100);
+  // Display of who won the roll. Go down the line of who had the higher margin of success.
+
+  /**
+   * &&
+   greenMargin > diceAbovePurple    &&
+   greenMargin > diceAboveRed       &&
+   greenMargin > diceAboveOrange    &&
+   greenMargin > diceAboveYellow
+   */
+  if(greenMargin > 0                 &&
+    greenMargin > blueMargin      ){
+    return false;
+
+  } else if(blueMargin > 0          ){
+    return false;
+
+
+  } else {
+    defenderResult = 'Success';
+    return true;
   }
 
 
@@ -166,7 +189,7 @@ new Vue({
     btnSubmit() {
 
       // Input checking. We do not want extra inputs to confuse our math.
-      if((this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) ||
+      if((this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) &&
         (this.plGreen || this.plBlue || this.plPurple || this.plRed || this.plOrange || this.plYellow)) {
         alert("Too many variables!");
         location.reload();
@@ -177,13 +200,13 @@ new Vue({
           if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
             this.a1result = "Success";
             this.defenderResult = "Fail";
-            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
             polycolor = 'red';
 
           } else {
             this.a1result = "Fail";
             this.defenderResult = "Success";
-            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
             polycolor = 'green';
           }
 
@@ -208,13 +231,13 @@ new Vue({
               parseInt(this.server5)) === false) {
             this.s1result = "Success";
             this.defenderResult = "Fail";
-            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
             polycolor = 'red';
 
           } else {
             this.s1result = "Fail";
             this.defenderResult = "Success";
-            this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds + '%';
+            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
             polycolor = 'green';
 
           }
@@ -225,15 +248,26 @@ new Vue({
 
         // Multi-player/Multi-combat. Many servers (A, C, D, ...) against a single 'B' server.
         if (this.defender && (this.plGreen || this.plBlue || this.plPurple || this.plRed || plOrange || plYellow)){
-          if(captureMultiCombat(
+          if (captureMultiCombat(
               parseInt(this.defender),
               parseInt(this.plGreen),
               parseInt(this.plBlue),
               parseInt(this.plPurple),
               parseInt(this.plRed),
               parseInt(this.plOrange),
-              parseInt(this.plYellow)) === false){
+              parseInt(this.plYellow)) === true){
 
+            console.log("DEFENDER SUCCESS");
+            console.log(defenderResult);
+            this.resultOdds = "Dice: " + dice + ' \nDice Above: ' + diceAbove + '% \nMargin: ' + margin;
+            polycolor = 'green';
+          }
+
+          // TODO: This code is not updating, because global variables are not being written/returned correctly.
+          if (this.greenResult === 'Success') {
+            console.log("GREEN SUCCESS");
+            console.log(this.greenResult);
+            polycolor = 'green';
           }
         }
       }
@@ -251,6 +285,6 @@ hex1poly.stroke({ color: '#000', width: 2, linecap: 'round', linejoin: 'round' }
 var hex2 = SVG('#hex2').size(300, 300);
 //                         Start Point   P1        P2          P3          P4         P5      End Pt.
 var hex2poly = hex2.polyline([[100,0],[200,0], [240, 75], [200, 150], [100, 150], [60, 75], [100, 0]]);
-//                       (Right, Down)
-hex2poly.fill('black').move(5, 5)
-hex2poly.stroke({color: '#f06', width: 3, linecap: 'round', linejoin: 'round'});
+//                     (Right, Down)
+hex2poly.fill('black').move(5, 10)
+hex2poly.stroke({color: '#06F', width: 3, linecap: 'round', linejoin: 'round'});
