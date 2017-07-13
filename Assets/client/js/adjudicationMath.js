@@ -51,7 +51,7 @@
 
 // Initialization
 var dice, odds, attackSum, diceAbove, margin = 0;
-var greenMargin, blueMargin, diceAbovePurple, diceAboveRed, diceAboveOrange, diceAboveYellow = 0;
+var greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin = 0;
 var defender, attacker = 0
 var server1, server2, server3, server4, server5 = 0;
 // 'pl' stands for player
@@ -121,29 +121,16 @@ function multiCombatPerPlayer(defender, attacker, attackerName){
 // that are above zero is considered the winner and takes control of that server.
 // However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
 function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow){
-  // TODO: Conditions to hit the multiCombatPerPlayer is not right. If 0 then still calculate the margin of success.
-  if(plGreen !== 0){
-    // dice = diceRoll();
-    // diceAboveGreen = Math.round(defender / (plGreen + defender) * 100);
-    greenMargin = multiCombatPerPlayer(defender, plGreen, 'Green');
-    console.log("Green Margin: " + greenMargin);
-  }
-  if(plBlue !== 0){
-    blueMargin = multiCombatPerPlayer(defender, plBlue, 'Blue');
-    console.log("Blue Margin: " + blueMargin);
-  }
-  if(plPurple !== 0){
-    diceAbovePurple = multiCombatPerPlayer(defender, plPurple, 'Purple');
-  }
-  if(plRed !== 0){
-    diceAboveRed = multiCombatPerPlayer(defender, plRed, 'Red');
-  }
-  if(plOrange !== 0){
-    diceAboveOrange = multiCombatPerPlayer(defender, plOrange, 'Orange');
-  }
-  if(plYellow !== 0){
-    diceAboveYellow = multiCombatPerPlayer(defender, plYellow, 'Yellow');
-  }
+  // TODO: Clean up this code.
+
+  greenMargin = multiCombatPerPlayer(defender, plGreen, 'Green');
+  blueMargin = multiCombatPerPlayer(defender, plBlue, 'Blue');
+  purpleMargin = multiCombatPerPlayer(defender, plPurple, 'Purple');
+  redMargin = multiCombatPerPlayer(defender, plRed, 'Red');
+  orangeMargin = multiCombatPerPlayer(defender, plOrange, 'Orange');
+  yellowMargin = multiCombatPerPlayer(defender, plYellow, 'Yellow');
+  console.log("Green Margin: " + greenMargin);
+  console.log("Blue Margin: " + blueMargin);
 
   // Display of who won the roll. Go down the line of who had the higher margin of success.
 
@@ -156,6 +143,8 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
    */
   if(greenMargin > 0                 &&
     greenMargin > blueMargin      ){
+    defenderResult = 'Fail';
+    greenResult = 'Success';
     return false;
 
   } else if(blueMargin > 0          ){
@@ -164,6 +153,7 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
 
   } else {
     defenderResult = 'Success';
+    greenResult = 'Fail';
     return true;
   }
 
@@ -210,12 +200,6 @@ new Vue({
             polycolor = 'green';
           }
 
-          // SVG Hexagon Test
-          var hex1 = SVG('#hex1').size(100, 100);
-          var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
-          hex1poly.fill(polycolor).move(20, 20);
-          hex1poly.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
-
         } else if (!this.defender && (!this.server1 && !this.plBlue)) {
           alert("Check your inputs!");
         } // End captureOddsOneVsOne()
@@ -257,20 +241,27 @@ new Vue({
               parseInt(this.plOrange),
               parseInt(this.plYellow)) === true){
 
-            console.log("DEFENDER SUCCESS");
-            console.log(defenderResult);
-            this.resultOdds = "Dice: " + dice + ' \nDice Above: ' + diceAbove + '% \nMargin: ' + margin;
-            polycolor = 'green';
-          }
+            this.resultOdds = "Dice: " + dice + ' Dice Above: ' + diceAbove + '% Margin: ' + margin;
+            this.defenderResult = "Success";
+            this.greenResult = "Fail";
+            polycolor = 'red';
 
-          // TODO: This code is not updating, because global variables are not being written/returned correctly.
-          if (this.greenResult === 'Success') {
-            console.log("GREEN SUCCESS");
-            console.log(this.greenResult);
-            polycolor = 'green';
+          } else {
+            // TODO: Update code for additional results.
+            if (greenResult === 'Success') {
+              this.defenderResult = 'Fail';
+              this.greenResult = 'Success';
+              polycolor = 'green';
+
+            }
           }
         }
       }
+      // SVG Hexagon Test
+      var hex1 = SVG('#hex1').size(100, 100);
+      var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
+      hex1poly.fill(polycolor).move(20, 20);
+      hex1poly.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
     }
   }
 });
