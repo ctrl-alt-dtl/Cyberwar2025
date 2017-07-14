@@ -111,7 +111,18 @@ function multiCombatPerPlayer(defender, attacker, attackerName){
   return margin;
 }
 
-// TODO: FIX THIS!
+// Helper function to determine if multiple success happen due to Math.Random()
+function equalToAny(el, gre, blu, pur, red, org, yel){
+  var args = [].slice.call(arguments, 1);
+  if (args.length === 0) return false;
+  for (var i = 0, l = args.length; i < l; i++) {
+    if (el === args[i]) {
+      return true;
+    }
+  }
+  return false;
+
+}
 
 // This is an A->B<-C,[...] scenario, in which multiple players attack the defender.
 // The max amount of attacks if five, but they can be from each player or from two or more from a sole player.
@@ -120,46 +131,145 @@ function multiCombatPerPlayer(defender, attacker, attackerName){
 // However, both attacks will adjudicated simultaneously and compared at the end. The highest number out of all rolls
 // that are above zero is considered the winner and takes control of that server.
 // However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
-function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow){
-  // TODO: Clean up this code.
-
+function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow) {
+  // TODO: This is not perfect, clean up this logic!
+  // TODO: If two or more are the same margin, then we have a random() issue and this might cause problems.
+  if(plGreen > 0 && plBlue > 0 && plPurple > 0 && plRed > 0 && plOrange > 0 && plYellow > 0) {
+    alert("Too many inputs!");
+    // TODO: Remove this after testing!
+    location.reload();
+  }
+  // Calculate the margin for success.
   greenMargin = multiCombatPerPlayer(defender, plGreen, 'Green');
   blueMargin = multiCombatPerPlayer(defender, plBlue, 'Blue');
   purpleMargin = multiCombatPerPlayer(defender, plPurple, 'Purple');
   redMargin = multiCombatPerPlayer(defender, plRed, 'Red');
   orangeMargin = multiCombatPerPlayer(defender, plOrange, 'Orange');
   yellowMargin = multiCombatPerPlayer(defender, plYellow, 'Yellow');
-  console.log("Green Margin: " + greenMargin);
-  console.log("Blue Margin: " + blueMargin);
+
+  // Math.Random() edge case testing.
+  // greenMargin = 1;
+  // blueMargin = 1;
 
   // Display of who won the roll. Go down the line of who had the higher margin of success.
+  // THIS SETS THE STATE OF WINNER
 
-  /**
-   * &&
-   greenMargin > diceAbovePurple    &&
-   greenMargin > diceAboveRed       &&
-   greenMargin > diceAboveOrange    &&
-   greenMargin > diceAboveYellow
-   */
-  if(greenMargin > 0                 &&
-    greenMargin > blueMargin      ){
-    defenderResult = 'Fail';
-    greenResult = 'Success';
-    return false;
+  // DEFENDER
+  if (greenMargin   < 0             &&
+    blueMargin      < 0             &&
+    purpleMargin    < 0             &&
+    redMargin       < 0             &&
+    orangeMargin    < 0             &&
+    yellowMargin    < 0) {
 
-  } else if(blueMargin > 0          ){
-    return false;
-
+    greenResult   = 'Fail';
+    blueResult    = 'Fail';
+    purpleResult  = 'Fail';
+    redResult     = 'Fail';
+    orangeResult  = 'Fail';
+    yellowResult  = 'Fail';
+    return true;
 
   } else {
-    defenderResult = 'Success';
-    greenResult = 'Fail';
-    return true;
+    // PLAYER GREEN
+    if (greenMargin > blueMargin            &&
+      greenMargin > purpleMargin            &&
+      greenMargin > redMargin               &&
+      greenMargin > orangeMargin            &&
+      greenMargin > yellowMargin) {
+
+      greenResult   = 'Success';
+      blueResult    = 'Fail';
+      purpleResult  = 'Fail';
+      redResult     = 'Fail';
+      orangeResult  = 'Fail';
+      yellowResult  = 'Fail';
+      return false;
+
+      // PLAYER BLUE
+    } else if (blueMargin > greenMargin     &&
+      blueMargin > purpleMargin             &&
+      blueMargin > redMargin                &&
+      blueMargin > orangeMargin             &&
+      blueMargin > yellowMargin) {
+
+      greenResult   = 'Fail';
+      blueResult    = 'Success';
+      purpleResult  = 'Fail';
+      redResult     = 'Fail';
+      orangeResult  = 'Fail';
+      yellowResult  = 'Fail';
+      return false;
+
+      // PLAYER PURPLE
+    } else if (purpleMargin > greenMargin   &&
+      purpleMargin > blueMargin             &&
+      purpleMargin > redMargin              &&
+      purpleMargin > orangeMargin           &&
+      purpleMargin > yellowMargin) {
+
+      greenResult   = 'Fail';
+      blueResult    = 'Fail';
+      purpleResult  = 'Success';
+      redResult     = 'Fail';
+      orangeResult  = 'Fail';
+      yellowResult  = 'Fail';
+      return false;
+
+      // PLAYER RED
+    } else if (redMargin > greenMargin      &&
+      redMargin > blueMargin                &&
+      redMargin > purpleMargin              &&
+      redMargin > orangeMargin              &&
+      redMargin > yellowMargin) {
+
+      greenResult   = 'Fail';
+      blueResult    = 'Fail';
+      purpleResult  = 'Fail';
+      redResult     = 'Success';
+      orangeResult  = 'Fail';
+      yellowResult  = 'Fail';
+      return false;
+
+      // PLAYER ORANGE
+    } else if (orangeMargin > greenMargin   &&
+      orangeMargin > blueMargin             &&
+      orangeMargin > purpleMargin           &&
+      orangeMargin > redMargin              &&
+      orangeMargin > yellowMargin) {
+
+      greenResult   = 'Fail';
+      blueResult    = 'Fail';
+      purpleResult  = 'Fail';
+      redResult     = 'Fail';
+      orangeResult  = 'Success';
+      yellowResult  = 'Fail';
+      return false;
+
+      // PLAYER YELLOW
+    } else if (yellowMargin > greenMargin   &&
+      yellowMargin > blueMargin             &&
+      yellowMargin > purpleMargin           &&
+      yellowMargin > redMargin              &&
+      yellowMargin > orangeMargin) {
+
+      greenResult   = 'Fail';
+      blueResult    = 'Fail';
+      purpleResult  = 'Fail';
+      redResult     = 'Fail';
+      orangeResult  = 'Fail';
+      yellowResult  = 'Success';
+      return false;
+    } else {
+      // If two or more winning values are the same number then we are presented with this. Which happens when
+      // Math.Random() chooses the same number per each roll.
+      // TODO: Fix this edge case.
+      if (equalToAny(greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin)) {
+        alert("Two or more values are equal!");
+      }
+    }
   }
-
-
 }
-
 
 /**
  * Test/Scratch Code
@@ -182,6 +292,7 @@ new Vue({
       if((this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) &&
         (this.plGreen || this.plBlue || this.plPurple || this.plRed || this.plOrange || this.plYellow)) {
         alert("Too many variables!");
+        // TODO: Remove this after testing!
         location.reload();
 
       } else {
@@ -242,21 +353,79 @@ new Vue({
               parseInt(this.plYellow)) === true){
 
             this.resultOdds = "Dice: " + dice + ' Dice Above: ' + diceAbove + '% Margin: ' + margin;
-            this.defenderResult = "Success";
-            this.greenResult = "Fail";
+            this.defenderResult   = "Success";
+            this.greenResult      = "Fail";
+            this.blueResult       = "Fail";
+            this.purpleResult     = "Fail";
+            this.redResult        = "Fail";
+            this.orangeResult     = "Fail";
+            this.yellowResult     = "Fail";
             polycolor = 'red';
 
           } else {
-            // TODO: Update code for additional results.
+            // SUCCESS/FAIL results for each player
             if (greenResult === 'Success') {
-              this.defenderResult = 'Fail';
-              this.greenResult = 'Success';
+              this.defenderResult   = "Fail";
+              this.greenResult      = "Success";
+              this.blueResult       = "Fail";
+              this.purpleResult     = "Fail";
+              this.redResult        = "Fail";
+              this.orangeResult     = "Fail";
+              this.yellowResult     = "Fail";
               polycolor = 'green';
 
+            } else if (blueResult === 'Success'){
+              this.defenderResult   = "Fail";
+              this.greenResult      = "Fail";
+              this.blueResult       = "Success";
+              this.purpleResult     = "Fail";
+              this.redResult        = "Fail";
+              this.orangeResult     = "Fail";
+              this.yellowResult     = "Fail";
+
+            } else if (purpleResult === 'Success'){
+              this.defenderResult   = "Fail";
+              this.greenResult      = "Fail";
+              this.blueResult       = "Fail";
+              this.purpleResult     = "Success";
+              this.redResult        = "Fail";
+              this.orangeResult     = "Fail";
+              this.yellowResult     = "Fail";
+
+            } else if (redResult === 'Success'){
+              this.defenderResult   = "Fail";
+              this.greenResult      = "Fail";
+              this.blueResult       = "Fail";
+              this.purpleResult     = "Fail";
+              this.redResult        = "Success";
+              this.orangeResult     = "Fail";
+              this.yellowResult     = "Fail";
+
+            } else if (orangeResult === 'Success'){
+              this.defenderResult   = "Fail";
+              this.greenResult      = "Fail";
+              this.blueResult       = "Fail";
+              this.purpleResult     = "Fail";
+              this.redResult        = "Fail";
+              this.orangeResult     = "Success";
+              this.yellowResult     = "Fail";
+
+            } else if (yellowResult === 'Success'){
+              this.defenderResult   = "Fail";
+              this.greenResult      = "Fail";
+              this.blueResult       = "Fail";
+              this.purpleResult     = "Fail";
+              this.redResult        = "Fail";
+              this.orangeResult     = "Fail";
+              this.yellowResult     = "Success";
+
+            } else {
+              console.alert("Output Error in captureMultiCombat()");
             }
           }
         }
       }
+      // TODO: Remove this after testing complete!
       // SVG Hexagon Test
       var hex1 = SVG('#hex1').size(100, 100);
       var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
@@ -266,6 +435,7 @@ new Vue({
   }
 });
 
+// TODO: Remove these after testing complete!
 //SVG static placeholder, will be overwritten by update.
 var hex1 = SVG('#hex1').size(100, 100);
 //                              BR       BR      BL      CL     TL       TR       TR
