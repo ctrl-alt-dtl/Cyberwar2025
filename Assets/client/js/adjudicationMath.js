@@ -294,6 +294,7 @@ new Vue({
         location.reload();
 
       } else {
+        // Single 'A' server against a single 'B' server.
         // Success and Failure are pointed to Defender, but the Attacker shows the result.
         if (this.defender && this.attacker) {
           if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
