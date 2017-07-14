@@ -18,13 +18,13 @@
     <div id="input-attacker" class="container-right">
         <p> DUAL-COMBAT </p>
         <div>
-            <p v-bind:class="a1result">Attacker: {{ a1result }}</p>
+            <p v-bind:class="attackResult">Attacker: {{ attackResult }}</p>
             <input type="text" id="attacker" v-model="attacker" maxlength="1">
         </div>
         <div>
             </br>
             <p> MULTI-SERVER </p>
-            <p v-bind:class="s1result">Server 1: {{ s1result }}</p>
+            <p>Server 1: {{ s1result }}</p>
             <input type="text" id="server1" v-model="server1" maxlength="1">
             <p>Server 2: {{ s2result}} </p>
             <input type="text" id="server2" v-model="server2" maxlength="1">

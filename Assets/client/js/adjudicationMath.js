@@ -277,7 +277,7 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
 new Vue({
   el: '#app',
   data: {
-    a1result: '', s1result: '', s2result: '', s3result: '', s4result: '', s5result: '',
+    attackResult: '', s1result: '', s2result: '', s3result: '', s4result: '', s5result: '',
     defender: 0, defenderResult: '', defenderOdds: '',
     attacker: 0, server1: 0, server2: 0, server3: 0, server4: 0, server5: 0,
     greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
@@ -297,12 +297,12 @@ new Vue({
         // Success and Failure are pointed to Defender, but the Attacker shows the result.
         if (this.defender && this.attacker) {
           if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
-            this.a1result       = "Success";
+            this.attackResult   = "Success";
             this.defenderResult = "Fail";
             this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           } else {
-            this.a1result       = "Fail";
+            this.attackResult   = "Fail";
             this.defenderResult = "Success";
             this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
           }
@@ -320,12 +320,12 @@ new Vue({
               parseInt(this.server3),
               parseInt(this.server4),
               parseInt(this.server5)) === false) {
-            this.s1result       = "Success";
+            this.attackResult   = "Success";
             this.defenderResult = "Fail";
             this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           } else {
-            this.s1result       = "Fail";
+            this.attackResult   = "Fail";
             this.defenderResult = "Success";
             this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
 
