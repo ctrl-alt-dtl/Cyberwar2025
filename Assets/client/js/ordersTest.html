@@ -13,7 +13,7 @@
         <p v-bind:class="defenderResult">Defender: {{ defenderResult }}</p>
         <input type="text" id="defender" v-model="defender" maxlength="1">
         <button v-on:click="btnSubmit">Calculate Results</button>
-        <p> {{ resultOdds }}</p>
+        <p> {{ defenderOdds }}</p>
     </div>
     <div id="input-attacker" class="container-right">
         <p> DUAL-COMBAT </p>
@@ -39,7 +39,7 @@
     </div>
     <div id="input-attackers" class="container-right">
         <p> MULTI-COMBAT </p>
-        <p v-bind:class="greenResult">Green: {{ greenResult}}</p>
+        <p v-bind:class="greenResult">Green: {{ greenResult}} </p>
         <input type="text" id="plGreen" v-model="plGreen">
         <p v-bind:class="blueResult">Blue: {{ blueResult }}</p>
         <input type="text" id="plBlue" v-model="plBlue">

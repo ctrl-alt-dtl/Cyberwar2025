@@ -134,7 +134,7 @@ function equalToAny(el, gre, blu, pur, red, org, yel){
 function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow) {
   // TODO: This is not perfect, clean up this logic!
   if(plGreen > 0 && plBlue > 0 && plPurple > 0 && plRed > 0 && plOrange > 0 && plYellow > 0) {
-    alert("Too many inputs!");
+    alert("Check your inputs!");
     // TODO: Remove this after testing!
     location.reload();
   }
@@ -259,8 +259,7 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
       return false;
     } else {
       // If two or more winning values are the same number then we are presented with this.
-      // Which happens when Math.Random() chooses the same number per each roll.
-      // TODO: FIX! If two or more are the same winning value, then we have a random issue and this will be a problem!
+      // Which happens when Math.Random() chooses the same number per each roll. Best action is to re-roll.
       if (equalToAny(greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin)) {
         // alert("Two or more values are equal!");
         console.log("Notice: Same Winning Value Error! Re-rolling!!");
@@ -279,7 +278,7 @@ new Vue({
   el: '#app',
   data: {
     a1result: '', s1result: '', s2result: '', s3result: '', s4result: '', s5result: '',
-    defender: 0, defenderResult: '', resultOdds: '',
+    defender: 0, defenderResult: '', defenderOdds: '',
     attacker: 0, server1: 0, server2: 0, server3: 0, server4: 0, server5: 0,
     greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
     plGreen: 0, plBlue: 0, plPurple: 0, plRed: 0, plOrange: 0, plYellow: 0
@@ -300,12 +299,12 @@ new Vue({
           if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
             this.a1result       = "Success";
             this.defenderResult = "Fail";
-            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
+            this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           } else {
             this.a1result       = "Fail";
             this.defenderResult = "Success";
-            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
+            this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
           }
 
         } else if (!this.defender && (!this.server1 && !this.plBlue)) {
@@ -323,12 +322,12 @@ new Vue({
               parseInt(this.server5)) === false) {
             this.s1result       = "Success";
             this.defenderResult = "Fail";
-            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
+            this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           } else {
             this.s1result       = "Fail";
             this.defenderResult = "Success";
-            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
+            this.defenderOdds   = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           }
 
@@ -337,7 +336,7 @@ new Vue({
         } // End captureOddsOneVsMany()
 
         // Multi-player/Multi-combat. Many servers (A, C, D, ...) against a single 'B' server.
-        if (this.defender && (this.plGreen || this.plBlue || this.plPurple || this.plRed || plOrange || plYellow)){
+        if (this.defender && (this.plGreen || this.plBlue || this.plPurple || this.plRed || plOrange || plYellow)) {
           if (captureMultiCombat(
               parseInt(this.defender),
               parseInt(this.plGreen),
@@ -347,7 +346,6 @@ new Vue({
               parseInt(this.plOrange),
               parseInt(this.plYellow)) === true){
 
-            this.resultOdds = "Dice: " + dice + ' Dice Above: ' + diceAbove + '% Margin: ' + margin;
             this.defenderResult   = "Success";
             this.greenResult      = "Fail";
             this.blueResult       = "Fail";
@@ -412,10 +410,13 @@ new Vue({
               this.orangeResult     = "Fail";
               this.yellowResult     = "Success";
 
-            } else {
-              console.alert("Output Error in captureMultiCombat()");
+            } else{
+              console.log("Output Error in captureMultiCombat()");
             }
           }
+          // If we happen to have no defending value.
+        } else if (!this.defender && (this.plGreen || this.plBlue || this.plPurple || this.plRed || plOrange || plYellow)) {
+          alert("Check your inputs!");
         }
       }
 
