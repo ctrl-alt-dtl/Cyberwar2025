@@ -133,13 +133,12 @@ function equalToAny(el, gre, blu, pur, red, org, yel){
 // However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
 function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow) {
   // TODO: This is not perfect, clean up this logic!
-  // TODO: If two or more are the same margin, then we have a random() issue and this might cause problems.
   if(plGreen > 0 && plBlue > 0 && plPurple > 0 && plRed > 0 && plOrange > 0 && plYellow > 0) {
     alert("Too many inputs!");
     // TODO: Remove this after testing!
     location.reload();
   }
-  // Calculate the margin for success.
+  // Calculate the margin for success for each player.
   greenMargin = multiCombatPerPlayer(defender, plGreen, 'Green');
   blueMargin = multiCombatPerPlayer(defender, plBlue, 'Blue');
   purpleMargin = multiCombatPerPlayer(defender, plPurple, 'Purple');
@@ -151,9 +150,7 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
   // greenMargin = 1;
   // blueMargin = 1;
 
-  // Display of who won the roll. Go down the line of who had the higher margin of success.
-  // THIS SETS THE STATE OF WINNER
-
+  // Display of who won the roll, going down the line of who had the higher margin of success and set their win state.
   // DEFENDER
   if (greenMargin   < 0             &&
     blueMargin      < 0             &&
@@ -261,11 +258,12 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
       yellowResult  = 'Success';
       return false;
     } else {
-      // If two or more winning values are the same number then we are presented with this. Which happens when
-      // Math.Random() chooses the same number per each roll.
-      // TODO: Fix this edge case.
+      // If two or more winning values are the same number then we are presented with this.
+      // Which happens when Math.Random() chooses the same number per each roll.
+      // TODO: FIX! If two or more are the same winning value, then we have a random issue and this will be a problem!
       if (equalToAny(greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin)) {
         alert("Two or more values are equal!");
+        captureMultiCombat(de)
       }
     }
   }
@@ -299,16 +297,14 @@ new Vue({
         // Success and Failure are pointed to Defender, but the Attacker shows the result.
         if (this.defender && this.attacker) {
           if (captureOddsOneVsOne(parseInt(this.defender), parseInt(this.attacker)) === false) {
-            this.a1result = "Success";
+            this.a1result       = "Success";
             this.defenderResult = "Fail";
-            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
-            polycolor = 'red';
+            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           } else {
-            this.a1result = "Fail";
+            this.a1result       = "Fail";
             this.defenderResult = "Success";
-            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
-            polycolor = 'green';
+            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
           }
 
         } else if (!this.defender && (!this.server1 && !this.plBlue)) {
@@ -324,16 +320,14 @@ new Vue({
               parseInt(this.server3),
               parseInt(this.server4),
               parseInt(this.server5)) === false) {
-            this.s1result = "Success";
+            this.s1result       = "Success";
             this.defenderResult = "Fail";
-            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
-            polycolor = 'red';
+            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           } else {
-            this.s1result = "Fail";
+            this.s1result       = "Fail";
             this.defenderResult = "Success";
-            this.resultOdds = "Dice: " + dice + ' Odds: ' + odds + '%';
-            polycolor = 'green';
+            this.resultOdds     = "Dice: " + dice + ' Odds: ' + odds + '%';
 
           }
 
@@ -360,7 +354,6 @@ new Vue({
             this.redResult        = "Fail";
             this.orangeResult     = "Fail";
             this.yellowResult     = "Fail";
-            polycolor = 'red';
 
           } else {
             // SUCCESS/FAIL results for each player
@@ -372,7 +365,6 @@ new Vue({
               this.redResult        = "Fail";
               this.orangeResult     = "Fail";
               this.yellowResult     = "Fail";
-              polycolor = 'green';
 
             } else if (blueResult === 'Success'){
               this.defenderResult   = "Fail";
@@ -425,6 +417,7 @@ new Vue({
           }
         }
       }
+
       // TODO: Remove this after testing complete!
       // SVG Hexagon Test
       var hex1 = SVG('#hex1').size(100, 100);
