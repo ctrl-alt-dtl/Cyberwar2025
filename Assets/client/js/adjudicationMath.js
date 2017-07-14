@@ -262,8 +262,9 @@ function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange
       // Which happens when Math.Random() chooses the same number per each roll.
       // TODO: FIX! If two or more are the same winning value, then we have a random issue and this will be a problem!
       if (equalToAny(greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin)) {
-        alert("Two or more values are equal!");
-        captureMultiCombat(de)
+        // alert("Two or more values are equal!");
+        console.log("Notice: Same Winning Value Error! Re-rolling!!");
+        captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow);
       }
     }
   }
