@@ -1,4 +1,4 @@
-# cyberwar-2025
+# CyberWar:2025s
 
 > A cyber themed educational wargame. Designed and developed at Naval Postgraduate School (Grad: December 2017).
 
@@ -29,8 +29,7 @@ Error: Cannot find module 'fs.realpath'
     at Module.require (module.js:513:17)
     at require (internal/module.js:11:18)
 ```
-FIX:
-
+###FIX:
 ``` bash
 # remove outdated files
 rm -rf node_modules
