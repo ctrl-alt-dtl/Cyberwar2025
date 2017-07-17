@@ -30,6 +30,7 @@ Error: Cannot find module 'fs.realpath'
     at require (internal/module.js:11:18)
 ```
 FIX:
+
 ``` bash
 # remove outdated files
 rm -rf node_modules
