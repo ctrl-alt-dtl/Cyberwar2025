@@ -21,7 +21,9 @@ npm run build --report
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-## Occasional Error (When Building After Cloning)
+## Issues
+ 
+1. Occasional Error When Building After Cloning
 
 ```
 Error: Cannot find module 'fs.realpath'
@@ -30,8 +32,7 @@ Error: Cannot find module 'fs.realpath'
     at Module.require (module.js:513:17)
     at require (internal/module.js:11:18)
 ```
-
-### FIX:
+* Fix:
 
 ``` bash
 # remove outdated files
