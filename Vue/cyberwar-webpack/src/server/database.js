@@ -8,7 +8,7 @@
 var mongoose = require('mongoose');
 var log = require("./log").log;
 
-var GamePhase = new(require("../shared/gamePhase").GamePhase)();
+var GamePhase = new (require("../shared/gamePhase").GamePhase)();
 
 var mongoURL = process.env.MONGOURL || "mongodb://localhost/CyberWar";
 log.info("Connecting to MongoDB at: " + mongoURL);
