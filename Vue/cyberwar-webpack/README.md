@@ -25,6 +25,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
  
 1. Occasional Error When Building After Cloning
 
+* Error states something along the lines of:
 ```
 Error: Cannot find module 'fs.realpath'
     at Function.Module._resolveFilename (module.js:485:15)
