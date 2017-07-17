@@ -10,7 +10,7 @@
  */
 
 /**
- * Valid Capture ("Secure") moves consist in the following scenarios.
+ * >>> Valid Capture ("Secure") moves consist in the following scenarios. <<<
  *
  * 1.  A -> B (A attacks B)
  *
@@ -54,18 +54,27 @@ var dice, odds, attackSum, diceAbove, margin = 0;
 var greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin = 0;
 var defender, attacker = 0
 var server1, server2, server3, server4, server5 = 0;
-// 'pl' stands for player
 var attackerName = '';
-var plGreen, plBlue, plPurple, plRed, plOrange, plYellow = 0;
+var plGreen, plBlue, plPurple, plRed, plOrange, plYellow = 0; // 'pl' stands for player
 var greenResult, blueResult, purpleResult, redResult, orangeResult, yellowResult = 0;
 var polycolor = '';
 
-// 100 sided die for calculation
+/**
+ * 100 sided die for calculation
+ *
+ * @returns {number}
+ */
 function diceRoll() {
   return dice = Math.floor(Math.random() * 100) + 1;
 }
 
-// This is an A->B scenario, in which A is the sole attacker.
+/**
+ * This is an A->B scenario, in which A is the sole attacker.
+ *
+ * @param defender
+ * @param attacker
+ * @returns {boolean}
+ */
 function captureOddsOneVsOne(defender, attacker){
   dice = diceRoll();
   odds = Math.round(defender / (attacker + defender) * 100);
@@ -82,8 +91,18 @@ function captureOddsOneVsOne(defender, attacker){
   }
 }
 
-// This is an A+[n]->B scenario, in which A has multiple servers attacking.
-// Could also be used when there's an alliance formed between two or more players.
+/**
+ * This is an A+[n]->B scenario, in which A has multiple servers attacking.
+ * Could also be used when there's an alliance formed between two or more players.
+ *
+ * @param defender
+ * @param server1
+ * @param server2
+ * @param server3
+ * @param server4
+ * @param server5
+ * @returns {boolean}
+ */
 function captureOddsOneVsMany(defender, server1, server2, server3, server4, server5){
   dice = diceRoll();
   attackSum = server1 + server2 + server3 + server4 + server5;
@@ -102,7 +121,14 @@ function captureOddsOneVsMany(defender, server1, server2, server3, server4, serv
   }
 }
 
-// Helper function for captureMultiCombat()
+/**
+ * Helper function for captureMultiCombat()
+ *
+ * @param defender
+ * @param attacker
+ * @param attackerName
+ * @returns {number}
+ */
 function multiCombatPerPlayer(defender, attacker, attackerName){
   dice = diceRoll();
   diceAbove = Math.round(defender / (defender + attacker) * 100);
@@ -111,7 +137,18 @@ function multiCombatPerPlayer(defender, attacker, attackerName){
   return margin;
 }
 
-// Helper function to determine if multiple success happen due to Math.Random()
+/**
+ * Helper function to determine if multiple success happen due to Math.Random()
+ *
+ * @param el
+ * @param gre
+ * @param blu
+ * @param pur
+ * @param red
+ * @param org
+ * @param yel
+ * @returns {boolean}
+ */
 function equalToAny(el, gre, blu, pur, red, org, yel){
   var args = [].slice.call(arguments, 1);
   if (args.length === 0) return false;
@@ -124,13 +161,24 @@ function equalToAny(el, gre, blu, pur, red, org, yel){
 
 }
 
-// This is an A->B<-C,[...] scenario, in which multiple players attack the defender.
-// The max amount of attacks if five, but they can be from each player or from two or more from a sole player.
-// For example: pBlue attack is 8 (2x level 4 servers), pRed is 4, and the defender pOrange is 4.
-// The first roll goes to pBlue, since they have a higher margin of success.
-// However, both attacks will adjudicated simultaneously and compared at the end. The highest number out of all rolls
-// that are above zero is considered the winner and takes control of that server.
-// However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
+/**
+ * This is an A->B<-C,[...] scenario, in which multiple players attack the defender.
+ * The max amount of attacks if five, but they can be from each player or from two or more from a sole player.
+ * For example: pBlue attack is 8 (2x level 4 servers), pRed is 4, and the defender pOrange is 4.
+ * The first roll goes to pBlue, since they have a higher margin of success.
+ * However, both attacks will adjudicated simultaneously and compared at the end. The highest number out of all rolls
+ * that are above zero is considered the winner and takes control of that server.
+ * However, if no one succeeds on the first roll, (e.g. the defender wins) then there is no re-roll.
+ *
+ * @param defender
+ * @param plGreen
+ * @param plBlue
+ * @param plPurple
+ * @param plRed
+ * @param plOrange
+ * @param plYellow
+ * @returns {boolean}
+ */
 function captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow) {
   // TODO: This is not perfect, clean up this logic!
   if(plGreen > 0 && plBlue > 0 && plPurple > 0 && plRed > 0 && plOrange > 0 && plYellow > 0) {
