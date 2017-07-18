@@ -40,7 +40,7 @@
         rotation: 90
       });
 
-      var aBase = new Konva.Line({
+      var rBase = new Konva.Line({
         //        X1   Y1   X2  Y2   X3    Y3   X4   Y4   X5   Y5   X6   Y6
         points: [580, 735, 590, 717, 795, 717, 805, 735, 795, 753, 590, 753],
         stroke: 'red',
@@ -49,7 +49,7 @@
 
       });
 
-      var a1Hex = new Konva.RegularPolygon({
+      var r1Hex = new Konva.RegularPolygon({
         x: 534,
         y: 735,
         sides: 6,
@@ -60,7 +60,7 @@
         rotation: 90
       });
 
-      var a2Hex = new Konva.RegularPolygon({
+      var r2Hex = new Konva.RegularPolygon({
         x: 851,
         y: 735,
         sides: 6,
@@ -71,7 +71,7 @@
         rotation: 90
       });
 
-      var a3Hex = new Konva.RegularPolygon({
+      var r3Hex = new Konva.RegularPolygon({
         x: 588,
         y: 642,
         sides: 6,
@@ -82,11 +82,11 @@
         rotation: 90,
         visible: true,
         listening: false,
-        id: a3Hex,
+        id: r3Hex,
 
       });
 
-      var a4Hex = new Konva.RegularPolygon({
+      var r4Hex = new Konva.RegularPolygon({
         x: 693,
         y: 642,
         sides: 6,
@@ -97,7 +97,7 @@
         rotation: 90
       });
 
-      var a5Hex = new Konva.RegularPolygon({
+      var r5Hex = new Konva.RegularPolygon({
         x: 797,
         y: 642,
         sides: 6,
@@ -108,7 +108,7 @@
         rotation: 90
       });
 
-      var a6Hex = new Konva.RegularPolygon({
+      var r6Hex = new Konva.RegularPolygon({
         x: 640,
         y: 552,
         sides: 6,
@@ -119,7 +119,7 @@
         rotation: 90
       });
 
-      var a7Hex = new Konva.RegularPolygon({
+      var r7Hex = new Konva.RegularPolygon({
         x: 745,
         y: 552,
         sides: 6,
@@ -130,7 +130,7 @@
         rotation: 90
       });
 
-      var a8Hex = new Konva.RegularPolygon({
+      var r8Hex = new Konva.RegularPolygon({
         x: 693,
         y: 461,
         sides: 6,
@@ -141,7 +141,7 @@
         rotation: 90
       });
 
-      var a1Text = new Konva.Text({
+      var r1Text = new Konva.Text({
         text: '4',
         x: 525,
         y: 722,
@@ -151,7 +151,7 @@
         fill: '#FFF'
       });
 
-      var a3Text = new Konva.Text({
+      var r3Text = new Konva.Text({
         text: '2',
         x: 579,
         y: 628,
@@ -162,7 +162,7 @@
       });
 
 
-      var aBaseToa1Hex = new Konva.Line({
+      var rBaseToR1Hex = new Konva.Line({
         //       XS    YS   XE   YE
         points: [580, 735, 555, 735],
         stroke: 'red',
@@ -171,7 +171,7 @@
         lineJoin: 'round'
       });
 
-      var a1HexToa3Hex = new Konva.Line({
+      var r1HexToR3Hex = new Konva.Line({
         //       XS    YS   XE   YE
         points: [544, 717, 577, 660],
         stroke: 'red',
@@ -183,7 +183,7 @@
       var imageObj = new Image();
       // background board
       imageObj.onload = function() {
-        var bgboard = new Konva.Image({
+        var bgBoard = new Konva.Image({
           x: 10,
           y: 10,
           image: imageObj,
@@ -192,22 +192,22 @@
         });
 
         // add the shapes to the layer
-        layer.add(bgboard);
+        layer.add(bgBoard);
         layer.add(center_hex);
-        layer.add(aBase);
-        layer.add(a1Hex);
-        layer.add(a2Hex);
-        layer.add(a3Hex);
-        layer.add(a4Hex);
-        layer.add(a5Hex);
-        layer.add(a6Hex);
-        layer.add(a7Hex);
-        layer.add(a8Hex);
+        layer.add(rBase);
+        layer.add(r1Hex);
+        layer.add(r2Hex);
+        layer.add(r3Hex);
+        layer.add(r4Hex);
+        layer.add(r5Hex);
+        layer.add(r6Hex);
+        layer.add(r7Hex);
+        layer.add(r8Hex);
 
-        layer.add(a1Text);
-        layer.add(a3Text);
-        layer.add(aBaseToa1Hex);
-        layer.add(a1HexToa3Hex);
+        layer.add(r1Text);
+        layer.add(r3Text);
+        layer.add(rBaseToR1Hex);
+        layer.add(r1HexToR3Hex);
 
         // add the layer to the stage
         stage.add(layer);
