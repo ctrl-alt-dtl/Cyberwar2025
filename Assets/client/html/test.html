@@ -35,7 +35,7 @@
         sides: 6,
         radius: 33,
         fill: '',
-        stroke: 'red',
+        stroke: 'black',
         strokewidth: 2,
         rotation: 90
       });
@@ -54,7 +54,7 @@
         y: 735,
         sides: 6,
         radius: 21,
-        fill: '',
+        fill: 'red',
         stroke: 'red',
         strokewidth: 2,
         rotation: 90
@@ -137,6 +137,16 @@
         rotation: 90
       });
 
+      var a1Text = new Konva.Text({
+        text: '4',
+        x: 525,
+        y: 722,
+        width: 220,
+        fontFamily: 'sans-serif',
+        fontSize: 30,
+        fill: '#FFF'
+      });
+
       var imageObj = new Image();
       // background board
       imageObj.onload = function() {
@@ -160,6 +170,9 @@
         layer.add(a6Hex);
         layer.add(a7Hex);
         layer.add(a8Hex);
+
+        layer.add(a1Text);
+
         // add the layer to the stage
         stage.add(layer);
 

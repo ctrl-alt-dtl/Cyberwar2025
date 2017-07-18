@@ -555,7 +555,7 @@
     <inspection_tool class="SillyAssignmentJS" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Lib Exclude (Vue)" level="UNUSED ENTRY" enabled="true" />
     </inspection_tool>
-    <inspection_tool class="StandardJS" enabled="true" level="ERROR" enabled_by_default="true">
+    <inspection_tool class="StandardJS" enabled="false" level="ERROR" enabled_by_default="true">
       <scope name="Lib Exclude (Vue)" level="UNUSED ENTRY" enabled="true" />
     </inspection_tool>
     <inspection_tool class="StatementsPerFunctionJS" enabled="true" level="WARNING" enabled_by_default="false">
