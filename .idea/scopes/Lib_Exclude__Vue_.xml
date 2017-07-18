@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="Lib Exclude (Vue)" pattern="file[cyberwar]:Vue/cyberwar-webpack/lib//*" />
+  <scope name="Lib Exclude (Vue)" pattern="file[cyberwar]:Vue/cyberwar-webpack/lib//*||file[cyberwar]:Assets/lib/*" />
 </component>

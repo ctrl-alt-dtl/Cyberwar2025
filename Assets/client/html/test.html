@@ -79,7 +79,11 @@
         fill: 'red',
         stroke: 'red',
         strokewidth: 2,
-        rotation: 90
+        rotation: 90,
+        visible: true,
+        listening: false,
+        id: a3Hex,
+
       });
 
       var a4Hex = new Konva.RegularPolygon({
@@ -179,7 +183,7 @@
       var imageObj = new Image();
       // background board
       imageObj.onload = function() {
-        var board = new Konva.Image({
+        var bgboard = new Konva.Image({
           x: 10,
           y: 10,
           image: imageObj,
@@ -188,7 +192,7 @@
         });
 
         // add the shapes to the layer
-        layer.add(board);
+        layer.add(bgboard);
         layer.add(center_hex);
         layer.add(aBase);
         layer.add(a1Hex);
