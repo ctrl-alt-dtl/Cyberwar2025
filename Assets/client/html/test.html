@@ -3,8 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <title>Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #F0F0F0;
+        }
+    </style>
+    <script src="../../lib/canvas/konva.js"></script>
+    <script src="../../lib/svg/svg.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
+    <div id="container"></div>
+    <script>
+      var width = window.innerWidth;
+      var height = window.innerHeight;
 
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: width,
+        height: height
+      });
+
+      var layer = new Konva.Layer();
+
+      var center_hex = new Konva.RegularPolygon({
+        x: 693,
+        y: 394,
+        sides: 6,
+        radius: 33,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a1Base = new Konva.Line({
+        //        X1   Y1   X2  Y2   X3    Y3   X4   Y4   X5   Y5   X6   Y6
+        points: [580, 735, 590, 717, 795, 717, 805, 735, 795, 753, 590, 753],
+        stroke: 'red',
+        strokewidth: 2,
+        closed: true
+
+      });
+
+      var a1Hex = new Konva.RegularPolygon({
+        x: 534,
+        y: 735,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a2Hex = new Konva.RegularPolygon({
+        x: 851,
+        y: 735,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a3Hex = new Konva.RegularPolygon({
+        x: 588,
+        y: 642,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a4Hex = new Konva.RegularPolygon({
+        x: 693,
+        y: 642,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a5Hex = new Konva.RegularPolygon({
+        x: 797,
+        y: 642,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a6Hex = new Konva.RegularPolygon({
+        x: 640,
+        y: 552,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a7Hex = new Konva.RegularPolygon({
+        x: 745,
+        y: 552,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var a8Hex = new Konva.RegularPolygon({
+        x: 693,
+        y: 461,
+        sides: 6,
+        radius: 21,
+        fill: '',
+        stroke: 'red',
+        strokewidth: 2,
+        rotation: 90
+      });
+
+      var imageObj = new Image();
+      // background board
+      imageObj.onload = function() {
+        var board = new Konva.Image({
+          x: 10,
+          y: 10,
+          image: imageObj,
+          width: 1366,
+          height: 768
+        });
+
+        // add the shapes to the layer
+        layer.add(board);
+        layer.add(center_hex);
+        layer.add(a1Base);
+        layer.add(a1Hex);
+        layer.add(a2Hex);
+        layer.add(a3Hex);
+        layer.add(a4Hex);
+        layer.add(a5Hex);
+        layer.add(a6Hex);
+        layer.add(a7Hex);
+        layer.add(a8Hex);
+        // add the layer to the stage
+        stage.add(layer);
+
+      };
+
+
+      imageObj.src = '../img/Board-Web.png';
+    </script>
 </body>
 </html>
