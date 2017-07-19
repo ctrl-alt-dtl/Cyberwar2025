@@ -159,7 +159,7 @@ new Vue({
       // SVG Hexagon Test
       var hex1 = SVG('#hex1').size(100, 100);
       var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
-      hex1poly.fill(polycolor).move(20, 20);
+      hex1poly.fill("red").move(20, 20);
       hex1poly.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
     }
   }
