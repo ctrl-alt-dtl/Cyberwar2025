@@ -69,7 +69,7 @@ imageObj.onload = function() {
   mainView.add(bgLayer, domainsLayer);
 
 };
-imageObj.src = '../img/Board-Web.png';
+imageObj.src = '../img/boardWeb-1024x768.png';
 
 
 function fitStageIntoParentContainer() {
