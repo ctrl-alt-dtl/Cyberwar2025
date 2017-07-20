@@ -48,7 +48,7 @@ var boardEdge= new Konva.RegularPolygon({
   sides: 6,
   radius: 367,
   fill: '',
-  stroke: 'red',
+  stroke: 'black',
   strokeWidth: 4,
   rotation: 90
 })
