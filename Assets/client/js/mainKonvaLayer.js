@@ -10,8 +10,8 @@ var BASE_BOARD_HEIGHT = 768;
 var BOARD_ROTATION = 0;
 
 
-var mainView = new Konva.Stage({
-  container: 'container',
+var stage = new Konva.Stage({
+  container: '.container',
   width: BASE_BOARD_WIDTH,
   height: BASE_BOARD_HEIGHT
 });
@@ -32,8 +32,8 @@ var domainsGroup = new Konva.Group({
 });
 
 var center_hex = new Konva.RegularPolygon({
-  x: mainView.width() / 2,
-  y: mainView.height() / 2,
+  x: stage.width() / 2,
+  y: stage.height() / 2,
   sides: 6,
   radius: 30,
   fill: '',
@@ -92,28 +92,31 @@ var box = new Konva.Rect({
 
 // add the layer to the stage
   domainsLayer.add(domainsGroup);
-  mainView.add(bgLayer, domainsLayer);
+  stage.add(bgLayer, domainsLayer);
 
 };
 imageObj.src = '../img/boardWeb-1024x768.png';
 
 
 function fitStageIntoParentContainer() {
-  var container = document.querySelector('#container');
+  var container = document.querySelector('#stage-parent');
   // now we need to fit stage into parent
   var containerWidth = container.offsetWidth;
-  var containerHeight = container.offsetHeight;
+  // var containerHeight = container.offsetHeight;
 
   // to do this we need to scale the stage
-  // var scale = containerWidth / BASE_BOARD_WIDTH;
-  var scaleX = Math.min(containerWidth, MAX_BOARD_WIDTH) / BASE_BOARD_WIDTH;
-  var scaleY = Math.min(containerHeight, MAX_BOARD_HEIGHT) / BASE_BOARD_HEIGHT;
-  var minRatio = Math.min(scaleX, scaleY);
+  var scale = containerWidth / BASE_BOARD_WIDTH;
+  // var scaleX = Math.min(containerWidth, MAX_BOARD_WIDTH) / BASE_BOARD_WIDTH;
+  // var scaleY = Math.min(containerHeight, MAX_BOARD_HEIGHT) / BASE_BOARD_HEIGHT;
+  // var minRatio = Math.min(scaleX, scaleY);
 
-  mainView.width(BASE_BOARD_WIDTH * scaleX);
-  mainView.height(BASE_BOARD_HEIGHT * scaleY);
-  mainView.scale({ x: minRatio, y: minRatio });
-  mainView.draw();
+  // stage.width(BASE_BOARD_WIDTH * scaleX);
+  stage.width(BASE_BOARD_WIDTH * scale);
+  // stage.height(BASE_BOARD_HEIGHT * scaleY);
+  stage.height(BASE_BOARD_HEIGHT * scale);
+  // stage.scale({ x: minRatio, y: minRatio });
+  stage.scale({ x: scale, y: scale });
+  stage.draw();
 
   fitStageIntoParentContainer();
   // adapt the stage on any window resize

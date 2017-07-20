@@ -7,14 +7,25 @@
         body {
             margin: 0;
             padding: 0;
+            width: 100% !important;
+            height: auto !important;
             overflow: hidden;
-            background-color: #F0F0F0;
+            background-color: black;
+        }
+        #stage-parent{
+            width: 100%;
+        }
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
         }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-    <div id="container"></div>
+    <div id="stage-parent">
+        <div class="container"></div>
+    </div>
     <script src="../../lib/canvas/konva.js"></script>
     <script src="../js/mainKonvaLayer.js"></script>
     <script src="../js/redDomain/redDomainServerPoints.js"></script>
