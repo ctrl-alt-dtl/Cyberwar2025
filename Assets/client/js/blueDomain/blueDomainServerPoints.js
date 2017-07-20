@@ -84,7 +84,7 @@ var b5Hex = new Konva.RegularPolygon({
 
 var b6Hex = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2.47,
-  y: BASE_BOARD_HEIGHT / 2.79,
+  y: BASE_BOARD_HEIGHT / 2.78,
   sides: 6,
   radius: radius,
   fill: '',

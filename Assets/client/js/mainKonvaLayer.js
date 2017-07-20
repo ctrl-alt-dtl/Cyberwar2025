@@ -93,15 +93,16 @@ var box = new Konva.Rect({
 
   // Green Domains Servers
   domainsGroup.add(gBase, g1Hex, g2Hex, g3Hex, g4Hex, g5Hex, g6Hex, g7Hex, g8Hex);
-
   // Blue Domain Servers
   domainsGroup.add(bBase, b1Hex, b2Hex, b3Hex, b4Hex, b5Hex, b6Hex, b7Hex, b8Hex);
-
   // Purple Domain Servers
   domainsGroup.add(pBase, p1Hex, p2Hex, p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
-
   // Red Domain Servers
   domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+  // Orange Domain Servers
+  // domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+  // Yellow Domain Servers
+  domainsGroup.add(yBase, y1Hex, y2Hex, y3Hex, y4Hex, y5Hex, y6Hex, y7Hex, y8Hex);
 
   // Red Domain Text
   domainsGroup.add(r1Text, r2Text, r3Text, r4Text, r5Text, r6Text, r7Text, r8Text);
