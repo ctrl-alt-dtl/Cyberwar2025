@@ -70,7 +70,7 @@ var box = new Konva.Rect({
   bgLayer.add(bgBoard);
   bgLayer.add(center_hex);
 
-  // add Domain Inter-Server Paths (LINKS)
+  // Domain Inter-Server Paths (LINKS)
   // Red Domain Tier 4
   domainsGroup.add(rBaseToR1Hex, rBaseToR2Hex, r1HexToR3Hex, r2HexToR5Hex);
 
@@ -80,12 +80,16 @@ var box = new Konva.Rect({
   // Red Domain Tier 2
   domainsGroup.add(r6HexToR7Hex, r6HexToR8Hex, r7HexToR8Hex);
 
-  // Blue Domain
+  // Purple Domain Servers
+  domainsGroup.add(pBase, p1Hex, p2Hex, p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
 
-  // add Red Domain Servers
-  domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+  // Blue Domain Servers
+  domainsGroup.add(bBase, b1Hex, b2Hex, b3Hex, b4Hex, b5Hex, b6Hex, b7Hex, b8Hex);
 
-  // add Red Domain Text
+  // Red Domain Servers
+  // domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+
+  // Red Domain Text
   domainsGroup.add(r1Text, r2Text, r3Text, r4Text, r5Text, r6Text, r7Text, r8Text);
 
   domainsGroup.add(origin);
