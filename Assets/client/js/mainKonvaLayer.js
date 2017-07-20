@@ -31,16 +31,27 @@ var domainsGroup = new Konva.Group({
   rotation: BOARD_ROTATION
 });
 
-var center_hex = new Konva.RegularPolygon({
+var centerHex = new Konva.RegularPolygon({
   x: stage.width() / 2,
   y: stage.height() / 2,
   sides: 6,
   radius: 30,
   fill: '',
   stroke: 'black',
-  strokewidth: 2,
+  strokeWidth: 2,
   rotation: 90
 });
+
+var boardEdge= new Konva.RegularPolygon({
+  x: stage.width() / 2,
+  y: stage.height() / 2,
+  sides: 6,
+  radius: 367,
+  fill: '',
+  stroke: 'red',
+  strokeWidth: 4,
+  rotation: 90
+})
 
 var imageObj = new Image();
 // background board
@@ -68,7 +79,7 @@ var box = new Konva.Rect({
 
 // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgLayer.add(bgBoard);
-  bgLayer.add(center_hex);
+  bgLayer.add(centerHex, boardEdge);
 
   // Domain Inter-Server Paths (LINKS)
   // Red Domain Tier 4
