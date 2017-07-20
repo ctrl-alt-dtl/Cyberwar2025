@@ -47,7 +47,7 @@ var boardEdge= new Konva.RegularPolygon({
   y: stage.height() / 2,
   sides: 6,
   radius: 367,
-  fill: '',
+  fill: 'white',
   stroke: 'black',
   strokeWidth: 4,
   rotation: 90
@@ -79,7 +79,7 @@ var box = new Konva.Rect({
 
 // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgLayer.add(bgBoard);
-  bgLayer.add(centerHex, boardEdge);
+  bgLayer.add(boardEdge, centerHex);
 
   // Domain Inter-Server Paths (LINKS)
   // Red Domain Tier 4
@@ -91,11 +91,14 @@ var box = new Konva.Rect({
   // Red Domain Tier 2
   domainsGroup.add(r6HexToR7Hex, r6HexToR8Hex, r7HexToR8Hex);
 
-  // Purple Domain Servers
-  domainsGroup.add(pBase, p1Hex, p2Hex, p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
+  // Green Domains Servers
+  domainsGroup.add(gBase, g1Hex, g2Hex, g3Hex, g4Hex, g5Hex, g6Hex, g7Hex, g8Hex);
 
   // Blue Domain Servers
   domainsGroup.add(bBase, b1Hex, b2Hex, b3Hex, b4Hex, b5Hex, b6Hex, b7Hex, b8Hex);
+
+  // Purple Domain Servers
+  domainsGroup.add(pBase, p1Hex, p2Hex, p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
 
   // Red Domain Servers
   domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);

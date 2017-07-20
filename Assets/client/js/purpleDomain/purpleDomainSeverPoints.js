@@ -17,7 +17,7 @@ var pBase = new Konva.Line({
     point_y / 1.28,       // Y3
     point_x / 3.37,       // X4
     point_y / 1.24,       // Y4
-    point_x / 3.6,        // X5
+    point_x / 3.595,        // X5
     point_y / 1.24,       // Y5
     point_x / 5.23,       // X6
     point_y / 1.652         // Y6
@@ -39,7 +39,7 @@ var p1Hex = new Konva.RegularPolygon({
 });
 
 var p2Hex = new Konva.RegularPolygon({
-  x: BASE_BOARD_WIDTH / 3.17,
+  x: BASE_BOARD_WIDTH / 3.172,
   y: BASE_BOARD_HEIGHT / 1.177,
   sides: 6,
   radius: radius,
@@ -61,7 +61,7 @@ var p3Hex = new Konva.RegularPolygon({
 });
 
 var p4Hex = new Konva.RegularPolygon({
-  x: BASE_BOARD_WIDTH / 3.162,
+  x: BASE_BOARD_WIDTH / 3.172,
   y: BASE_BOARD_HEIGHT / 1.558,
   sides: 6,
   radius: radius,
