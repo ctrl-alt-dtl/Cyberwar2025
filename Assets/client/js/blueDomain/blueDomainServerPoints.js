@@ -9,18 +9,18 @@ var radius = BASE_BOARD_WIDTH / 55;
 // Blue Base Outline
 var bBase = new Konva.Line({
   points: [
-    point_x / 5.04,       // X1
-    point_y / 1.715,      // Y1
-    point_x / 4.6,        // X2
-    point_y / 1.715,      // Y2
-    point_x / 3.28,       // X3
-    point_y / 1.28,       // Y3
-    point_x / 3.37,       // X4
-    point_y / 1.24,       // Y4
-    point_x / 3.6,        // X5
-    point_y / 1.24,       // Y5
-    point_x / 5.23,       // X6
-    point_y / 1.652       // Y6
+    point_x / 3.37,       // X1
+    point_y / 5.15,       // Y1
+    point_x / 3.28,       // X2
+    point_y / 4.65,       // Y2
+    point_x / 4.57,       // X3
+    point_y / 2.4,        // Y3
+    point_x / 4.99,       // X4
+    point_y / 2.4,        // Y4
+    point_x / 5.23,       // X5
+    point_y / 2.52,       // Y5
+    point_x / 3.6,        // X6
+    point_y / 5.15        // Y6
   ],
   stroke: 'blue',
   strokewidth: 2,
