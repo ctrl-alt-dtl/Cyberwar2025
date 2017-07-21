@@ -33,4 +33,3 @@ var origin = new Konva.RegularPolygon({
 });
 
 
-// TODO: Add the other boxes.

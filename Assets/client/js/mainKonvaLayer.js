@@ -21,6 +21,7 @@ var stage = new Konva.Stage({
 
 var domainsLayer = new Konva.Layer();
 var bgLayer = new Konva.Layer();
+var boardItems = new Konva.Layer();
 
 var domainsGroup = new Konva.Group({
   width: BASE_BOARD_WIDTH,
@@ -48,17 +49,34 @@ imageObj.onload = function() {
 // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgLayer.add(bgBoard);
   bgLayer.add(boardEdge, centerHex);
+  boardItems.add(submitOrdersBtn, ordersQueue, effectsWindow, chatWindow, notesRulesWindow);
 
   // Domain Inter-Server Paths (LINKS)
   // Red Domain
   domainsGroup.add(rBaseToR1Hex, rBaseToR2Hex, r1HexToR3Hex, r2HexToR5Hex);
   domainsGroup.add(r3HexToR4Hex, r5HexToR4Hex, r3HexToR6Hex, r4HexToR6Hex, r4HexToR7Hex, r5HexToR7Hex);
   domainsGroup.add(r6HexToR7Hex, r6HexToR8Hex, r7HexToR8Hex);
-
+  // Purple Domain
+  domainsGroup.add(pBaseToP1Hex, pBaseToP2Hex, p1HexToP3Hex, p2HexToP5Hex)
+  domainsGroup.add(p3HexToP4Hex, p5HexToP4Hex, p3HexToP6Hex, p4HexToP6Hex, p4HexToP7Hex, p5HexToP7Hex);
+  domainsGroup.add(p6HexToP7Hex, p6HexToP8Hex, p7HexToP8Hex);
+  // Purple Domain
+  domainsGroup.add(bBaseToB1Hex, bBaseToB2Hex, b1HexToB3Hex, b2HexToB5Hex)
+  domainsGroup.add(b3HexToB4Hex, b5HexToB4Hex, b3HexToB6Hex, b4HexToB6Hex, b4HexToB7Hex, b5HexToB7Hex);
+  domainsGroup.add(b6HexToB7Hex, b6HexToB8Hex, b7HexToB8Hex);
+  // Green Domain
+  domainsGroup.add(gBaseToG1Hex, gBaseToG2Hex, g1HexToG3Hex, g2HexToG5Hex)
+  domainsGroup.add(g3HexToG4Hex, g5HexToG4Hex, g3HexToG6Hex, g4HexToG6Hex, g4HexToG7Hex, g5HexToG7Hex);
+  domainsGroup.add(g6HexToG7Hex, g6HexToG8Hex, g7HexToG8Hex);
   // Yellow Domain
   domainsGroup.add(yBaseToY1Hex, yBaseToY2Hex, y1HexToY3Hex, y2HexToY5Hex)
   domainsGroup.add(y3HexToY4Hex, y5HexToY4Hex, y3HexToY6Hex, y4HexToY6Hex, y4HexToY7Hex, y5HexToY7Hex);
   domainsGroup.add(y6HexToY7Hex, y6HexToY8Hex, y7HexToY8Hex);
+  // Orange Domain
+  domainsGroup.add(oBaseToO1Hex, oBaseToO2Hex, o1HexToO3Hex, o2HexToO5Hex)
+  domainsGroup.add(o3HexToO4Hex, o5HexToO4Hex, o3HexToO6Hex, o4HexToO6Hex, o4HexToO7Hex, o5HexToO7Hex);
+  domainsGroup.add(o6HexToO7Hex, o6HexToO8Hex, o7HexToO8Hex);
+
 
   // Green Domains Servers
   domainsGroup.add(gBase, g1Hex, g2Hex, g3Hex, g4Hex, g5Hex, g6Hex, g7Hex, g8Hex);
@@ -80,7 +98,7 @@ imageObj.onload = function() {
 
 // add the layer to the stage
   domainsLayer.add(domainsGroup);
-  stage.add(bgLayer, domainsLayer);
+  stage.add(bgLayer,boardItems, domainsLayer);
 
 };
 imageObj.src = '../img/boardWeb-1024x768.png';
