@@ -7,6 +7,8 @@ var point_y = BASE_BOARD_HEIGHT;
 
 var radius = BASE_BOARD_WIDTH / 55;
 
+var yellowColor = '#F7E500';
+
 // Yellow Base Outline.
 var yBase = new Konva.Line({
   points: [
@@ -23,7 +25,8 @@ var yBase = new Konva.Line({
     point_x / 1.237,       // X6
     point_y / 2.53,       // Y6
   ],
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   closed: true
 });
@@ -33,8 +36,8 @@ var y1Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2.165,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
@@ -44,8 +47,8 @@ var y2Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 6.63,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
@@ -55,8 +58,8 @@ var y3Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2.165,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90,
   visible: true,
@@ -70,8 +73,8 @@ var y4Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2.78,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
@@ -81,8 +84,8 @@ var y5Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 3.92,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
@@ -92,8 +95,8 @@ var y6Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2.165,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
@@ -103,8 +106,8 @@ var y7Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2.78,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
@@ -114,8 +117,8 @@ var y8Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2.165,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'yellow',
+  fill: yellowColor,
+  stroke: 'black',
   strokeWidth: 2,
   rotation: 90
 });
