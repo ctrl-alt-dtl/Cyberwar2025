@@ -5,10 +5,10 @@
 // TIER 4
 var rBaseToR1Hex = new Konva.Line({
   points: [
-    BASE_BOARD_WIDTH / 2.48,
-    BASE_BOARD_HEIGHT / 1.126,
-    BASE_BOARD_WIDTH / 2.74,
-    BASE_BOARD_HEIGHT / 1.126
+    pt_rBase1Hex_X,
+    pt_rBase1Hex_Y,
+    pt_r1Hex_X,
+    pt_r1Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -19,10 +19,10 @@ var rBaseToR1Hex = new Konva.Line({
 var rBaseToR2Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 1.68,
-    BASE_BOARD_HEIGHT / 1.126,
-    BASE_BOARD_WIDTH / 1.575,
-    BASE_BOARD_HEIGHT / 1.126,
+    pt_rBase2Hex_X,
+    pt_rBase2Hex_Y,
+    pt_r2Hex_X,
+    pt_r2Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -34,10 +34,10 @@ var rBaseToR2Hex = new Konva.Line({
 var r1HexToR3Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2.74,
-    BASE_BOARD_HEIGHT / 1.126,
-    BASE_BOARD_WIDTH / 2.434,
-    BASE_BOARD_HEIGHT / 1.2775,
+    pt_r1Hex_X,
+    pt_r1Hex_Y,
+    pt_r3Hex_X,
+    pt_r3Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -48,10 +48,10 @@ var r1HexToR3Hex = new Konva.Line({
 var r2HexToR5Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 1.575,
-    BASE_BOARD_HEIGHT / 1.126,
-    BASE_BOARD_WIDTH / 1.7,
-    BASE_BOARD_HEIGHT / 1.2775,
+    pt_r2Hex_X,
+    pt_r2Hex_Y,
+    pt_r5Hex_X,
+    pt_r5Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -63,10 +63,10 @@ var r2HexToR5Hex = new Konva.Line({
 var r3HexToR4Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2.434,
-    BASE_BOARD_HEIGHT / 1.2775,
-    BASE_BOARD_WIDTH / 2,
-    BASE_BOARD_HEIGHT / 1.2775,
+    pt_r3Hex_X,
+    pt_r3Hex_Y,
+    pt_r4Hex_X,
+    pt_r4Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -77,10 +77,10 @@ var r3HexToR4Hex = new Konva.Line({
 var r5HexToR4Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 1.7,
-    BASE_BOARD_HEIGHT / 1.2775,
-    BASE_BOARD_WIDTH / 2,
-    BASE_BOARD_HEIGHT / 1.2775,
+    pt_r5Hex_X,
+    pt_r5Hex_Y,
+    pt_r4Hex_X,
+    pt_r4Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -92,10 +92,10 @@ var r5HexToR4Hex = new Konva.Line({
 var r4HexToR7Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2,
-    BASE_BOARD_HEIGHT / 1.2775,
-    BASE_BOARD_WIDTH / 1.835,
-    BASE_BOARD_HEIGHT / 1.47,
+    pt_r4Hex_X,
+    pt_r4Hex_Y,
+    pt_r7Hex_X,
+    pt_r7Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -106,10 +106,10 @@ var r4HexToR7Hex = new Konva.Line({
 var r5HexToR7Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 1.7,
-    BASE_BOARD_HEIGHT / 1.2775,
-    BASE_BOARD_WIDTH / 1.835,
-    BASE_BOARD_HEIGHT / 1.47,
+    pt_r5Hex_X,
+    pt_r5Hex_Y,
+    pt_r7Hex_X,
+    pt_r7Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -120,10 +120,10 @@ var r5HexToR7Hex = new Konva.Line({
 var r4HexToR6Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2,
-    BASE_BOARD_HEIGHT / 1.2775,
-    BASE_BOARD_WIDTH / 2.2,
-    BASE_BOARD_HEIGHT / 1.47,
+    pt_r4Hex_X,
+    pt_r4Hex_Y,
+    pt_r6Hex_X,
+    pt_r6Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -134,10 +134,10 @@ var r4HexToR6Hex = new Konva.Line({
 var r3HexToR6Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2.434,
-    BASE_BOARD_HEIGHT / 1.2775,
-    BASE_BOARD_WIDTH / 2.2,
-    BASE_BOARD_HEIGHT / 1.47,
+    pt_r3Hex_X,
+    pt_r3Hex_Y,
+    pt_r6Hex_X,
+    pt_r6Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -149,10 +149,10 @@ var r3HexToR6Hex = new Konva.Line({
 var r6HexToR7Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2.2,
-    BASE_BOARD_HEIGHT / 1.47,
-    BASE_BOARD_WIDTH / 1.835,
-    BASE_BOARD_HEIGHT / 1.47,
+    pt_r6Hex_X,
+    pt_r6Hex_Y,
+    pt_r7Hex_X,
+    pt_r7Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -164,10 +164,10 @@ var r6HexToR7Hex = new Konva.Line({
 var r6HexToR8Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 2.2,
-    BASE_BOARD_HEIGHT / 1.47,
-    BASE_BOARD_WIDTH / 2,
-    BASE_BOARD_HEIGHT / 1.735,
+    pt_r6Hex_X,
+    pt_r6Hex_Y,
+    pt_r8Hex_X,
+    pt_r8Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
@@ -178,10 +178,10 @@ var r6HexToR8Hex = new Konva.Line({
 var r7HexToR8Hex = new Konva.Line({
   //       XS    YS   XE   YE
   points: [
-    BASE_BOARD_WIDTH / 1.835,
-    BASE_BOARD_HEIGHT / 1.47,
-    BASE_BOARD_WIDTH / 2,
-    BASE_BOARD_HEIGHT / 1.735,
+    pt_r7Hex_X,
+    pt_r7Hex_Y,
+    pt_r8Hex_X,
+    pt_r8Hex_Y
   ],
   stroke: 'red',
   strokeWidth: 2,
