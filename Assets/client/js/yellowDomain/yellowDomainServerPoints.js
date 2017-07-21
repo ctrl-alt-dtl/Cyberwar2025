@@ -1,13 +1,13 @@
 /**
  * YELLOW DOMAIN
  */
-
 var point_x = BASE_BOARD_WIDTH;
 var point_y = BASE_BOARD_HEIGHT;
 
 var radius = BASE_BOARD_WIDTH / 55;
 
 var yellowColor = '#F7E500';
+
 
 // Yellow Base Outline.
 var yBase = new Konva.Line({

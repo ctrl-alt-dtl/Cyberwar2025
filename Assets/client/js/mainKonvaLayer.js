@@ -9,7 +9,6 @@ var BASE_BOARD_HEIGHT = 768;
 
 var BOARD_ROTATION = 0;
 
-
 var stage = new Konva.Stage({
   container: '.container',
   width: BASE_BOARD_WIDTH,
