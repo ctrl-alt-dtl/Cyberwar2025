@@ -23,7 +23,7 @@ var gBase = new Konva.Line({
     point_y / 11         // Y6
   ],
   fill: 'green',
-  stroke: 'green',
+  stroke: 'black',
   strokeWidth: 2,
   closed: true
 });
