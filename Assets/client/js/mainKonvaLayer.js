@@ -141,3 +141,25 @@ function fitStageIntoParentContainer() {
   window.addEventListener('resize', fitStageIntoParentContainer);
 }
 
+stage.on('click', function(e){
+  e.target.id();
+  console.log(e);
+
+})
+
+
+/*
+var tween;
+
+document.getElementById('activate').addEventListener('click', function() {
+  // or var shape = stage.findOne('#myRect');
+  var shape = stage.find('#y1Hex')[0];
+  if (tween) {
+    tween.destroy();
+  }
+  tween = new Konva.Tween({
+    node: shape,
+    fill:'red'
+  }).play();
+}, false);
+*/

@@ -22,7 +22,8 @@ var pBase = new Konva.Line({
     point_x / 5.23,       // X6
     point_y / 1.652         // Y6
   ],
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
   closed: true
 });
@@ -32,10 +33,11 @@ var p1Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.86,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p1Hex'
 });
 
 var p2Hex = new Konva.RegularPolygon({
@@ -43,10 +45,11 @@ var p2Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.177,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p2Hex'
 });
 
 var p3Hex = new Konva.RegularPolygon({
@@ -54,10 +57,11 @@ var p3Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.86,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p3Hex'
 });
 
 var p4Hex = new Konva.RegularPolygon({
@@ -65,10 +69,11 @@ var p4Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.558,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p4Hex'
 });
 
 var p5Hex = new Konva.RegularPolygon({
@@ -76,10 +81,11 @@ var p5Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.345,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p5Hex'
 });
 
 var p6Hex = new Konva.RegularPolygon({
@@ -87,10 +93,11 @@ var p6Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.86,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p6Hex'
 });
 
 var p7Hex = new Konva.RegularPolygon({
@@ -98,10 +105,11 @@ var p7Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.558,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p7Hex'
 });
 
 var p8Hex = new Konva.RegularPolygon({
@@ -109,9 +117,10 @@ var p8Hex = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 1.86,
   sides: 6,
   radius: radius,
-  fill: '',
-  stroke: 'purple',
+  fill: 'purple',
+  stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'p8Hex'
 });
 

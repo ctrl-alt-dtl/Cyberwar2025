@@ -8,7 +8,6 @@ var radius = BASE_BOARD_WIDTH / 55;
 
 var yellowColor = '#F7E500';
 
-
 // Yellow Base Outline.
 var yBase = new Konva.Line({
   points: [
@@ -39,7 +38,8 @@ var y1Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y1Hex'
 });
 
 var y2Hex = new Konva.RegularPolygon({
@@ -50,7 +50,8 @@ var y2Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y2Hex'
 });
 
 var y3Hex = new Konva.RegularPolygon({
@@ -62,9 +63,7 @@ var y3Hex = new Konva.RegularPolygon({
   stroke: 'black',
   strokeWidth: 2,
   rotation: 90,
-  visible: true,
-  listening: true,
-  id: y3Hex,
+  id: 'y3Hex'
 
 });
 
@@ -76,7 +75,8 @@ var y4Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y4Hex'
 });
 
 var y5Hex = new Konva.RegularPolygon({
@@ -87,7 +87,8 @@ var y5Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y5Hex'
 });
 
 var y6Hex = new Konva.RegularPolygon({
@@ -98,7 +99,8 @@ var y6Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y6Hex'
 });
 
 var y7Hex = new Konva.RegularPolygon({
@@ -109,7 +111,8 @@ var y7Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y7Hex'
 });
 
 var y8Hex = new Konva.RegularPolygon({
@@ -120,5 +123,6 @@ var y8Hex = new Konva.RegularPolygon({
   fill: yellowColor,
   stroke: 'black',
   strokeWidth: 2,
-  rotation: 90
+  rotation: 90,
+  id: 'y8Hex'
 });
