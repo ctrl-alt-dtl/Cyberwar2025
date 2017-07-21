@@ -1,4 +1,3 @@
-
 /**
  * RED DOMAIN MAIN PATHS
  */

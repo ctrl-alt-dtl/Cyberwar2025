@@ -1,6 +1,7 @@
 /**
  * PURPLE DOMAIN
  */
+
 var point_x = BASE_BOARD_WIDTH;
 var point_y = BASE_BOARD_HEIGHT;
 

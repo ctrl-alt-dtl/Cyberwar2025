@@ -4,8 +4,8 @@ var MAX_BOARD_HEIGHT = 1200;
 var MIN_BOARD_WITDH = 800;
 var MIN_BOARD_HEIGHT = 600;
 
-var BASE_BOARD_WIDTH = 1024;
-var BASE_BOARD_HEIGHT = 768;
+var BASE_BOARD_WIDTH = 1024
+var BASE_BOARD_HEIGHT = 768
 
 var BOARD_ROTATION = 0;
 
@@ -74,7 +74,7 @@ var box = new Konva.Rect({
   height: BASE_BOARD_HEIGHT,
   stroke: 'black',
   strokeWidth: '8'
-})
+});
 
 // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgLayer.add(bgBoard);
@@ -116,6 +116,7 @@ var box = new Konva.Rect({
 imageObj.src = '../img/boardWeb-1024x768.png';
 
 
+// Somewhat dynamic resizing of the canvas.
 function fitStageIntoParentContainer() {
   var container = document.querySelector('#stage-parent');
   // now we need to fit stage into parent
@@ -141,13 +142,6 @@ function fitStageIntoParentContainer() {
   window.addEventListener('resize', fitStageIntoParentContainer);
 }
 
-stage.on('click', function(e){
-  e.target.id();
-  console.log(e);
-
-})
-
-
 /*
 var tween;
 
@@ -163,3 +157,5 @@ document.getElementById('activate').addEventListener('click', function() {
   }).play();
 }, false);
 */
+
+

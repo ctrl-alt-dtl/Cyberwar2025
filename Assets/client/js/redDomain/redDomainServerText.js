@@ -1,6 +1,7 @@
 /**
  * RED DOMAIN TEXT
  */
+
 var offset_x = BASE_BOARD_WIDTH / 114;
 var offset_y = BASE_BOARD_HEIGHT / 55;
 
