@@ -4,6 +4,24 @@
  *    ../domainLibs/konvaConfigSettings.js
  *    ../domainLibs/serverPointCoordinates.js
  */
+var orangeBaseText = new Konva.Text({
+  text: 'caffeineCowboy',
+  x: BASE_BOARD_WIDTH / 1.36,
+  y: BASE_BOARD_HEIGHT / 1.36,
+  offset: {
+    x: base_text_offset_x,
+    y: base_text_offset_y
+  },
+  width: 210,
+  stroke: 'black',
+  strokeWidth: 1,
+  fontFamily:'sans-serif',
+  fontSize: 22,
+  fontStyle: 'bold',
+  fill: '#FFF',
+  rotation: 300
+});
+
 var o1Text = new Konva.Text({
   text: '1',
   x: pt_o1Hex_X,

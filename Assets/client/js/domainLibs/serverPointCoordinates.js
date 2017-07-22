@@ -2,12 +2,13 @@
  * YELLOW DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
  */
-
+// Base left and right edges
 var pt_yBase1Hex_X = BASE_BOARD_WIDTH / 1.25;
 var pt_yBase1Hex_Y = BASE_BOARD_HEIGHT / 2.4;
 var pt_yBase2Hex_X = BASE_BOARD_WIDTH / 1.42;
 var pt_yBase2Hex_Y = BASE_BOARD_HEIGHT / 5.15;
 
+// Center point of each server
 var pt_y1Hex_X = BASE_BOARD_WIDTH / 1.221;
 var pt_y1Hex_Y = BASE_BOARD_HEIGHT / 2.165;
 
@@ -36,12 +37,13 @@ var pt_y8Hex_Y = BASE_BOARD_HEIGHT / 2.165;
  * ORANGE DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
  */
-
+// Base left and right edges
 var pt_oBase1Hex_X = BASE_BOARD_WIDTH / 1.42;
 var pt_oBase1Hex_Y = BASE_BOARD_HEIGHT / 1.24;
 var pt_oBase2Hex_X = BASE_BOARD_WIDTH / 1.25;
 var pt_oBase2Hex_Y = BASE_BOARD_HEIGHT / 1.715;
 
+// Center point of each server
 var pt_o1Hex_X = BASE_BOARD_WIDTH / 1.464;
 var pt_o1Hex_Y = BASE_BOARD_HEIGHT / 1.177;
 
@@ -70,12 +72,13 @@ var pt_o8Hex_Y = BASE_BOARD_HEIGHT / 1.86;
  * RED DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
  */
-
+// Base left and right edges
 var pt_rBase1Hex_X = BASE_BOARD_WIDTH / 2.48;
 var pt_rBase1Hex_Y = BASE_BOARD_HEIGHT / 1.126;
 var pt_rBase2Hex_X = BASE_BOARD_WIDTH / 1.68;
 var pt_rBase2Hex_Y = BASE_BOARD_HEIGHT / 1.126;
 
+// Center point of each server
 var pt_r1Hex_X = BASE_BOARD_WIDTH / 2.74;
 var pt_r1Hex_Y = BASE_BOARD_HEIGHT / 1.126;
 
@@ -104,12 +107,13 @@ var pt_r8Hex_Y = BASE_BOARD_HEIGHT / 1.735;
  * PURPLE DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
  */
-
+// Base left and right edges
 var pt_pBase1Hex_X = BASE_BOARD_WIDTH / 5.04;
 var pt_pBase1Hex_Y = BASE_BOARD_HEIGHT / 1.715;
 var pt_pBase2Hex_X = BASE_BOARD_WIDTH / 3.37;
 var pt_pBase2Hex_Y = BASE_BOARD_HEIGHT / 1.24;
 
+// Center point of each server
 var pt_p1Hex_X = BASE_BOARD_WIDTH / 5.55;
 var pt_p1Hex_Y = BASE_BOARD_HEIGHT / 1.86;
 
@@ -138,12 +142,13 @@ var pt_p8Hex_Y = BASE_BOARD_HEIGHT / 1.86;
  * BLUE DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
  */
-
+// Base left and right edges
 var pt_bBase1Hex_X = BASE_BOARD_WIDTH / 3.37;
 var pt_bBase1Hex_Y = BASE_BOARD_HEIGHT / 5.15;
 var pt_bBase2Hex_X = BASE_BOARD_WIDTH / 4.99;
 var pt_bBase2Hex_Y = BASE_BOARD_HEIGHT / 2.4;
 
+// Center point of each server
 var pt_b1Hex_X = BASE_BOARD_WIDTH / 3.172;
 var pt_b1Hex_Y = BASE_BOARD_HEIGHT / 6.63;
 
@@ -172,12 +177,13 @@ var pt_b8Hex_Y = BASE_BOARD_HEIGHT / 2.165;
  * GREEN DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
  */
-
+// Base left and right edges
 var pt_gBase1Hex_X = BASE_BOARD_WIDTH / 1.68;
 var pt_gBase1Hex_Y = BASE_BOARD_HEIGHT / 8.95;
 var pt_gBase2Hex_X = BASE_BOARD_WIDTH / 2.48;
 var pt_gBase2Hex_Y = BASE_BOARD_HEIGHT / 8.995;
 
+// Center point of each server
 var pt_g1Hex_X = BASE_BOARD_WIDTH / 1.575;
 var pt_g1Hex_Y = BASE_BOARD_HEIGHT / 8.95;
 

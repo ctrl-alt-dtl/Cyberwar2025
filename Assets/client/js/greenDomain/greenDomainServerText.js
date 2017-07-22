@@ -4,6 +4,24 @@
  *    ../domainLibs/konvaConfigSettings.js
  *    ../domainLibs/serverPointCoordinates.js
  */
+var greenBaseText = new Konva.Text({
+  text: 'cuttlePhish',
+  x: BASE_BOARD_WIDTH / 1.95,
+  y: BASE_BOARD_HEIGHT / 9.2,
+  offset: {
+    x: base_text_offset_x,
+    y: base_text_offset_y
+  },
+  width: 210,
+  stroke: 'black',
+  strokeWidth: 1.5,
+  fontFamily:'sans-serif',
+  fontSize: 22,
+  fontStyle: 'bold',
+  fill: '#FFF',
+  rotation: 180
+});
+
 var g1Text = new Konva.Text({
   text: '1',
   x: pt_g1Hex_X,

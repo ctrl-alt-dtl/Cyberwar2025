@@ -4,6 +4,24 @@
  *    ../domainLibs/konvaConfigSettings.js
  *    ../domainLibs/serverPointCoordinates.js
  */
+var yellowBaseText = new Konva.Text({
+  text: 'buzzKill',
+  x: BASE_BOARD_WIDTH / 1.33,
+  y: BASE_BOARD_HEIGHT / 3.4,
+  offset: {
+    x: base_text_offset_x,
+    y: base_text_offset_y
+  },
+  width: 210,
+  stroke: 'black',
+  strokeWidth: 1,
+  fontFamily:'sans-serif',
+  fontSize: 22,
+  fontStyle: 'bold',
+  fill: '#FFF',
+  rotation: 240
+});
+
 var y1Text = new Konva.Text({
   text: '1',
   x: pt_y1Hex_X,

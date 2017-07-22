@@ -4,6 +4,24 @@
  *    ../domainLibs/konvaConfigSettings.js
  *    ../domainLibs/serverPointCoordinates.js
  */
+var purpleBaseText = new Konva.Text({
+  text: 'WMDeez',
+  x: BASE_BOARD_WIDTH / 4.10,
+  y: BASE_BOARD_HEIGHT / 1.43,
+  offset: {
+    x: base_text_offset_x,
+    y: base_text_offset_y
+  },
+  width: 210,
+  stroke: 'black',
+  strokeWidth: 1.5,
+  fontFamily:'sans-serif',
+  fontSize: 22,
+  fontStyle: 'bold',
+  fill: '#FFF',
+  rotation: 60
+});
+
 var p1Text = new Konva.Text({
   text: '1',
   x: pt_p1Hex_X,

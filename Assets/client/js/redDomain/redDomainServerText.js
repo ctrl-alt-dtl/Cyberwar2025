@@ -1,6 +1,27 @@
 /**
  * RED DOMAIN TEXT
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
+var redBaseText = new Konva.Text({
+  text: 'dotEvil',
+  x: BASE_BOARD_WIDTH / 1.95,
+  y: BASE_BOARD_HEIGHT / 1.12,
+  offset: {
+    x: base_text_offset_x,
+    y: base_text_offset_y
+  },
+  width: 210,
+  stroke: 'black',
+  strokeWidth: 1.5,
+  fontFamily:'sans-serif',
+  fontSize: 22,
+  fontStyle: 'bold',
+  fill: '#FFF',
+  rotation: 0
+});
+
 var r1Text = new Konva.Text({
   text: '1',
   x: pt_r1Hex_X,

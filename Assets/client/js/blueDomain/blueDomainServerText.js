@@ -4,6 +4,24 @@
  *    ../domainLibs/konvaConfigSettings.js
  *    ../domainLibs/serverPointCoordinates.js
  */
+var blueBaseText = new Konva.Text({
+  text: 'FrostByte',
+  x: BASE_BOARD_WIDTH / 4.05,
+  y: BASE_BOARD_HEIGHT / 3.35,
+  offset: {
+    x: base_text_offset_x,
+    y: base_text_offset_y
+  },
+  width: 210,
+  stroke: 'black',
+  strokeWidth: 1.5,
+  fontFamily:'sans-serif',
+  fontSize: 22,
+  fontStyle: 'bold',
+  fill: '#FFF',
+  rotation: 120
+});
+
 var b1Text = new Konva.Text({
   text: '1',
   x: pt_b1Hex_X,

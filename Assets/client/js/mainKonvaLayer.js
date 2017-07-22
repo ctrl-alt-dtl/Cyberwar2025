@@ -104,13 +104,16 @@ imageObj.onload = function() {
   // Yellow Domain Servers
   domainsGroup.add(yBase, y1Hex, y2Hex, y3Hex, y4Hex, y5Hex, y6Hex, y7Hex, y8Hex);
 
-  // Red Domain Text
+  // Servers Text
   domainsGroup.add(r1Text, r2Text, r3Text, r4Text, r5Text, r6Text, r7Text, r8Text);
   domainsGroup.add(p1Text, p2Text, p3Text, p4Text, p5Text, p6Text, p7Text, p8Text);
   domainsGroup.add(b1Text, b2Text, b3Text, b4Text, b5Text, b6Text, b7Text, b8Text);
   domainsGroup.add(g1Text, g2Text, g3Text, g4Text, g5Text, g6Text, g7Text, g8Text);
   domainsGroup.add(y1Text, y2Text, y3Text, y4Text, y5Text, y6Text, y7Text, y8Text);
   domainsGroup.add(o1Text, o2Text, o3Text, o4Text, o5Text, o6Text, o7Text, o8Text);
+
+  // Base Text
+  domainsGroup.add(redBaseText, purpleBaseText, blueBaseText, greenBaseText, yellowBaseText, orangeBaseText);
 
   domainsGroup.add(origin);
 
