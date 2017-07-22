@@ -15,7 +15,7 @@ const MIN_BOARD_HEIGHT = 600;
  * Other Resolutions: 1152x864, 1280x960, 1400x1050, 1440x1080
  */
 
-var DOMAIN_LAYER_BOARD_ROTATION = 0;
+var DOMAIN_LAYER_BOARD_ROTATION = 180;
 
 var stage = new Konva.Stage({
   container: '.container',
@@ -52,7 +52,10 @@ imageObj.onload = function() {
 
 // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgLayer.add(bgBoard);
-  bgLayer.add(boardEdge, centerHex);
+  bgLayer.add(boardEdge, tier3, tier2, tier1);
+  bgLayer.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
+  bgLayer.add(mainBoundary3, mainBoundary2, mainBoundary1, centerHex);
+  bgLayer.add(tier3Text, tier2Text, tier1Text);
   boardItems.add(submitOrdersBtn, ordersQueue, effectsWindow, chatWindow, notesRulesWindow);
 
   // Domain Inter-Server Paths (LINKS)
