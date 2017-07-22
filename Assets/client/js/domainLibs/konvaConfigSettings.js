@@ -3,7 +3,9 @@
  */
 
 // For Konva Lines used in both Primary Server Links and Exploit Links
-var lineVisible = true;
+var lineVisible = false;
+// For Konva Text used on Server points only
+var textVisible = false;
 
 // Used for the Domain Servers and Links
 var yellowColor = '#F7E500';

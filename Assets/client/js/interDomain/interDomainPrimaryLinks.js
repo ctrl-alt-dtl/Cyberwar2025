@@ -20,7 +20,7 @@ var R1HexP2Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: R1HexP2Hex
 });
 
@@ -35,7 +35,7 @@ var R3HexP5Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: R3HexP5Hex
 });
 
@@ -50,7 +50,7 @@ var R6HexP7Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: R6HexP7Hex
 });
 
@@ -65,7 +65,7 @@ var R8HexP8Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: R8HexP8Hex
 });
 
@@ -83,7 +83,7 @@ var P1HexB2Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: P1HexB2Hex
 });
 
@@ -98,7 +98,7 @@ var P3HexB5Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: P3HexB5Hex
 });
 
@@ -113,7 +113,7 @@ var P6HexB7Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: P6HexB7Hex
 });
 
@@ -128,7 +128,7 @@ var P8HexB8Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: P8HexB8Hex
 });
 
@@ -146,7 +146,7 @@ var B1HexG2Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: B1HexG2Hex
 });
 
@@ -161,7 +161,7 @@ var B3HexG5Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: B3HexG5Hex
 });
 
@@ -176,7 +176,7 @@ var B6HexG7Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: B6HexG7Hex
 });
 
@@ -191,7 +191,7 @@ var B8HexG8Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: B8HexG8Hex
 });
 
@@ -209,7 +209,7 @@ var G1HexY2Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: G1HexY2Hex
 });
 
@@ -224,7 +224,7 @@ var G3HexY5Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: G3HexY5Hex
 });
 
@@ -239,7 +239,7 @@ var G6HexY7Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: G6HexY7Hex
 });
 
@@ -254,7 +254,7 @@ var G8HexY8Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: G8HexY8Hex
 });
 
@@ -273,7 +273,7 @@ var Y1HexO2Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: Y1HexO2Hex
 });
 
@@ -288,7 +288,7 @@ var Y3HexO5Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: Y3HexO5Hex
 });
 
@@ -303,7 +303,7 @@ var Y6HexO7Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: Y6HexO7Hex
 });
 
@@ -318,7 +318,7 @@ var Y8HexO8Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: Y8HexO8Hex
 });
 
@@ -336,7 +336,7 @@ var O1HexR2Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: O1HexR2Hex
 });
 
@@ -351,7 +351,7 @@ var O3HexR5Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: O3HexR5Hex
 });
 
@@ -366,7 +366,7 @@ var O6HexR7Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: O6HexR7Hex
 });
 
@@ -381,7 +381,7 @@ var O8HexR8Hex = new Konva.Line({
   strokeWidth: 2,
   lineCap: 'round',
   lineJoin: 'round',
-  visible: true,
+  visible: lineVisible,
   id: O8HexR8Hex
 });
 
@@ -397,3 +397,137 @@ var O8HexR8Hex = new Konva.Line({
  * Which means, there are no conflicting/shared capture points (e.g. B->R != R->B)
  */
 
+var R8HexB8Hex = new Konva.Line({
+  points: [
+    pt_r8Hex_X,
+    pt_r8Hex_Y,
+    pt_b8Hex_X,
+    pt_b8Hex_Y
+  ],
+  stroke: redColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: R8HexB8Hex
+});
+
+var R8HexG8Hex = new Konva.Line({
+  points: [
+    pt_r8Hex_X,
+    pt_r8Hex_Y,
+    pt_g8Hex_X,
+    pt_g8Hex_Y
+  ],
+  stroke: redColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: R8HexG8Hex
+});
+
+var R8HexY8Hex = new Konva.Line({
+  points: [
+    pt_r8Hex_X,
+    pt_r8Hex_Y,
+    pt_y8Hex_X,
+    pt_y8Hex_Y
+  ],
+  stroke: redColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: R8HexY8Hex
+});
+
+var P8HexG8Hex = new Konva.Line({
+  points: [
+    pt_p8Hex_X,
+    pt_p8Hex_Y,
+    pt_g8Hex_X,
+    pt_g8Hex_Y
+  ],
+  stroke: purpleColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: P8HexG8Hex
+});
+
+var P8HexY8Hex = new Konva.Line({
+  points: [
+    pt_p8Hex_X,
+    pt_p8Hex_Y,
+    pt_y8Hex_X,
+    pt_y8Hex_Y
+  ],
+  stroke: purpleColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: P8HexY8Hex
+});
+
+var P8HexO8Hex = new Konva.Line({
+  points: [
+    pt_p8Hex_X,
+    pt_p8Hex_Y,
+    pt_o8Hex_X,
+    pt_o8Hex_Y
+  ],
+  stroke: purpleColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: P8HexO8Hex
+});
+
+var B8HexY8Hex = new Konva.Line({
+  points: [
+    pt_b8Hex_X,
+    pt_b8Hex_Y,
+    pt_y8Hex_X,
+    pt_y8Hex_Y
+  ],
+  stroke: blueColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: B8HexY8Hex
+});
+
+var B8HexO8Hex = new Konva.Line({
+  points: [
+    pt_b8Hex_X,
+    pt_b8Hex_Y,
+    pt_o8Hex_X,
+    pt_o8Hex_Y
+  ],
+  stroke: blueColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: B8HexO8Hex
+})
+
+var G8HexO8Hex = new Konva.Line({
+  points: [
+    pt_g8Hex_X,
+    pt_g8Hex_Y,
+    pt_o8Hex_X,
+    pt_o8Hex_Y
+  ],
+  stroke: greenColor,
+  strokeWidth: 2,
+  lineCap: 'round',
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: G8HexO8Hex
+});

@@ -37,6 +37,7 @@ var r1Text = new Konva.Text({
   fontSize: 30,
   fill: '#FFF',
   id: r1Text,
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -54,6 +55,7 @@ var r2Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -71,6 +73,7 @@ var r3Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -88,6 +91,7 @@ var r4Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -106,6 +110,7 @@ var r5Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -124,6 +129,7 @@ var r6Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -142,6 +148,7 @@ var r7Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -160,6 +167,7 @@ var r8Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 

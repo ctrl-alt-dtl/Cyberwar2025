@@ -36,6 +36,7 @@ var o1Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -53,6 +54,7 @@ var o2Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -70,6 +72,7 @@ var o3Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -87,6 +90,7 @@ var o4Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -105,6 +109,7 @@ var o5Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -123,6 +128,7 @@ var o6Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -141,6 +147,7 @@ var o7Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
@@ -159,6 +166,7 @@ var o8Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
+  visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 

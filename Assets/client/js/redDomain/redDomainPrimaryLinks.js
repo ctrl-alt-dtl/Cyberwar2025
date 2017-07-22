@@ -16,7 +16,8 @@ var rBaseToR1Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var rBaseToR2Hex = new Konva.Line({
@@ -30,7 +31,8 @@ var rBaseToR2Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 // TO TIER 3
@@ -45,7 +47,8 @@ var r1HexToR3Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var r2HexToR5Hex = new Konva.Line({
@@ -59,7 +62,8 @@ var r2HexToR5Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 // TIER 3
@@ -74,7 +78,8 @@ var r3HexToR4Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var r5HexToR4Hex = new Konva.Line({
@@ -88,7 +93,8 @@ var r5HexToR4Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 // TO TIER 2
@@ -103,7 +109,8 @@ var r4HexToR7Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var r5HexToR7Hex = new Konva.Line({
@@ -117,7 +124,8 @@ var r5HexToR7Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var r4HexToR6Hex = new Konva.Line({
@@ -131,7 +139,8 @@ var r4HexToR6Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var r3HexToR6Hex = new Konva.Line({
@@ -145,7 +154,8 @@ var r3HexToR6Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 // TIER 2
@@ -160,7 +170,8 @@ var r6HexToR7Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 // TO TIER 1
@@ -175,7 +186,8 @@ var r6HexToR8Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
 });
 
 var r7HexToR8Hex = new Konva.Line({
@@ -189,5 +201,6 @@ var r7HexToR8Hex = new Konva.Line({
   stroke: 'red',
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible
 });
