@@ -1,9 +1,25 @@
 var change = 'true'; // false will change it
 
+
+var y1HexListener = new Konva.RegularPolygon({
+  x: pt_y1Hex_X,
+  y: pt_y1Hex_Y,
+  sides: 6,
+  radius: radius,
+  rotation: 90,
+  id: 'y1HexListener'
+});
+
 // onlick change
-y1Hex.on('click', function () {
+/*y1Hex.on('click', function () {
   var fill = this.fill() === yellowColor ? 'red' : yellowColor;
   this.fill(fill);
+  domainsLayer.draw();
+});*/
+
+y1HexListener.on('click', function () {
+  var fill = y1Hex.fill() === yellowColor ? 'red' : yellowColor;
+  y1Hex.fill(fill);
   domainsLayer.draw();
 });
 
