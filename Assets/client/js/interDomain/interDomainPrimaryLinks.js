@@ -1,6 +1,9 @@
 /**
  * Visualization of inter-domain links between each player. These are the visible paths for capture maneuvers only.
  * Order goes clockwise starting from the RED DOMAIN.
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 
 /**

@@ -1,12 +1,9 @@
 /**
  * RED DOMAIN
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
-
-var point_x = BASE_BOARD_WIDTH;
-var point_y = BASE_BOARD_HEIGHT;
-
-var radius = BASE_BOARD_WIDTH / 55;
-
 // Red Base Outline.
 var rBase = new Konva.Line({
   points: [

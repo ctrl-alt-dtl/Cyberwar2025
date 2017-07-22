@@ -1,5 +1,8 @@
 /**
  * PURPLE DOMAIN TEXT
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 var p1Text = new Konva.Text({
   text: '1',

@@ -1,5 +1,8 @@
 /**
  * ORANGE DOMAIN TEXT
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 var o1Text = new Konva.Text({
   text: '1',

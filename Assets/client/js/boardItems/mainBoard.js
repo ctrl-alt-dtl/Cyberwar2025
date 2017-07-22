@@ -1,5 +1,7 @@
 /**
  * MAIN BOARD
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
  */
 
 var centerHex = new Konva.RegularPolygon({

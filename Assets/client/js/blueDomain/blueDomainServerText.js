@@ -1,5 +1,8 @@
 /**
  * BLUE DOMAIN TEXT
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 var b1Text = new Konva.Text({
   text: '1',

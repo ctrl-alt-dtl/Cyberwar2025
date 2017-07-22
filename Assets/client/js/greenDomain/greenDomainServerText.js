@@ -1,5 +1,8 @@
 /**
  * GREEN DOMAIN TEXT
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 var g1Text = new Konva.Text({
   text: '1',

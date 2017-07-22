@@ -1,5 +1,8 @@
 /**
  * ORANGE DOMAIN MAIN PATHS
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 
 // TIER 4

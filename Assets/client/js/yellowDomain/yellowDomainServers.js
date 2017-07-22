@@ -1,5 +1,8 @@
 /**
  * YELLOW DOMAIN
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 
 // These are in the konvaConfigSettings.js file

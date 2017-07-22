@@ -1,6 +1,9 @@
 /**
  * INTERACTIVE BOXES
  * Chat, Submit Orders, Cyber Effects, and Notes & Rules
+ * Requires:
+ *    ../domainLibs/konvaConfigSettings.js
+ *    ../domainLibs/serverPointCoordinates.js
  */
 
 var submitOrdersBtn = new Konva.Rect({
