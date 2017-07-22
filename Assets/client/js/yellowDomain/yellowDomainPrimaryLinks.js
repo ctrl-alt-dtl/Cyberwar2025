@@ -2,8 +2,6 @@
  * YELLOW DOMAIN MAIN PATHS
  */
 
-var darkYellowColor = '#ccbe00'
-
 // TIER 4
 var yBaseToY1Hex = new Konva.Line({
   points: [
@@ -44,7 +42,9 @@ var y1HexToY3Hex = new Konva.Line({
   stroke: darkYellowColor,
   strokeWidth: 2,
   lineCap: 'round',
-  lineJoin: 'round'
+  lineJoin: 'round',
+  visible: lineVisible,
+  id: y1HexToY3Hex
 });
 
 var y2HexToY5Hex = new Konva.Line({

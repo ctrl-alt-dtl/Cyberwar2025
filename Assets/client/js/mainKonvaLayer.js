@@ -1,17 +1,21 @@
-var MAX_BOARD_WIDTH = 1600;
-var MAX_BOARD_HEIGHT = 1200;
-
-var MIN_BOARD_WITDH = 800;
-var MIN_BOARD_HEIGHT = 600;
+/**
+ * The main Konva (canvas) layer instance.
+ */
 
 var BASE_BOARD_WIDTH = 1024;
 var BASE_BOARD_HEIGHT = 768;
+
+const MAX_BOARD_WIDTH = 1600;
+const MAX_BOARD_HEIGHT = 1200;
+
+const MIN_BOARD_WITDH = 800;
+const MIN_BOARD_HEIGHT = 600;
 
 /**
  * Other Resolutions: 1152x864, 1280x960, 1400x1050, 1440x1080
  */
 
-var BOARD_ROTATION = 0;
+var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
 var stage = new Konva.Stage({
   container: '.container',
@@ -32,7 +36,7 @@ var domainsGroup = new Konva.Group({
     x: BASE_BOARD_WIDTH / 2,
     y: BASE_BOARD_HEIGHT / 2,
   },
-  rotation: BOARD_ROTATION
+  rotation: DOMAIN_LAYER_BOARD_ROTATION
 });
 
 
@@ -76,6 +80,15 @@ imageObj.onload = function() {
   domainsGroup.add(oBaseToO1Hex, oBaseToO2Hex, o1HexToO3Hex, o2HexToO5Hex)
   domainsGroup.add(o3HexToO4Hex, o5HexToO4Hex, o3HexToO6Hex, o4HexToO6Hex, o4HexToO7Hex, o5HexToO7Hex);
   domainsGroup.add(o6HexToO7Hex, o6HexToO8Hex, o7HexToO8Hex);
+
+  //Inter-Domain Paths (LINKS)
+  // Red to Purple
+  domainsGroup.add(R1HexP2Hex, R3HexP5Hex, R6HexP7Hex, R8HexP8Hex);
+  domainsGroup.add(P1HexB2Hex, P3HexB5Hex, P6HexB7Hex, P8HexB8Hex);
+  domainsGroup.add(B1HexG2Hex, B3HexG5Hex, B6HexG7Hex, B8HexG8Hex);
+  domainsGroup.add(G1HexY2Hex, G3HexY5Hex, G6HexY7Hex, G8HexY8Hex);
+  domainsGroup.add(Y1HexO2Hex, Y3HexO5Hex, Y6HexO7Hex, Y8HexO8Hex);
+  domainsGroup.add(O1HexR2Hex, O3HexR5Hex, O6HexR7Hex, O8HexR8Hex);
 
 
   // Green Domains Servers
