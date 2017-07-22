@@ -20,3 +20,7 @@ var point_x = BASE_BOARD_WIDTH;
 var point_y = BASE_BOARD_HEIGHT;
 
 var radius = BASE_BOARD_WIDTH / 55;
+
+// For text centering on Server points
+var text_offset_x = BASE_BOARD_WIDTH / 114;
+var text_offset_y = BASE_BOARD_HEIGHT / 55;

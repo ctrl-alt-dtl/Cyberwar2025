@@ -25,8 +25,11 @@ if(y1Hex.fill() === redColor){
   domainsLayer.draw()
 }
 
+
+
 // Direct Assignment
 // b6HexToB8Hex.stroke(redColor);
+// p1Text.text("4");
 
 // static change
 // this.y5Hex.fill('blue');

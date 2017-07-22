@@ -1,10 +1,10 @@
 /**
- * RED DOMAIN TEXT
+ * PURPLE DOMAIN TEXT
  */
-var r1Text = new Konva.Text({
+var p1Text = new Konva.Text({
   text: '1',
-  x: pt_r1Hex_X,
-  y: pt_r1Hex_Y,
+  x: pt_p1Hex_X,
+  y: pt_p1Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -15,14 +15,13 @@ var r1Text = new Konva.Text({
   fontFamily: 'sans-serif',
   fontSize: 30,
   fill: '#FFF',
-  id: r1Text,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
-var r2Text = new Konva.Text({
+var p2Text = new Konva.Text({
   text: '2',
-  x: pt_r2Hex_X,
-  y: pt_r2Hex_Y,
+  x: pt_p2Hex_X,
+  y: pt_p2Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -36,10 +35,10 @@ var r2Text = new Konva.Text({
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
-var r3Text = new Konva.Text({
+var p3Text = new Konva.Text({
   text: '3',
-  x: pt_r3Hex_X,
-  y: pt_r3Hex_Y,
+  x: pt_p3Hex_X,
+  y: pt_p3Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -53,10 +52,10 @@ var r3Text = new Konva.Text({
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
-var r4Text = new Konva.Text({
+var p4Text = new Konva.Text({
   text: '4',
-  x: pt_r4Hex_X,
-  y: pt_r4Hex_Y,
+  x: pt_p4Hex_X,
+  y: pt_p4Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -71,10 +70,10 @@ var r4Text = new Konva.Text({
 });
 
 
-var r5Text = new Konva.Text({
+var p5Text = new Konva.Text({
   text: '5',
-  x: pt_r5Hex_X,
-  y: pt_r5Hex_Y,
+  x: pt_p5Hex_X,
+  y: pt_p5Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -89,10 +88,10 @@ var r5Text = new Konva.Text({
 });
 
 
-var r6Text = new Konva.Text({
+var p6Text = new Konva.Text({
   text: '6',
-  x: pt_r6Hex_X,
-  y: pt_r6Hex_Y,
+  x: pt_p6Hex_X,
+  y: pt_p6Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -107,10 +106,10 @@ var r6Text = new Konva.Text({
 });
 
 
-var r7Text = new Konva.Text({
+var p7Text = new Konva.Text({
   text: '7',
-  x: pt_r7Hex_X,
-  y: pt_r7Hex_Y,
+  x: pt_p7Hex_X,
+  y: pt_p7Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -125,10 +124,10 @@ var r7Text = new Konva.Text({
 });
 
 
-var r8Text = new Konva.Text({
+var p8Text = new Konva.Text({
   text: '8',
-  x: pt_r8Hex_X,
-  y: pt_r8Hex_Y,
+  x: pt_p8Hex_X,
+  y: pt_p8Hex_Y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
