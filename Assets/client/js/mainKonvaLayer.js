@@ -15,7 +15,7 @@ const MIN_BOARD_HEIGHT = 600;
  * Other Resolutions: 1152x864, 1280x960, 1400x1050, 1440x1080
  */
 
-var DOMAIN_LAYER_BOARD_ROTATION = 180;
+var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
 var stage = new Konva.Stage({
   container: '.container',
