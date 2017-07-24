@@ -5,7 +5,7 @@
  *    ../domainLibs/serverPointCoordinates.js
  */
 var yellowBaseText = new Konva.Text({
-  text: 'buzzKill',
+  text: 'BuzzKill',
   x: BASE_BOARD_WIDTH / 1.33,
   y: BASE_BOARD_HEIGHT / 3.4,
   offset: {

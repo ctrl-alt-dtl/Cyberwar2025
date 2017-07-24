@@ -5,7 +5,7 @@
  *    ../domainLibs/serverPointCoordinates.js
  */
 var orangeBaseText = new Konva.Text({
-  text: 'caffeineCowboy',
+  text: 'CaffeineCowboy',
   x: BASE_BOARD_WIDTH / 1.36,
   y: BASE_BOARD_HEIGHT / 1.36,
   offset: {

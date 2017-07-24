@@ -5,7 +5,7 @@
  *    ../domainLibs/serverPointCoordinates.js
  */
 var redBaseText = new Konva.Text({
-  text: 'dotEvil',
+  text: 'DotEvil',
   x: BASE_BOARD_WIDTH / 1.95,
   y: BASE_BOARD_HEIGHT / 1.12,
   offset: {

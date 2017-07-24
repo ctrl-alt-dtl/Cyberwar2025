@@ -5,7 +5,7 @@
  *    ../domainLibs/serverPointCoordinates.js
  */
 var greenBaseText = new Konva.Text({
-  text: 'cuttlePhish',
+  text: 'CuttlePhish',
   x: BASE_BOARD_WIDTH / 1.95,
   y: BASE_BOARD_HEIGHT / 9.2,
   offset: {
