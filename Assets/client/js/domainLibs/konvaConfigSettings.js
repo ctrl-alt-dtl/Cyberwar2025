@@ -16,6 +16,9 @@ var purpleColor = 'purple';
 var greenColor = 'green';
 var orangeColor = 'orange';
 
+// Line dash width and gap for exploit links
+var exploitLineDashWidth = 2;
+var exploitLineDashGap = 5;
 
 // Resizing math used for all server and link points
 var point_x = BASE_BOARD_WIDTH;

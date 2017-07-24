@@ -84,7 +84,7 @@ imageObj.onload = function() {
   domainsGroup.add(o3HexToO4Hex, o5HexToO4Hex, o3HexToO6Hex, o4HexToO6Hex, o4HexToO7Hex, o5HexToO7Hex);
   domainsGroup.add(o6HexToO7Hex, o6HexToO8Hex, o7HexToO8Hex);
 
-  //Inter-Domain Paths (LINKS)
+  // Inter-Domain Paths (LINKS)
   // Red to Purple to Blue to Green to Yellow to Orange
   domainsGroup.add(R1HexP2Hex, R3HexP5Hex, R6HexP7Hex, R8HexP8Hex);
   domainsGroup.add(P1HexB2Hex, P3HexB5Hex, P6HexB7Hex, P8HexB8Hex);
@@ -97,6 +97,11 @@ imageObj.onload = function() {
   domainsGroup.add(P8HexG8Hex, P8HexY8Hex, P8HexO8Hex);
   domainsGroup.add(B8HexY8Hex, B8HexO8Hex);
   domainsGroup.add(G8HexO8Hex);
+
+  // Exploit Links
+  // Red Domain
+  domainsGroup.add(r1ExploitRBasePurple, r1ExploitRBaseGreen, r1ExploitRBaseOrange, r1ExploitRBaseBlue, r1ExploitRBaseYellow);
+  domainsGroup.add(r2ExploitRBasePurple, r2ExploitRBaseGreen, r2ExploitRBaseOrange, r2ExploitRBaseBlue, r2ExploitRBaseYellow);
 
 
   // Green Domains Servers
