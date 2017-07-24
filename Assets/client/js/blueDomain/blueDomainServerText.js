@@ -6,17 +6,17 @@
  */
 var blueBaseText = new Konva.Text({
   text: 'FrostByte',
-  x: BASE_BOARD_WIDTH / 4.05,
-  y: BASE_BOARD_HEIGHT / 3.35,
+  x: BASE_BOARD_WIDTH / 3.65,
+  y: BASE_BOARD_HEIGHT / 3.75,
   offset: {
     x: base_text_offset_x,
     y: base_text_offset_y
   },
-  width: 210,
+  width: baseTextWidth,
   stroke: 'black',
   strokeWidth: 1.5,
   fontFamily:'sans-serif',
-  fontSize: 22,
+  fontSize: baseTextSize,
   fontStyle: 'bold',
   fill: '#FFF',
   rotation: 120
@@ -30,11 +30,11 @@ var b1Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -48,11 +48,11 @@ var b2Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -66,11 +66,11 @@ var b3Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -84,11 +84,11 @@ var b4Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -103,11 +103,11 @@ var b5Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -122,11 +122,11 @@ var b6Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -141,11 +141,11 @@ var b7Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
@@ -160,11 +160,11 @@ var b8Text = new Konva.Text({
     x: text_offset_x,
     y: text_offset_y
   },
-  width: 220,
+  width: serverTextWidth,
   stroke: 'black',
   strokeWidth: 1,
   fontFamily: 'sans-serif',
-  fontSize: 30,
+  fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION

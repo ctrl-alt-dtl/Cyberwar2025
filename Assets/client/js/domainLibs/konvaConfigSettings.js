@@ -31,5 +31,12 @@ var text_offset_x = BASE_BOARD_WIDTH / 114;
 var text_offset_y = BASE_BOARD_HEIGHT / 55;
 
 // For Base text centering
-var base_text_offset_x = BASE_BOARD_WIDTH / 20;
-var base_text_offset_y = BASE_BOARD_HEIGHT / 55;
+var base_text_offset_x = BASE_BOARD_WIDTH / 90;
+var base_text_offset_y = BASE_BOARD_HEIGHT / 200;
+
+// Server Text Sizes
+var serverTextWidth = BASE_BOARD_WIDTH / 4.65;
+var serverTextSize =  BASE_BOARD_WIDTH / 34.1;
+
+var baseTextWidth = BASE_BOARD_WIDTH / 4.8;
+var baseTextSize = BASE_BOARD_WIDTH / 46.5;
