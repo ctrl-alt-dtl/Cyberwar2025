@@ -18,8 +18,10 @@ var y1HexListener = new Konva.RegularPolygon({
 });*/
 
 y1HexListener.on('click', function () {
-  var fill = y1Hex.fill() === yellowColor ? 'red' : yellowColor;
+  var fill = y1Hex.fill() === yellowColor ? 'orange' : yellowColor;
+  var text = y1Text.text() === '1' ? '2' : 1;
   y1Hex.fill(fill);
+  y1Text.text(text);
   domainsLayer.draw();
 });
 
@@ -37,7 +39,7 @@ if(y1Hex.fill() === yellowColor){
 
 // y1Hex.fill('red');
 if(y1Hex.fill() === redColor){
-  this.y1HexToY3Hex.stroke('red');
+  this.y1HexToY3Hex.stroke('orange');
   domainsLayer.draw()
 }
 
