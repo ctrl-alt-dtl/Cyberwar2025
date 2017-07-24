@@ -102,6 +102,7 @@ imageObj.onload = function() {
   // Red Domain
   domainsGroup.add(r1ExploitRBasePurple, r1ExploitRBaseGreen, r1ExploitRBaseOrange, r1ExploitRBaseBlue, r1ExploitRBaseYellow);
   domainsGroup.add(r2ExploitRBasePurple, r2ExploitRBaseGreen, r2ExploitRBaseOrange, r2ExploitRBaseBlue, r2ExploitRBaseYellow);
+  domainsGroup.add(r1ExploitR3Purple, r1ExploitR3Green, r1ExploitR3Orange, r1ExploitR3Blue, r1ExploitR3Yellow);
 
 
   // Green Domains Servers
