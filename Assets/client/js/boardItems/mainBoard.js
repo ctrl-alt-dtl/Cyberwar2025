@@ -70,7 +70,7 @@ var origin = new Konva.RegularPolygon({
 // Text labeling for different board tiers.
 var tier3Text = new Konva.Text({
   text: 'Tier 3',
-  x: BASE_BOARD_WIDTH / 2.05,
+  x: BASE_BOARD_WIDTH / 2.06,
   y: BASE_BOARD_HEIGHT / 1.23,
   width: 50,
   stroke: 'black',
@@ -83,7 +83,7 @@ var tier3Text = new Konva.Text({
 
 var tier2Text = new Konva.Text({
   text: 'Tier 2',
-  x: BASE_BOARD_WIDTH / 2.05,
+  x: BASE_BOARD_WIDTH / 2.06,
   y: BASE_BOARD_HEIGHT / 1.4,
   width: 50,
   stroke: 'black',
@@ -95,7 +95,7 @@ var tier2Text = new Konva.Text({
 
 var tier1Text = new Konva.Text({
   text: 'Tier 1',
-  x: BASE_BOARD_WIDTH / 2.05,
+  x: BASE_BOARD_WIDTH / 2.06,
   y: BASE_BOARD_HEIGHT / 1.63,
   width: 50,
   stroke: 'black',
