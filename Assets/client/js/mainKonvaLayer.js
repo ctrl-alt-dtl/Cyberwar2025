@@ -130,7 +130,7 @@ imageObj.onload = function() {
   domainsGroup.add(redBaseText, purpleBaseText, blueBaseText, greenBaseText, yellowBaseText, orangeBaseText);
 
   // Event Listener Layer since the text layer overwrites the server points layer.
-  domainsGroup.add(y1HexListener);
+  domainsGroup.add(y1HexListener, y3HexListener);
 
   domainsGroup.add(origin);
 

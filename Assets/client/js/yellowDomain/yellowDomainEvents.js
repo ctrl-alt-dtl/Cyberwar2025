@@ -10,6 +10,16 @@ var y1HexListener = new Konva.RegularPolygon({
   id: 'y1HexListener'
 });
 
+
+var y3HexListener = new Konva.RegularPolygon({
+  x: pt_y3Hex_X,
+  y: pt_y3Hex_Y,
+  sides: 6,
+  radius: radius,
+  rotation: 90,
+  id: 'y3HexListener'
+});
+
 // onlick change
 /*y1Hex.on('click', function () {
   var fill = this.fill() === yellowColor ? 'red' : yellowColor;
@@ -18,12 +28,25 @@ var y1HexListener = new Konva.RegularPolygon({
 });*/
 
 y1HexListener.on('click', function () {
-  var fill = y1Hex.fill() === yellowColor ? 'orange' : yellowColor;
+  var fill = y1Hex.fill() === yellowColor ? orangeColor : yellowColor;
   var text = y1Text.text() === '1' ? '2' : 1;
   y1Hex.fill(fill);
+  var stroke = Y1HexO2Hex.stroke() === darkYellowColor ? orangeColor : darkYellowColor;
   y1Text.text(text);
+  Y1HexO2Hex.stroke(stroke);
   domainsLayer.draw();
 });
+
+y3HexListener.on('click', function () {
+  var fill = y3Hex.fill() === yellowColor ? orangeColor : yellowColor;
+  var text = y3Text.text() === '1' ? '2' : 1;
+  var stroke = Y3HexO5Hex.stroke() === darkYellowColor ? orangeColor : darkYellowColor;
+  y3Hex.fill(fill);
+  Y3HexO5Hex.stroke(stroke);
+  y3Text.text(text);
+  domainsLayer.draw();
+});
+
 
 
 // on load change
