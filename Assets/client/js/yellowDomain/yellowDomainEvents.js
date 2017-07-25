@@ -43,7 +43,7 @@ if(y1Hex.fill() === redColor){
   domainsLayer.draw()
 }
 
-
+// r1ExploitR3Blue.visible(false)
 
 // Direct Assignment
 // b6HexToB8Hex.stroke(redColor);
