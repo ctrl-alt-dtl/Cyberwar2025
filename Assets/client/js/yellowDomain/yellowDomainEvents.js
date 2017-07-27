@@ -34,6 +34,13 @@ y1HexListener.on('click', function () {
   var stroke = Y1HexO2Hex.stroke() === darkYellowColor ? orangeColor : darkYellowColor;
   y1Text.text(text);
   Y1HexO2Hex.stroke(stroke);
+  if((y1Hex.fill() === orangeColor) && (y3Hex.fill() === orangeColor)) {
+    y1HexToY3Hex.stroke(orangeColor);
+    domainsLayer.draw();
+  } else {
+    y1HexToY3Hex.stroke(darkYellowColor);
+    domainsLayer.draw();
+  }
   domainsLayer.draw();
 });
 
@@ -44,6 +51,13 @@ y3HexListener.on('click', function () {
   y3Hex.fill(fill);
   Y3HexO5Hex.stroke(stroke);
   y3Text.text(text);
+  if((y1Hex.fill() === orangeColor) && (y3Hex.fill() === orangeColor)) {
+    y1HexToY3Hex.stroke(orangeColor);
+    domainsLayer.draw();
+  } else {
+    y1HexToY3Hex.stroke(darkYellowColor);
+    domainsLayer.draw();
+  }
   domainsLayer.draw();
 });
 
