@@ -1,5 +1,7 @@
 var change = 'true'; // false will change it
 
+var yellowServerCount = 8;
+
 
 var y1HexListener = new Konva.RegularPolygon({
   x: pt_y1Hex_X,
@@ -35,6 +37,14 @@ y1HexListener.on('click', function () {
   y1Text.text(text);
   Y1HexO2Hex.stroke(stroke);
 
+  if(y1Hex.fill() === orangeColor){
+    yellowServerCount--;
+    console.log(yellowServerCount);
+  } else if (y1Hex.fill() === yellowColor){
+    yellowServerCount++;
+    console.log(yellowServerCount);
+  }
+
   // Connected server linkage
   if((y1Hex.fill() === orangeColor) && (y3Hex.fill() === orangeColor)) {
     y1HexToY3Hex.stroke(orangeColor);
@@ -54,6 +64,14 @@ y3HexListener.on('click', function () {
   Y3HexO5Hex.stroke(stroke);
   y3Text.text(text);
 
+  if(y3Hex.fill() === orangeColor){
+    yellowServerCount--;
+    console.log(yellowServerCount);
+  } else if (y3Hex.fill() === yellowColor){
+    yellowServerCount++;
+    console.log(yellowServerCount);
+  }
+
   // Connected server linkage
   if((y1Hex.fill() === orangeColor) && (y3Hex.fill() === orangeColor)) {
     y1HexToY3Hex.stroke(orangeColor);
@@ -64,6 +82,7 @@ y3HexListener.on('click', function () {
   }
   domainsLayer.draw();
 });
+
 
 
 
