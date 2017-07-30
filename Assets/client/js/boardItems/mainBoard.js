@@ -8,7 +8,7 @@ var centerHex = new Konva.RegularPolygon({
   x: stage.width() / 2,
   y: stage.height() / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 34.133,
+  radius: BASE_BOARD_WIDTH / 31,
   fill: 'white',
   stroke: 'black',
   strokeWidth: 2,
@@ -31,7 +31,7 @@ var tier3= new Konva.RegularPolygon({
   y: stage.height() / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 3.5,
-  fill: '#f2f2f2',
+  fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
   rotation: 90
@@ -53,7 +53,7 @@ var tier1= new Konva.RegularPolygon({
   y: stage.height() / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 9,
-  fill: '#f2f2f2',
+  fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
   rotation: 90
@@ -71,7 +71,7 @@ var origin = new Konva.RegularPolygon({
 var tier3Text = new Konva.Text({
   text: 'Tier 3',
   x: BASE_BOARD_WIDTH / 2.06,
-  y: BASE_BOARD_HEIGHT / 1.23,
+  y: BASE_BOARD_HEIGHT / 1.225,
   width: 50,
   stroke: 'black',
   strokeWidth: 1,
@@ -84,7 +84,7 @@ var tier3Text = new Konva.Text({
 var tier2Text = new Konva.Text({
   text: 'Tier 2',
   x: BASE_BOARD_WIDTH / 2.06,
-  y: BASE_BOARD_HEIGHT / 1.4,
+  y: BASE_BOARD_HEIGHT / 1.395,
   width: 50,
   stroke: 'black',
   strokeWidth: 1,
