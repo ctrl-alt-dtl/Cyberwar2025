@@ -100,9 +100,19 @@ imageObj.onload = function() {
 
   // Exploit Links
   // Red Domain
-  domainsGroup.add(r1ExploitRBasePurple, r1ExploitRBaseGreen, r1ExploitRBaseOrange, r1ExploitRBaseBlue, r1ExploitRBaseYellow);
-  domainsGroup.add(r2ExploitRBasePurple, r2ExploitRBaseGreen, r2ExploitRBaseOrange, r2ExploitRBaseBlue, r2ExploitRBaseYellow);
-  domainsGroup.add(r1ExploitR3Purple, r1ExploitR3Green, r1ExploitR3Orange, r1ExploitR3Blue, r1ExploitR3Yellow);
+  domainsGroup.add(r1rBaseExploitBlue, r1rBaseExploitYellow, r1rBaseExploitPurple, r1rBaseExploitGreen, r1rBaseExploitOrange);
+  domainsGroup.add(r2rBaseExploitBlue, r2rBaseExploitYellow, r2rBaseExploitPurple, r2rBaseExploitGreen, r2rBaseExploitOrange);
+  domainsGroup.add(r1r3ExploitBlue, r1r3ExploitYellow, r1r3ExploitPurple, r1r3ExploitGreen, r1r3ExploitOrange);
+  domainsGroup.add(r2r5ExploitBlue, r2r5ExploitYellow, r2r5ExploitPurple, r2r5ExploitGreen, r2r5ExploitOrange);
+  domainsGroup.add(r3r4ExploitBlue, r3r4ExploitYellow, r3r4ExploitPurple, r3r4ExploitGreen, r3r4ExploitOrange);
+  domainsGroup.add(r5r4ExploitBlue, r5r4ExploitYellow, r5r4ExploitPurple, r5r4ExploitGreen, r5r4ExploitOrange);
+  // domainsGroup.add(r3r6ExploitBlue, r3r6ExploitYellow, r3r6ExploitPurple, r3r6ExploitGreen, r3r6ExploitOrange);
+  // domainsGroup.add(r4r6ExploitBlue, r4r6ExploitYellow, r4r6ExploitPurple, r4r6ExploitGreen, r4r6ExploitOrange);
+  // domainsGroup.add(r4r7ExploitBlue, r4r7ExploitYellow, r4r7ExploitPurple, r4r7ExploitGreen, r4r7ExploitOrange);
+  // domainsGroup.add(r5r7ExploitBlue, r5r7ExploitYellow, r5r7ExploitPurple, r5r7ExploitGreen, r5r7ExploitOrange);
+  // domainsGroup.add(r6r7ExploitBlue, r6r7ExploitYellow, r6r7ExploitPurple, r6r7ExploitGreen, r6r7ExploitOrange);
+  // domainsGroup.add(r6r8ExploitBlue, r6r8ExploitYellow, r6r8ExploitPurple, r6r8ExploitGreen, r6r8ExploitOrange);
+  // domainsGroup.add(r7r8ExploitBlue, r7r8ExploitYellow, r7r8ExploitPurple, r7r8ExploitGreen, r7r8ExploitOrange);
 
 
   // Green Domains Servers
