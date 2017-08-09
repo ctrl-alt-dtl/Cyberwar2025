@@ -106,7 +106,7 @@ imageObj.onload = function() {
   domainsGroup.add(r2r5ExploitBlue, r2r5ExploitYellow, r2r5ExploitPurple, r2r5ExploitGreen, r2r5ExploitOrange);
   domainsGroup.add(r3r4ExploitBlue, r3r4ExploitYellow, r3r4ExploitPurple, r3r4ExploitGreen, r3r4ExploitOrange);
   domainsGroup.add(r5r4ExploitBlue, r5r4ExploitYellow, r5r4ExploitPurple, r5r4ExploitGreen, r5r4ExploitOrange);
-  // domainsGroup.add(r3r6ExploitBlue, r3r6ExploitYellow, r3r6ExploitPurple, r3r6ExploitGreen, r3r6ExploitOrange);
+  domainsGroup.add(r3r6ExploitBlue, r3r6ExploitYellow, r3r6ExploitPurple, r3r6ExploitGreen, r3r6ExploitOrange);
   // domainsGroup.add(r4r6ExploitBlue, r4r6ExploitYellow, r4r6ExploitPurple, r4r6ExploitGreen, r4r6ExploitOrange);
   // domainsGroup.add(r4r7ExploitBlue, r4r7ExploitYellow, r4r7ExploitPurple, r4r7ExploitGreen, r4r7ExploitOrange);
   // domainsGroup.add(r5r7ExploitBlue, r5r7ExploitYellow, r5r7ExploitPurple, r5r7ExploitGreen, r5r7ExploitOrange);
