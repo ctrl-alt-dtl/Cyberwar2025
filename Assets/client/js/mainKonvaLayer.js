@@ -64,7 +64,7 @@ imageObj.onload = function() {
   domainsGroup.add(r3HexToR4Hex, r5HexToR4Hex, r3HexToR6Hex, r4HexToR6Hex, r4HexToR7Hex, r5HexToR7Hex);
   domainsGroup.add(r6HexToR7Hex, r6HexToR8Hex, r7HexToR8Hex);
   // Purple Domain
-  domainsGroup.add(pBaseToP1Hex, pBaseToP2Hex, p1HexToP3Hex, p2HexToP5Hex)
+  domainsGroup.add(pBaseToP1Hex, pBaseToP2Hex, p1HexToP3Hex, p2HexToP5Hex);
   domainsGroup.add(p3HexToP4Hex, p5HexToP4Hex, p3HexToP6Hex, p4HexToP6Hex, p4HexToP7Hex, p5HexToP7Hex);
   domainsGroup.add(p6HexToP7Hex, p6HexToP8Hex, p7HexToP8Hex);
   // Purple Domain
