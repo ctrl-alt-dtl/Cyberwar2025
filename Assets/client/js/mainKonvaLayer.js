@@ -26,6 +26,7 @@ var stage = new Konva.Stage({
 var domainsLayer = new Konva.Layer();
 var bgLayer = new Konva.Layer();
 var boardItems = new Konva.Layer();
+var toolTips = new Konva.Layer();
 
 var domainsGroup = new Konva.Group({
   width: BASE_BOARD_WIDTH,
@@ -100,13 +101,17 @@ imageObj.onload = function() {
 
   // Exploit Links
   // Red Domain
-  domainsGroup.add(r1rBaseExploitBlue, r1rBaseExploitYellow, r1rBaseExploitPurple, r1rBaseExploitGreen, r1rBaseExploitOrange);
-  domainsGroup.add(r2rBaseExploitBlue, r2rBaseExploitYellow, r2rBaseExploitPurple, r2rBaseExploitGreen, r2rBaseExploitOrange);
-  domainsGroup.add(r1r3ExploitBlue, r1r3ExploitYellow, r1r3ExploitPurple, r1r3ExploitGreen, r1r3ExploitOrange);
-  domainsGroup.add(r2r5ExploitBlue, r2r5ExploitYellow, r2r5ExploitPurple, r2r5ExploitGreen, r2r5ExploitOrange);
-  domainsGroup.add(r3r4ExploitBlue, r3r4ExploitYellow, r3r4ExploitPurple, r3r4ExploitGreen, r3r4ExploitOrange);
-  domainsGroup.add(r5r4ExploitBlue, r5r4ExploitYellow, r5r4ExploitPurple, r5r4ExploitGreen, r5r4ExploitOrange);
-  domainsGroup.add(r3r6ExploitBlue, r3r6ExploitYellow, r3r6ExploitPurple, r3r6ExploitGreen, r3r6ExploitOrange);
+  domainsGroup.add(r1rBaseExploit, r1r3Exploit, r2rBaseExploit, r2r5Exploit);
+  domainsGroup.add(r3r4Exploit, r3r6Exploit, r4r6Exploit, r4r7Exploit, r5r4Exploit, r5r7Exploit);
+  domainsGroup.add(r6r7Exploit, r6r8Exploit, r7r8Exploit);
+
+  // domainsGroup.add(r1rBaseExploitBlue, r1rBaseExploitYellow, r1rBaseExploitPurple, r1rBaseExploitGreen, r1rBaseExploitOrange);
+  // domainsGroup.add(r2rBaseExploitBlue, r2rBaseExploitYellow, r2rBaseExploitPurple, r2rBaseExploitGreen, r2rBaseExploitOrange);
+  // domainsGroup.add(r1r3ExploitBlue, r1r3ExploitYellow, r1r3ExploitPurple, r1r3ExploitGreen, r1r3ExploitOrange);
+  // domainsGroup.add(r2r5ExploitBlue, r2r5ExploitYellow, r2r5ExploitPurple, r2r5ExploitGreen, r2r5ExploitOrange);
+  // domainsGroup.add(r3r4ExploitBlue, r3r4ExploitYellow, r3r4ExploitPurple, r3r4ExploitGreen, r3r4ExploitOrange);
+  // domainsGroup.add(r5r4ExploitBlue, r5r4ExploitYellow, r5r4ExploitPurple, r5r4ExploitGreen, r5r4ExploitOrange);
+  // domainsGroup.add(r3r6ExploitBlue, r3r6ExploitYellow, r3r6ExploitPurple, r3r6ExploitGreen, r3r6ExploitOrange);
   // domainsGroup.add(r4r6ExploitBlue, r4r6ExploitYellow, r4r6ExploitPurple, r4r6ExploitGreen, r4r6ExploitOrange);
   // domainsGroup.add(r4r7ExploitBlue, r4r7ExploitYellow, r4r7ExploitPurple, r4r7ExploitGreen, r4r7ExploitOrange);
   // domainsGroup.add(r5r7ExploitBlue, r5r7ExploitYellow, r5r7ExploitPurple, r5r7ExploitGreen, r5r7ExploitOrange);
@@ -146,7 +151,7 @@ imageObj.onload = function() {
 
 // add the layer to the stage
   domainsLayer.add(domainsGroup);
-  stage.add(bgLayer,boardItems, domainsLayer);
+  stage.add(bgLayer,boardItems, domainsLayer, toolTips);
 
 };
 imageObj.src = '../img/boardWeb-1024x768.png';

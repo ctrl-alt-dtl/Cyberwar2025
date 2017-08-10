@@ -103,6 +103,47 @@ if(y1Hex.fill() === redColor){
   domainsLayer.draw()
 }
 
+// Hover events
+r3r6Exploit.on('mouseover', function() {
+  document.body.style.cursor = 'pointer';
+
+  var complexText = new Konva.Text({
+    x: 20,
+    y: 60,
+    text: 'COMPLEX TEXT\n',
+    fontSize: 18,
+    fontFamily: 'Calibri',
+    fill: '#555',
+    width: 300,
+    padding: 20,
+    align: 'center'
+  });
+
+  var rect = new Konva.Rect({
+    x: 20,
+    y: 60,
+    stroke: '#555',
+    strokeWidth: 5,
+    fill: '#ddd',
+    width: 300,
+    height: complexText.getHeight(),
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffset: [10, 10],
+    shadowOpacity: 0.2,
+    cornerRadius: 10
+  });
+  toolTips.add(rect, complexText);
+  toolTips.show();
+  toolTips.batchDraw();
+});
+
+r3r6Exploit.on('mouseout', function() {
+  document.body.style.cursor = 'default';
+  toolTips.hide();
+  toolTips.draw();
+});
+
 // r1ExploitR3Blue.visible(false)
 
 // Direct Assignment
