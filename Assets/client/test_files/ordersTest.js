@@ -19,7 +19,7 @@ new Vue({
       // Input checking. We do not want extra inputs to confuse our math.
       if((this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) ||
         (this.plGreen || this.plBlue || this.plPurple || this.plRed || this.plOrange || this.plYellow)) {
-        // alert("Too many variables!");
+        alert("Too many variables!");
         console.error("Too many variables!");
         // throw new Error("Too many variables!");
         // location.reload();
@@ -155,16 +155,17 @@ new Vue({
         }
       }
 
-      // TODO: Remove this after testing complete!
+     /* // TODO: Remove this after testing complete!
       // SVG Hexagon Test
       var hex1 = SVG('#hex1').size(100, 100);
       var hex1poly = hex1.polyline([[80, 65], [73, 78], [58, 78], [50, 65], [58, 52], [73, 52], [80, 65]]);
       hex1poly.fill("red").move(20, 20);
-      hex1poly.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});
+      hex1poly.stroke({color: '#f06', width: 2, linecap: 'round', linejoin: 'round'});*/
     }
   }
 });
 
+/*
 // TODO: Remove these after testing complete!
 //SVG static placeholder, will be overwritten by update.
 var hex1 = SVG('#hex1').size(100, 100);
@@ -181,3 +182,4 @@ var hex2poly = hex2.polyline([[100,0],[200,0], [240, 75], [200, 150], [100, 150]
 //                     (Right, Down)
 hex2poly.fill('black').move(5, 10)
 hex2poly.stroke({color: '#06F', width: 3, linecap: 'round', linejoin: 'round'});
+*/
