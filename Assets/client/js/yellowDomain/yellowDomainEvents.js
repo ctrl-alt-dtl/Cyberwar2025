@@ -160,7 +160,7 @@ r3r6Exploit.on('mouseout', function() {
 });
 
 var toolTipRect = new Konva.Rect({
-  width: 100,
+  width: 75,
   height: 50,
   fill: 'gray'
 });
@@ -170,8 +170,8 @@ var toolTipText = new Konva.Text({
   fontFamily: "Calibri",
   fontSize: 12,
   padding: 5,
-  textFill: "white",
-  fill: "black",
+  textFill: "black",
+  fill: "white",
   alpha: 0.75,
   visible: false
 });
