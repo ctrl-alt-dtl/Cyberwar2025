@@ -104,19 +104,29 @@ if(y1Hex.fill() === redColor){
 }
 
 // Hover events
-r3r6Exploit.on('mouseover', function() {
+r3r6Exploit.on('mousemove', function() {
   document.body.style.cursor = 'pointer';
+  var mousePos = stage.getPointerPosition();
+  toolTipText.position({
+    x: mousePos.x + 5,
+    y: mousePos.y + 5,
+  });
+  toolTipRect.position({
+    x: mousePos.x + 5,
+    y: mousePos.y + 5,
+  });
 
-  var complexText = new Konva.Text({
-    x: 20,
-    y: 60,
-    text: 'COMPLEX TEXT\n',
-    fontSize: 18,
-    fontFamily: 'Calibri',
-    fill: '#555',
-    width: 300,
-    padding: 20,
-    align: 'center'
+  /*
+    var complexText = new Konva.Text({
+      x: 60,
+      y: 60,
+      text: 'COMPLEX TEXT\n',
+      fontSize: 18,
+      fontFamily: 'Calibri',
+      fill: '#555',
+      width: 300,
+      padding: 20,
+      align: 'center'
   });
 
   var rect = new Konva.Rect({
@@ -134,15 +144,38 @@ r3r6Exploit.on('mouseover', function() {
     cornerRadius: 10
   });
   toolTips.add(rect, complexText);
-  toolTips.show();
-  toolTips.batchDraw();
+  */
+
+  toolTipRect.show();
+  toolTipText.text("WMDeez\nFrostByte");
+  toolTipText.show();
+  toolTipLayer.batchDraw();
 });
 
 r3r6Exploit.on('mouseout', function() {
   document.body.style.cursor = 'default';
-  toolTips.hide();
-  toolTips.draw();
+  toolTipRect.hide();
+  toolTipText.hide();
+  toolTipLayer.draw();
 });
+
+var toolTipRect = new Konva.Rect({
+  width: 100,
+  height: 50,
+  fill: 'gray'
+});
+
+var toolTipText = new Konva.Text({
+  text: "",
+  fontFamily: "Calibri",
+  fontSize: 12,
+  padding: 5,
+  textFill: "white",
+  fill: "black",
+  alpha: 0.75,
+  visible: false
+});
+toolTipLayer.add(toolTipRect, toolTipText);
 
 // r1ExploitR3Blue.visible(false)
 

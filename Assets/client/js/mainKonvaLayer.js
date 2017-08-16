@@ -26,7 +26,7 @@ var stage = new Konva.Stage({
 var domainsLayer = new Konva.Layer();
 var bgLayer = new Konva.Layer();
 var boardItems = new Konva.Layer();
-var toolTips = new Konva.Layer();
+var toolTipLayer = new Konva.Layer();
 
 var domainsGroup = new Konva.Group({
   width: BASE_BOARD_WIDTH,
@@ -155,7 +155,7 @@ imageObj.onload = function() {
 
 // add the layer to the stage
   domainsLayer.add(domainsGroup);
-  stage.add(bgLayer,boardItems, domainsLayer, toolTips);
+  stage.add(bgLayer,boardItems, domainsLayer, toolTipLayer);
 
 };
 imageObj.src = '../img/boardWeb-1024x768.png';
