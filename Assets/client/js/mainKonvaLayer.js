@@ -108,6 +108,11 @@ imageObj.onload = function() {
   domainsGroup.add(p1pBaseExploit, p1p3Exploit, p2pBaseExploit, p2p5Exploit);
   domainsGroup.add(p3p4Exploit, p3p6Exploit, p4p6Exploit, p4p7Exploit, p5p4Exploit, p5p7Exploit);
   domainsGroup.add(p6p7Exploit, p6p8Exploit, p7p8Exploit);
+  // Orange Domain
+  domainsGroup.add(o1oBaseExploit, o1o3Exploit, o2oBaseExploit, o2o5Exploit);
+  domainsGroup.add(o3o4Exploit, o3o6Exploit, o4o6Exploit, o4o7Exploit, o5o4Exploit, o5o7Exploit);
+  domainsGroup.add(o6o7Exploit, o6o8Exploit, o7o8Exploit);
+
 
   // domainsGroup.add(r1rBaseExploitBlue, r1rBaseExploitYellow, r1rBaseExploitPurple, r1rBaseExploitGreen, r1rBaseExploitOrange);
   // domainsGroup.add(r2rBaseExploitBlue, r2rBaseExploitYellow, r2rBaseExploitPurple, r2rBaseExploitGreen, r2rBaseExploitOrange);

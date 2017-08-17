@@ -162,7 +162,8 @@ r3r6Exploit.on('mouseout', function() {
 var toolTipRect = new Konva.Rect({
   width: 75,
   height: 50,
-  fill: 'gray'
+  fill: '#4F618F',
+  visible: false
 });
 
 var toolTipText = new Konva.Text({
