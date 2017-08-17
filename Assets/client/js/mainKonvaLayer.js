@@ -112,6 +112,8 @@ imageObj.onload = function() {
   domainsGroup.add(o1oBaseExploit, o1o3Exploit, o2oBaseExploit, o2o5Exploit);
   domainsGroup.add(o3o4Exploit, o3o6Exploit, o4o6Exploit, o4o7Exploit, o5o4Exploit, o5o7Exploit);
   domainsGroup.add(o6o7Exploit, o6o8Exploit, o7o8Exploit);
+  // Yellow Domain
+
 
 
   // domainsGroup.add(r1rBaseExploitBlue, r1rBaseExploitYellow, r1rBaseExploitPurple, r1rBaseExploitGreen, r1rBaseExploitOrange);
