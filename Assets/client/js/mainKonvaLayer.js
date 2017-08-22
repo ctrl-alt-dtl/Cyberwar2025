@@ -125,7 +125,8 @@ imageObj.onload = function() {
   domainsGroup.add(g3g4Exploit, g3g6Exploit, g4g6Exploit, g4g7Exploit, g5g4Exploit, g5g7Exploit);
   domainsGroup.add(g6g7Exploit, g6g8Exploit, g7g8Exploit);
   // Inter-domain
-  domainsGroup.add(r1p2Exploit);
+  domainsGroup.add(r1p2Exploit, r3p5Exploit, r6p7Exploit, r8p8Exploit);
+  domainsGroup.add(r2o1Exploit, r5o3Exploit, r7o6Exploit);
 
   // OLD CODE (multiple exploit links... too cluttered on board)
   // domainsGroup.add(r1rBaseExploitBlue, r1rBaseExploitYellow, r1rBaseExploitPurple, r1rBaseExploitGreen, r1rBaseExploitOrange);
