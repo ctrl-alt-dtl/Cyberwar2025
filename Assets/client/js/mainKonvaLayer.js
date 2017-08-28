@@ -2,8 +2,12 @@
  * The main Konva (canvas) layer instance.
  */
 
-var BASE_BOARD_WIDTH = 1024;
-var BASE_BOARD_HEIGHT = 768;
+// var BASE_BOARD_WIDTH = 1024;
+// var BASE_BOARD_HEIGHT = 768;
+
+var BASE_BOARD_WIDTH = 1280;
+var BASE_BOARD_HEIGHT = 960;
+
 
 const MAX_BOARD_WIDTH = 1600;
 const MAX_BOARD_HEIGHT = 1200;
@@ -133,6 +137,7 @@ imageObj.onload = function() {
   domainsGroup.add(g1y2Exploit, g3y5Exploit, g6y7Exploit, g8y8Exploit);
   // Center-Domain
   domainsGroup.add(r8b8Exploit, p8g8Exploit, b8y8Exploit, g8o8Exploit, o8p8Exploit);
+  // @mention Center Links
 
 
   // OLD CODE (multiple exploit links... too cluttered on board)
