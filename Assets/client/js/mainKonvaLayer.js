@@ -135,9 +135,10 @@ imageObj.onload = function() {
   domainsGroup.add(y1o2Exploit, y3o5Exploit, y6o7Exploit, y8o8Exploit);
   domainsGroup.add(o1r2Exploit, o3r5Exploit, o6r7Exploit, o8r8Exploit);
   domainsGroup.add(g1y2Exploit, g3y5Exploit, g6y7Exploit, g8y8Exploit);
-  // Center-Domain
-  domainsGroup.add(r8b8Exploit, p8g8Exploit, b8y8Exploit, g8o8Exploit, o8p8Exploit);
-  // @mention Center Links
+  // Center-Domain Outside Ring
+  domainsGroup.add(r8b8Exploit, p8g8Exploit, b8y8Exploit, g8o8Exploit, y8r8Exploit, o8p8Exploit);
+  // Center-Domain Center Links
+  domainsGroup.add(r8g8Exploit, p8y8Exploit, b8o8Exploit);
 
 
   // OLD CODE (multiple exploit links... too cluttered on board)
