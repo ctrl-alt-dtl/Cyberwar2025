@@ -152,7 +152,57 @@ r3r6Exploit.on('mousemove', function() {
   toolTipLayer.batchDraw();
 });
 
+r8g8Exploit.on('mousemove', function() {
+  document.body.style.cursor = 'pointer';
+  var mousePos = stage.getPointerPosition();
+  toolTipText.position({
+    x: mousePos.x + 5,
+    y: mousePos.y + 5,
+  });
+  toolTipRect.position({
+    x: mousePos.x + 5,
+    y: mousePos.y + 5,
+  });
+
+  toolTipRect.show();
+  toolTipText.text("BuzzKill\nCuttlePhish");
+  toolTipText.show();
+  toolTipLayer.batchDraw();
+});
+
+o4o6Exploit.on('mousemove', function() {
+  document.body.style.cursor = 'pointer';
+  var mousePos = stage.getPointerPosition();
+  toolTipText.position({
+    x: mousePos.x + 5,
+    y: mousePos.y + 5,
+  });
+  toolTipRect.position({
+    x: mousePos.x + 5,
+    y: mousePos.y + 5,
+  });
+
+  toolTipRect.show();
+  toolTipText.text("DotEvil\nCuttlePhish");
+  toolTipText.show();
+  toolTipLayer.batchDraw();
+});
+
 r3r6Exploit.on('mouseout', function() {
+  document.body.style.cursor = 'default';
+  toolTipRect.hide();
+  toolTipText.hide();
+  toolTipLayer.draw();
+});
+
+r8g8Exploit.on('mouseout', function() {
+  document.body.style.cursor = 'default';
+  toolTipRect.hide();
+  toolTipText.hide();
+  toolTipLayer.draw();
+});
+
+o4o6Exploit.on('mouseout', function() {
   document.body.style.cursor = 'default';
   toolTipRect.hide();
   toolTipText.hide();
@@ -176,6 +226,7 @@ var toolTipText = new Konva.Text({
   alpha: 0.75,
   visible: false
 });
+
 toolTipLayer.add(toolTipRect, toolTipText);
 
 // r1ExploitR3Blue.visible(false)
