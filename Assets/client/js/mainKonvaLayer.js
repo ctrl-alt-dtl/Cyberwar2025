@@ -27,9 +27,9 @@ var stage = new Konva.Stage({
   height: BASE_BOARD_HEIGHT
 });
 
-var domainsLayer = new Konva.Layer();
 var bgLayer = new Konva.Layer();
 var boardItems = new Konva.Layer();
+var domainsLayer = new Konva.Layer();
 var toolTipLayer = new Konva.Layer();
 
 var domainsGroup = new Konva.Group({
@@ -191,6 +191,7 @@ imageObj.onload = function() {
   stage.add(bgLayer,boardItems, domainsLayer, toolTipLayer);
 
 };
+
 imageObj.src = '../img/boardWeb-1024x768.png';
 
 
