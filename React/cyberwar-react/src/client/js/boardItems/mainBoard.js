@@ -25,3 +25,5 @@ class mainBoard extends Component{
     );
   }
 }
+
+export default mainBoard;

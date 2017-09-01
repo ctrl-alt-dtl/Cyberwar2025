@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Canvas from "../src/client/js/Canvas/Canvas"
+import canvas from "../src/client/js/canvas/canvas"
 import logo from './logo.svg';
 import './App.css';
 
@@ -14,8 +14,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div className="Canvas">
-          <Canvas/>
+        <div className="canvas">
+          <canvas/>
         </div>
       </div>
     );
