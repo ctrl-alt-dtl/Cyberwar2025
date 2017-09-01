@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import ToolTip from 'react-portal-tooltip';
 import canvas from "../src/client/js/canvas/canvas"
 import logo from './logo.svg';
 import './App.css';
+
+var NotificationSystem = require('react-notification-system');
+var ReactToastr = require('react-toastr');
+var {ToastContainer} = ReactToastr;
 
 class App extends Component {
   render() {
