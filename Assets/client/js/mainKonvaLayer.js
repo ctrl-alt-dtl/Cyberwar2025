@@ -61,6 +61,7 @@ imageObj.onload = function() {
   bgLayer.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
   bgLayer.add(mainBoundary3, mainBoundary2, mainBoundary1, centerHex);
   bgLayer.add(tier3Text, tier2Text, tier1Text);
+  // Extra board items (Windows, Buttons, Chat, and Actions)
   boardItems.add(submitOrdersBtn, ordersQueue, effectsWindow, chatWindow, notesRulesWindow);
 
   // Domain Inter-Server Paths (LINKS)
@@ -186,7 +187,7 @@ imageObj.onload = function() {
 
   domainsGroup.add(origin);
 
-// add the layer to the stage
+// add the layer to the stage -- 4 for now
   domainsLayer.add(domainsGroup);
   stage.add(bgLayer,boardItems, domainsLayer, toolTipLayer);
 
