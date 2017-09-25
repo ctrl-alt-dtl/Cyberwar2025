@@ -55,7 +55,7 @@ imageObj.onload = function() {
   });
 
 
-// add the shapes to the layer, the order matters (background, links, bases, then servers).
+  // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgLayer.add(bgBoard);
   bgLayer.add(boardEdge, tier3, tier2, tier1);
   bgLayer.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
