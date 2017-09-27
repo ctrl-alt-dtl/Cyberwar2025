@@ -1,8 +1,8 @@
 /*
- * Konva JavaScript Framework v1.6.3
+ * Konva JavaScript Framework v1.6.5
  * http://konvajs.github.io/
  * Licensed under the MIT or GPL Version 2 licenses.
- * Date: Wed May 24 2017
+ * Date: Fri Jul 28 2017
  *
  * Original work Copyright (C) 2011 - 2013 by Eric Rowell (KineticJS)
  * Modified work Copyright (C) 2014 - 2017 by Anton Lavrenov (Konva)
@@ -31,14 +31,14 @@
 (function(global) {
   'use strict';
   /**
-     * @namespace Konva
-     */
+   * @namespace Konva
+   */
 
   var PI_OVER_180 = Math.PI / 180;
 
   var Konva = {
     // public
-    version: '1.6.3',
+    version: '1.6.5',
 
     // private
     stages: [],
@@ -54,57 +54,57 @@
     traceArrMax: 100,
     dblClickWindow: 400,
     /**
-         * Global pixel ratio configuration. KonvaJS automatically detect pixel ratio of current device.
-         * But you may override such property, if you want to use your value.
-         * @property pixelRatio
-         * @default undefined
-         * @memberof Konva
-         * @example
-         * Konva.pixelRatio = 1;
-         */
+     * Global pixel ratio configuration. KonvaJS automatically detect pixel ratio of current device.
+     * But you may override such property, if you want to use your value.
+     * @property pixelRatio
+     * @default undefined
+     * @memberof Konva
+     * @example
+     * Konva.pixelRatio = 1;
+     */
     pixelRatio: undefined,
     /**
-         * Drag distance property. If you start to drag a node you may want to wait until pointer is moved to some distance from start point,
-         * only then start dragging.
-         * @property dragDistance
-         * @default 0
-         * @memberof Konva
-         * @example
-         * Konva.dragDistance = 10;
-         */
+     * Drag distance property. If you start to drag a node you may want to wait until pointer is moved to some distance from start point,
+     * only then start dragging.
+     * @property dragDistance
+     * @default 0
+     * @memberof Konva
+     * @example
+     * Konva.dragDistance = 10;
+     */
     dragDistance: 0,
     /**
-         * Use degree values for angle properties. You may set this property to false if you want to use radiant values.
-         * @property angleDeg
-         * @default true
-         * @memberof Konva
-         * @example
-         * node.rotation(45); // 45 degrees
-         * Konva.angleDeg = false;
-         * node.rotation(Math.PI / 2); // PI/2 radian
-         */
+     * Use degree values for angle properties. You may set this property to false if you want to use radiant values.
+     * @property angleDeg
+     * @default true
+     * @memberof Konva
+     * @example
+     * node.rotation(45); // 45 degrees
+     * Konva.angleDeg = false;
+     * node.rotation(Math.PI / 2); // PI/2 radian
+     */
     angleDeg: true,
     /**
-         * Show different warnings about errors or wrong API usage
-         * @property showWarnings
-         * @default true
-         * @memberof Konva
-         * @example
-         * Konva.showWarnings = false;
-         */
+     * Show different warnings about errors or wrong API usage
+     * @property showWarnings
+     * @default true
+     * @memberof Konva
+     * @example
+     * Konva.showWarnings = false;
+     */
     showWarnings: true,
 
     /**
-         * @namespace Filters
-         * @memberof Konva
-         */
+     * @namespace Filters
+     * @memberof Konva
+     */
     Filters: {},
 
     /**
-         * returns whether or not drag and drop is currently active
-         * @method
-         * @memberof Konva
-         */
+     * returns whether or not drag and drop is currently active
+     * @method
+     * @memberof Konva
+     */
     isDragging: function() {
       var dd = Konva.DD;
 
@@ -116,11 +116,11 @@
       return false;
     },
     /**
-        * returns whether or not a drag and drop operation is ready, but may
-        *  not necessarily have started
-        * @method
-        * @memberof Konva
-        */
+     * returns whether or not a drag and drop operation is ready, but may
+     *  not necessarily have started
+     * @method
+     * @memberof Konva
+     */
     isDragReady: function() {
       var dd = Konva.DD;
 
@@ -200,9 +200,8 @@
           /(webkit)[ \/]([\w.]+)/.exec(ua) ||
           /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
           /(msie) ([\w.]+)/.exec(ua) ||
-          ua.indexOf('compatible') < 0 &&
-            /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
-          [],
+          (ua.indexOf('compatible') < 0 &&
+            /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua)) || [],
         // adding mobile flag as well
         mobile = !!userAgent.match(
           /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i
@@ -225,15 +224,15 @@
   var glob = typeof global !== 'undefined'
     ? global
     : typeof window !== 'undefined'
-        ? window
-        : typeof WorkerGlobalScope !== 'undefined' ? self : {};
+      ? window
+      : typeof WorkerGlobalScope !== 'undefined' ? self : {};
 
-  Konva.UA = Konva._parseUA(glob.navigator && glob.navigator.userAgent || '');
+  Konva.UA = Konva._parseUA((glob.navigator && glob.navigator.userAgent) || '');
 
   if (glob.Konva) {
     console.error(
       'Konva instance is already exist in current eviroment. ' +
-        'Please use only one instance.'
+      'Please use only one instance.'
     );
   }
   glob.Konva = Konva;
@@ -274,11 +273,11 @@
 (function() {
   'use strict';
   /**
-     * Collection constructor.  Collection extends
-     *  Array.  This class is used in conjunction with {@link Konva.Container#get}
-     * @constructor
-     * @memberof Konva
-     */
+   * Collection constructor.  Collection extends
+   *  Array.  This class is used in conjunction with {@link Konva.Container#get}
+   * @constructor
+   * @memberof Konva
+   */
   Konva.Collection = function() {
     var args = [].slice.call(arguments), length = args.length, i = 0;
 
@@ -290,27 +289,27 @@
   };
   Konva.Collection.prototype = [];
   /**
-     * iterate through node array and run a function for each node.
-     *  The node and index is passed into the function
-     * @method
-     * @memberof Konva.Collection.prototype
-     * @param {Function} func
-     * @example
-     * // get all nodes with name foo inside layer, and set x to 10 for each
-     * layer.get('.foo').each(function(shape, n) {
+   * iterate through node array and run a function for each node.
+   *  The node and index is passed into the function
+   * @method
+   * @memberof Konva.Collection.prototype
+   * @param {Function} func
+   * @example
+   * // get all nodes with name foo inside layer, and set x to 10 for each
+   * layer.get('.foo').each(function(shape, n) {
      *   shape.setX(10);
      * });
-     */
+   */
   Konva.Collection.prototype.each = function(func) {
     for (var n = 0; n < this.length; n++) {
       func(this[n], n);
     }
   };
   /**
-     * convert collection into an array
-     * @method
-     * @memberof Konva.Collection.prototype
-     */
+   * convert collection into an array
+   * @method
+   * @memberof Konva.Collection.prototype
+   */
   Konva.Collection.prototype.toArray = function() {
     var arr = [], len = this.length, n;
 
@@ -320,11 +319,11 @@
     return arr;
   };
   /**
-     * convert array into a collection
-     * @method
-     * @memberof Konva.Collection
-     * @param {Array} arr
-     */
+   * convert array into a collection
+   * @method
+   * @memberof Konva.Collection
+   * @param {Array} arr
+   */
   Konva.Collection.toCollection = function(arr) {
     var collection = new Konva.Collection(), len = arr.length, n;
 
@@ -372,32 +371,32 @@
     */
 
   /**
-     * Transform constructor
-     * @constructor
-     * @param {Array} [m] Optional six-element matrix
-     * @memberof Konva
-     */
+   * Transform constructor
+   * @constructor
+   * @param {Array} [m] Optional six-element matrix
+   * @memberof Konva
+   */
   Konva.Transform = function(m) {
     this.m = (m && m.slice()) || [1, 0, 0, 1, 0, 0];
   };
 
   Konva.Transform.prototype = {
     /**
-         * Copy Konva.Transform object
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @returns {Konva.Transform}
-         */
+     * Copy Konva.Transform object
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @returns {Konva.Transform}
+     */
     copy: function() {
       return new Konva.Transform(this.m);
     },
     /**
-         * Transform point
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @param {Object} point 2D point(x, y)
-         * @returns {Object} 2D point(x, y)
-         */
+     * Transform point
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @param {Object} point 2D point(x, y)
+     * @returns {Object} 2D point(x, y)
+     */
     point: function(point) {
       var m = this.m;
       return {
@@ -406,26 +405,26 @@
       };
     },
     /**
-         * Apply translation
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @param {Number} x
-         * @param {Number} y
-         * @returns {Konva.Transform}
-         */
+     * Apply translation
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @param {Number} x
+     * @param {Number} y
+     * @returns {Konva.Transform}
+     */
     translate: function(x, y) {
       this.m[4] += this.m[0] * x + this.m[2] * y;
       this.m[5] += this.m[1] * x + this.m[3] * y;
       return this;
     },
     /**
-         * Apply scale
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @param {Number} sx
-         * @param {Number} sy
-         * @returns {Konva.Transform}
-         */
+     * Apply scale
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @param {Number} sx
+     * @param {Number} sy
+     * @returns {Konva.Transform}
+     */
     scale: function(sx, sy) {
       this.m[0] *= sx;
       this.m[1] *= sx;
@@ -434,19 +433,19 @@
       return this;
     },
     /**
-         * Apply rotation
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @param {Number} rad  Angle in radians
-         * @returns {Konva.Transform}
-         */
+     * Apply rotation
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @param {Number} rad  Angle in radians
+     * @returns {Konva.Transform}
+     */
     rotate: function(rad) {
       var c = Math.cos(rad);
       var s = Math.sin(rad);
       var m11 = this.m[0] * c + this.m[2] * s;
       var m12 = this.m[1] * c + this.m[3] * s;
-      var m21 = this.m[0] * (-s) + this.m[2] * c;
-      var m22 = this.m[1] * (-s) + this.m[3] * c;
+      var m21 = this.m[0] * -s + this.m[2] * c;
+      var m22 = this.m[1] * -s + this.m[3] * c;
       this.m[0] = m11;
       this.m[1] = m12;
       this.m[2] = m21;
@@ -454,11 +453,11 @@
       return this;
     },
     /**
-         * Returns the translation
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @returns {Object} 2D point(x, y)
-         */
+     * Returns the translation
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @returns {Object} 2D point(x, y)
+     */
     getTranslation: function() {
       return {
         x: this.m[4],
@@ -466,13 +465,13 @@
       };
     },
     /**
-         * Apply skew
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @param {Number} sx
-         * @param {Number} sy
-         * @returns {Konva.Transform}
-         */
+     * Apply skew
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @param {Number} sx
+     * @param {Number} sy
+     * @returns {Konva.Transform}
+     */
     skew: function(sx, sy) {
       var m11 = this.m[0] + this.m[2] * sy;
       var m12 = this.m[1] + this.m[3] * sy;
@@ -485,12 +484,12 @@
       return this;
     },
     /**
-         * Transform multiplication
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @param {Konva.Transform} matrix
-         * @returns {Konva.Transform}
-         */
+     * Transform multiplication
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @param {Konva.Transform} matrix
+     * @returns {Konva.Transform}
+     */
     multiply: function(matrix) {
       var m11 = this.m[0] * matrix.m[0] + this.m[2] * matrix.m[1];
       var m12 = this.m[1] * matrix.m[0] + this.m[3] * matrix.m[1];
@@ -510,16 +509,16 @@
       return this;
     },
     /**
-         * Invert the matrix
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @returns {Konva.Transform}
-         */
+     * Invert the matrix
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @returns {Konva.Transform}
+     */
     invert: function() {
       var d = 1 / (this.m[0] * this.m[3] - this.m[1] * this.m[2]);
       var m0 = this.m[3] * d;
-      var m1 = (-this.m[1]) * d;
-      var m2 = (-this.m[2]) * d;
+      var m1 = -this.m[1] * d;
+      var m2 = -this.m[2] * d;
       var m3 = this.m[0] * d;
       var m4 = d * (this.m[2] * this.m[5] - this.m[3] * this.m[4]);
       var m5 = d * (this.m[1] * this.m[4] - this.m[0] * this.m[5]);
@@ -532,20 +531,20 @@
       return this;
     },
     /**
-         * return matrix
-         * @method
-         * @memberof Konva.Transform.prototype
-         */
+     * return matrix
+     * @method
+     * @memberof Konva.Transform.prototype
+     */
     getMatrix: function() {
       return this.m;
     },
     /**
-         * set to absolute position via translation
-         * @method
-         * @memberof Konva.Transform.prototype
-         * @returns {Konva.Transform}
-         * @author ericdrowell
-         */
+     * set to absolute position via translation
+     * @method
+     * @memberof Konva.Transform.prototype
+     * @returns {Konva.Transform}
+     * @author ericdrowell
+     */
     setAbsolutePosition: function(x, y) {
       var m0 = this.m[0],
         m1 = this.m[1],
@@ -727,9 +726,9 @@
     RGB_REGEX = /rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)/;
 
   /**
-     * @namespace Util
-     * @memberof Konva
-     */
+   * @namespace Util
+   * @memberof Konva
+   */
   Konva.Util = {
     /*
          * cherry-picked utilities from underscore.js
@@ -809,9 +808,11 @@
         return false;
       }
       var firstChar = selector[0];
-      return firstChar === '#' ||
+      return (
+        firstChar === '#' ||
         firstChar === '.' ||
-        firstChar === firstChar.toUpperCase();
+        firstChar === firstChar.toUpperCase()
+      );
     },
     createCanvasElement: function() {
       var canvas = Konva.document.createElement('canvas');
@@ -825,7 +826,7 @@
       return typeof exports !== 'object';
     },
     _isInDocument: function(el) {
-      while (el = el.parentNode) {
+      while ((el = el.parentNode)) {
         if (el == Konva.document) {
           return true;
         }
@@ -896,28 +897,28 @@
       hex = hex.replace(HASH, EMPTY_STRING);
       var bigint = parseInt(hex, 16);
       return {
-        r: bigint >> 16 & 255,
-        g: bigint >> 8 & 255,
+        r: (bigint >> 16) & 255,
+        g: (bigint >> 8) & 255,
         b: bigint & 255
       };
     },
     /**
-         * return random hex color
-         * @method
-         * @memberof Konva.Util.prototype
-         */
+     * return random hex color
+     * @method
+     * @memberof Konva.Util.prototype
+     */
     getRandomColor: function() {
-      var randColor = (Math.random() * 0xffffff << 0).toString(16);
+      var randColor = ((Math.random() * 0xffffff) << 0).toString(16);
       while (randColor.length < 6) {
         randColor = ZERO + randColor;
       }
       return HASH + randColor;
     },
     /**
-         * return value with default fallback
-         * @method
-         * @memberof Konva.Util.prototype
-         */
+     * return value with default fallback
+     * @method
+     * @memberof Konva.Util.prototype
+     */
     get: function(val, def) {
       if (val === undefined) {
         return def;
@@ -926,16 +927,16 @@
       }
     },
     /**
-         * get RGB components of a color
-         * @method
-         * @memberof Konva.Util.prototype
-         * @param {String} color
-         * @example
-         * // each of the following examples return {r:0, g:0, b:255}
-         * var rgb = Konva.Util.getRGB('blue');
-         * var rgb = Konva.Util.getRGB('#0000ff');
-         * var rgb = Konva.Util.getRGB('rgb(0,0,255)');
-         */
+     * get RGB components of a color
+     * @method
+     * @memberof Konva.Util.prototype
+     * @param {String} color
+     * @example
+     * // each of the following examples return {r:0, g:0, b:255}
+     * var rgb = Konva.Util.getRGB('blue');
+     * var rgb = Konva.Util.getRGB('#0000ff');
+     * var rgb = Konva.Util.getRGB('rgb(0,0,255)');
+     */
     getRGB: function(color) {
       var rgb;
       // color string
@@ -970,11 +971,13 @@
     // from https://github.com/component/color-parser
     colorToRGBA: function(str) {
       str = str || 'black';
-      return Konva.Util._namedColorToRBA(str) ||
+      return (
+        Konva.Util._namedColorToRBA(str) ||
         Konva.Util._hex3ColorToRGBA(str) ||
         Konva.Util._hex6ColorToRGBA(str) ||
         Konva.Util._rgbColorToRGBA(str) ||
-        Konva.Util._rgbaColorToRGBA(str);
+        Konva.Util._rgbaColorToRGBA(str)
+      );
     },
     // Parse named css color. Like "green"
     _namedColorToRBA: function(str) {
@@ -1106,12 +1109,12 @@
       child.super = parent;
     },
     /**
-         * adds methods to a constructor prototype
-         * @method
-         * @memberof Konva.Util.prototype
-         * @param {Function} constructor
-         * @param {Object} methods
-         */
+     * adds methods to a constructor prototype
+     * @method
+     * @memberof Konva.Util.prototype
+     * @param {Function} constructor
+     * @param {Object} methods
+     */
     addMethods: function(constructor, methods) {
       var key;
 
@@ -1287,7 +1290,8 @@
     context = canvas.getContext('2d'),
     _pixelRatio = (function() {
       var devicePixelRatio = Konva.window.devicePixelRatio || 1,
-        backingStoreRatio = context.webkitBackingStorePixelRatio ||
+        backingStoreRatio =
+          context.webkitBackingStorePixelRatio ||
           context.mozBackingStorePixelRatio ||
           context.msBackingStorePixelRatio ||
           context.oBackingStorePixelRatio ||
@@ -1297,21 +1301,21 @@
     })();
 
   /**
-     * Canvas Renderer constructor
-     * @constructor
-     * @abstract
-     * @memberof Konva
-     * @param {Object} config
-     * @param {Number} config.width
-     * @param {Number} config.height
-     * @param {Number} config.pixelRatio KonvaJS automatically handles pixel ratio adjustments in order to render crisp drawings
-     *  on all devices. Most desktops, low end tablets, and low end phones, have device pixel ratios
-     *  of 1.  Some high end tablets and phones, like iPhones and iPads (not the mini) have a device pixel ratio
-     *  of 2.  Some Macbook Pros, and iMacs also have a device pixel ratio of 2.  Some high end Android devices have pixel
-     *  ratios of 2 or 3.  Some browsers like Firefox allow you to configure the pixel ratio of the viewport.  Unless otherwise
-     *  specified, the pixel ratio will be defaulted to the actual device pixel ratio.  You can override the device pixel
-     *  ratio for special situations, or, if you don't want the pixel ratio to be taken into account, you can set it to 1.
-     */
+   * Canvas Renderer constructor
+   * @constructor
+   * @abstract
+   * @memberof Konva
+   * @param {Object} config
+   * @param {Number} config.width
+   * @param {Number} config.height
+   * @param {Number} config.pixelRatio KonvaJS automatically handles pixel ratio adjustments in order to render crisp drawings
+   *  on all devices. Most desktops, low end tablets, and low end phones, have device pixel ratios
+   *  of 1.  Some high end tablets and phones, like iPhones and iPads (not the mini) have a device pixel ratio
+   *  of 2.  Some Macbook Pros, and iMacs also have a device pixel ratio of 2.  Some high end Android devices have pixel
+   *  ratios of 2 or 3.  Some browsers like Firefox allow you to configure the pixel ratio of the viewport.  Unless otherwise
+   *  specified, the pixel ratio will be defaulted to the actual device pixel ratio.  You can override the device pixel
+   *  ratio for special situations, or, if you don't want the pixel ratio to be taken into account, you can set it to 1.
+   */
   Konva.Canvas = function(config) {
     this.init(config);
   };
@@ -1335,35 +1339,35 @@
       this._canvas.style.left = 0;
     },
     /**
-         * get canvas context
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @returns {CanvasContext} context
-         */
+     * get canvas context
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @returns {CanvasContext} context
+     */
     getContext: function() {
       return this.context;
     },
     /**
-         * get pixel ratio
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @returns {Number} pixel ratio
-         */
+     * get pixel ratio
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @returns {Number} pixel ratio
+     */
     getPixelRatio: function() {
       return this.pixelRatio;
     },
     /**
-         * get pixel ratio
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @param {Number} pixelRatio KonvaJS automatically handles pixel ratio adustments in order to render crisp drawings
-         *  on all devices. Most desktops, low end tablets, and low end phones, have device pixel ratios
-         *  of 1.  Some high end tablets and phones, like iPhones and iPads have a device pixel ratio
-         *  of 2.  Some Macbook Pros, and iMacs also have a device pixel ratio of 2.  Some high end Android devices have pixel
-         *  ratios of 2 or 3.  Some browsers like Firefox allow you to configure the pixel ratio of the viewport.  Unless otherwise
-         *  specificed, the pixel ratio will be defaulted to the actual device pixel ratio.  You can override the device pixel
-         *  ratio for special situations, or, if you don't want the pixel ratio to be taken into account, you can set it to 1.
-         */
+     * get pixel ratio
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @param {Number} pixelRatio KonvaJS automatically handles pixel ratio adustments in order to render crisp drawings
+     *  on all devices. Most desktops, low end tablets, and low end phones, have device pixel ratios
+     *  of 1.  Some high end tablets and phones, like iPhones and iPads have a device pixel ratio
+     *  of 2.  Some Macbook Pros, and iMacs also have a device pixel ratio of 2.  Some high end Android devices have pixel
+     *  ratios of 2 or 3.  Some browsers like Firefox allow you to configure the pixel ratio of the viewport.  Unless otherwise
+     *  specificed, the pixel ratio will be defaulted to the actual device pixel ratio.  You can override the device pixel
+     *  ratio for special situations, or, if you don't want the pixel ratio to be taken into account, you can set it to 1.
+     */
     setPixelRatio: function(pixelRatio) {
       var previousRatio = this.pixelRatio;
       this.pixelRatio = pixelRatio;
@@ -1373,11 +1377,11 @@
       );
     },
     /**
-         * set width
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @param {Number} width
-         */
+     * set width
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @param {Number} width
+     */
     setWidth: function(width) {
       // take into account pixel ratio
       this.width = this._canvas.width = width * this.pixelRatio;
@@ -1387,11 +1391,11 @@
       _context.scale(pixelRatio, pixelRatio);
     },
     /**
-         * set height
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @param {Number} height
-         */
+     * set height
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @param {Number} height
+     */
     setHeight: function(height) {
       // take into account pixel ratio
       this.height = this._canvas.height = height * this.pixelRatio;
@@ -1400,42 +1404,42 @@
       _context.scale(pixelRatio, pixelRatio);
     },
     /**
-         * get width
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @returns {Number} width
-         */
+     * get width
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @returns {Number} width
+     */
     getWidth: function() {
       return this.width;
     },
     /**
-         * get height
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @returns {Number} height
-         */
+     * get height
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @returns {Number} height
+     */
     getHeight: function() {
       return this.height;
     },
     /**
-         * set size
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @param {Number} width
-         * @param {Number} height
-         */
+     * set size
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @param {Number} width
+     * @param {Number} height
+     */
     setSize: function(width, height) {
       this.setWidth(width);
       this.setHeight(height);
     },
     /**
-         * to data url
-         * @method
-         * @memberof Konva.Canvas.prototype
-         * @param {String} mimeType
-         * @param {Number} quality between 0 and 1 for jpg mime types
-         * @returns {String} data url string
-         */
+     * to data url
+     * @method
+     * @memberof Konva.Canvas.prototype
+     * @param {String} mimeType
+     * @param {Number} quality between 0 and 1 for jpg mime types
+     * @returns {String} data url string
+     */
     toDataURL: function(mimeType, quality) {
       try {
         // If this call fails (due to browser bug, like in Firefox 3.6),
@@ -1540,11 +1544,11 @@
   ];
 
   /**
-     * Canvas Context constructor
-     * @constructor
-     * @abstract
-     * @memberof Konva
-     */
+   * Canvas Context constructor
+   * @constructor
+   * @abstract
+   * @memberof Konva
+   */
   Konva.Context = function(canvas) {
     this.init(canvas);
   };
@@ -1560,33 +1564,33 @@
       }
     },
     /**
-         * fill shape
-         * @method
-         * @memberof Konva.Context.prototype
-         * @param {Konva.Shape} shape
-         */
+     * fill shape
+     * @method
+     * @memberof Konva.Context.prototype
+     * @param {Konva.Shape} shape
+     */
     fillShape: function(shape) {
       if (shape.getFillEnabled()) {
         this._fill(shape);
       }
     },
     /**
-         * stroke shape
-         * @method
-         * @memberof Konva.Context.prototype
-         * @param {Konva.Shape} shape
-         */
+     * stroke shape
+     * @method
+     * @memberof Konva.Context.prototype
+     * @param {Konva.Shape} shape
+     */
     strokeShape: function(shape) {
       if (shape.getStrokeEnabled()) {
         this._stroke(shape);
       }
     },
     /**
-         * fill then stroke
-         * @method
-         * @memberof Konva.Context.prototype
-         * @param {Konva.Shape} shape
-         */
+     * fill then stroke
+     * @method
+     * @memberof Konva.Context.prototype
+     * @param {Konva.Shape} shape
+     */
     fillStrokeShape: function(shape) {
       var fillEnabled = shape.getFillEnabled();
       if (fillEnabled) {
@@ -1597,14 +1601,14 @@
       }
     },
     /**
-         * get context trace if trace is enabled
-         * @method
-         * @memberof Konva.Context.prototype
-         * @param {Boolean} relaxed if false, return strict context trace, which includes method names, method parameters
-         *  properties, and property values.  If true, return relaxed context trace, which only returns method names and
-         *  properites.
-         * @returns {String}
-         */
+     * get context trace if trace is enabled
+     * @method
+     * @memberof Konva.Context.prototype
+     * @param {Boolean} relaxed if false, return strict context trace, which includes method names, method parameters
+     *  properties, and property values.  If true, return relaxed context trace, which only returns method names and
+     *  properites.
+     * @returns {String}
+     */
     getTrace: function(relaxed) {
       var traceArr = this.traceArr,
         len = traceArr.length,
@@ -1646,10 +1650,10 @@
       return str;
     },
     /**
-         * clear trace if trace is enabled
-         * @method
-         * @memberof Konva.Context.prototype
-         */
+     * clear trace if trace is enabled
+     * @method
+     * @memberof Konva.Context.prototype
+     */
     clearTrace: function() {
       this.traceArr = [];
     },
@@ -1664,33 +1668,33 @@
       }
     },
     /**
-         * reset canvas context transform
-         * @method
-         * @memberof Konva.Context.prototype
-         */
+     * reset canvas context transform
+     * @method
+     * @memberof Konva.Context.prototype
+     */
     reset: function() {
       var pixelRatio = this.getCanvas().getPixelRatio();
       this.setTransform(1 * pixelRatio, 0, 0, 1 * pixelRatio, 0, 0);
     },
     /**
-         * get canvas
-         * @method
-         * @memberof Konva.Context.prototype
-         * @returns {Konva.Canvas}
-         */
+     * get canvas
+     * @method
+     * @memberof Konva.Context.prototype
+     * @returns {Konva.Canvas}
+     */
     getCanvas: function() {
       return this.canvas;
     },
     /**
-         * clear canvas
-         * @method
-         * @memberof Konva.Context.prototype
-         * @param {Object} [bounds]
-         * @param {Number} [bounds.x]
-         * @param {Number} [bounds.y]
-         * @param {Number} [bounds.width]
-         * @param {Number} [bounds.height]
-         */
+     * clear canvas
+     * @method
+     * @memberof Konva.Context.prototype
+     * @param {Object} [bounds]
+     * @param {Number} [bounds.x]
+     * @param {Number} [bounds.y]
+     * @param {Number} [bounds.width]
+     * @param {Number} [bounds.height]
+     */
     clear: function(bounds) {
       var canvas = this.getCanvas();
 
@@ -2261,7 +2265,8 @@
     },
     addDeprecatedGetterSetter: function(constructor, attr, def, validator) {
       var method = GET + Konva.Util._capitalize(attr);
-      var message = attr +
+      var message =
+        attr +
         ' property is deprecated and will be removed soon. Look at Konva change log for more information.';
       constructor.prototype[method] = function() {
         Konva.Util.error(message);
@@ -2280,9 +2285,9 @@
           method.apply(this, arguments);
           Konva.Util.error(
             oldMethodName +
-              ' method is deprecated and will be removed soon. Use ' +
-              newMethodName +
-              ' instead'
+            ' method is deprecated and will be removed soon. Use ' +
+            newMethodName +
+            ' instead'
           );
         };
       });
@@ -2294,8 +2299,8 @@
 
   Konva.Validators = {
     /**
-         * @return {number}
-         */
+     * @return {number}
+     */
     RGBComponent: function(val) {
       if (val > 255) {
         return 255;
@@ -2357,33 +2362,33 @@
     SCALE_CHANGE_STR = ['scaleXChange.konva', 'scaleYChange.konva'].join(SPACE);
 
   /**
-     * Node constructor. Nodes are entities that can be transformed, layered,
-     * and have bound events. The stage, layers, groups, and shapes all extend Node.
-     * @constructor
-     * @memberof Konva
-     * @abstract
-     * @param {Object} config
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     */
+   * Node constructor. Nodes are entities that can be transformed, layered,
+   * and have bound events. The stage, layers, groups, and shapes all extend Node.
+   * @constructor
+   * @memberof Konva
+   * @abstract
+   * @param {Object} config
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   */
   Konva.Node = function(config) {
     this._init(config);
   };
@@ -2450,52 +2455,52 @@
       }
     },
     /**
-        * clear cached canvas
-        * @method
-        * @memberof Konva.Node.prototype
-        * @returns {Konva.Node}
-        * @example
-        * node.clearCache();
-        */
+     * clear cached canvas
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Node}
+     * @example
+     * node.clearCache();
+     */
     clearCache: function() {
       delete this._cache.canvas;
       this._filterUpToDate = false;
       return this;
     },
     /**
-        *  cache node to improve drawing performance, apply filters, or create more accurate
-        *  hit regions. For all basic shapes size of cache canvas will be automatically detected.
-        *  If you need to cache your custom `Konva.Shape` instance you have to pass shape's bounding box
-        *  properties. Look at [link to demo page](link to demo page) for more information.
-        * @method
-        * @memberof Konva.Node.prototype
-        * @param {Object} [config]
-        * @param {Number} [config.x]
-        * @param {Number} [config.y]
-        * @param {Number} [config.width]
-        * @param {Number} [config.height]
-        * @param {Number} [config.offset]  increase canvas size by `offset` pixel in all directions.
-        * @param {Boolean} [config.drawBorder] when set to true, a red border will be drawn around the cached
-        *  region for debugging purposes
-        * @param {Number} [config.pixelRatio] change quality (or pixel ratio) of cached image. pixelRatio = 2 will produce 2x sized cache.
-        * @returns {Konva.Node}
-        * @example
-        * // cache a shape with the x,y position of the bounding box at the center and
-        * // the width and height of the bounding box equal to the width and height of
-        * // the shape obtained from shape.width() and shape.height()
-        * image.cache();
-        *
-        * // cache a node and define the bounding box position and size
-        * node.cache({
+     *  cache node to improve drawing performance, apply filters, or create more accurate
+     *  hit regions. For all basic shapes size of cache canvas will be automatically detected.
+     *  If you need to cache your custom `Konva.Shape` instance you have to pass shape's bounding box
+     *  properties. Look at [link to demo page](link to demo page) for more information.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} [config]
+     * @param {Number} [config.x]
+     * @param {Number} [config.y]
+     * @param {Number} [config.width]
+     * @param {Number} [config.height]
+     * @param {Number} [config.offset]  increase canvas size by `offset` pixel in all directions.
+     * @param {Boolean} [config.drawBorder] when set to true, a red border will be drawn around the cached
+     *  region for debugging purposes
+     * @param {Number} [config.pixelRatio] change quality (or pixel ratio) of cached image. pixelRatio = 2 will produce 2x sized cache.
+     * @returns {Konva.Node}
+     * @example
+     * // cache a shape with the x,y position of the bounding box at the center and
+     * // the width and height of the bounding box equal to the width and height of
+     * // the shape obtained from shape.width() and shape.height()
+     * image.cache();
+     *
+     * // cache a node and define the bounding box position and size
+     * node.cache({
         *   x: -30,
         *   y: -30,
         *   width: 100,
         *   height: 200
         * });
-        *
-        * // cache a node and draw a red border around the bounding box
-        * // for debugging purposes
-        * node.cache({
+     *
+     * // cache a node and draw a red border around the bounding box
+     * // for debugging purposes
+     * node.cache({
         *   x: -30,
         *   y: -30,
         *   width: 100,
@@ -2503,7 +2508,7 @@
         *   offset : 10,
         *   drawBorder: true
         * });
-        */
+     */
     cache: function(config) {
       var conf = config || {},
         rect = this.getClientRect(true),
@@ -2526,10 +2531,10 @@
       y -= offset;
 
       var cachedSceneCanvas = new Konva.SceneCanvas({
-        pixelRatio: pixelRatio,
-        width: width,
-        height: height
-      }),
+          pixelRatio: pixelRatio,
+          width: width,
+          height: height
+        }),
         cachedFilterCanvas = new Konva.SceneCanvas({
           pixelRatio: pixelRatio,
           width: width,
@@ -2589,14 +2594,14 @@
       return this;
     },
     /**
-         * Return client rectangle {x, y, width, height} of node. This rectangle also include all styling (strokes, shadows, etc).
-         * The rectangle position is relative to parent container.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Boolean} [skipTransform] flag should we skip transformation to rectangle
-         * @returns {Object} rect with {x, y, width, height} properties
-         * @example
-         * var rect = new Konva.Rect({
+     * Return client rectangle {x, y, width, height} of node. This rectangle also include all styling (strokes, shadows, etc).
+     * The rectangle position is relative to parent container.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Boolean} [skipTransform] flag should we skip transformation to rectangle
+     * @returns {Object} rect with {x, y, width, height} properties
+     * @example
+     * var rect = new Konva.Rect({
          *      width : 100,
          *      height : 100,
          *      x : 50,
@@ -2606,20 +2611,20 @@
          *      offsetX : 50,
          *      scaleY : 2
          * });
-         *
-         * // get client rect without think off transformations (position, rotation, scale, offset, etc)
-         * rect.getClientRect(true);
-         * // returns {
+     *
+     * // get client rect without think off transformations (position, rotation, scale, offset, etc)
+     * rect.getClientRect(true);
+     * // returns {
          * //     x : -2,   // two pixels for stroke / 2
          * //     y : -2,
          * //     width : 104, // increased by 4 for stroke
          * //     height : 104
          * //}
-         *
-         * // get client rect with transformation applied
-         * rect.getClientRect();
-         * // returns Object {x: -2, y: 46, width: 104, height: 208}
-         */
+     *
+     * // get client rect with transformation applied
+     * rect.getClientRect();
+     * // returns Object {x: -2, y: 46, width: 104, height: 208}
+     */
     getClientRect: function() {
       // abstract method
       // redefine in Container and Shape
@@ -2717,8 +2722,8 @@
               if (typeof filter !== 'function') {
                 Konva.Util.error(
                   'Filter should be type of function, but got ' +
-                    typeof filter +
-                    ' insted. Please check correct filters'
+                  typeof filter +
+                  ' insted. Please check correct filters'
                 );
                 continue;
               }
@@ -2737,68 +2742,68 @@
       return sceneCanvas;
     },
     /**
-         * bind events to the node. KonvaJS supports mouseover, mousemove,
-         *  mouseout, mouseenter, mouseleave, mousedown, mouseup, wheel, click, dblclick, touchstart, touchmove,
-         *  touchend, tap, dbltap, dragstart, dragmove, and dragend events. The Konva Stage supports
-         *  contentMouseover, contentMousemove, contentMouseout, contentMousedown, contentMouseup, contentWheel, contentContextmenu
-         *  contentClick, contentDblclick, contentTouchstart, contentTouchmove, contentTouchend, contentTap,
-         *  and contentDblTap.  Pass in a string of events delimmited by a space to bind multiple events at once
-         *  such as 'mousedown mouseup mousemove'. Include a namespace to bind an
-         *  event by name such as 'click.foobar'.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} evtStr e.g. 'click', 'mousedown touchstart', 'mousedown.foo touchstart.foo'
-         * @param {Function} handler The handler function is passed an event object
-         * @returns {Konva.Node}
-         * @example
-         * // add click listener
-         * node.on('click', function() {
+     * bind events to the node. KonvaJS supports mouseover, mousemove,
+     *  mouseout, mouseenter, mouseleave, mousedown, mouseup, wheel, click, dblclick, touchstart, touchmove,
+     *  touchend, tap, dbltap, dragstart, dragmove, and dragend events. The Konva Stage supports
+     *  contentMouseover, contentMousemove, contentMouseout, contentMousedown, contentMouseup, contentWheel, contentContextmenu
+     *  contentClick, contentDblclick, contentTouchstart, contentTouchmove, contentTouchend, contentTap,
+     *  and contentDblTap.  Pass in a string of events delimmited by a space to bind multiple events at once
+     *  such as 'mousedown mouseup mousemove'. Include a namespace to bind an
+     *  event by name such as 'click.foobar'.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} evtStr e.g. 'click', 'mousedown touchstart', 'mousedown.foo touchstart.foo'
+     * @param {Function} handler The handler function is passed an event object
+     * @returns {Konva.Node}
+     * @example
+     * // add click listener
+     * node.on('click', function() {
          *   console.log('you clicked me!');
          * });
-         *
-         * // get the target node
-         * node.on('click', function(evt) {
+     *
+     * // get the target node
+     * node.on('click', function(evt) {
          *   console.log(evt.target);
          * });
-         *
-         * // stop event propagation
-         * node.on('click', function(evt) {
+     *
+     * // stop event propagation
+     * node.on('click', function(evt) {
          *   evt.cancelBubble = true;
          * });
-         *
-         * // bind multiple listeners
-         * node.on('click touchstart', function() {
+     *
+     * // bind multiple listeners
+     * node.on('click touchstart', function() {
          *   console.log('you clicked/touched me!');
          * });
-         *
-         * // namespace listener
-         * node.on('click.foo', function() {
+     *
+     * // namespace listener
+     * node.on('click.foo', function() {
          *   console.log('you clicked/touched me!');
          * });
-         *
-         * // get the event type
-         * node.on('click tap', function(evt) {
+     *
+     * // get the event type
+     * node.on('click tap', function(evt) {
          *   var eventType = evt.type;
          * });
-         *
-         * // get native event object
-         * node.on('click tap', function(evt) {
+     *
+     * // get native event object
+     * node.on('click tap', function(evt) {
          *   var nativeEvent = evt.evt;
          * });
-         *
-         * // for change events, get the old and new val
-         * node.on('xChange', function(evt) {
+     *
+     * // for change events, get the old and new val
+     * node.on('xChange', function(evt) {
          *   var oldVal = evt.oldVal;
          *   var newVal = evt.newVal;
          * });
-         *
-         * // get event targets
-         * // with event delegations
-         * layer.on('click', 'Group', function(evt) {
+     *
+     * // get event targets
+     * // with event delegations
+     * layer.on('click', 'Group', function(evt) {
          *   var shape = evt.target;
          *   var group = evtn.currentTarger;
          * });
-         */
+     */
     on: function(evtStr, handler) {
       if (arguments.length === 3) {
         return this._delegate.apply(this, arguments);
@@ -2836,26 +2841,26 @@
       return this;
     },
     /**
-         * remove event bindings from the node. Pass in a string of
-         *  event types delimmited by a space to remove multiple event
-         *  bindings at once such as 'mousedown mouseup mousemove'.
-         *  include a namespace to remove an event binding by name
-         *  such as 'click.foobar'. If you only give a name like '.foobar',
-         *  all events in that namespace will be removed.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} evtStr e.g. 'click', 'mousedown touchstart', '.foobar'
-         * @returns {Konva.Node}
-         * @example
-         * // remove listener
-         * node.off('click');
-         *
-         * // remove multiple listeners
-         * node.off('click touchstart');
-         *
-         * // remove listener by name
-         * node.off('click.foo');
-         */
+     * remove event bindings from the node. Pass in a string of
+     *  event types delimmited by a space to remove multiple event
+     *  bindings at once such as 'mousedown mouseup mousemove'.
+     *  include a namespace to remove an event binding by name
+     *  such as 'click.foobar'. If you only give a name like '.foobar',
+     *  all events in that namespace will be removed.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} evtStr e.g. 'click', 'mousedown touchstart', '.foobar'
+     * @returns {Konva.Node}
+     * @example
+     * // remove listener
+     * node.off('click');
+     *
+     * // remove multiple listeners
+     * node.off('click touchstart');
+     *
+     * // remove listener by name
+     * node.off('click.foo');
+     */
     off: function(evtStr) {
       var events = (evtStr || '').split(SPACE),
         len = events.length,
@@ -2924,13 +2929,13 @@
       });
     },
     /**
-         * remove self from parent, but don't destroy
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Node}
-         * @example
-         * node.remove();
-         */
+     * remove self from parent, but don't destroy
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Node}
+     * @example
+     * node.remove();
+     */
     remove: function() {
       var parent = this.getParent();
 
@@ -2951,12 +2956,12 @@
       return this;
     },
     /**
-         * remove and destroy self
-         * @method
-         * @memberof Konva.Node.prototype
-         * @example
-         * node.destroy();
-         */
+     * remove and destroy self
+     * @method
+     * @memberof Konva.Node.prototype
+     * @example
+     * node.destroy();
+     */
     destroy: function() {
       // remove from ids and names hashes
       Konva._removeId(this.getId());
@@ -2972,14 +2977,14 @@
       return this;
     },
     /**
-         * get attr
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} attr
-         * @returns {Integer|String|Object|Array}
-         * @example
-         * var x = node.getAttr('x');
-         */
+     * get attr
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} attr
+     * @returns {Integer|String|Object|Array}
+     * @example
+     * var x = node.getAttr('x');
+     */
     getAttr: function(attr) {
       var method = GET + Konva.Util._capitalize(attr);
       if (Konva.Util._isFunction(this[method])) {
@@ -2989,15 +2994,15 @@
       return this.attrs[attr];
     },
     /**
-        * get ancestors
-        * @method
-        * @memberof Konva.Node.prototype
-        * @returns {Konva.Collection}
-        * @example
-        * shape.getAncestors().each(function(node) {
+     * get ancestors
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Collection}
+     * @example
+     * shape.getAncestors().each(function(node) {
         *   console.log(node.getId());
         * })
-        */
+     */
     getAncestors: function() {
       var parent = this.getParent(), ancestors = new Konva.Collection();
 
@@ -3009,26 +3014,26 @@
       return ancestors;
     },
     /**
-         * get attrs object literal
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Object}
-         */
+     * get attrs object literal
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Object}
+     */
     getAttrs: function() {
       return this.attrs || {};
     },
     /**
-         * set multiple attrs at once using an object literal
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} config object containing key value pairs
-         * @returns {Konva.Node}
-         * @example
-         * node.setAttrs({
+     * set multiple attrs at once using an object literal
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} config object containing key value pairs
+     * @returns {Konva.Node}
+     * @example
+     * node.setAttrs({
          *   x: 5,
          *   fill: 'red'
          * });
-         */
+     */
     setAttrs: function(config) {
       var key, method;
 
@@ -3051,24 +3056,24 @@
       return this;
     },
     /**
-         * determine if node is listening for events by taking into account ancestors.
-         *
-         * Parent    | Self      | isListening
-         * listening | listening |
-         * ----------+-----------+------------
-         * T         | T         | T
-         * T         | F         | F
-         * F         | T         | T
-         * F         | F         | F
-         * ----------+-----------+------------
-         * T         | I         | T
-         * F         | I         | F
-         * I         | I         | T
-         *
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean}
-         */
+     * determine if node is listening for events by taking into account ancestors.
+     *
+     * Parent    | Self      | isListening
+     * listening | listening |
+     * ----------+-----------+------------
+     * T         | T         | T
+     * T         | F         | F
+     * F         | T         | T
+     * F         | F         | F
+     * ----------+-----------+------------
+     * T         | I         | T
+     * F         | I         | F
+     * I         | I         | T
+     *
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean}
+     */
     isListening: function() {
       return this._getCache(LISTENING, this._isListening);
     },
@@ -3088,24 +3093,24 @@
       }
     },
     /**
-         * determine if node is visible by taking into account ancestors.
-         *
-         * Parent    | Self      | isVisible
-         * visible   | visible   |
-         * ----------+-----------+------------
-         * T         | T         | T
-         * T         | F         | F
-         * F         | T         | T
-         * F         | F         | F
-         * ----------+-----------+------------
-         * T         | I         | T
-         * F         | I         | F
-         * I         | I         | T
+     * determine if node is visible by taking into account ancestors.
+     *
+     * Parent    | Self      | isVisible
+     * visible   | visible   |
+     * ----------+-----------+------------
+     * T         | T         | T
+     * T         | F         | F
+     * F         | T         | T
+     * F         | F         | F
+     * ----------+-----------+------------
+     * T         | I         | T
+     * F         | I         | F
+     * I         | I         | T
 
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean}
-         */
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean}
+     */
     isVisible: function() {
       return this._getCache(VISIBLE, this._isVisible);
     },
@@ -3125,56 +3130,58 @@
       }
     },
     /**
-         * determine if listening is enabled by taking into account descendants.  If self or any children
-         * have _isListeningEnabled set to true, then self also has listening enabled.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean}
-         */
+     * determine if listening is enabled by taking into account descendants.  If self or any children
+     * have _isListeningEnabled set to true, then self also has listening enabled.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean}
+     */
     shouldDrawHit: function(canvas) {
       var layer = this.getLayer();
-      return (canvas && canvas.isCache) ||
+      return (
+        (canvas && canvas.isCache) ||
         (layer &&
           layer.hitGraphEnabled() &&
           this.isListening() &&
-          this.isVisible());
+          this.isVisible())
+      );
     },
     /**
-         * show node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Node}
-         */
+     * show node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Node}
+     */
     show: function() {
       this.setVisible(true);
       return this;
     },
     /**
-         * hide node.  Hidden nodes are no longer detectable
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Node}
-         */
+     * hide node.  Hidden nodes are no longer detectable
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Node}
+     */
     hide: function() {
       this.setVisible(false);
       return this;
     },
     /**
-         * get zIndex relative to the node's siblings who share the same parent
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Integer}
-         */
+     * get zIndex relative to the node's siblings who share the same parent
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Integer}
+     */
     getZIndex: function() {
       return this.index || 0;
     },
     /**
-         * get absolute z-index which takes into account sibling
-         *  and ancestor indices
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Integer}
-         */
+     * get absolute z-index which takes into account sibling
+     *  and ancestor indices
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Integer}
+     */
     getAbsoluteZIndex: function() {
       var depth = this.getDepth(), that = this, index = 0, nodes, len, n, child;
 
@@ -3205,13 +3212,13 @@
       return index;
     },
     /**
-         * get node depth in node tree.  Returns an integer.
-         *  e.g. Stage depth will always be 0.  Layers will always be 1.  Groups and Shapes will always
-         *  be >= 2
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Integer}
-         */
+     * get node depth in node tree.  Returns an integer.
+     *  e.g. Stage depth will always be 0.  Layers will always be 1.  Groups and Shapes will always
+     *  be >= 2
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Integer}
+     */
     getDepth: function() {
       var depth = 0, parent = this.parent;
 
@@ -3233,13 +3240,13 @@
       };
     },
     /**
-         * get absolute position relative to the top left corner of the stage container div
-         * or relative to passed node
-         * @method
-         * @param {Object} [top] optional parent node
-         * @memberof Konva.Node.prototype
-         * @returns {Object}
-         */
+     * get absolute position relative to the top left corner of the stage container div
+     * or relative to passed node
+     * @method
+     * @param {Object} [top] optional parent node
+     * @memberof Konva.Node.prototype
+     * @returns {Object}
+     */
     getAbsolutePosition: function(top) {
       var absoluteMatrix = this.getAbsoluteTransform(top).getMatrix(),
         absoluteTransform = new Konva.Transform(),
@@ -3252,14 +3259,14 @@
       return absoluteTransform.getTranslation();
     },
     /**
-         * set absolute position
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} pos
-         * @param {Number} pos.x
-         * @param {Number} pos.y
-         * @returns {Konva.Node}
-         */
+     * set absolute position
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} pos
+     * @param {Number} pos.x
+     * @param {Number} pos.y
+     * @returns {Konva.Node}
+     */
     setAbsolutePosition: function(pos) {
       var origTrans = this._clearTransform(), it;
 
@@ -3324,20 +3331,20 @@
       return trans;
     },
     /**
-         * move node by an amount relative to its current position
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} change
-         * @param {Number} change.x
-         * @param {Number} change.y
-         * @returns {Konva.Node}
-         * @example
-         * // move node in x direction by 1px and y direction by 2px
-         * node.move({
+     * move node by an amount relative to its current position
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} change
+     * @param {Number} change.x
+     * @param {Number} change.y
+     * @returns {Konva.Node}
+     * @example
+     * // move node in x direction by 1px and y direction by 2px
+     * node.move({
          *   x: 1,
          *   y: 2)
          * });
-         */
+     */
     move: function(change) {
       var changeX = change.x,
         changeY = change.y,
@@ -3379,22 +3386,22 @@
       }
     },
     /**
-         * rotate node by an amount in degrees relative to its current rotation
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Number} theta
-         * @returns {Konva.Node}
-         */
+     * rotate node by an amount in degrees relative to its current rotation
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Number} theta
+     * @returns {Konva.Node}
+     */
     rotate: function(theta) {
       this.setRotation(this.getRotation() + theta);
       return this;
     },
     /**
-         * move node to the top of its siblings
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean}
-         */
+     * move node to the top of its siblings
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean}
+     */
     moveToTop: function() {
       if (!this.parent) {
         Konva.Util.warn('Node has no parent. moveToTop function is ignored.');
@@ -3407,11 +3414,11 @@
       return true;
     },
     /**
-         * move node up
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean} flag is moved or not
-         */
+     * move node up
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean} flag is moved or not
+     */
     moveUp: function() {
       if (!this.parent) {
         Konva.Util.warn('Node has no parent. moveUp function is ignored.');
@@ -3427,11 +3434,11 @@
       return false;
     },
     /**
-         * move node down
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean}
-         */
+     * move node down
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean}
+     */
     moveDown: function() {
       if (!this.parent) {
         Konva.Util.warn('Node has no parent. moveDown function is ignored.');
@@ -3447,11 +3454,11 @@
       return false;
     },
     /**
-         * move node to the bottom of its siblings
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Boolean}
-         */
+     * move node to the bottom of its siblings
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Boolean}
+     */
     moveToBottom: function() {
       if (!this.parent) {
         Konva.Util.warn(
@@ -3469,12 +3476,12 @@
       return false;
     },
     /**
-         * set zIndex relative to siblings
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Integer} zIndex
-         * @returns {Konva.Node}
-         */
+     * set zIndex relative to siblings
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Integer} zIndex
+     * @returns {Konva.Node}
+     */
     setZIndex: function(zIndex) {
       if (!this.parent) {
         Konva.Util.warn('Node has no parent. zIndex parameter is ignored.');
@@ -3487,11 +3494,11 @@
       return this;
     },
     /**
-         * get absolute opacity
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Number}
-         */
+     * get absolute opacity
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Number}
+     */
     getAbsoluteOpacity: function() {
       return this._getCache(ABSOLUTE_OPACITY, this._getAbsoluteOpacity);
     },
@@ -3504,15 +3511,15 @@
       return absOpacity;
     },
     /**
-         * move node to another container
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Container} newContainer
-         * @returns {Konva.Node}
-         * @example
-         * // move node from current layer into layer2
-         * node.moveTo(layer2);
-         */
+     * move node to another container
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Container} newContainer
+     * @returns {Konva.Node}
+     * @example
+     * // move node from current layer into layer2
+     * node.moveTo(layer2);
+     */
     moveTo: function(newContainer) {
       // do nothing if new container is already parent
       if (this.getParent() !== newContainer) {
@@ -3524,11 +3531,11 @@
       return this;
     },
     /**
-         * convert Node into an object for serialization.  Returns an object.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Object}
-         */
+     * convert Node into an object for serialization.  Returns an object.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Object}
+     */
     toObject: function() {
       var obj = {}, attrs = this.getAttrs(), key, val, getter, defaultValue;
 
@@ -3551,35 +3558,35 @@
       return Konva.Util._prepareToStringify(obj);
     },
     /**
-         * convert Node into a JSON string.  Returns a JSON string.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {String}}
-         */
+     * convert Node into a JSON string.  Returns a JSON string.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {String}}
+     */
     toJSON: function() {
       return JSON.stringify(this.toObject());
     },
     /**
-         * get parent container
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Node}
-         */
+     * get parent container
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Node}
+     */
     getParent: function() {
       return this.parent;
     },
     /**
-         * get all ancestros (parent then parent of the parent, etc) of the node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} [selector] selector for search
-         * @param {Boolean} [includeSelf] show we think that node is ancestro itself?
-         * @param {Konva.Node} [stopNode] optional node where we need to stop searching (one of ancestors)
-         * @returns {Array} [ancestors]
-         * @example
-         * // get one of the parent group
-         * var parentGroups = node.findAncestors('Group');
-         */
+     * get all ancestros (parent then parent of the parent, etc) of the node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} [selector] selector for search
+     * @param {Boolean} [includeSelf] show we think that node is ancestro itself?
+     * @param {Konva.Node} [stopNode] optional node where we need to stop searching (one of ancestors)
+     * @returns {Array} [ancestors]
+     * @example
+     * // get one of the parent group
+     * var parentGroups = node.findAncestors('Group');
+     */
     findAncestors: function(selector, includeSelf, stopNode) {
       var res = [];
 
@@ -3599,17 +3606,17 @@
       return res;
     },
     /**
-         * get ancestor (parent or parent of the parent, etc) of the node that match passed selector
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} [selector] selector for search
-         * @param {Boolean} [includeSelf] show we think that node is ancestro itself?
-         * @param {Konva.Node} [stopNode] optional node where we need to stop searching (one of ancestors)
-         * @returns {Konva.Node} ancestor
-         * @example
-         * // get one of the parent group
-         * var group = node.findAncestors('.mygroup');
-         */
+     * get ancestor (parent or parent of the parent, etc) of the node that match passed selector
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} [selector] selector for search
+     * @param {Boolean} [includeSelf] show we think that node is ancestro itself?
+     * @param {Konva.Node} [stopNode] optional node where we need to stop searching (one of ancestors)
+     * @returns {Konva.Node} ancestor
+     * @example
+     * // get one of the parent group
+     * var group = node.findAncestors('.mygroup');
+     */
     findAncestor: function(selector, includeSelf, stopNode) {
       return this.findAncestors(selector, includeSelf, stopNode)[0];
     },
@@ -3628,8 +3635,8 @@
         if (!Konva.Util.isValidSelector(sel)) {
           Konva.Util.warn(
             'Selector "' +
-              sel +
-              '" is invalid. Allowed selectors examples are "#foo", ".bar" or "Group".'
+            sel +
+            '" is invalid. Allowed selectors examples are "#foo", ".bar" or "Group".'
           );
           Konva.Util.warn(
             'If you have a custom shape with such className, please change it to start with upper letter like "Triangle".'
@@ -3653,21 +3660,21 @@
       return false;
     },
     /**
-         * get layer ancestor
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Layer}
-         */
+     * get layer ancestor
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Layer}
+     */
     getLayer: function() {
       var parent = this.getParent();
       return parent ? parent.getLayer() : null;
     },
     /**
-         * get stage ancestor
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Stage}
-         */
+     * get stage ancestor
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Stage}
+     */
     getStage: function() {
       return this._getCache(STAGE, this._getStage);
     },
@@ -3680,29 +3687,29 @@
       }
     },
     /**
-         * fire event
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} eventType event type.  can be a regular event, like click, mouseover, or mouseout, or it can be a custom event, like myCustomEvent
-         * @param {Event} [evt] event object
-         * @param {Boolean} [bubble] setting the value to false, or leaving it undefined, will result in the event
-         *  not bubbling.  Setting the value to true will result in the event bubbling.
-         * @returns {Konva.Node}
-         * @example
-         * // manually fire click event
-         * node.fire('click');
-         *
-         * // fire custom event
-         * node.fire('foo');
-         *
-         * // fire custom event with custom event object
-         * node.fire('foo', {
+     * fire event
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} eventType event type.  can be a regular event, like click, mouseover, or mouseout, or it can be a custom event, like myCustomEvent
+     * @param {Event} [evt] event object
+     * @param {Boolean} [bubble] setting the value to false, or leaving it undefined, will result in the event
+     *  not bubbling.  Setting the value to true will result in the event bubbling.
+     * @returns {Konva.Node}
+     * @example
+     * // manually fire click event
+     * node.fire('click');
+     *
+     * // fire custom event
+     * node.fire('foo');
+     *
+     * // fire custom event with custom event object
+     * node.fire('foo', {
          *   bar: 10
          * });
-         *
-         * // fire click event that bubbles
-         * node.fire('click', null, true);
-         */
+     *
+     * // fire click event that bubbles
+     * node.fire('click', null, true);
+     */
     fire: function(eventType, evt, bubble) {
       evt = evt || {};
       evt.target = evt.target || this;
@@ -3716,12 +3723,12 @@
       return this;
     },
     /**
-         * get absolute transform of the node which takes into
-         *  account its ancestor transforms
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Transform}
-         */
+     * get absolute transform of the node which takes into
+     *  account its ancestor transforms
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Transform}
+     */
     getAbsoluteTransform: function(top) {
       // if using an argument, we can't cache the result.
       if (top) {
@@ -3735,32 +3742,29 @@
       var at = new Konva.Transform(), transformsEnabled, trans;
 
       // start with stage and traverse downwards to self
-      this._eachAncestorReverse(
-        function(node) {
-          transformsEnabled = node.transformsEnabled();
-          trans = node.getTransform();
+      this._eachAncestorReverse(function(node) {
+        transformsEnabled = node.transformsEnabled();
+        trans = node.getTransform();
 
-          if (transformsEnabled === 'all') {
-            at.multiply(trans);
-          } else if (transformsEnabled === 'position') {
-            at.translate(node.x(), node.y());
-          }
-        },
-        top
-      );
+        if (transformsEnabled === 'all') {
+          at.multiply(trans);
+        } else if (transformsEnabled === 'position') {
+          at.translate(node.x(), node.y());
+        }
+      }, top);
       return at;
     },
     /**
-         * get absolute scale of the node which takes into
-         *  account its ancestor scales
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Transform}
-         */
+     * get absolute scale of the node which takes into
+     *  account its ancestor scales
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Transform}
+     */
     getAbsoluteScale: function(top) {
       // if using an argument, we can't cache the result.
       if (top) {
-        return this._getAbsoluteTransform(top);
+        return this._getAbsoluteScale(top);
       } else {
         // if no argument, we can cache the result
         return this._getCache(ABSOLUTE_SCALE, this._getAbsoluteScale);
@@ -3779,24 +3783,21 @@
       var scaleX = 1, scaleY = 1;
 
       // start with stage and traverse downwards to self
-      this._eachAncestorReverse(
-        function(node) {
-          scaleX *= node.scaleX();
-          scaleY *= node.scaleY();
-        },
-        top
-      );
+      this._eachAncestorReverse(function(node) {
+        scaleX *= node.scaleX();
+        scaleY *= node.scaleY();
+      }, top);
       return {
         x: scaleX,
         y: scaleY
       };
     },
     /**
-         * get transform of the node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Transform}
-         */
+     * get transform of the node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Transform}
+     */
     getTransform: function() {
       return this._getCache(TRANSFORM, this._getTransform);
     },
@@ -3825,28 +3826,28 @@
         m.scale(scaleX, scaleY);
       }
       if (offsetX !== 0 || offsetY !== 0) {
-        m.translate((-1) * offsetX, (-1) * offsetY);
+        m.translate(-1 * offsetX, -1 * offsetY);
       }
 
       return m;
     },
     /**
-         * clone node.  Returns a new Node instance with identical attributes.  You can also override
-         *  the node properties with an object literal, enabling you to use an existing node as a template
-         *  for another node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} obj override attrs
-         * @returns {Konva.Node}
-         * @example
-         * // simple clone
-         * var clone = node.clone();
-         *
-         * // clone a node and override the x position
-         * var clone = rect.clone({
+     * clone node.  Returns a new Node instance with identical attributes.  You can also override
+     *  the node properties with an object literal, enabling you to use an existing node as a template
+     *  for another node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} obj override attrs
+     * @returns {Konva.Node}
+     * @example
+     * // simple clone
+     * var clone = node.clone();
+     *
+     * // clone a node and override the x position
+     * var clone = rect.clone({
          *   x: 5
          * });
-         */
+     */
     clone: function(obj) {
       // instantiate new node
       var attrs = Konva.Util.cloneObject(this.attrs),
@@ -3896,11 +3897,11 @@
         pixelRatio = config.pixelRatio || 1,
         canvas = new Konva.SceneCanvas({
           width: config.width ||
-            this.getWidth() ||
-            (stage ? stage.getWidth() : 0),
+          this.getWidth() ||
+          (stage ? stage.getWidth() : 0),
           height: config.height ||
-            this.getHeight() ||
-            (stage ? stage.getHeight() : 0),
+          this.getHeight() ||
+          (stage ? stage.getHeight() : 0),
           pixelRatio: pixelRatio
         }),
         context = canvas.getContext();
@@ -3908,7 +3909,7 @@
       context.save();
 
       if (x || y) {
-        context.translate((-1) * x, (-1) * y);
+        context.translate(-1 * x, -1 * y);
       }
 
       this.drawScene(canvas);
@@ -3917,71 +3918,71 @@
       return canvas;
     },
     /**
-         * converts node into an canvas element.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} config
-         * @param {Function} config.callback function executed when the composite has completed
-         * @param {Number} [config.x] x position of canvas section
-         * @param {Number} [config.y] y position of canvas section
-         * @param {Number} [config.width] width of canvas section
-         * @param {Number} [config.height] height of canvas section
-         * @paremt {Number} [config.pixelRatio] pixelRatio of ouput image.  Default is 1.
-         * @example
-         * var canvas = node.toCanvas();
-         */
+     * converts node into an canvas element.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} config
+     * @param {Function} config.callback function executed when the composite has completed
+     * @param {Number} [config.x] x position of canvas section
+     * @param {Number} [config.y] y position of canvas section
+     * @param {Number} [config.width] width of canvas section
+     * @param {Number} [config.height] height of canvas section
+     * @paremt {Number} [config.pixelRatio] pixelRatio of ouput image.  Default is 1.
+     * @example
+     * var canvas = node.toCanvas();
+     */
     toCanvas: function(config) {
       return this._toKonvaCanvas(config)._canvas;
     },
     /**
-         * Creates a composite data URL. If MIME type is not
-         * specified, then "image/png" will result. For "image/jpeg", specify a quality
-         * level as quality (range 0.0 - 1.0)
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} config
-         * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
-         *  "image/png" is the default
-         * @param {Number} [config.x] x position of canvas section
-         * @param {Number} [config.y] y position of canvas section
-         * @param {Number} [config.width] width of canvas section
-         * @param {Number} [config.height] height of canvas section
-         * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
-         *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
-         *  is very high quality
-         * @paremt {Number} [config.pixelRatio] pixelRatio of ouput image url. Default is 1
-         * @returns {String}
-         */
+     * Creates a composite data URL. If MIME type is not
+     * specified, then "image/png" will result. For "image/jpeg", specify a quality
+     * level as quality (range 0.0 - 1.0)
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} config
+     * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
+     *  "image/png" is the default
+     * @param {Number} [config.x] x position of canvas section
+     * @param {Number} [config.y] y position of canvas section
+     * @param {Number} [config.width] width of canvas section
+     * @param {Number} [config.height] height of canvas section
+     * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
+     *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
+     *  is very high quality
+     * @paremt {Number} [config.pixelRatio] pixelRatio of ouput image url. Default is 1
+     * @returns {String}
+     */
     toDataURL: function(config) {
       config = config || {};
       var mimeType = config.mimeType || null, quality = config.quality || null;
       return this._toKonvaCanvas(config).toDataURL(mimeType, quality);
     },
     /**
-         * converts node into an image.  Since the toImage
-         *  method is asynchronous, a callback is required.  toImage is most commonly used
-         *  to cache complex drawings as an image so that they don't have to constantly be redrawn
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {Object} config
-         * @param {Function} config.callback function executed when the composite has completed
-         * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
-         *  "image/png" is the default
-         * @param {Number} [config.x] x position of canvas section
-         * @param {Number} [config.y] y position of canvas section
-         * @param {Number} [config.width] width of canvas section
-         * @param {Number} [config.height] height of canvas section
-         * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
-         *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
-         *  is very high quality
-         * @paremt {Number} [config.pixelRatio] pixelRatio of ouput image.  Default is 1.
-         * @example
-         * var image = node.toImage({
+     * converts node into an image.  Since the toImage
+     *  method is asynchronous, a callback is required.  toImage is most commonly used
+     *  to cache complex drawings as an image so that they don't have to constantly be redrawn
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {Object} config
+     * @param {Function} config.callback function executed when the composite has completed
+     * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
+     *  "image/png" is the default
+     * @param {Number} [config.x] x position of canvas section
+     * @param {Number} [config.y] y position of canvas section
+     * @param {Number} [config.width] width of canvas section
+     * @param {Number} [config.height] height of canvas section
+     * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
+     *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
+     *  is very high quality
+     * @paremt {Number} [config.pixelRatio] pixelRatio of ouput image.  Default is 1.
+     * @example
+     * var image = node.toImage({
          *   callback: function(img) {
          *     // do stuff with img
          *   }
          * });
-         */
+     */
     toImage: function(config) {
       if (!config || !config.callback) {
         throw 'callback required for toImage method config argument';
@@ -4008,20 +4009,20 @@
       return this.attrs.height || 0;
     },
     /**
-         * get class name, which may return Stage, Layer, Group, or shape class names like Rect, Circle, Text, etc.
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {String}
-         */
+     * get class name, which may return Stage, Layer, Group, or shape class names like Rect, Circle, Text, etc.
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {String}
+     */
     getClassName: function() {
       return this.className || this.nodeType;
     },
     /**
-         * get the node type, which may return Stage, Layer, Group, or Node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {String}
-         */
+     * get the node type, which may return Stage, Layer, Group, or Node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {String}
+     */
     getType: function() {
       return this.nodeType;
     },
@@ -4101,16 +4102,16 @@
     },
     // naming methods
     /**
-         * add name to node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} name
-         * @returns {Konva.Node}
-         * @example
-         * node.name('red');
-         * node.addName('selected');
-         * node.name(); // return 'red selected'
-         */
+     * add name to node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} name
+     * @returns {Konva.Node}
+     * @example
+     * node.name('red');
+     * node.addName('selected');
+     * node.name(); // return 'red selected'
+     */
     addName: function(name) {
       if (!this.hasName(name)) {
         var oldName = this.name();
@@ -4120,32 +4121,32 @@
       return this;
     },
     /**
-         * check is node has name
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} name
-         * @returns {Boolean}
-         * @example
-         * node.name('red');
-         * node.hasName('red');   // return true
-         * node.hasName('selected'); // return false
-         */
+     * check is node has name
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} name
+     * @returns {Boolean}
+     * @example
+     * node.name('red');
+     * node.hasName('red');   // return true
+     * node.hasName('selected'); // return false
+     */
     hasName: function(name) {
       var names = (this.name() || '').split(/\s/g);
       return names.indexOf(name) !== -1;
     },
     /**
-         * remove name from node
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} name
-         * @returns {Konva.Node}
-         * @example
-         * node.name('red selected');
-         * node.removeName('selected');
-         * node.hasName('selected'); // return false
-         * node.name(); // return 'red'
-         */
+     * remove name from node
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} name
+     * @returns {Konva.Node}
+     * @example
+     * node.name('red selected');
+     * node.removeName('selected');
+     * node.hasName('selected'); // return false
+     * node.name(); // return 'red'
+     */
     removeName: function(name) {
       var names = (this.name() || '').split(/\s/g);
       var index = names.indexOf(name);
@@ -4156,15 +4157,15 @@
       return this;
     },
     /**
-         * set attr
-         * @method
-         * @memberof Konva.Node.prototype
-         * @param {String} attr
-         * @param {*} val
-         * @returns {Konva.Node}
-         * @example
-         * node.setAttr('x', 5);
-         */
+     * set attr
+     * @method
+     * @memberof Konva.Node.prototype
+     * @param {String} attr
+     * @param {*} val
+     * @returns {Konva.Node}
+     * @example
+     * node.setAttr('x', 5);
+     */
     setAttr: function(attr, val) {
       var method = SET + Konva.Util._capitalize(attr), func = this[method];
 
@@ -4229,8 +4230,8 @@
         this._fire(eventType, evt);
 
         // simulate event bubbling
-        var stopBubble = (eventType === MOUSEENTER ||
-          eventType === MOUSELEAVE) &&
+        var stopBubble =
+          (eventType === MOUSEENTER || eventType === MOUSELEAVE) &&
           (compareShape &&
             compareShape.isAncestorOf &&
             compareShape.isAncestorOf(this) &&
@@ -4268,11 +4269,11 @@
       }
     },
     /**
-         * draw both scene and hit graphs.  If the node being drawn is the stage, all of the layers will be cleared and redrawn
-         * @method
-         * @memberof Konva.Node.prototype
-         * @returns {Konva.Node}
-         */
+     * draw both scene and hit graphs.  If the node being drawn is the stage, all of the layers will be cleared and redrawn
+     * @method
+     * @memberof Konva.Node.prototype
+     * @returns {Konva.Node}
+     */
     draw: function() {
       this.drawScene();
       this.drawHit();
@@ -4281,18 +4282,18 @@
   });
 
   /**
-     * create node with JSON string or an Object.  De-serializtion does not generate custom
-     *  shape drawing functions, images, or event handlers (this would make the
-     *  serialized object huge).  If your app uses custom shapes, images, and
-     *  event handlers (it probably does), then you need to select the appropriate
-     *  shapes after loading the stage and set these properties via on(), setDrawFunc(),
-     *  and setImage() methods
-     * @method
-     * @memberof Konva.Node
-     * @param {String|Object} json string or object
-     * @param {Element} [container] optional container dom element used only if you're
-     *  creating a stage node
-     */
+   * create node with JSON string or an Object.  De-serializtion does not generate custom
+   *  shape drawing functions, images, or event handlers (this would make the
+   *  serialized object huge).  If your app uses custom shapes, images, and
+   *  event handlers (it probably does), then you need to select the appropriate
+   *  shapes after loading the stage and set these properties via on(), setDrawFunc(),
+   *  and setImage() methods
+   * @method
+   * @memberof Konva.Node
+   * @param {String|Object} json string or object
+   * @param {Element} [container] optional container dom element used only if you're
+   *  creating a stage node
+   */
   Konva.Node.create = function(data, container) {
     if (Konva.Util._isString(data)) {
       data = JSON.parse(data);
@@ -4326,58 +4327,58 @@
 
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'position');
   /**
-     * get/set node position relative to parent
-     * @name position
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Object} pos
-     * @param {Number} pos.x
-     * @param {Number} pos.y
-     * @returns {Object}
-     * @example
-     * // get position
-     * var position = node.position();
-     *
-     * // set position
-     * node.position({
+   * get/set node position relative to parent
+   * @name position
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Object} pos
+   * @param {Number} pos.x
+   * @param {Number} pos.y
+   * @returns {Object}
+   * @example
+   * // get position
+   * var position = node.position();
+   *
+   * // set position
+   * node.position({
      *   x: 5
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'x', 0);
 
   /**
-     * get/set x position
-     * @name x
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} x
-     * @returns {Object}
-     * @example
-     * // get x
-     * var x = node.x();
-     *
-     * // set x
-     * node.x(5);
-     */
+   * get/set x position
+   * @name x
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} x
+   * @returns {Object}
+   * @example
+   * // get x
+   * var x = node.x();
+   *
+   * // set x
+   * node.x(5);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'y', 0);
 
   /**
-     * get/set y position
-     * @name y
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} y
-     * @returns {Integer}
-     * @example
-     * // get y
-     * var y = node.y();
-     *
-     * // set y
-     * node.y(5);
-     */
+   * get/set y position
+   * @name y
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} y
+   * @returns {Integer}
+   * @example
+   * // get y
+   * var y = node.y();
+   *
+   * // set y
+   * node.y(5);
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -4386,358 +4387,358 @@
   );
 
   /**
-     * get/set globalCompositeOperation of a shape
-     * @name globalCompositeOperation
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} blur
-     * @returns {Number}
-     * @example
-     * // get shadow blur
-     * var globalCompositeOperation = shape.globalCompositeOperation();
-     *
-     * // set shadow blur
-     * shape.globalCompositeOperation('source-in');
-     */
+   * get/set globalCompositeOperation of a shape
+   * @name globalCompositeOperation
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} blur
+   * @returns {Number}
+   * @example
+   * // get shadow blur
+   * var globalCompositeOperation = shape.globalCompositeOperation();
+   *
+   * // set shadow blur
+   * shape.globalCompositeOperation('source-in');
+   */
   Konva.Factory.addGetterSetter(Konva.Node, 'opacity', 1);
 
   /**
-     * get/set opacity.  Opacity values range from 0 to 1.
-     *  A node with an opacity of 0 is fully transparent, and a node
-     *  with an opacity of 1 is fully opaque
-     * @name opacity
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Object} opacity
-     * @returns {Number}
-     * @example
-     * // get opacity
-     * var opacity = node.opacity();
-     *
-     * // set opacity
-     * node.opacity(0.5);
-     */
+   * get/set opacity.  Opacity values range from 0 to 1.
+   *  A node with an opacity of 0 is fully transparent, and a node
+   *  with an opacity of 1 is fully opaque
+   * @name opacity
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Object} opacity
+   * @returns {Number}
+   * @example
+   * // get opacity
+   * var opacity = node.opacity();
+   *
+   * // set opacity
+   * node.opacity(0.5);
+   */
 
   Konva.Factory.addGetter(Konva.Node, 'name');
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'name');
 
   /**
-     * get/set name
-     * @name name
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {String} name
-     * @returns {String}
-     * @example
-     * // get name
-     * var name = node.name();
-     *
-     * // set name
-     * node.name('foo');
-     *
-     * // also node may have multiple names (as css classes)
-     * node.name('foo bar');
-     */
+   * get/set name
+   * @name name
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {String} name
+   * @returns {String}
+   * @example
+   * // get name
+   * var name = node.name();
+   *
+   * // set name
+   * node.name('foo');
+   *
+   * // also node may have multiple names (as css classes)
+   * node.name('foo bar');
+   */
 
   Konva.Factory.addGetter(Konva.Node, 'id');
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'id');
 
   /**
-     * get/set id. Id is global for whole page.
-     * @name id
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {String} id
-     * @returns {String}
-     * @example
-     * // get id
-     * var name = node.id();
-     *
-     * // set id
-     * node.id('foo');
-     */
+   * get/set id. Id is global for whole page.
+   * @name id
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {String} id
+   * @returns {String}
+   * @example
+   * // get id
+   * var name = node.id();
+   *
+   * // set id
+   * node.id('foo');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'rotation', 0);
 
   /**
-     * get/set rotation in degrees
-     * @name rotation
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} rotation
-     * @returns {Number}
-     * @example
-     * // get rotation in degrees
-     * var rotation = node.rotation();
-     *
-     * // set rotation in degrees
-     * node.rotation(45);
-     */
+   * get/set rotation in degrees
+   * @name rotation
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} rotation
+   * @returns {Number}
+   * @example
+   * // get rotation in degrees
+   * var rotation = node.rotation();
+   *
+   * // set rotation in degrees
+   * node.rotation(45);
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Node, 'scale', ['x', 'y']);
 
   /**
-     * get/set scale
-     * @name scale
-     * @param {Object} scale
-     * @param {Number} scale.x
-     * @param {Number} scale.y
-     * @method
-     * @memberof Konva.Node.prototype
-     * @returns {Object}
-     * @example
-     * // get scale
-     * var scale = node.scale();
-     *
-     * // set scale
-     * shape.scale({
+   * get/set scale
+   * @name scale
+   * @param {Object} scale
+   * @param {Number} scale.x
+   * @param {Number} scale.y
+   * @method
+   * @memberof Konva.Node.prototype
+   * @returns {Object}
+   * @example
+   * // get scale
+   * var scale = node.scale();
+   *
+   * // set scale
+   * shape.scale({
      *   x: 2
      *   y: 3
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'scaleX', 1);
 
   /**
-     * get/set scale x
-     * @name scaleX
-     * @param {Number} x
-     * @method
-     * @memberof Konva.Node.prototype
-     * @returns {Number}
-     * @example
-     * // get scale x
-     * var scaleX = node.scaleX();
-     *
-     * // set scale x
-     * node.scaleX(2);
-     */
+   * get/set scale x
+   * @name scaleX
+   * @param {Number} x
+   * @method
+   * @memberof Konva.Node.prototype
+   * @returns {Number}
+   * @example
+   * // get scale x
+   * var scaleX = node.scaleX();
+   *
+   * // set scale x
+   * node.scaleX(2);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'scaleY', 1);
 
   /**
-     * get/set scale y
-     * @name scaleY
-     * @param {Number} y
-     * @method
-     * @memberof Konva.Node.prototype
-     * @returns {Number}
-     * @example
-     * // get scale y
-     * var scaleY = node.scaleY();
-     *
-     * // set scale y
-     * node.scaleY(2);
-     */
+   * get/set scale y
+   * @name scaleY
+   * @param {Number} y
+   * @method
+   * @memberof Konva.Node.prototype
+   * @returns {Number}
+   * @example
+   * // get scale y
+   * var scaleY = node.scaleY();
+   *
+   * // set scale y
+   * node.scaleY(2);
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Node, 'skew', ['x', 'y']);
 
   /**
-     * get/set skew
-     * @name skew
-     * @param {Object} skew
-     * @param {Number} skew.x
-     * @param {Number} skew.y
-     * @method
-     * @memberof Konva.Node.prototype
-     * @returns {Object}
-     * @example
-     * // get skew
-     * var skew = node.skew();
-     *
-     * // set skew
-     * node.skew({
+   * get/set skew
+   * @name skew
+   * @param {Object} skew
+   * @param {Number} skew.x
+   * @param {Number} skew.y
+   * @method
+   * @memberof Konva.Node.prototype
+   * @returns {Object}
+   * @example
+   * // get skew
+   * var skew = node.skew();
+   *
+   * // set skew
+   * node.skew({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'skewX', 0);
 
   /**
-     * get/set skew x
-     * @name skewX
-     * @param {Number} x
-     * @method
-     * @memberof Konva.Node.prototype
-     * @returns {Number}
-     * @example
-     * // get skew x
-     * var skewX = node.skewX();
-     *
-     * // set skew x
-     * node.skewX(3);
-     */
+   * get/set skew x
+   * @name skewX
+   * @param {Number} x
+   * @method
+   * @memberof Konva.Node.prototype
+   * @returns {Number}
+   * @example
+   * // get skew x
+   * var skewX = node.skewX();
+   *
+   * // set skew x
+   * node.skewX(3);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'skewY', 0);
 
   /**
-     * get/set skew y
-     * @name skewY
-     * @param {Number} y
-     * @method
-     * @memberof Konva.Node.prototype
-     * @returns {Number}
-     * @example
-     * // get skew y
-     * var skewY = node.skewY();
-     *
-     * // set skew y
-     * node.skewY(3);
-     */
+   * get/set skew y
+   * @name skewY
+   * @param {Number} y
+   * @method
+   * @memberof Konva.Node.prototype
+   * @returns {Number}
+   * @example
+   * // get skew y
+   * var skewY = node.skewY();
+   *
+   * // set skew y
+   * node.skewY(3);
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Node, 'offset', ['x', 'y']);
 
   /**
-     * get/set offset.  Offsets the default position and rotation point
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Object} offset
-     * @param {Number} offset.x
-     * @param {Number} offset.y
-     * @returns {Object}
-     * @example
-     * // get offset
-     * var offset = node.offset();
-     *
-     * // set offset
-     * node.offset({
+   * get/set offset.  Offsets the default position and rotation point
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Object} offset
+   * @param {Number} offset.x
+   * @param {Number} offset.y
+   * @returns {Object}
+   * @example
+   * // get offset
+   * var offset = node.offset();
+   *
+   * // set offset
+   * node.offset({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'offsetX', 0);
 
   /**
-     * get/set offset x
-     * @name offsetX
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get offset x
-     * var offsetX = node.offsetX();
-     *
-     * // set offset x
-     * node.offsetX(3);
-     */
+   * get/set offset x
+   * @name offsetX
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get offset x
+   * var offsetX = node.offsetX();
+   *
+   * // set offset x
+   * node.offsetX(3);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'offsetY', 0);
 
   /**
-     * get/set offset y
-     * @name offsetY
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get offset y
-     * var offsetY = node.offsetY();
-     *
-     * // set offset y
-     * node.offsetY(3);
-     */
+   * get/set offset y
+   * @name offsetY
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get offset y
+   * var offsetY = node.offsetY();
+   *
+   * // set offset y
+   * node.offsetY(3);
+   */
 
   Konva.Factory.addSetter(Konva.Node, 'dragDistance');
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'dragDistance');
 
   /**
-     * get/set drag distance
-     * @name dragDistance
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} distance
-     * @returns {Number}
-     * @example
-     * // get drag distance
-     * var dragDistance = node.dragDistance();
-     *
-     * // set distance
-     * // node starts dragging only if pointer moved more then 3 pixels
-     * node.dragDistance(3);
-     * // or set globally
-     * Konva.dragDistance = 3;
-     */
+   * get/set drag distance
+   * @name dragDistance
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} distance
+   * @returns {Number}
+   * @example
+   * // get drag distance
+   * var dragDistance = node.dragDistance();
+   *
+   * // set distance
+   * // node starts dragging only if pointer moved more then 3 pixels
+   * node.dragDistance(3);
+   * // or set globally
+   * Konva.dragDistance = 3;
+   */
 
   Konva.Factory.addSetter(Konva.Node, 'width', 0);
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'width');
   /**
-     * get/set width
-     * @name width
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} width
-     * @returns {Number}
-     * @example
-     * // get width
-     * var width = node.width();
-     *
-     * // set width
-     * node.width(100);
-     */
+   * get/set width
+   * @name width
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} width
+   * @returns {Number}
+   * @example
+   * // get width
+   * var width = node.width();
+   *
+   * // set width
+   * node.width(100);
+   */
 
   Konva.Factory.addSetter(Konva.Node, 'height', 0);
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'height');
   /**
-     * get/set height
-     * @name height
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Number} height
-     * @returns {Number}
-     * @example
-     * // get height
-     * var height = node.height();
-     *
-     * // set height
-     * node.height(100);
-     */
+   * get/set height
+   * @name height
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} height
+   * @returns {Number}
+   * @example
+   * // get height
+   * var height = node.height();
+   *
+   * // set height
+   * node.height(100);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'listening', 'inherit');
   /**
-     * get/set listenig attr.  If you need to determine if a node is listening or not
-     *   by taking into account its parents, use the isListening() method
-     * @name listening
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Boolean|String} listening Can be "inherit", true, or false.  The default is "inherit".
-     * @returns {Boolean|String}
-     * @example
-     * // get listening attr
-     * var listening = node.listening();
-     *
-     * // stop listening for events
-     * node.listening(false);
-     *
-     * // listen for events
-     * node.listening(true);
-     *
-     * // listen to events according to the parent
-     * node.listening('inherit');
-     */
+   * get/set listenig attr.  If you need to determine if a node is listening or not
+   *   by taking into account its parents, use the isListening() method
+   * @name listening
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Boolean|String} listening Can be "inherit", true, or false.  The default is "inherit".
+   * @returns {Boolean|String}
+   * @example
+   * // get listening attr
+   * var listening = node.listening();
+   *
+   * // stop listening for events
+   * node.listening(false);
+   *
+   * // listen for events
+   * node.listening(true);
+   *
+   * // listen to events according to the parent
+   * node.listening('inherit');
+   */
 
   /**
-      * get/set preventDefault
-      * By default all shapes will prevent default behaviour
-      * of a browser on a pointer move or tap.
-      * that will prevent native scrolling when you are trying to drag&drop a node
-      * but sometimes you may need to enable default actions
-      * in that case you can set the property to false
-      * @name preventDefault
-      * @method
-      * @memberof Konva.Node.prototype
-      * @param {Number} preventDefault
-      * @returns {Number}
-      * @example
-      * // get preventDefault
-      * var shouldPrevent = shape.preventDefault();
-      *
-      * // set preventDefault
-      * shape.preventDefault(false);
-      */
+   * get/set preventDefault
+   * By default all shapes will prevent default behaviour
+   * of a browser on a pointer move or tap.
+   * that will prevent native scrolling when you are trying to drag&drop a node
+   * but sometimes you may need to enable default actions
+   * in that case you can set the property to false
+   * @name preventDefault
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} preventDefault
+   * @returns {Number}
+   * @example
+   * // get preventDefault
+   * var shouldPrevent = shape.preventDefault();
+   *
+   * // set preventDefault
+   * shape.preventDefault(false);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'preventDefault', true);
 
@@ -4748,92 +4749,92 @@
     return val;
   });
   /**
-     * get/set filters.  Filters are applied to cached canvases
-     * @name filters
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Array} filters array of filters
-     * @returns {Array}
-     * @example
-     * // get filters
-     * var filters = node.filters();
-     *
-     * // set a single filter
-     * node.cache();
-     * node.filters([Konva.Filters.Blur]);
-     *
-     * // set multiple filters
-     * node.cache();
-     * node.filters([
-     *   Konva.Filters.Blur,
-     *   Konva.Filters.Sepia,
-     *   Konva.Filters.Invert
-     * ]);
-     */
+   * get/set filters.  Filters are applied to cached canvases
+   * @name filters
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Array} filters array of filters
+   * @returns {Array}
+   * @example
+   * // get filters
+   * var filters = node.filters();
+   *
+   * // set a single filter
+   * node.cache();
+   * node.filters([Konva.Filters.Blur]);
+   *
+   * // set multiple filters
+   * node.cache();
+   * node.filters([
+   *   Konva.Filters.Blur,
+   *   Konva.Filters.Sepia,
+   *   Konva.Filters.Invert
+   * ]);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'visible', 'inherit');
   /**
-     * get/set visible attr.  Can be "inherit", true, or false.  The default is "inherit".
-     *   If you need to determine if a node is visible or not
-     *   by taking into account its parents, use the isVisible() method
-     * @name visible
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Boolean|String} visible
-     * @returns {Boolean|String}
-     * @example
-     * // get visible attr
-     * var visible = node.visible();
-     *
-     * // make invisible
-     * node.visible(false);
-     *
-     * // make visible
-     * node.visible(true);
-     *
-     * // make visible according to the parent
-     * node.visible('inherit');
-     */
+   * get/set visible attr.  Can be "inherit", true, or false.  The default is "inherit".
+   *   If you need to determine if a node is visible or not
+   *   by taking into account its parents, use the isVisible() method
+   * @name visible
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Boolean|String} visible
+   * @returns {Boolean|String}
+   * @example
+   * // get visible attr
+   * var visible = node.visible();
+   *
+   * // make invisible
+   * node.visible(false);
+   *
+   * // make visible
+   * node.visible(true);
+   *
+   * // make visible according to the parent
+   * node.visible('inherit');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'transformsEnabled', 'all');
 
   /**
-     * get/set transforms that are enabled.  Can be "all", "none", or "position".  The default
-     *  is "all"
-     * @name transformsEnabled
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {String} enabled
-     * @returns {String}
-     * @example
-     * // enable position transform only to improve draw performance
-     * node.transformsEnabled('position');
-     *
-     * // enable all transforms
-     * node.transformsEnabled('all');
-     */
+   * get/set transforms that are enabled.  Can be "all", "none", or "position".  The default
+   *  is "all"
+   * @name transformsEnabled
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {String} enabled
+   * @returns {String}
+   * @example
+   * // enable position transform only to improve draw performance
+   * node.transformsEnabled('position');
+   *
+   * // enable all transforms
+   * node.transformsEnabled('all');
+   */
 
   /**
-     * get/set node size
-     * @name size
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Object} size
-     * @param {Number} size.width
-     * @param {Number} size.height
-     * @returns {Object}
-     * @example
-     * // get node size
-     * var size = node.size();
-     * var x = size.x;
-     * var y = size.y;
-     *
-     * // set size
-     * node.size({
+   * get/set node size
+   * @name size
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Object} size
+   * @param {Number} size.width
+   * @param {Number} size.height
+   * @returns {Object}
+   * @example
+   * // get node size
+   * var size = node.size();
+   * var x = size.x;
+   * var y = size.y;
+   *
+   * // set size
+   * node.size({
      *   width: 100,
      *   height: 200
      * });
-     */
+   */
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'size');
 
   Konva.Factory.backCompat(Konva.Node, {
@@ -4848,14 +4849,14 @@
 (function() {
   'use strict';
   /**
-    * Grayscale Filter
-    * @function
-    * @memberof Konva.Filters
-    * @param {Object} imageData
-    * @example
-    * node.cache();
-    * node.filters([Konva.Filters.Grayscale]);
-    */
+   * Grayscale Filter
+   * @function
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Grayscale]);
+   */
   Konva.Filters.Grayscale = function(imageData) {
     var data = imageData.data, len = data.length, i, brightness;
 
@@ -4874,15 +4875,15 @@
 (function() {
   'use strict';
   /**
-     * Brighten Filter.
-     * @function
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Brighten]);
-     * node.brightness(0.8);
-     */
+   * Brighten Filter.
+   * @function
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Brighten]);
+   * node.brightness(0.8);
+   */
   Konva.Filters.Brighten = function(imageData) {
     var brightness = this.brightness() * 255,
       data = imageData.data,
@@ -4907,27 +4908,27 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set filter brightness.  The brightness is a number between -1 and 1.&nbsp; Positive values
-    *  brighten the pixels and negative values darken them. Use with {@link Konva.Filters.Brighten} filter.
-    * @name brightness
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} brightness value between -1 and 1
-    * @returns {Number}
-    */
+   * get/set filter brightness.  The brightness is a number between -1 and 1.&nbsp; Positive values
+   *  brighten the pixels and negative values darken them. Use with {@link Konva.Filters.Brighten} filter.
+   * @name brightness
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} brightness value between -1 and 1
+   * @returns {Number}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-    * Invert Filter
-    * @function
-    * @memberof Konva.Filters
-    * @param {Object} imageData
-    * @example
-    * node.cache();
-    * node.filters([Konva.Filters.Invert]);
-    */
+   * Invert Filter
+   * @function
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Invert]);
+   */
   Konva.Filters.Invert = function(imageData) {
     var data = imageData.data, len = data.length, i;
 
@@ -5608,12 +5609,12 @@
       stackIn = stackStart;
       stackOut = stackEnd;
       for (x = 0; x < width; x++) {
-        pixels[yi + 3] = pa = a_sum * mul_sum >> shg_sum;
+        pixels[yi + 3] = pa = (a_sum * mul_sum) >> shg_sum;
         if (pa !== 0) {
           pa = 255 / pa;
-          pixels[yi] = (r_sum * mul_sum >> shg_sum) * pa;
-          pixels[yi + 1] = (g_sum * mul_sum >> shg_sum) * pa;
-          pixels[yi + 2] = (b_sum * mul_sum >> shg_sum) * pa;
+          pixels[yi] = ((r_sum * mul_sum) >> shg_sum) * pa;
+          pixels[yi + 1] = ((g_sum * mul_sum) >> shg_sum) * pa;
+          pixels[yi + 2] = ((b_sum * mul_sum) >> shg_sum) * pa;
         } else {
           pixels[yi] = pixels[yi + 1] = pixels[yi + 2] = 0;
         }
@@ -5628,7 +5629,7 @@
         b_out_sum -= stackIn.b;
         a_out_sum -= stackIn.a;
 
-        p = yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1) << 2;
+        p = (yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1)) << 2;
 
         r_in_sum += stackIn.r = pixels[p];
         g_in_sum += stackIn.g = pixels[p + 1];
@@ -5686,7 +5687,7 @@
       yp = width;
 
       for (i = 1; i <= radius; i++) {
-        yi = yp + x << 2;
+        yi = (yp + x) << 2;
 
         r_sum += (stack.r = pr = pixels[yi]) * (rbs = radiusPlus1 - i);
         g_sum += (stack.g = pg = pixels[yi + 1]) * rbs;
@@ -5710,12 +5711,12 @@
       stackOut = stackEnd;
       for (y = 0; y < height; y++) {
         p = yi << 2;
-        pixels[p + 3] = pa = a_sum * mul_sum >> shg_sum;
+        pixels[p + 3] = pa = (a_sum * mul_sum) >> shg_sum;
         if (pa > 0) {
           pa = 255 / pa;
-          pixels[p] = (r_sum * mul_sum >> shg_sum) * pa;
-          pixels[p + 1] = (g_sum * mul_sum >> shg_sum) * pa;
-          pixels[p + 2] = (b_sum * mul_sum >> shg_sum) * pa;
+          pixels[p] = ((r_sum * mul_sum) >> shg_sum) * pa;
+          pixels[p + 1] = ((g_sum * mul_sum) >> shg_sum) * pa;
+          pixels[p + 2] = ((b_sum * mul_sum) >> shg_sum) * pa;
         } else {
           pixels[p] = pixels[p + 1] = pixels[p + 2] = 0;
         }
@@ -5730,8 +5731,10 @@
         b_out_sum -= stackIn.b;
         a_out_sum -= stackIn.a;
 
-        p = x +
-          ((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) * width <<
+        p =
+          (x +
+            ((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) *
+            width) <<
           2;
 
         r_sum += r_in_sum += stackIn.r = pixels[p];
@@ -5759,16 +5762,16 @@
   }
 
   /**
-     * Blur Filter
-     * @function
-     * @name Blur
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Blur]);
-     * node.blurRadius(10);
-     */
+   * Blur Filter
+   * @function
+   * @name Blur
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Blur]);
+   * node.blurRadius(10);
+   */
   Konva.Filters.Blur = function Blur(imageData) {
     var radius = Math.round(this.blurRadius());
 
@@ -5786,13 +5789,13 @@
   );
 
   /**
-    * get/set blur radius. Use with {@link Konva.Filters.Blur} filter
-    * @name blurRadius
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} radius
-    * @returns {Integer}
-    */
+   * get/set blur radius. Use with {@link Konva.Filters.Blur} filter
+   * @name blurRadius
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} radius
+   * @returns {Integer}
+   */
 })();
 
 /*eslint-disable  max-depth */
@@ -5813,8 +5816,8 @@
   function rgbDistance(p1, p2) {
     return Math.sqrt(
       Math.pow(p1[0] - p2[0], 2) +
-        Math.pow(p1[1] - p2[1], 2) +
-        Math.pow(p1[2] - p2[2], 2)
+      Math.pow(p1[1] - p2[1], 2) +
+      Math.pow(p1[2] - p2[2], 2)
     );
   }
 
@@ -5975,16 +5978,16 @@
   }
 
   /**
-	 * Mask Filter
-	 * @function
-	 * @name Mask
-	 * @memberof Konva.Filters
-	 * @param {Object} imageData
-	 * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Mask]);
-     * node.threshold(200);
-	 */
+   * Mask Filter
+   * @function
+   * @name Mask
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Mask]);
+   * node.threshold(200);
+   */
   Konva.Filters.Mask = function(imageData) {
     // Detect pixels close to the background color
     var threshold = this.threshold(),
@@ -6020,18 +6023,18 @@
 (function() {
   'use strict';
   /**
-     * RGB Filter
-     * @function
-     * @name RGB
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @author ippo615
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.RGB]);
-     * node.blue(120);
-     * node.green(200);
-     */
+   * RGB Filter
+   * @function
+   * @name RGB
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.RGB]);
+   * node.blue(120);
+   * node.green(200);
+   */
   Konva.Filters.RGB = function(imageData) {
     var data = imageData.data,
       nPixels = data.length,
@@ -6042,8 +6045,8 @@
       brightness;
 
     for (i = 0; i < nPixels; i += 4) {
-      brightness = (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) /
-        255;
+      brightness =
+        (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) / 255;
       data[i] = brightness * red; // r
       data[i + 1] = brightness * green; // g
       data[i + 2] = brightness * blue; // b
@@ -6062,13 +6065,13 @@
     }
   });
   /**
-    * get/set filter red value. Use with {@link Konva.Filters.RGB} filter.
-    * @name red
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} red value between 0 and 255
-    * @returns {Integer}
-    */
+   * get/set filter red value. Use with {@link Konva.Filters.RGB} filter.
+   * @name red
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} red value between 0 and 255
+   * @returns {Integer}
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'green', 0, function(val) {
     this._filterUpToDate = false;
@@ -6081,13 +6084,13 @@
     }
   });
   /**
-    * get/set filter green value. Use with {@link Konva.Filters.RGB} filter.
-    * @name green
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} green value between 0 and 255
-    * @returns {Integer}
-    */
+   * get/set filter green value. Use with {@link Konva.Filters.RGB} filter.
+   * @name green
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} green value between 0 and 255
+   * @returns {Integer}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6097,31 +6100,31 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set filter blue value. Use with {@link Konva.Filters.RGB} filter.
-    * @name blue
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} blue value between 0 and 255
-    * @returns {Integer}
-    */
+   * get/set filter blue value. Use with {@link Konva.Filters.RGB} filter.
+   * @name blue
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} blue value between 0 and 255
+   * @returns {Integer}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-     * RGBA Filter
-     * @function
-     * @name RGBA
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @author codefo
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.RGBA]);
-     * node.blue(120);
-     * node.green(200);
-     * node.alpha(0.3);
-     */
+   * RGBA Filter
+   * @function
+   * @name RGBA
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author codefo
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.RGBA]);
+   * node.blue(120);
+   * node.green(200);
+   * node.alpha(0.3);
+   */
   Konva.Filters.RGBA = function(imageData) {
     var data = imageData.data,
       nPixels = data.length,
@@ -6152,13 +6155,13 @@
     }
   });
   /**
-    * get/set filter red value. Use with {@link Konva.Filters.RGBA} filter.
-    * @name red
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} red value between 0 and 255
-    * @returns {Integer}
-    */
+   * get/set filter red value. Use with {@link Konva.Filters.RGBA} filter.
+   * @name red
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} red value between 0 and 255
+   * @returns {Integer}
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'green', 0, function(val) {
     this._filterUpToDate = false;
@@ -6171,13 +6174,13 @@
     }
   });
   /**
-    * get/set filter green value. Use with {@link Konva.Filters.RGBA} filter.
-    * @name green
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} green value between 0 and 255
-    * @returns {Integer}
-    */
+   * get/set filter green value. Use with {@link Konva.Filters.RGBA} filter.
+   * @name green
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} green value between 0 and 255
+   * @returns {Integer}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6187,13 +6190,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set filter blue value. Use with {@link Konva.Filters.RGBA} filter.
-    * @name blue
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} blue value between 0 and 255
-    * @returns {Integer}
-    */
+   * get/set filter blue value. Use with {@link Konva.Filters.RGBA} filter.
+   * @name blue
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} blue value between 0 and 255
+   * @returns {Integer}
+   */
 
   Konva.Factory.addGetterSetter(Konva.Node, 'alpha', 1, function(val) {
     this._filterUpToDate = false;
@@ -6206,28 +6209,28 @@
     }
   });
   /**
-     * get/set filter alpha value. Use with {@link Konva.Filters.RGBA} filter.
-     * @name alpha
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Float} alpha value between 0 and 1
-     * @returns {Float}
-     */
+   * get/set filter alpha value. Use with {@link Konva.Filters.RGBA} filter.
+   * @name alpha
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Float} alpha value between 0 and 1
+   * @returns {Float}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-    * HSV Filter. Adjusts the hue, saturation and value
-    * @function
-    * @name HSV
-    * @memberof Konva.Filters
-    * @param {Object} imageData
-    * @author ippo615
-    * @example
-    * image.filters([Konva.Filters.HSV]);
-    * image.value(200);
-    */
+   * HSV Filter. Adjusts the hue, saturation and value
+   * @function
+   * @name HSV
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * image.filters([Konva.Filters.HSV]);
+   * image.value(200);
+   */
 
   Konva.Filters.HSV = function(imageData) {
     var data = imageData.data,
@@ -6285,13 +6288,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set hsv hue in degrees. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
-    * @name hue
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} hue value between 0 and 359
-    * @returns {Number}
-    */
+   * get/set hsv hue in degrees. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
+   * @name hue
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} hue value between 0 and 359
+   * @returns {Number}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6301,13 +6304,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set hsv saturation. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
-    * @name saturation
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} saturation 0 is no change, -1.0 halves the saturation, 1.0 doubles, etc..
-    * @returns {Number}
-    */
+   * get/set hsv saturation. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
+   * @name saturation
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} saturation 0 is no change, -1.0 halves the saturation, 1.0 doubles, etc..
+   * @returns {Number}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6317,13 +6320,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set hsv value. Use with {@link Konva.Filters.HSV} filter.
-    * @name value
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} value 0 is no change, -1.0 halves the value, 1.0 doubles, etc..
-    * @returns {Number}
-    */
+   * get/set hsv value. Use with {@link Konva.Filters.HSV} filter.
+   * @name value
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} value 0 is no change, -1.0 halves the value, 1.0 doubles, etc..
+   * @returns {Number}
+   */
 })();
 
 (function() {
@@ -6336,13 +6339,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set hsv hue in degrees. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
-    * @name hue
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} hue value between 0 and 359
-    * @returns {Number}
-    */
+   * get/set hsv hue in degrees. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
+   * @name hue
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} hue value between 0 and 359
+   * @returns {Number}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6352,13 +6355,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set hsv saturation. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
-    * @name saturation
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} saturation 0 is no change, -1.0 halves the saturation, 1.0 doubles, etc..
-    * @returns {Number}
-    */
+   * get/set hsv saturation. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.
+   * @name saturation
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} saturation 0 is no change, -1.0 halves the saturation, 1.0 doubles, etc..
+   * @returns {Number}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6368,24 +6371,24 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set hsl luminance. Use with {@link Konva.Filters.HSL} filter.
-    * @name value
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} value 0 is no change, -1.0 halves the value, 1.0 doubles, etc..
-    * @returns {Number}
-    */
+   * get/set hsl luminance. Use with {@link Konva.Filters.HSL} filter.
+   * @name value
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} value 0 is no change, -1.0 halves the value, 1.0 doubles, etc..
+   * @returns {Number}
+   */
 
   /**
-    * HSL Filter. Adjusts the hue, saturation and luminance (or lightness)
-    * @function
-    * @memberof Konva.Filters
-    * @param {Object} imageData
-    * @author ippo615
-    * @example
-    * image.filters([Konva.Filters.HSL]);
-    * image.luminance(200);
-    */
+   * HSL Filter. Adjusts the hue, saturation and luminance (or lightness)
+   * @function
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * image.filters([Konva.Filters.HSL]);
+   * image.luminance(200);
+   */
 
   Konva.Filters.HSL = function(imageData) {
     var data = imageData.data,
@@ -6440,21 +6443,21 @@
 (function() {
   'use strict';
   /**
-     * Emboss Filter.
-     * Pixastic Lib - Emboss filter - v0.1.0
-     * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
-     * License: [http://www.pixastic.com/lib/license.txt]
-     * @function
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Emboss]);
-     * node.embossStrength(0.8);
-     * node.embossWhiteLevel(0.3);
-     * node.embossDirection('right');
-     * node.embossBlend(true);
-     */
+   * Emboss Filter.
+   * Pixastic Lib - Emboss filter - v0.1.0
+   * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
+   * License: [http://www.pixastic.com/lib/license.txt]
+   * @function
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Emboss]);
+   * node.embossStrength(0.8);
+   * node.embossWhiteLevel(0.3);
+   * node.embossDirection('right');
+   * node.embossBlend(true);
+   */
   Konva.Filters.Emboss = function(imageData) {
     // pixastic strength is between 0 and 10.  I want it between 0 and 1
     // pixastic greyLevel is between 0 and 255.  I want it between 0 and 1.  Also,
@@ -6585,13 +6588,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set emboss strength. Use with {@link Konva.Filters.Emboss} filter.
-    * @name embossStrength
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} level between 0 and 1.  Default is 0.5
-    * @returns {Number}
-    */
+   * get/set emboss strength. Use with {@link Konva.Filters.Emboss} filter.
+   * @name embossStrength
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} level between 0 and 1.  Default is 0.5
+   * @returns {Number}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6601,13 +6604,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set emboss white level. Use with {@link Konva.Filters.Emboss} filter.
-    * @name embossWhiteLevel
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} embossWhiteLevel between 0 and 1.  Default is 0.5
-    * @returns {Number}
-    */
+   * get/set emboss white level. Use with {@link Konva.Filters.Emboss} filter.
+   * @name embossWhiteLevel
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} embossWhiteLevel between 0 and 1.  Default is 0.5
+   * @returns {Number}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6617,14 +6620,14 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set emboss direction. Use with {@link Konva.Filters.Emboss} filter.
-    * @name embossDirection
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {String} embossDirection can be top-left, top, top-right, right, bottom-right, bottom, bottom-left or left
-    *   The default is top-left
-    * @returns {String}
-    */
+   * get/set emboss direction. Use with {@link Konva.Filters.Emboss} filter.
+   * @name embossDirection
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {String} embossDirection can be top-left, top, top-right, right, bottom-right, bottom, bottom-left or left
+   *   The default is top-left
+   * @returns {String}
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Node,
@@ -6634,13 +6637,13 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set emboss blend. Use with {@link Konva.Filters.Emboss} filter.
-    * @name embossBlend
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Boolean} embossBlend
-    * @returns {Boolean}
-    */
+   * get/set emboss blend. Use with {@link Konva.Filters.Emboss} filter.
+   * @name embossBlend
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Boolean} embossBlend
+   * @returns {Boolean}
+   */
 })();
 
 (function() {
@@ -6665,19 +6668,19 @@
   }
 
   /**
-    * Enhance Filter. Adjusts the colors so that they span the widest
-    *  possible range (ie 0-255). Performs w*h pixel reads and w*h pixel
-    *  writes.
-    * @function
-    * @name Enhance
-    * @memberof Konva.Filters
-    * @param {Object} imageData
-    * @author ippo615
-    * @example
-    * node.cache();
-    * node.filters([Konva.Filters.Enhance]);
-    * node.enhance(0.4);
-    */
+   * Enhance Filter. Adjusts the colors so that they span the widest
+   *  possible range (ie 0-255). Performs w*h pixel reads and w*h pixel
+   *  writes.
+   * @function
+   * @name Enhance
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Enhance]);
+   * node.enhance(0.4);
+   */
   Konva.Filters.Enhance = function(imageData) {
     var data = imageData.data,
       nSubPixels = data.length,
@@ -6786,31 +6789,31 @@
   );
 
   /**
-    * get/set enhance. Use with {@link Konva.Filters.Enhance} filter.
-    * @name enhance
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Float} amount
-    * @returns {Float}
-    */
+   * get/set enhance. Use with {@link Konva.Filters.Enhance} filter.
+   * @name enhance
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Float} amount
+   * @returns {Float}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-     * Posterize Filter. Adjusts the channels so that there are no more
-     *  than n different values for that channel. This is also applied
-     *  to the alpha channel.
-     * @function
-     * @name Posterize
-     * @author ippo615
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Posterize]);
-     * node.levels(0.8); // between 0 and 1
-     */
+   * Posterize Filter. Adjusts the channels so that there are no more
+   *  than n different values for that channel. This is also applied
+   *  to the alpha channel.
+   * @function
+   * @name Posterize
+   * @author ippo615
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Posterize]);
+   * node.levels(0.8); // between 0 and 1
+   */
 
   Konva.Filters.Posterize = function(imageData) {
     // level must be between 1 and 255
@@ -6834,29 +6837,29 @@
   );
 
   /**
-    * get/set levels.  Must be a number between 0 and 1.  Use with {@link Konva.Filters.Posterize} filter.
-    * @name levels
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} level between 0 and 1
-    * @returns {Number}
-    */
+   * get/set levels.  Must be a number between 0 and 1.  Use with {@link Konva.Filters.Posterize} filter.
+   * @name levels
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} level between 0 and 1
+   * @returns {Number}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-     * Noise Filter. Randomly adds or substracts to the color channels
-     * @function
-     * @name Noise
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @author ippo615
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Noise]);
-     * node.noise(0.8);
-     */
+   * Noise Filter. Randomly adds or substracts to the color channels
+   * @function
+   * @name Noise
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Noise]);
+   * node.noise(0.8);
+   */
   Konva.Filters.Noise = function(imageData) {
     var amount = this.noise() * 255,
       data = imageData.data,
@@ -6879,31 +6882,31 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set noise amount.  Must be a value between 0 and 1. Use with {@link Konva.Filters.Noise} filter.
-    * @name noise
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} noise
-    * @returns {Number}
-    */
+   * get/set noise amount.  Must be a value between 0 and 1. Use with {@link Konva.Filters.Noise} filter.
+   * @name noise
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} noise
+   * @returns {Number}
+   */
 })();
 
 /*eslint-disable max-depth */
 (function() {
   'use strict';
   /**
-     * Pixelate Filter. Averages groups of pixels and redraws
-     *  them as larger pixels
-     * @function
-     * @name Pixelate
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @author ippo615
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Pixelate]);
-     * node.pixelSize(10);
-     */
+   * Pixelate Filter. Averages groups of pixels and redraws
+   *  them as larger pixels
+   * @function
+   * @name Pixelate
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Pixelate]);
+   * node.pixelSize(10);
+   */
 
   Konva.Filters.Pixelate = function(imageData) {
     var pixelSize = Math.ceil(this.pixelSize()),
@@ -6999,31 +7002,31 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set pixel size. Use with {@link Konva.Filters.Pixelate} filter.
-    * @name pixelSize
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} pixelSize
-    * @returns {Integer}
-    */
+   * get/set pixel size. Use with {@link Konva.Filters.Pixelate} filter.
+   * @name pixelSize
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} pixelSize
+   * @returns {Integer}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-     * Threshold Filter. Pushes any value above the mid point to
-     *  the max and any value below the mid point to the min.
-     *  This affects the alpha channel.
-     * @function
-     * @name Threshold
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @author ippo615
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Threshold]);
-     * node.threshold(0.1);
-     */
+   * Threshold Filter. Pushes any value above the mid point to
+   *  the max and any value below the mid point to the min.
+   *  This affects the alpha channel.
+   * @function
+   * @name Threshold
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author ippo615
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Threshold]);
+   * node.threshold(0.1);
+   */
 
   Konva.Filters.Threshold = function(imageData) {
     var level = this.threshold() * 255,
@@ -7044,31 +7047,31 @@
     Konva.Factory.afterSetFilter
   );
   /**
-    * get/set threshold.  Must be a value between 0 and 1. Use with {@link Konva.Filters.Threshold} or {@link Konva.Filters.Mask} filter.
-    * @name threshold
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Number} threshold
-    * @returns {Number}
-    */
+   * get/set threshold.  Must be a value between 0 and 1. Use with {@link Konva.Filters.Threshold} or {@link Konva.Filters.Mask} filter.
+   * @name threshold
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Number} threshold
+   * @returns {Number}
+   */
 })();
 
 (function() {
   'use strict';
   /**
-     * Sepia Filter
-     * Based on: Pixastic Lib - Sepia filter - v0.1.0
-     * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
-     * @function
-     * @name Sepia
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @author Jacob Seidelin <jseidelin@nihilogic.dk>
-     * @license MPL v1.1 [http://www.pixastic.com/lib/license.txt]
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Sepia]);
-     */
+   * Sepia Filter
+   * Based on: Pixastic Lib - Sepia filter - v0.1.0
+   * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
+   * @function
+   * @name Sepia
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @author Jacob Seidelin <jseidelin@nihilogic.dk>
+   * @license MPL v1.1 [http://www.pixastic.com/lib/license.txt]
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Sepia]);
+   */
   Konva.Filters.Sepia = function(imageData) {
     var data = imageData.data,
       w = imageData.width,
@@ -7110,18 +7113,18 @@
 (function() {
   'use strict';
   /**
-     * Solarize Filter
-     * Pixastic Lib - Solarize filter - v0.1.0
-     * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
-     * License: [http://www.pixastic.com/lib/license.txt]
-     * @function
-     * @name Solarize
-     * @memberof Konva.Filters
-     * @param {Object} imageData
-     * @example
-     * node.cache();
-     * node.filters([Konva.Filters.Solarize]);
-     */
+   * Solarize Filter
+   * Pixastic Lib - Solarize filter - v0.1.0
+   * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
+   * License: [http://www.pixastic.com/lib/license.txt]
+   * @function
+   * @name Solarize
+   * @memberof Konva.Filters
+   * @param {Object} imageData
+   * @example
+   * node.cache();
+   * node.filters([Konva.Filters.Solarize]);
+   */
   Konva.Filters.Solarize = function(imageData) {
     var data = imageData.data,
       w = imageData.width,
@@ -7411,13 +7414,13 @@
   };
 
   /**
-    * get/set kaleidoscope power. Use with {@link Konva.Filters.Kaleidoscope} filter.
-    * @name kaleidoscopePower
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} power of kaleidoscope
-    * @returns {Integer}
-    */
+   * get/set kaleidoscope power. Use with {@link Konva.Filters.Kaleidoscope} filter.
+   * @name kaleidoscopePower
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} power of kaleidoscope
+   * @returns {Integer}
+   */
   Konva.Factory.addGetterSetter(
     Konva.Node,
     'kaleidoscopePower',
@@ -7427,13 +7430,13 @@
   );
 
   /**
-    * get/set kaleidoscope angle. Use with {@link Konva.Filters.Kaleidoscope} filter.
-    * @name kaleidoscopeAngle
-    * @method
-    * @memberof Konva.Node.prototype
-    * @param {Integer} degrees
-    * @returns {Integer}
-    */
+   * get/set kaleidoscope angle. Use with {@link Konva.Filters.Kaleidoscope} filter.
+   * @name kaleidoscopeAngle
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Integer} degrees
+   * @returns {Integer}
+   */
   Konva.Factory.addGetterSetter(
     Konva.Node,
     'kaleidoscopeAngle',
@@ -7446,40 +7449,40 @@
 (function() {
   'use strict';
   /**
-     * Container constructor.&nbsp; Containers are used to contain nodes or other containers
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Node
-     * @abstract
-     * @param {Object} config
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * * @param {Object} [config.clip] set clip
-     * @param {Number} [config.clipX] set clip x
-     * @param {Number} [config.clipY] set clip y
-     * @param {Number} [config.clipWidth] set clip width
-     * @param {Number} [config.clipHeight] set clip height
-     * @param {Function} [config.clipFunc] set clip func
+   * Container constructor.&nbsp; Containers are used to contain nodes or other containers
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Node
+   * @abstract
+   * @param {Object} config
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * * @param {Object} [config.clip] set clip
+   * @param {Number} [config.clipX] set clip x
+   * @param {Number} [config.clipY] set clip y
+   * @param {Number} [config.clipWidth] set clip width
+   * @param {Number} [config.clipHeight] set clip height
+   * @param {Function} [config.clipFunc] set clip func
 
-     */
+   */
   Konva.Container = function(config) {
     this.__init(config);
   };
@@ -7490,20 +7493,20 @@
       Konva.Node.call(this, config);
     },
     /**
-         * returns a {@link Konva.Collection} of direct descendant nodes
-         * @method
-         * @memberof Konva.Container.prototype
-         * @param {Function} [filterFunc] filter function
-         * @returns {Konva.Collection}
-         * @example
-         * // get all children
-         * var children = layer.getChildren();
-         *
-         * // get only circles
-         * var circles = layer.getChildren(function(node){
+     * returns a {@link Konva.Collection} of direct descendant nodes
+     * @method
+     * @memberof Konva.Container.prototype
+     * @param {Function} [filterFunc] filter function
+     * @returns {Konva.Collection}
+     * @example
+     * // get all children
+     * var children = layer.getChildren();
+     *
+     * // get only circles
+     * var circles = layer.getChildren(function(node){
          *    return node.getClassName() === 'Circle';
          * });
-         */
+     */
     getChildren: function(filterFunc) {
       if (!filterFunc) {
         return this.children;
@@ -7518,19 +7521,19 @@
       return results;
     },
     /**
-         * determine if node has children
-         * @method
-         * @memberof Konva.Container.prototype
-         * @returns {Boolean}
-         */
+     * determine if node has children
+     * @method
+     * @memberof Konva.Container.prototype
+     * @returns {Boolean}
+     */
     hasChildren: function() {
       return this.getChildren().length > 0;
     },
     /**
-         * remove all children
-         * @method
-         * @memberof Konva.Container.prototype
-         */
+     * remove all children
+     * @method
+     * @memberof Konva.Container.prototype
+     */
     removeChildren: function() {
       var children = Konva.Collection.toCollection(this.children);
       var child;
@@ -7546,10 +7549,10 @@
       return this;
     },
     /**
-         * destroy all children
-         * @method
-         * @memberof Konva.Container.prototype
-         */
+     * destroy all children
+     * @method
+     * @memberof Konva.Container.prototype
+     */
     destroyChildren: function() {
       var children = Konva.Collection.toCollection(this.children);
       var child;
@@ -7565,14 +7568,14 @@
       return this;
     },
     /**
-         * Add node or nodes to container.
-         * @method
-         * @memberof Konva.Container.prototype
-         * @param {...Konva.Node} child
-         * @returns {Container}
-         * @example
-         * layer.add(shape1, shape2, shape3);
-         */
+     * Add node or nodes to container.
+     * @method
+     * @memberof Konva.Container.prototype
+     * @param {...Konva.Node} child
+     * @returns {Container}
+     * @example
+     * layer.add(shape1, shape2, shape3);
+     */
     add: function(child) {
       if (arguments.length > 1) {
         for (var i = 0; i < arguments.length; i++) {
@@ -7611,29 +7614,29 @@
       return this;
     },
     /**
-         * return a {@link Konva.Collection} of nodes that match the selector.  Use '#' for id selections
-         * and '.' for name selections.  You can also select by type or class name. Pass multiple selectors
-         * separated by a space.
-         * @method
-         * @memberof Konva.Container.prototype
-         * @param {String} selector
-         * @returns {Collection}
-         * @example
-         * // select node with id foo
-         * var node = stage.find('#foo');
-         *
-         * // select nodes with name bar inside layer
-         * var nodes = layer.find('.bar');
-         *
-         * // select all groups inside layer
-         * var nodes = layer.find('Group');
-         *
-         * // select all rectangles inside layer
-         * var nodes = layer.find('Rect');
-         *
-         * // select node with an id of foo or a name of bar inside layer
-         * var nodes = layer.find('#foo, .bar');
-         */
+     * return a {@link Konva.Collection} of nodes that match the selector.  Use '#' for id selections
+     * and '.' for name selections.  You can also select by type or class name. Pass multiple selectors
+     * separated by a space.
+     * @method
+     * @memberof Konva.Container.prototype
+     * @param {String} selector
+     * @returns {Collection}
+     * @example
+     * // select node with id foo
+     * var node = stage.find('#foo');
+     *
+     * // select nodes with name bar inside layer
+     * var nodes = layer.find('.bar');
+     *
+     * // select all groups inside layer
+     * var nodes = layer.find('Group');
+     *
+     * // select all rectangles inside layer
+     * var nodes = layer.find('Rect');
+     *
+     * // select node with an id of foo or a name of bar inside layer
+     * var nodes = layer.find('#foo, .bar');
+     */
     find: function(selector) {
       var retArr = [],
         selectorArr = selector.replace(/ /g, '').split(','),
@@ -7651,8 +7654,8 @@
         if (!Konva.Util.isValidSelector(sel)) {
           Konva.Util.warn(
             'Selector "' +
-              sel +
-              '" is invalid. Allowed selectors examples are "#foo", ".bar" or "Group".'
+            sel +
+            '" is invalid. Allowed selectors examples are "#foo", ".bar" or "Group".'
           );
           Konva.Util.warn(
             'If you have a custom shape with such className, please change it to start with upper letter like "Triangle".'
@@ -7682,18 +7685,18 @@
       return Konva.Collection.toCollection(retArr);
     },
     /**
-         * return a first node from `find` method
-         * @method
-         * @memberof Konva.Container.prototype
-         * @param {String} selector
-         * @returns {Konva.Node}
-         * @example
-         * // select node with id foo
-         * var node = stage.findOne('#foo');
-         *
-         * // select node with name bar inside layer
-         * var nodes = layer.findOne('.bar');
-         */
+     * return a first node from `find` method
+     * @method
+     * @memberof Konva.Container.prototype
+     * @param {String} selector
+     * @returns {Konva.Node}
+     * @example
+     * // select node with id foo
+     * var node = stage.findOne('#foo');
+     *
+     * // select node with name bar inside layer
+     * var nodes = layer.findOne('.bar');
+     */
     findOne: function(selector) {
       return this.find(selector)[0];
     },
@@ -7746,12 +7749,12 @@
       return retArr;
     },
     /**
-         * determine if node is an ancestor
-         * of descendant
-         * @method
-         * @memberof Konva.Container.prototype
-         * @param {Konva.Node} node
-         */
+     * determine if node is an ancestor
+     * of descendant
+     * @method
+     * @memberof Konva.Container.prototype
+     * @param {Konva.Node} node
+     */
     isAncestorOf: function(node) {
       var parent = node.getParent();
       while (parent) {
@@ -7773,17 +7776,17 @@
       return node;
     },
     /**
-         * get all shapes that intersect a point.  Note: because this method must clear a temporary
-         * canvas and redraw every shape inside the container, it should only be used for special sitations
-         * because it performs very poorly.  Please use the {@link Konva.Stage#getIntersection} method if at all possible
-         * because it performs much better
-         * @method
-         * @memberof Konva.Container.prototype
-         * @param {Object} pos
-         * @param {Number} pos.x
-         * @param {Number} pos.y
-         * @returns {Array} array of shapes
-         */
+     * get all shapes that intersect a point.  Note: because this method must clear a temporary
+     * canvas and redraw every shape inside the container, it should only be used for special sitations
+     * because it performs very poorly.  Please use the {@link Konva.Stage#getIntersection} method if at all possible
+     * because it performs much better
+     * @method
+     * @memberof Konva.Container.prototype
+     * @param {Object} pos
+     * @param {Number} pos.x
+     * @param {Number} pos.y
+     * @returns {Array} array of shapes
+     */
     getAllIntersections: function(pos) {
       var arr = [];
 
@@ -7880,14 +7883,17 @@
     shouldDrawHit: function(canvas) {
       var layer = this.getLayer();
       var dd = Konva.DD;
-      var layerUnderDrag = dd &&
+      var layerUnderDrag =
+        dd &&
         Konva.isDragging() &&
         Konva.DD.anim.getLayers().indexOf(layer) !== -1;
-      return (canvas && canvas.isCache) ||
+      return (
+        (canvas && canvas.isCache) ||
         (layer &&
           layer.hitGraphEnabled() &&
           this.isVisible() &&
-          !layerUnderDrag);
+          !layerUnderDrag)
+      );
     },
     getClientRect: function(skipTransform) {
       var minX, minY, maxX, maxY;
@@ -7898,6 +7904,10 @@
         height: 0
       };
       this.children.each(function(child) {
+        // skip invisible children
+        if (!child.isVisible()) {
+          return;
+        }
         var rect = child.getClientRect();
 
         // skip invisible children (like empty groups)
@@ -7948,110 +7958,110 @@
     'height'
   ]);
   /**
-     * get/set clip
-     * @method
-     * @name clip
-     * @memberof Konva.Container.prototype
-     * @param {Object} clip
-     * @param {Number} clip.x
-     * @param {Number} clip.y
-     * @param {Number} clip.width
-     * @param {Number} clip.height
-     * @returns {Object}
-     * @example
-     * // get clip
-     * var clip = container.clip();
-     *
-     * // set clip
-     * container.setClip({
+   * get/set clip
+   * @method
+   * @name clip
+   * @memberof Konva.Container.prototype
+   * @param {Object} clip
+   * @param {Number} clip.x
+   * @param {Number} clip.y
+   * @param {Number} clip.width
+   * @param {Number} clip.height
+   * @returns {Object}
+   * @example
+   * // get clip
+   * var clip = container.clip();
+   *
+   * // set clip
+   * container.setClip({
      *   x: 20,
      *   y: 20,
      *   width: 20,
      *   height: 20
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Container, 'clipX');
   /**
-     * get/set clip x
-     * @name clipX
-     * @method
-     * @memberof Konva.Container.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get clip x
-     * var clipX = container.clipX();
-     *
-     * // set clip x
-     * container.clipX(10);
-     */
+   * get/set clip x
+   * @name clipX
+   * @method
+   * @memberof Konva.Container.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get clip x
+   * var clipX = container.clipX();
+   *
+   * // set clip x
+   * container.clipX(10);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Container, 'clipY');
   /**
-     * get/set clip y
-     * @name clipY
-     * @method
-     * @memberof Konva.Container.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get clip y
-     * var clipY = container.clipY();
-     *
-     * // set clip y
-     * container.clipY(10);
-     */
+   * get/set clip y
+   * @name clipY
+   * @method
+   * @memberof Konva.Container.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get clip y
+   * var clipY = container.clipY();
+   *
+   * // set clip y
+   * container.clipY(10);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Container, 'clipWidth');
   /**
-     * get/set clip width
-     * @name clipWidth
-     * @method
-     * @memberof Konva.Container.prototype
-     * @param {Number} width
-     * @returns {Number}
-     * @example
-     * // get clip width
-     * var clipWidth = container.clipWidth();
-     *
-     * // set clip width
-     * container.clipWidth(100);
-     */
+   * get/set clip width
+   * @name clipWidth
+   * @method
+   * @memberof Konva.Container.prototype
+   * @param {Number} width
+   * @returns {Number}
+   * @example
+   * // get clip width
+   * var clipWidth = container.clipWidth();
+   *
+   * // set clip width
+   * container.clipWidth(100);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Container, 'clipHeight');
   /**
-     * get/set clip height
-     * @name clipHeight
-     * @method
-     * @memberof Konva.Container.prototype
-     * @param {Number} height
-     * @returns {Number}
-     * @example
-     * // get clip height
-     * var clipHeight = container.clipHeight();
-     *
-     * // set clip height
-     * container.clipHeight(100);
-     */
+   * get/set clip height
+   * @name clipHeight
+   * @method
+   * @memberof Konva.Container.prototype
+   * @param {Number} height
+   * @returns {Number}
+   * @example
+   * // get clip height
+   * var clipHeight = container.clipHeight();
+   *
+   * // set clip height
+   * container.clipHeight(100);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Container, 'clipFunc');
   /**
-      * get/set clip function
-      * @name clipFunc
-      * @method
-      * @memberof Konva.Container.prototype
-      * @param {Function} function
-      * @returns {Function}
-      * @example
-      * // get clip function
-      * var clipFunction = container.clipFunc();
-      *
-      * // set clip height
-      * container.clipFunc(function(ctx) {
+   * get/set clip function
+   * @name clipFunc
+   * @method
+   * @memberof Konva.Container.prototype
+   * @param {Function} function
+   * @returns {Function}
+   * @example
+   * // get clip function
+   * var clipFunction = container.clipFunc();
+   *
+   * // set clip height
+   * container.clipFunc(function(ctx) {
       *   ctx.rect(0, 0, 100, 100);
       * });
-      */
+   */
 
   Konva.Collection.mapMethods(Konva.Container);
 })();
@@ -8083,85 +8093,85 @@
   }
 
   /**
-     * Shape constructor.  Shapes are primitive objects such as rectangles,
-     *  circles, text, lines, etc.
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Node
-     * @param {Object} config
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var customShape = new Konva.Shape({
+   * Shape constructor.  Shapes are primitive objects such as rectangles,
+   *  circles, text, lines, etc.
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Node
+   * @param {Object} config
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var customShape = new Konva.Shape({
          *   x: 5,
          *   y: 10,
          *   fill: 'red',
@@ -8175,7 +8185,7 @@
          *     context.fillStrokeShape(this);
          *   }
          *});
-     */
+   */
   Konva.Shape = function(config) {
     this.__init(config);
   };
@@ -8222,39 +8232,41 @@
       return [];
     },
     /**
-         * get canvas context tied to the layer
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @returns {Konva.Context}
-         */
+     * get canvas context tied to the layer
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @returns {Konva.Context}
+     */
     getContext: function() {
       return this.getLayer().getContext();
     },
     /**
-         * get canvas renderer tied to the layer.  Note that this returns a canvas renderer, not a canvas element
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @returns {Konva.Canvas}
-         */
+     * get canvas renderer tied to the layer.  Note that this returns a canvas renderer, not a canvas element
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @returns {Konva.Canvas}
+     */
     getCanvas: function() {
       return this.getLayer().getCanvas();
     },
     /**
-         * returns whether or not a shadow will be rendered
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @returns {Boolean}
-         */
+     * returns whether or not a shadow will be rendered
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @returns {Boolean}
+     */
     hasShadow: function() {
       return this._getCache(HAS_SHADOW, this._hasShadow);
     },
     _hasShadow: function() {
-      return this.getShadowEnabled() &&
+      return (
+        this.getShadowEnabled() &&
         (this.getShadowOpacity() !== 0 &&
           !!(this.getShadowColor() ||
             this.getShadowBlur() ||
             this.getShadowOffsetX() ||
-            this.getShadowOffsetY()));
+            this.getShadowOffsetY()))
+      );
     },
     getShadowRGBA: function() {
       return this._getCache(SHADOW_RGBA, this._getShadowRGBA);
@@ -8262,7 +8274,8 @@
     _getShadowRGBA: function() {
       if (this.hasShadow()) {
         var rgba = Konva.Util.colorToRGBA(this.shadowColor());
-        return 'rgba(' +
+        return (
+          'rgba(' +
           rgba.r +
           ',' +
           rgba.g +
@@ -8270,15 +8283,16 @@
           rgba.b +
           ',' +
           rgba.a * (this.getShadowOpacity() || 1) +
-          ')';
+          ')'
+        );
       }
     },
     /**
-         * returns whether or not the shape will be filled
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @returns {Boolean}
-         */
+     * returns whether or not the shape will be filled
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @returns {Boolean}
+     */
     hasFill: function() {
       return !!(this.getFill() ||
         this.getFillPatternImage() ||
@@ -8286,26 +8300,26 @@
         this.getFillRadialGradientColorStops());
     },
     /**
-         * returns whether or not the shape will be stroked
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @returns {Boolean}
-         */
+     * returns whether or not the shape will be stroked
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @returns {Boolean}
+     */
     hasStroke: function() {
       return this.strokeEnabled() && !!this.stroke();
     },
     /**
-         * determines if point is in the shape, regardless if other shapes are on top of it.  Note: because
-         *  this method clears a temporary canvas and then redraws the shape, it performs very poorly if executed many times
-         *  consecutively.  Please use the {@link Konva.Stage#getIntersection} method if at all possible
-         *  because it performs much better
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @param {Object} point
-         * @param {Number} point.x
-         * @param {Number} point.y
-         * @returns {Boolean}
-         */
+     * determines if point is in the shape, regardless if other shapes are on top of it.  Note: because
+     *  this method clears a temporary canvas and then redraws the shape, it performs very poorly if executed many times
+     *  consecutively.  Please use the {@link Konva.Stage#getIntersection} method if at all possible
+     *  because it performs much better
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @param {Object} point
+     * @param {Number} point.x
+     * @param {Number} point.y
+     * @returns {Boolean}
+     */
     intersects: function(point) {
       var stage = this.getStage(), bufferHitCanvas = stage.bufferHitCanvas, p;
 
@@ -8326,36 +8340,38 @@
       return this;
     },
     _useBufferCanvas: function(caching) {
-      return (!caching &&
-        (this.perfectDrawEnabled() &&
-          this.getAbsoluteOpacity() !== 1 &&
-          this.hasFill() &&
-          this.hasStroke() &&
-          this.getStage())) ||
+      return (
+        (!caching &&
+          (this.perfectDrawEnabled() &&
+            this.getAbsoluteOpacity() !== 1 &&
+            this.hasFill() &&
+            this.hasStroke() &&
+            this.getStage())) ||
         (this.perfectDrawEnabled() &&
           this.hasShadow() &&
           this.getAbsoluteOpacity() !== 1 &&
           this.hasFill() &&
           this.hasStroke() &&
-          this.getStage());
+          this.getStage())
+      );
     },
     /**
-         * return self rectangle (x, y, width, height) of shape.
-         * This method are not taken into account transformation and styles.
-         * @method
-         * @memberof Konva.Shape.prototype
-         * @returns {Object} rect with {x, y, width, height} properties
-         * @example
-         *
-         * rect.getSelfRect();  // return {x:0, y:0, width:rect.width(), height:rect.height()}
-         * circle.getSelfRect();  // return {x: - circle.width() / 2, y: - circle.height() / 2, width:circle.width(), height:circle.height()}
-         *
-         */
+     * return self rectangle (x, y, width, height) of shape.
+     * This method are not taken into account transformation and styles.
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @returns {Object} rect with {x, y, width, height} properties
+     * @example
+     *
+     * rect.getSelfRect();  // return {x:0, y:0, width:rect.width(), height:rect.height()}
+     * circle.getSelfRect();  // return {x: - circle.width() / 2, y: - circle.height() / 2, width:circle.width(), height:circle.height()}
+     *
+     */
     getSelfRect: function() {
       var size = this.getSize();
       return {
-        x: this._centroid ? Math.round((-size.width) / 2) : 0,
-        y: this._centroid ? Math.round((-size.height) / 2) : 0,
+        x: this._centroid ? Math.round(-size.width / 2) : 0,
+        y: this._centroid ? Math.round(-size.height / 2) : 0,
         width: size.width,
         height: size.height
       };
@@ -8389,11 +8405,11 @@
         width: width + roundingOffset,
         height: height + roundingOffset,
         x: -Math.round(strokeWidth / 2 + blurRadius) +
-          Math.min(shadowOffsetX, 0) +
-          fillRect.x,
+        Math.min(shadowOffsetX, 0) +
+        fillRect.x,
         y: -Math.round(strokeWidth / 2 + blurRadius) +
-          Math.min(shadowOffsetY, 0) +
-          fillRect.y
+        Math.min(shadowOffsetY, 0) +
+        fillRect.y
       };
       if (!skipTransform) {
         return this._transformedRect(rect);
@@ -8562,17 +8578,17 @@
       return this;
     },
     /**
-        * draw hit graph using the cached scene canvas
-        * @method
-        * @memberof Konva.Shape.prototype
-        * @param {Integer} alphaThreshold alpha channel threshold that determines whether or not
-        *  a pixel should be drawn onto the hit graph.  Must be a value between 0 and 255.
-        *  The default is 0
-        * @returns {Konva.Shape}
-        * @example
-        * shape.cache();
-        * shape.drawHitFromCache();
-        */
+     * draw hit graph using the cached scene canvas
+     * @method
+     * @memberof Konva.Shape.prototype
+     * @param {Integer} alphaThreshold alpha channel threshold that determines whether or not
+     *  a pixel should be drawn onto the hit graph.  Must be a value between 0 and 255.
+     *  The default is 0
+     * @returns {Konva.Shape}
+     * @example
+     * shape.cache();
+     * shape.drawHitFromCache();
+     */
     drawHitFromCache: function(alphaThreshold) {
       var threshold = alphaThreshold || 0,
         cachedCanvas = this._cache.canvas,
@@ -8625,28 +8641,28 @@
   Konva.Factory.addGetterSetter(Konva.Shape, 'stroke');
 
   /**
-     * get/set stroke color
-     * @name stroke
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} color
-     * @returns {String}
-     * @example
-     * // get stroke color
-     * var stroke = shape.stroke();
-     *
-     * // set stroke color with color string
-     * shape.stroke('green');
-     *
-     * // set stroke color with hex
-     * shape.stroke('#00ff00');
-     *
-     * // set stroke color with rgb
-     * shape.stroke('rgb(0,255,0)');
-     *
-     * // set stroke color with rgba and make it 50% opaque
-     * shape.stroke('rgba(0,255,0,0.5');
-     */
+   * get/set stroke color
+   * @name stroke
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} color
+   * @returns {String}
+   * @example
+   * // get stroke color
+   * var stroke = shape.stroke();
+   *
+   * // set stroke color with color string
+   * shape.stroke('green');
+   *
+   * // set stroke color with hex
+   * shape.stroke('#00ff00');
+   *
+   * // set stroke color with rgb
+   * shape.stroke('rgb(0,255,0)');
+   *
+   * // set stroke color with rgba and make it 50% opaque
+   * shape.stroke('rgba(0,255,0,0.5');
+   */
 
   Konva.Factory.addDeprecatedGetterSetter(
     Konva.Shape,
@@ -8676,217 +8692,217 @@
   Konva.Factory.addGetterSetter(Konva.Shape, 'strokeWidth', 2);
 
   /**
-     * get/set stroke width
-     * @name strokeWidth
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} strokeWidth
-     * @returns {Number}
-     * @example
-     * // get stroke width
-     * var strokeWidth = shape.strokeWidth();
-     *
-     * // set stroke width
-     * shape.strokeWidth();
-     */
+   * get/set stroke width
+   * @name strokeWidth
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} strokeWidth
+   * @returns {Number}
+   * @example
+   * // get stroke width
+   * var strokeWidth = shape.strokeWidth();
+   *
+   * // set stroke width
+   * shape.strokeWidth();
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'strokeHitEnabled', true);
 
   /**
-     * get/set strokeHitEnabled property. Useful for performance optimization.
-     * You may set `shape.strokeHitEnabled(false)`. In this case stroke will be no draw on hit canvas, so hit area
-     * of shape will be decreased (by lineWidth / 2). Remember that non closed line with `strokeHitEnabled = false`
-     * will be not drawn on hit canvas, that is mean line will no trigger pointer events (like mouseover)
-     * Default value is true
-     * @name strokeHitEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} strokeHitEnabled
-     * @returns {Boolean}
-     * @example
-     * // get strokeHitEnabled
-     * var strokeHitEnabled = shape.strokeHitEnabled();
-     *
-     * // set strokeHitEnabled
-     * shape.strokeHitEnabled();
-     */
+   * get/set strokeHitEnabled property. Useful for performance optimization.
+   * You may set `shape.strokeHitEnabled(false)`. In this case stroke will be no draw on hit canvas, so hit area
+   * of shape will be decreased (by lineWidth / 2). Remember that non closed line with `strokeHitEnabled = false`
+   * will be not drawn on hit canvas, that is mean line will no trigger pointer events (like mouseover)
+   * Default value is true
+   * @name strokeHitEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} strokeHitEnabled
+   * @returns {Boolean}
+   * @example
+   * // get strokeHitEnabled
+   * var strokeHitEnabled = shape.strokeHitEnabled();
+   *
+   * // set strokeHitEnabled
+   * shape.strokeHitEnabled();
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'perfectDrawEnabled', true);
 
   /**
-     * get/set perfectDrawEnabled. If a shape has fill, stroke and opacity you may set `perfectDrawEnabled` to false to improve performance.
-     * See http://konvajs.github.io/docs/performance/Disable_Perfect_Draw.html for more information.
-     * Default value is true
-     * @name perfectDrawEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} perfectDrawEnabled
-     * @returns {Boolean}
-     * @example
-     * // get perfectDrawEnabled
-     * var perfectDrawEnabled = shape.perfectDrawEnabled();
-     *
-     * // set perfectDrawEnabled
-     * shape.perfectDrawEnabled();
-     */
+   * get/set perfectDrawEnabled. If a shape has fill, stroke and opacity you may set `perfectDrawEnabled` to false to improve performance.
+   * See http://konvajs.github.io/docs/performance/Disable_Perfect_Draw.html for more information.
+   * Default value is true
+   * @name perfectDrawEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} perfectDrawEnabled
+   * @returns {Boolean}
+   * @example
+   * // get perfectDrawEnabled
+   * var perfectDrawEnabled = shape.perfectDrawEnabled();
+   *
+   * // set perfectDrawEnabled
+   * shape.perfectDrawEnabled();
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowForStrokeEnabled', true);
 
   /**
-     * get/set shadowForStrokeEnabled. Useful for performance optimization.
-     * You may set `shape.shadowForStrokeEnabled(false)`. In this case stroke will be no draw shadow for stroke.
-     * Remember if you set `shadowForStrokeEnabled = false` for non closed line - that line with have no shadow!.
-     * Default value is true
-     * @name shadowForStrokeEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} shadowForStrokeEnabled
-     * @returns {Boolean}
-     * @example
-     * // get shadowForStrokeEnabled
-     * var shadowForStrokeEnabled = shape.shadowForStrokeEnabled();
-     *
-     * // set shadowForStrokeEnabled
-     * shape.shadowForStrokeEnabled();
-     */
+   * get/set shadowForStrokeEnabled. Useful for performance optimization.
+   * You may set `shape.shadowForStrokeEnabled(false)`. In this case stroke will be no draw shadow for stroke.
+   * Remember if you set `shadowForStrokeEnabled = false` for non closed line - that line with have no shadow!.
+   * Default value is true
+   * @name shadowForStrokeEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} shadowForStrokeEnabled
+   * @returns {Boolean}
+   * @example
+   * // get shadowForStrokeEnabled
+   * var shadowForStrokeEnabled = shape.shadowForStrokeEnabled();
+   *
+   * // set shadowForStrokeEnabled
+   * shape.shadowForStrokeEnabled();
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'lineJoin');
 
   /**
-     * get/set line join.  Can be miter, round, or bevel.  The
-     *  default is miter
-     * @name lineJoin
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} lineJoin
-     * @returns {String}
-     * @example
-     * // get line join
-     * var lineJoin = shape.lineJoin();
-     *
-     * // set line join
-     * shape.lineJoin('round');
-     */
+   * get/set line join.  Can be miter, round, or bevel.  The
+   *  default is miter
+   * @name lineJoin
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} lineJoin
+   * @returns {String}
+   * @example
+   * // get line join
+   * var lineJoin = shape.lineJoin();
+   *
+   * // set line join
+   * shape.lineJoin('round');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'lineCap');
 
   /**
-     * get/set line cap.  Can be butt, round, or square
-     * @name lineCap
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} lineCap
-     * @returns {String}
-     * @example
-     * // get line cap
-     * var lineCap = shape.lineCap();
-     *
-     * // set line cap
-     * shape.lineCap('round');
-     */
+   * get/set line cap.  Can be butt, round, or square
+   * @name lineCap
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} lineCap
+   * @returns {String}
+   * @example
+   * // get line cap
+   * var lineCap = shape.lineCap();
+   *
+   * // set line cap
+   * shape.lineCap('round');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'sceneFunc');
 
   /**
-     * get/set scene draw function
-     * @name sceneFunc
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Function} drawFunc drawing function
-     * @returns {Function}
-     * @example
-     * // get scene draw function
-     * var sceneFunc = shape.sceneFunc();
-     *
-     * // set scene draw function
-     * shape.sceneFunc(function(context) {
+   * get/set scene draw function
+   * @name sceneFunc
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Function} drawFunc drawing function
+   * @returns {Function}
+   * @example
+   * // get scene draw function
+   * var sceneFunc = shape.sceneFunc();
+   *
+   * // set scene draw function
+   * shape.sceneFunc(function(context) {
      *   context.beginPath();
      *   context.rect(0, 0, this.width(), this.height());
      *   context.closePath();
      *   context.fillStrokeShape(this);
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'hitFunc');
 
   /**
-     * get/set hit draw function
-     * @name hitFunc
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Function} drawFunc drawing function
-     * @returns {Function}
-     * @example
-     * // get hit draw function
-     * var hitFunc = shape.hitFunc();
-     *
-     * // set hit draw function
-     * shape.hitFunc(function(context) {
+   * get/set hit draw function
+   * @name hitFunc
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Function} drawFunc drawing function
+   * @returns {Function}
+   * @example
+   * // get hit draw function
+   * var hitFunc = shape.hitFunc();
+   *
+   * // set hit draw function
+   * shape.hitFunc(function(context) {
      *   context.beginPath();
      *   context.rect(0, 0, this.width(), this.height());
      *   context.closePath();
      *   context.fillStrokeShape(this);
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'dash');
 
   /**
-     * get/set dash array for stroke.
-     * @name dash
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Array} dash
-     * @returns {Array}
-     * @example
-     *  // apply dashed stroke that is 10px long and 5 pixels apart
-     *  line.dash([10, 5]);
-     *  // apply dashed stroke that is made up of alternating dashed
-     *  // lines that are 10px long and 20px apart, and dots that have
-     *  // a radius of 5px and are 20px apart
-     *  line.dash([10, 20, 0.001, 20]);
-     */
+   * get/set dash array for stroke.
+   * @name dash
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Array} dash
+   * @returns {Array}
+   * @example
+   *  // apply dashed stroke that is 10px long and 5 pixels apart
+   *  line.dash([10, 5]);
+   *  // apply dashed stroke that is made up of alternating dashed
+   *  // lines that are 10px long and 20px apart, and dots that have
+   *  // a radius of 5px and are 20px apart
+   *  line.dash([10, 20, 0.001, 20]);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'dashOffset', 0);
 
   /**
-     * get/set dash offset for stroke.
-     * @name dash
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} dash offset
-     * @returns {Number}
-     * @example
-     *  // apply dashed stroke that is 10px long and 5 pixels apart with an offset of 5px
-     *  line.dash([10, 5]);
-     *  line.dashOffset(5);
-     */
+   * get/set dash offset for stroke.
+   * @name dash
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} dash offset
+   * @returns {Number}
+   * @example
+   *  // apply dashed stroke that is 10px long and 5 pixels apart with an offset of 5px
+   *  line.dash([10, 5]);
+   *  line.dashOffset(5);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowColor');
 
   /**
-     * get/set shadow color
-     * @name shadowColor
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} color
-     * @returns {String}
-     * @example
-     * // get shadow color
-     * var shadow = shape.shadowColor();
-     *
-     * // set shadow color with color string
-     * shape.shadowColor('green');
-     *
-     * // set shadow color with hex
-     * shape.shadowColor('#00ff00');
-     *
-     * // set shadow color with rgb
-     * shape.shadowColor('rgb(0,255,0)');
-     *
-     * // set shadow color with rgba and make it 50% opaque
-     * shape.shadowColor('rgba(0,255,0,0.5');
-     */
+   * get/set shadow color
+   * @name shadowColor
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} color
+   * @returns {String}
+   * @example
+   * // get shadow color
+   * var shadow = shape.shadowColor();
+   *
+   * // set shadow color with color string
+   * shape.shadowColor('green');
+   *
+   * // set shadow color with hex
+   * shape.shadowColor('#00ff00');
+   *
+   * // set shadow color with rgb
+   * shape.shadowColor('rgb(0,255,0)');
+   *
+   * // set shadow color with rgba and make it 50% opaque
+   * shape.shadowColor('rgba(0,255,0,0.5');
+   */
 
   Konva.Factory.addDeprecatedGetterSetter(
     Konva.Shape,
@@ -8916,36 +8932,36 @@
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowBlur');
 
   /**
-     * get/set shadow blur
-     * @name shadowBlur
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} blur
-     * @returns {Number}
-     * @example
-     * // get shadow blur
-     * var shadowBlur = shape.shadowBlur();
-     *
-     * // set shadow blur
-     * shape.shadowBlur(10);
-     */
+   * get/set shadow blur
+   * @name shadowBlur
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} blur
+   * @returns {Number}
+   * @example
+   * // get shadow blur
+   * var shadowBlur = shape.shadowBlur();
+   *
+   * // set shadow blur
+   * shape.shadowBlur(10);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowOpacity');
 
   /**
-     * get/set shadow opacity.  must be a value between 0 and 1
-     * @name shadowOpacity
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} opacity
-     * @returns {Number}
-     * @example
-     * // get shadow opacity
-     * var shadowOpacity = shape.shadowOpacity();
-     *
-     * // set shadow opacity
-     * shape.shadowOpacity(0.5);
-     */
+   * get/set shadow opacity.  must be a value between 0 and 1
+   * @name shadowOpacity
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} opacity
+   * @returns {Number}
+   * @example
+   * // get shadow opacity
+   * var shadowOpacity = shape.shadowOpacity();
+   *
+   * // set shadow opacity
+   * shape.shadowOpacity(0.5);
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Shape, 'shadowOffset', [
     'x',
@@ -8953,108 +8969,108 @@
   ]);
 
   /**
-     * get/set shadow offset
-     * @name shadowOffset
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} offset
-     * @param {Number} offset.x
-     * @param {Number} offset.y
-     * @returns {Object}
-     * @example
-     * // get shadow offset
-     * var shadowOffset = shape.shadowOffset();
-     *
-     * // set shadow offset
-     * shape.shadowOffset({
+   * get/set shadow offset
+   * @name shadowOffset
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} offset
+   * @param {Number} offset.x
+   * @param {Number} offset.y
+   * @returns {Object}
+   * @example
+   * // get shadow offset
+   * var shadowOffset = shape.shadowOffset();
+   *
+   * // set shadow offset
+   * shape.shadowOffset({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowOffsetX', 0);
 
   /**
-     * get/set shadow offset x
-     * @name shadowOffsetX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get shadow offset x
-     * var shadowOffsetX = shape.shadowOffsetX();
-     *
-     * // set shadow offset x
-     * shape.shadowOffsetX(5);
-     */
+   * get/set shadow offset x
+   * @name shadowOffsetX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get shadow offset x
+   * var shadowOffsetX = shape.shadowOffsetX();
+   *
+   * // set shadow offset x
+   * shape.shadowOffsetX(5);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowOffsetY', 0);
 
   /**
-     * get/set shadow offset y
-     * @name shadowOffsetY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get shadow offset y
-     * var shadowOffsetY = shape.shadowOffsetY();
-     *
-     * // set shadow offset y
-     * shape.shadowOffsetY(5);
-     */
+   * get/set shadow offset y
+   * @name shadowOffsetY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get shadow offset y
+   * var shadowOffsetY = shape.shadowOffsetY();
+   *
+   * // set shadow offset y
+   * shape.shadowOffsetY(5);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternImage');
 
   /**
-     * get/set fill pattern image
-     * @name fillPatternImage
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Image} image object
-     * @returns {Image}
-     * @example
-     * // get fill pattern image
-     * var fillPatternImage = shape.fillPatternImage();
-     *
-     * // set fill pattern image
-     * var imageObj = new Image();
-     * imageObj.onload = function() {
+   * get/set fill pattern image
+   * @name fillPatternImage
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Image} image object
+   * @returns {Image}
+   * @example
+   * // get fill pattern image
+   * var fillPatternImage = shape.fillPatternImage();
+   *
+   * // set fill pattern image
+   * var imageObj = new Image();
+   * imageObj.onload = function() {
      *   shape.fillPatternImage(imageObj);
      * };
-     * imageObj.src = 'path/to/image/jpg';
-     */
+   * imageObj.src = 'path/to/image/jpg';
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fill');
 
   /**
-     * get/set fill color
-     * @name fill
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} color
-     * @returns {String}
-     * @example
-     * // get fill color
-     * var fill = shape.fill();
-     *
-     * // set fill color with color string
-     * shape.fill('green');
-     *
-     * // set fill color with hex
-     * shape.fill('#00ff00');
-     *
-     * // set fill color with rgb
-     * shape.fill('rgb(0,255,0)');
-     *
-     * // set fill color with rgba and make it 50% opaque
-     * shape.fill('rgba(0,255,0,0.5');
-     *
-     * // shape without fill
-     * shape.fill(null);
-     */
+   * get/set fill color
+   * @name fill
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} color
+   * @returns {String}
+   * @example
+   * // get fill color
+   * var fill = shape.fill();
+   *
+   * // set fill color with color string
+   * shape.fill('green');
+   *
+   * // set fill color with hex
+   * shape.fill('#00ff00');
+   *
+   * // set fill color with rgb
+   * shape.fill('rgb(0,255,0)');
+   *
+   * // set fill color with rgba and make it 50% opaque
+   * shape.fill('rgba(0,255,0,0.5');
+   *
+   * // shape without fill
+   * shape.fill(null);
+   */
 
   Konva.Factory.addDeprecatedGetterSetter(
     Konva.Shape,
@@ -9084,52 +9100,52 @@
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternX', 0);
 
   /**
-     * get/set fill pattern x
-     * @name fillPatternX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill pattern x
-     * var fillPatternX = shape.fillPatternX();
-     * // set fill pattern x
-     * shape.fillPatternX(20);
-     */
+   * get/set fill pattern x
+   * @name fillPatternX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill pattern x
+   * var fillPatternX = shape.fillPatternX();
+   * // set fill pattern x
+   * shape.fillPatternX(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternY', 0);
 
   /**
-     * get/set fill pattern y
-     * @name fillPatternY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill pattern y
-     * var fillPatternY = shape.fillPatternY();
-     * // set fill pattern y
-     * shape.fillPatternY(20);
-     */
+   * get/set fill pattern y
+   * @name fillPatternY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill pattern y
+   * var fillPatternY = shape.fillPatternY();
+   * // set fill pattern y
+   * shape.fillPatternY(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillLinearGradientColorStops');
 
   /**
-     * get/set fill linear gradient color stops
-     * @name fillLinearGradientColorStops
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Array} colorStops
-     * @returns {Array} colorStops
-     * @example
-     * // get fill linear gradient color stops
-     * var colorStops = shape.fillLinearGradientColorStops();
-     *
-     * // create a linear gradient that starts with red, changes to blue
-     * // halfway through, and then changes to green
-     * shape.fillLinearGradientColorStops(0, 'red', 0.5, 'blue', 1, 'green');
-     */
+   * get/set fill linear gradient color stops
+   * @name fillLinearGradientColorStops
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Array} colorStops
+   * @returns {Array} colorStops
+   * @example
+   * // get fill linear gradient color stops
+   * var colorStops = shape.fillLinearGradientColorStops();
+   *
+   * // create a linear gradient that starts with red, changes to blue
+   * // halfway through, and then changes to green
+   * shape.fillLinearGradientColorStops(0, 'red', 0.5, 'blue', 1, 'green');
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Shape,
@@ -9138,192 +9154,192 @@
   );
 
   /**
-     * get/set fill radial gradient start radius
-     * @name fillRadialGradientStartRadius
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} radius
-     * @returns {Number}
-     * @example
-     * // get radial gradient start radius
-     * var startRadius = shape.fillRadialGradientStartRadius();
-     *
-     * // set radial gradient start radius
-     * shape.fillRadialGradientStartRadius(0);
-     */
+   * get/set fill radial gradient start radius
+   * @name fillRadialGradientStartRadius
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} radius
+   * @returns {Number}
+   * @example
+   * // get radial gradient start radius
+   * var startRadius = shape.fillRadialGradientStartRadius();
+   *
+   * // set radial gradient start radius
+   * shape.fillRadialGradientStartRadius(0);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillRadialGradientEndRadius', 0);
 
   /**
-     * get/set fill radial gradient end radius
-     * @name fillRadialGradientEndRadius
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} radius
-     * @returns {Number}
-     * @example
-     * // get radial gradient end radius
-     * var endRadius = shape.fillRadialGradientEndRadius();
-     *
-     * // set radial gradient end radius
-     * shape.fillRadialGradientEndRadius(100);
-     */
+   * get/set fill radial gradient end radius
+   * @name fillRadialGradientEndRadius
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} radius
+   * @returns {Number}
+   * @example
+   * // get radial gradient end radius
+   * var endRadius = shape.fillRadialGradientEndRadius();
+   *
+   * // set radial gradient end radius
+   * shape.fillRadialGradientEndRadius(100);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillRadialGradientColorStops');
 
   /**
-     * get/set fill radial gradient color stops
-     * @name fillRadialGradientColorStops
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} colorStops
-     * @returns {Array}
-     * @example
-     * // get fill radial gradient color stops
-     * var colorStops = shape.fillRadialGradientColorStops();
-     *
-     * // create a radial gradient that starts with red, changes to blue
-     * // halfway through, and then changes to green
-     * shape.fillRadialGradientColorStops(0, 'red', 0.5, 'blue', 1, 'green');
-     */
+   * get/set fill radial gradient color stops
+   * @name fillRadialGradientColorStops
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} colorStops
+   * @returns {Array}
+   * @example
+   * // get fill radial gradient color stops
+   * var colorStops = shape.fillRadialGradientColorStops();
+   *
+   * // create a radial gradient that starts with red, changes to blue
+   * // halfway through, and then changes to green
+   * shape.fillRadialGradientColorStops(0, 'red', 0.5, 'blue', 1, 'green');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternRepeat', 'repeat');
 
   /**
-     * get/set fill pattern repeat.  Can be 'repeat', 'repeat-x', 'repeat-y', or 'no-repeat'.  The default is 'repeat'
-     * @name fillPatternRepeat
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} repeat
-     * @returns {String}
-     * @example
-     * // get fill pattern repeat
-     * var repeat = shape.fillPatternRepeat();
-     *
-     * // repeat pattern in x direction only
-     * shape.fillPatternRepeat('repeat-x');
-     *
-     * // do not repeat the pattern
-     * shape.fillPatternRepeat('no repeat');
-     */
+   * get/set fill pattern repeat.  Can be 'repeat', 'repeat-x', 'repeat-y', or 'no-repeat'.  The default is 'repeat'
+   * @name fillPatternRepeat
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} repeat
+   * @returns {String}
+   * @example
+   * // get fill pattern repeat
+   * var repeat = shape.fillPatternRepeat();
+   *
+   * // repeat pattern in x direction only
+   * shape.fillPatternRepeat('repeat-x');
+   *
+   * // do not repeat the pattern
+   * shape.fillPatternRepeat('no repeat');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillEnabled', true);
 
   /**
-     * get/set fill enabled flag
-     * @name fillEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} enabled
-     * @returns {Boolean}
-     * @example
-     * // get fill enabled flag
-     * var fillEnabled = shape.fillEnabled();
-     *
-     * // disable fill
-     * shape.fillEnabled(false);
-     *
-     * // enable fill
-     * shape.fillEnabled(true);
-     */
+   * get/set fill enabled flag
+   * @name fillEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} enabled
+   * @returns {Boolean}
+   * @example
+   * // get fill enabled flag
+   * var fillEnabled = shape.fillEnabled();
+   *
+   * // disable fill
+   * shape.fillEnabled(false);
+   *
+   * // enable fill
+   * shape.fillEnabled(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'strokeEnabled', true);
 
   /**
-     * get/set stroke enabled flag
-     * @name strokeEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} enabled
-     * @returns {Boolean}
-     * @example
-     * // get stroke enabled flag
-     * var strokeEnabled = shape.strokeEnabled();
-     *
-     * // disable stroke
-     * shape.strokeEnabled(false);
-     *
-     * // enable stroke
-     * shape.strokeEnabled(true);
-     */
+   * get/set stroke enabled flag
+   * @name strokeEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} enabled
+   * @returns {Boolean}
+   * @example
+   * // get stroke enabled flag
+   * var strokeEnabled = shape.strokeEnabled();
+   *
+   * // disable stroke
+   * shape.strokeEnabled(false);
+   *
+   * // enable stroke
+   * shape.strokeEnabled(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'shadowEnabled', true);
 
   /**
-     * get/set shadow enabled flag
-     * @name shadowEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} enabled
-     * @returns {Boolean}
-     * @example
-     * // get shadow enabled flag
-     * var shadowEnabled = shape.shadowEnabled();
-     *
-     * // disable shadow
-     * shape.shadowEnabled(false);
-     *
-     * // enable shadow
-     * shape.shadowEnabled(true);
-     */
+   * get/set shadow enabled flag
+   * @name shadowEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} enabled
+   * @returns {Boolean}
+   * @example
+   * // get shadow enabled flag
+   * var shadowEnabled = shape.shadowEnabled();
+   *
+   * // disable shadow
+   * shape.shadowEnabled(false);
+   *
+   * // enable shadow
+   * shape.shadowEnabled(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'dashEnabled', true);
 
   /**
-     * get/set dash enabled flag
-     * @name dashEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} enabled
-     * @returns {Boolean}
-     * @example
-     * // get dash enabled flag
-     * var dashEnabled = shape.dashEnabled();
-     *
-     * // disable dash
-     * shape.dashEnabled(false);
-     *
-     * // enable dash
-     * shape.dashEnabled(true);
-     */
+   * get/set dash enabled flag
+   * @name dashEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} enabled
+   * @returns {Boolean}
+   * @example
+   * // get dash enabled flag
+   * var dashEnabled = shape.dashEnabled();
+   *
+   * // disable dash
+   * shape.dashEnabled(false);
+   *
+   * // enable dash
+   * shape.dashEnabled(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'strokeScaleEnabled', true);
 
   /**
-     * get/set strokeScale enabled flag
-     * @name strokeScaleEnabled
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Boolean} enabled
-     * @returns {Boolean}
-     * @example
-     * // get stroke scale enabled flag
-     * var strokeScaleEnabled = shape.strokeScaleEnabled();
-     *
-     * // disable stroke scale
-     * shape.strokeScaleEnabled(false);
-     *
-     * // enable stroke scale
-     * shape.strokeScaleEnabled(true);
-     */
+   * get/set strokeScale enabled flag
+   * @name strokeScaleEnabled
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Boolean} enabled
+   * @returns {Boolean}
+   * @example
+   * // get stroke scale enabled flag
+   * var strokeScaleEnabled = shape.strokeScaleEnabled();
+   *
+   * // disable stroke scale
+   * shape.strokeScaleEnabled(false);
+   *
+   * // enable stroke scale
+   * shape.strokeScaleEnabled(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPriority', 'color');
 
   /**
-     * get/set fill priority.  can be color, pattern, linear-gradient, or radial-gradient.  The default is color.
-     *   This is handy if you want to toggle between different fill types.
-     * @name fillPriority
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {String} priority
-     * @returns {String}
-     * @example
-     * // get fill priority
-     * var fillPriority = shape.fillPriority();
-     *
-     * // set fill priority
-     * shape.fillPriority('linear-gradient');
-     */
+   * get/set fill priority.  can be color, pattern, linear-gradient, or radial-gradient.  The default is color.
+   *   This is handy if you want to toggle between different fill types.
+   * @name fillPriority
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {String} priority
+   * @returns {String}
+   * @example
+   * // get fill priority
+   * var fillPriority = shape.fillPriority();
+   *
+   * // set fill priority
+   * shape.fillPriority('linear-gradient');
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Shape, 'fillPatternOffset', [
     'x',
@@ -9331,56 +9347,56 @@
   ]);
 
   /**
-     * get/set fill pattern offset
-     * @name fillPatternOffset
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} offset
-     * @param {Number} offset.x
-     * @param {Number} offset.y
-     * @returns {Object}
-     * @example
-     * // get fill pattern offset
-     * var patternOffset = shape.fillPatternOffset();
-     *
-     * // set fill pattern offset
-     * shape.fillPatternOffset({
+   * get/set fill pattern offset
+   * @name fillPatternOffset
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} offset
+   * @param {Number} offset.x
+   * @param {Number} offset.y
+   * @returns {Object}
+   * @example
+   * // get fill pattern offset
+   * var patternOffset = shape.fillPatternOffset();
+   *
+   * // set fill pattern offset
+   * shape.fillPatternOffset({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternOffsetX', 0);
   /**
-     * get/set fill pattern offset x
-     * @name fillPatternOffsetX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill pattern offset x
-     * var patternOffsetX = shape.fillPatternOffsetX();
-     *
-     * // set fill pattern offset x
-     * shape.fillPatternOffsetX(20);
-     */
+   * get/set fill pattern offset x
+   * @name fillPatternOffsetX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill pattern offset x
+   * var patternOffsetX = shape.fillPatternOffsetX();
+   *
+   * // set fill pattern offset x
+   * shape.fillPatternOffsetX(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternOffsetY', 0);
   /**
-     * get/set fill pattern offset y
-     * @name fillPatternOffsetY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill pattern offset y
-     * var patternOffsetY = shape.fillPatternOffsetY();
-     *
-     * // set fill pattern offset y
-     * shape.fillPatternOffsetY(10);
-     */
+   * get/set fill pattern offset y
+   * @name fillPatternOffsetY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill pattern offset y
+   * var patternOffsetY = shape.fillPatternOffsetY();
+   *
+   * // set fill pattern offset y
+   * shape.fillPatternOffsetY(10);
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Shape, 'fillPatternScale', [
     'x',
@@ -9388,56 +9404,56 @@
   ]);
 
   /**
-     * get/set fill pattern scale
-     * @name fillPatternScale
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} scale
-     * @param {Number} scale.x
-     * @param {Number} scale.y
-     * @returns {Object}
-     * @example
-     * // get fill pattern scale
-     * var patternScale = shape.fillPatternScale();
-     *
-     * // set fill pattern scale
-     * shape.fillPatternScale({
+   * get/set fill pattern scale
+   * @name fillPatternScale
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} scale
+   * @param {Number} scale.x
+   * @param {Number} scale.y
+   * @returns {Object}
+   * @example
+   * // get fill pattern scale
+   * var patternScale = shape.fillPatternScale();
+   *
+   * // set fill pattern scale
+   * shape.fillPatternScale({
      *   x: 2
      *   y: 2
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternScaleX', 1);
   /**
-     * get/set fill pattern scale x
-     * @name fillPatternScaleX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill pattern scale x
-     * var patternScaleX = shape.fillPatternScaleX();
-     *
-     * // set fill pattern scale x
-     * shape.fillPatternScaleX(2);
-     */
+   * get/set fill pattern scale x
+   * @name fillPatternScaleX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill pattern scale x
+   * var patternScaleX = shape.fillPatternScaleX();
+   *
+   * // set fill pattern scale x
+   * shape.fillPatternScaleX(2);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternScaleY', 1);
   /**
-     * get/set fill pattern scale y
-     * @name fillPatternScaleY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill pattern scale y
-     * var patternScaleY = shape.fillPatternScaleY();
-     *
-     * // set fill pattern scale y
-     * shape.fillPatternScaleY(2);
-     */
+   * get/set fill pattern scale y
+   * @name fillPatternScaleY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill pattern scale y
+   * var patternScaleY = shape.fillPatternScaleY();
+   *
+   * // set fill pattern scale y
+   * shape.fillPatternScaleY(2);
+   */
 
   Konva.Factory.addComponentsGetterSetter(
     Konva.Shape,
@@ -9446,24 +9462,24 @@
   );
 
   /**
-     * get/set fill linear gradient start point
-     * @name fillLinearGradientStartPoint
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} startPoint
-     * @param {Number} startPoint.x
-     * @param {Number} startPoint.y
-     * @returns {Object}
-     * @example
-     * // get fill linear gradient start point
-     * var startPoint = shape.fillLinearGradientStartPoint();
-     *
-     * // set fill linear gradient start point
-     * shape.fillLinearGradientStartPoint({
+   * get/set fill linear gradient start point
+   * @name fillLinearGradientStartPoint
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} startPoint
+   * @param {Number} startPoint.x
+   * @param {Number} startPoint.y
+   * @returns {Object}
+   * @example
+   * // get fill linear gradient start point
+   * var startPoint = shape.fillLinearGradientStartPoint();
+   *
+   * // set fill linear gradient start point
+   * shape.fillLinearGradientStartPoint({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Shape,
@@ -9471,19 +9487,19 @@
     0
   );
   /**
-     * get/set fill linear gradient start point x
-     * @name fillLinearGradientStartPointX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill linear gradient start point x
-     * var startPointX = shape.fillLinearGradientStartPointX();
-     *
-     * // set fill linear gradient start point x
-     * shape.fillLinearGradientStartPointX(20);
-     */
+   * get/set fill linear gradient start point x
+   * @name fillLinearGradientStartPointX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill linear gradient start point x
+   * var startPointX = shape.fillLinearGradientStartPointX();
+   *
+   * // set fill linear gradient start point x
+   * shape.fillLinearGradientStartPointX(20);
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Shape,
@@ -9491,19 +9507,19 @@
     0
   );
   /**
-     * get/set fill linear gradient start point y
-     * @name fillLinearGradientStartPointY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill linear gradient start point y
-     * var startPointY = shape.fillLinearGradientStartPointY();
-     *
-     * // set fill linear gradient start point y
-     * shape.fillLinearGradientStartPointY(20);
-     */
+   * get/set fill linear gradient start point y
+   * @name fillLinearGradientStartPointY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill linear gradient start point y
+   * var startPointY = shape.fillLinearGradientStartPointY();
+   *
+   * // set fill linear gradient start point y
+   * shape.fillLinearGradientStartPointY(20);
+   */
 
   Konva.Factory.addComponentsGetterSetter(
     Konva.Shape,
@@ -9512,56 +9528,56 @@
   );
 
   /**
-     * get/set fill linear gradient end point
-     * @name fillLinearGradientEndPoint
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} endPoint
-     * @param {Number} endPoint.x
-     * @param {Number} endPoint.y
-     * @returns {Object}
-     * @example
-     * // get fill linear gradient end point
-     * var endPoint = shape.fillLinearGradientEndPoint();
-     *
-     * // set fill linear gradient end point
-     * shape.fillLinearGradientEndPoint({
+   * get/set fill linear gradient end point
+   * @name fillLinearGradientEndPoint
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} endPoint
+   * @param {Number} endPoint.x
+   * @param {Number} endPoint.y
+   * @returns {Object}
+   * @example
+   * // get fill linear gradient end point
+   * var endPoint = shape.fillLinearGradientEndPoint();
+   *
+   * // set fill linear gradient end point
+   * shape.fillLinearGradientEndPoint({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillLinearGradientEndPointX', 0);
   /**
-     * get/set fill linear gradient end point x
-     * @name fillLinearGradientEndPointX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill linear gradient end point x
-     * var endPointX = shape.fillLinearGradientEndPointX();
-     *
-     * // set fill linear gradient end point x
-     * shape.fillLinearGradientEndPointX(20);
-     */
+   * get/set fill linear gradient end point x
+   * @name fillLinearGradientEndPointX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill linear gradient end point x
+   * var endPointX = shape.fillLinearGradientEndPointX();
+   *
+   * // set fill linear gradient end point x
+   * shape.fillLinearGradientEndPointX(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillLinearGradientEndPointY', 0);
   /**
-     * get/set fill linear gradient end point y
-     * @name fillLinearGradientEndPointY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill linear gradient end point y
-     * var endPointY = shape.fillLinearGradientEndPointY();
-     *
-     * // set fill linear gradient end point y
-     * shape.fillLinearGradientEndPointY(20);
-     */
+   * get/set fill linear gradient end point y
+   * @name fillLinearGradientEndPointY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill linear gradient end point y
+   * var endPointY = shape.fillLinearGradientEndPointY();
+   *
+   * // set fill linear gradient end point y
+   * shape.fillLinearGradientEndPointY(20);
+   */
 
   Konva.Factory.addComponentsGetterSetter(
     Konva.Shape,
@@ -9570,24 +9586,24 @@
   );
 
   /**
-     * get/set fill radial gradient start point
-     * @name fillRadialGradientStartPoint
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} startPoint
-     * @param {Number} startPoint.x
-     * @param {Number} startPoint.y
-     * @returns {Object}
-     * @example
-     * // get fill radial gradient start point
-     * var startPoint = shape.fillRadialGradientStartPoint();
-     *
-     * // set fill radial gradient start point
-     * shape.fillRadialGradientStartPoint({
+   * get/set fill radial gradient start point
+   * @name fillRadialGradientStartPoint
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} startPoint
+   * @param {Number} startPoint.x
+   * @param {Number} startPoint.y
+   * @returns {Object}
+   * @example
+   * // get fill radial gradient start point
+   * var startPoint = shape.fillRadialGradientStartPoint();
+   *
+   * // set fill radial gradient start point
+   * shape.fillRadialGradientStartPoint({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Shape,
@@ -9595,19 +9611,19 @@
     0
   );
   /**
-     * get/set fill radial gradient start point x
-     * @name fillRadialGradientStartPointX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill radial gradient start point x
-     * var startPointX = shape.fillRadialGradientStartPointX();
-     *
-     * // set fill radial gradient start point x
-     * shape.fillRadialGradientStartPointX(20);
-     */
+   * get/set fill radial gradient start point x
+   * @name fillRadialGradientStartPointX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill radial gradient start point x
+   * var startPointX = shape.fillRadialGradientStartPointX();
+   *
+   * // set fill radial gradient start point x
+   * shape.fillRadialGradientStartPointX(20);
+   */
 
   Konva.Factory.addGetterSetter(
     Konva.Shape,
@@ -9615,19 +9631,19 @@
     0
   );
   /**
-     * get/set fill radial gradient start point y
-     * @name fillRadialGradientStartPointY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill radial gradient start point y
-     * var startPointY = shape.fillRadialGradientStartPointY();
-     *
-     * // set fill radial gradient start point y
-     * shape.fillRadialGradientStartPointY(20);
-     */
+   * get/set fill radial gradient start point y
+   * @name fillRadialGradientStartPointY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill radial gradient start point y
+   * var startPointY = shape.fillRadialGradientStartPointY();
+   *
+   * // set fill radial gradient start point y
+   * shape.fillRadialGradientStartPointY(20);
+   */
 
   Konva.Factory.addComponentsGetterSetter(
     Konva.Shape,
@@ -9636,73 +9652,73 @@
   );
 
   /**
-     * get/set fill radial gradient end point
-     * @name fillRadialGradientEndPoint
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Object} endPoint
-     * @param {Number} endPoint.x
-     * @param {Number} endPoint.y
-     * @returns {Object}
-     * @example
-     * // get fill radial gradient end point
-     * var endPoint = shape.fillRadialGradientEndPoint();
-     *
-     * // set fill radial gradient end point
-     * shape.fillRadialGradientEndPoint({
+   * get/set fill radial gradient end point
+   * @name fillRadialGradientEndPoint
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Object} endPoint
+   * @param {Number} endPoint.x
+   * @param {Number} endPoint.y
+   * @returns {Object}
+   * @example
+   * // get fill radial gradient end point
+   * var endPoint = shape.fillRadialGradientEndPoint();
+   *
+   * // set fill radial gradient end point
+   * shape.fillRadialGradientEndPoint({
      *   x: 20
      *   y: 10
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillRadialGradientEndPointX', 0);
   /**
-     * get/set fill radial gradient end point x
-     * @name fillRadialGradientEndPointX
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get fill radial gradient end point x
-     * var endPointX = shape.fillRadialGradientEndPointX();
-     *
-     * // set fill radial gradient end point x
-     * shape.fillRadialGradientEndPointX(20);
-     */
+   * get/set fill radial gradient end point x
+   * @name fillRadialGradientEndPointX
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get fill radial gradient end point x
+   * var endPointX = shape.fillRadialGradientEndPointX();
+   *
+   * // set fill radial gradient end point x
+   * shape.fillRadialGradientEndPointX(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillRadialGradientEndPointY', 0);
   /**
-     * get/set fill radial gradient end point y
-     * @name fillRadialGradientEndPointY
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get fill radial gradient end point y
-     * var endPointY = shape.fillRadialGradientEndPointY();
-     *
-     * // set fill radial gradient end point y
-     * shape.fillRadialGradientEndPointY(20);
-     */
+   * get/set fill radial gradient end point y
+   * @name fillRadialGradientEndPointY
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get fill radial gradient end point y
+   * var endPointY = shape.fillRadialGradientEndPointY();
+   *
+   * // set fill radial gradient end point y
+   * shape.fillRadialGradientEndPointY(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Shape, 'fillPatternRotation', 0);
 
   /**
-     * get/set fill pattern rotation in degrees
-     * @name fillPatternRotation
-     * @method
-     * @memberof Konva.Shape.prototype
-     * @param {Number} rotation
-     * @returns {Konva.Shape}
-     * @example
-     * // get fill pattern rotation
-     * var patternRotation = shape.fillPatternRotation();
-     *
-     * // set fill pattern rotation
-     * shape.fillPatternRotation(20);
-     */
+   * get/set fill pattern rotation in degrees
+   * @name fillPatternRotation
+   * @method
+   * @memberof Konva.Shape.prototype
+   * @param {Number} rotation
+   * @returns {Konva.Shape}
+   * @example
+   * // get fill pattern rotation
+   * var patternRotation = shape.fillPatternRotation();
+   *
+   * // set fill pattern rotation
+   * shape.fillPatternRotation(20);
+   */
 
   Konva.Factory.backCompat(Konva.Shape, {
     dashArray: 'dash',
@@ -9742,8 +9758,6 @@
     TAP = 'tap',
     DBL_TAP = 'dbltap',
     TOUCHMOVE = 'touchmove',
-    DOMMOUSESCROLL = 'DOMMouseScroll',
-    MOUSEWHEEL = 'mousewheel',
     WHEEL = 'wheel',
     CONTENT_MOUSEOUT = 'contentMouseout',
     CONTENT_MOUSEOVER = 'contentMouseover',
@@ -9775,8 +9789,6 @@
       TOUCHMOVE,
       TOUCHEND,
       MOUSEOVER,
-      DOMMOUSESCROLL,
-      MOUSEWHEEL,
       WHEEL,
       CONTEXTMENU
     ],
@@ -9794,39 +9806,39 @@
   }
 
   /**
-     * Stage constructor.  A stage is used to contain multiple layers
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Container
-     * @param {Object} config
-     * @param {String|Element} config.container Container selector or DOM element
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var stage = new Konva.Stage({
+   * Stage constructor.  A stage is used to contain multiple layers
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Container
+   * @param {Object} config
+   * @param {String|Element} config.container Container selector or DOM element
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var stage = new Konva.Stage({
          *   width: 500,
          *   height: 800,
          *   container: 'containerId' // or "#containerId" or ".containerClass"
          * });
-     */
+   */
   Konva.Stage = function(config) {
     this.___init(config);
   };
@@ -9848,11 +9860,11 @@
       }
     },
     /**
-         * set container dom element which contains the stage wrapper div element
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {DomElement} container can pass in a dom element or id string
-         */
+     * set container dom element which contains the stage wrapper div element
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {DomElement} container can pass in a dom element or id string
+     */
     setContainer: function(container) {
       if (typeof container === STRING) {
         if (container.charAt(0) === '.') {
@@ -9882,46 +9894,46 @@
       return this;
     },
     /**
-         * draw layer scene graphs
-         * @name draw
-         * @method
-         * @memberof Konva.Stage.prototype
-         */
+     * draw layer scene graphs
+     * @name draw
+     * @method
+     * @memberof Konva.Stage.prototype
+     */
 
     /**
-         * draw layer hit graphs
-         * @name drawHit
-         * @method
-         * @memberof Konva.Stage.prototype
-         */
+     * draw layer hit graphs
+     * @name drawHit
+     * @method
+     * @memberof Konva.Stage.prototype
+     */
 
     /**
-         * set height
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {Number} height
-         */
+     * set height
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {Number} height
+     */
     setHeight: function(height) {
       Konva.Node.prototype.setHeight.call(this, height);
       this._resizeDOM();
       return this;
     },
     /**
-         * set width
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {Number} width
-         */
+     * set width
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {Number} width
+     */
     setWidth: function(width) {
       Konva.Node.prototype.setWidth.call(this, width);
       this._resizeDOM();
       return this;
     },
     /**
-         * clear all layers
-         * @method
-         * @memberof Konva.Stage.prototype
-         */
+     * clear all layers
+     * @method
+     * @memberof Konva.Stage.prototype
+     */
     clear: function() {
       var layers = this.children, len = layers.length, n;
 
@@ -9938,10 +9950,10 @@
       return Konva.Container.prototype.clone.call(this, obj);
     },
     /**
-         * destroy stage
-         * @method
-         * @memberof Konva.Stage.prototype
-         */
+     * destroy stage
+     * @method
+     * @memberof Konva.Stage.prototype
+     */
     destroy: function() {
       var content = this.content;
       Konva.Container.prototype.destroy.call(this);
@@ -9956,11 +9968,11 @@
       return this;
     },
     /**
-         * get pointer position which can be a touch position or mouse position
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @returns {Object}
-         */
+     * get pointer position which can be a touch position or mouse position
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @returns {Object}
+     */
     getPointerPosition: function() {
       return this.pointerPos;
     },
@@ -9968,30 +9980,30 @@
       return this;
     },
     /**
-         * get stage content div element which has the
-         *  the class name "konvajs-content"
-         * @method
-         * @memberof Konva.Stage.prototype
-         */
+     * get stage content div element which has the
+     *  the class name "konvajs-content"
+     * @method
+     * @memberof Konva.Stage.prototype
+     */
     getContent: function() {
       return this.content;
     },
     /**
-         * Creates a composite data URL
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {Object} config
-         * @param {Function} [config.callback] function executed when the composite has completed. Deprecated as method is sync now.
-         * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
-         *  "image/png" is the default
-         * @param {Number} [config.x] x position of canvas section
-         * @param {Number} [config.y] y position of canvas section
-         * @param {Number} [config.width] width of canvas section
-         * @param {Number} [config.height] height of canvas section
-         * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
-         *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
-         *  is very high quality
-         */
+     * Creates a composite data URL
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {Object} config
+     * @param {Function} [config.callback] function executed when the composite has completed. Deprecated as method is sync now.
+     * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
+     *  "image/png" is the default
+     * @param {Number} [config.x] x position of canvas section
+     * @param {Number} [config.y] y position of canvas section
+     * @param {Number} [config.width] width of canvas section
+     * @param {Number} [config.height] height of canvas section
+     * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
+     *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
+     *  is very high quality
+     */
     toDataURL: function(config) {
       config = config || {};
 
@@ -10032,21 +10044,21 @@
       return src;
     },
     /**
-         * converts stage into an image.
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {Object} config
-         * @param {Function} config.callback function executed when the composite has completed
-         * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
-         *  "image/png" is the default
-         * @param {Number} [config.x] x position of canvas section
-         * @param {Number} [config.y] y position of canvas section
-         * @param {Number} [config.width] width of canvas section
-         * @param {Number} [config.height] height of canvas section
-         * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
-         *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
-         *  is very high quality
-         */
+     * converts stage into an image.
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {Object} config
+     * @param {Function} config.callback function executed when the composite has completed
+     * @param {String} [config.mimeType] can be "image/png" or "image/jpeg".
+     *  "image/png" is the default
+     * @param {Number} [config.x] x position of canvas section
+     * @param {Number} [config.y] y position of canvas section
+     * @param {Number} [config.width] width of canvas section
+     * @param {Number} [config.height] height of canvas section
+     * @param {Number} [config.quality] jpeg quality.  If using an "image/jpeg" mimeType,
+     *  you can specify the quality from 0 to 1, where 0 is very poor quality and 1
+     *  is very high quality
+     */
     toImage: function(config) {
       var cb = config.callback;
 
@@ -10058,20 +10070,20 @@
       this.toDataURL(config);
     },
     /**
-         * get visible intersection shape. This is the preferred
-         *  method for determining if a point intersects a shape or not
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {Object} pos
-         * @param {Number} pos.x
-         * @param {Number} pos.y
-         * @param {String} [selector]
-         * @returns {Konva.Node}
-         * @example
-         * var shape = stage.getIntersection({x: 50, y: 50});
-         * // or if you interested in shape parent:
-         * var group = stage.getIntersection({x: 50, y: 50}, 'Group');
-         */
+     * get visible intersection shape. This is the preferred
+     *  method for determining if a point intersects a shape or not
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {Object} pos
+     * @param {Number} pos.x
+     * @param {Number} pos.y
+     * @param {String} [selector]
+     * @returns {Konva.Node}
+     * @example
+     * var shape = stage.getIntersection({x: 50, y: 50});
+     * // or if you interested in shape parent:
+     * var group = stage.getIntersection({x: 50, y: 50}, 'Group');
+     */
     getIntersection: function(pos, selector) {
       var layers = this.getChildren(),
         len = layers.length,
@@ -10113,13 +10125,13 @@
       }
     },
     /**
-         * add layer or layers to stage
-         * @method
-         * @memberof Konva.Stage.prototype
-         * @param {...Konva.Layer} layer
-         * @example
-         * stage.add(layer1, layer2, layer3);
-         */
+     * add layer or layers to stage
+     * @method
+     * @memberof Konva.Stage.prototype
+     * @param {...Konva.Layer} layer
+     * @example
+     * stage.add(layer1, layer2, layer3);
+     */
     add: function(layer) {
       if (arguments.length > 1) {
         for (var i = 0; i < arguments.length; i++) {
@@ -10144,10 +10156,10 @@
       return null;
     },
     /**
-         * returns a {@link Konva.Collection} of layers
-         * @method
-         * @memberof Konva.Stage.prototype
-         */
+     * returns a {@link Konva.Collection} of layers
+     * @method
+     * @memberof Konva.Stage.prototype
+     */
     getLayers: function() {
       return this.getChildren();
     },
@@ -10422,10 +10434,7 @@
         }
       }
     },
-    _DOMMouseScroll: function(evt) {
-      this._mousewheel(evt);
-    },
-    _mousewheel: function(evt) {
+    _wheel: function(evt) {
       this._setPointerPosition(evt);
       var shape = this.getIntersection(this.getPointerPosition());
 
@@ -10433,9 +10442,6 @@
         shape._fireAndBubble(WHEEL, { evt: evt });
       }
       this._fire(CONTENT_WHEEL, { evt: evt });
-    },
-    _wheel: function(evt) {
-      this._mousewheel(evt);
     },
     _setPointerPosition: function(evt) {
       var contentPosition = this._getContentPosition(), x = null, y = null;
@@ -10523,61 +10529,61 @@
   Konva.Factory.addOverloadedGetterSetter(Konva.Stage, 'container');
 
   /**
-     * get container DOM element
-     * @name container
-     * @method
-     * @memberof Konva.Stage.prototype
-     * @returns {DomElement} container
-     * @example
-     * // get container
-     * var container = stage.container();
-     * // set container
-     * var container = document.createElement('div');
-     * body.appendChild(container);
-     * stage.container(container);
-     */
+   * get container DOM element
+   * @name container
+   * @method
+   * @memberof Konva.Stage.prototype
+   * @returns {DomElement} container
+   * @example
+   * // get container
+   * var container = stage.container();
+   * // set container
+   * var container = document.createElement('div');
+   * body.appendChild(container);
+   * stage.container(container);
+   */
 })();
 
 (function() {
   'use strict';
   /**
-     * BaseLayer constructor.
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Container
-     * @param {Object} config
-     * @param {Boolean} [config.clearBeforeDraw] set this property to false if you don't want
-     * to clear the canvas before each layer draw.  The default value is true.
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * * @param {Object} [config.clip] set clip
-     * @param {Number} [config.clipX] set clip x
-     * @param {Number} [config.clipY] set clip y
-     * @param {Number} [config.clipWidth] set clip width
-     * @param {Number} [config.clipHeight] set clip height
-     * @param {Function} [config.clipFunc] set clip func
+   * BaseLayer constructor.
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Container
+   * @param {Object} config
+   * @param {Boolean} [config.clearBeforeDraw] set this property to false if you don't want
+   * to clear the canvas before each layer draw.  The default value is true.
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * * @param {Object} [config.clip] set clip
+   * @param {Number} [config.clipX] set clip x
+   * @param {Number} [config.clipY] set clip y
+   * @param {Number} [config.clipWidth] set clip width
+   * @param {Number} [config.clipHeight] set clip height
+   * @param {Function} [config.clipFunc] set clip func
 
-     * @example
-     * var layer = new Konva.Layer();
-     */
+   * @example
+   * var layer = new Konva.Layer();
+   */
   Konva.BaseLayer = function(config) {
     this.___init(config);
   };
@@ -10591,47 +10597,47 @@
       return this.canvas._canvas.createPNGStream();
     },
     /**
-         * get layer canvas
-         * @method
-         * @memberof Konva.BaseLayer.prototype
-         */
+     * get layer canvas
+     * @method
+     * @memberof Konva.BaseLayer.prototype
+     */
     getCanvas: function() {
       return this.canvas;
     },
     /**
-         * get layer hit canvas
-         * @method
-         * @memberof Konva.BaseLayer.prototype
-         */
+     * get layer hit canvas
+     * @method
+     * @memberof Konva.BaseLayer.prototype
+     */
     getHitCanvas: function() {
       return this.hitCanvas;
     },
     /**
-         * get layer canvas context
-         * @method
-         * @memberof Konva.BaseLayer.prototype
-         */
+     * get layer canvas context
+     * @method
+     * @memberof Konva.BaseLayer.prototype
+     */
     getContext: function() {
       return this.getCanvas().getContext();
     },
     /**
-         * clear scene and hit canvas contexts tied to the layer
-         * @method
-         * @memberof Konva.BaseLayer.prototype
-         * @param {Object} [bounds]
-         * @param {Number} [bounds.x]
-         * @param {Number} [bounds.y]
-         * @param {Number} [bounds.width]
-         * @param {Number} [bounds.height]
-         * @example
-         * layer.clear();
-         * layer.clear({
+     * clear scene and hit canvas contexts tied to the layer
+     * @method
+     * @memberof Konva.BaseLayer.prototype
+     * @param {Object} [bounds]
+     * @param {Number} [bounds.x]
+     * @param {Number} [bounds.y]
+     * @param {Number} [bounds.width]
+     * @param {Number} [bounds.height]
+     * @example
+     * layer.clear();
+     * layer.clear({
          *   x : 0,
          *   y : 0,
          *   width : 100,
          *   height : 100
          * });
-         */
+     */
     clear: function(bounds) {
       this.getContext().clear(bounds);
       return this;
@@ -10740,15 +10746,15 @@
       return this;
     },
     /**
-         * get/set width of layer.getter return width of stage. setter doing nothing.
-         * if you want change width use `stage.width(value);`
-         * @name width
-         * @method
-         * @memberof Konva.BaseLayer.prototype
-         * @returns {Number}
-         * @example
-         * var width = layer.width();
-         */
+     * get/set width of layer.getter return width of stage. setter doing nothing.
+     * if you want change width use `stage.width(value);`
+     * @name width
+     * @method
+     * @memberof Konva.BaseLayer.prototype
+     * @returns {Number}
+     * @example
+     * var width = layer.width();
+     */
     getWidth: function() {
       if (this.parent) {
         return this.parent.getWidth();
@@ -10760,15 +10766,15 @@
       );
     },
     /**
-         * get/set height of layer.getter return height of stage. setter doing nothing.
-         * if you want change height use `stage.height(value);`
-         * @name height
-         * @method
-         * @memberof Konva.BaseLayer.prototype
-         * @returns {Number}
-         * @example
-         * var height = layer.height();
-         */
+     * get/set height of layer.getter return height of stage. setter doing nothing.
+     * if you want change height use `stage.height(value);`
+     * @name height
+     * @method
+     * @memberof Konva.BaseLayer.prototype
+     * @returns {Number}
+     * @example
+     * var height = layer.height();
+     */
     getHeight: function() {
       if (this.parent) {
         return this.parent.getHeight();
@@ -10792,23 +10798,23 @@
   // add getters and setters
   Konva.Factory.addGetterSetter(Konva.BaseLayer, 'clearBeforeDraw', true);
   /**
-     * get/set clearBeforeDraw flag which determines if the layer is cleared or not
-     *  before drawing
-     * @name clearBeforeDraw
-     * @method
-     * @memberof Konva.BaseLayer.prototype
-     * @param {Boolean} clearBeforeDraw
-     * @returns {Boolean}
-     * @example
-     * // get clearBeforeDraw flag
-     * var clearBeforeDraw = layer.clearBeforeDraw();
-     *
-     * // disable clear before draw
-     * layer.clearBeforeDraw(false);
-     *
-     * // enable clear before draw
-     * layer.clearBeforeDraw(true);
-     */
+   * get/set clearBeforeDraw flag which determines if the layer is cleared or not
+   *  before drawing
+   * @name clearBeforeDraw
+   * @method
+   * @memberof Konva.BaseLayer.prototype
+   * @param {Boolean} clearBeforeDraw
+   * @returns {Boolean}
+   * @example
+   * // get clearBeforeDraw flag
+   * var clearBeforeDraw = layer.clearBeforeDraw();
+   *
+   * // disable clear before draw
+   * layer.clearBeforeDraw(false);
+   *
+   * // enable clear before draw
+   * layer.clearBeforeDraw(true);
+   */
 
   Konva.Collection.mapMethods(Konva.BaseLayer);
 })();
@@ -10840,44 +10846,44 @@
     INTERSECTION_OFFSETS_LEN = INTERSECTION_OFFSETS.length;
 
   /**
-     * Layer constructor.  Layers are tied to their own canvas element and are used
-     * to contain groups or shapes.
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.BaseLayer
-     * @param {Object} config
-     * @param {Boolean} [config.clearBeforeDraw] set this property to false if you don't want
-     * to clear the canvas before each layer draw.  The default value is true.
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * * @param {Object} [config.clip] set clip
-     * @param {Number} [config.clipX] set clip x
-     * @param {Number} [config.clipY] set clip y
-     * @param {Number} [config.clipWidth] set clip width
-     * @param {Number} [config.clipHeight] set clip height
-     * @param {Function} [config.clipFunc] set clip func
+   * Layer constructor.  Layers are tied to their own canvas element and are used
+   * to contain groups or shapes.
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.BaseLayer
+   * @param {Object} config
+   * @param {Boolean} [config.clearBeforeDraw] set this property to false if you don't want
+   * to clear the canvas before each layer draw.  The default value is true.
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * * @param {Object} [config.clip] set clip
+   * @param {Number} [config.clipX] set clip x
+   * @param {Number} [config.clipY] set clip y
+   * @param {Number} [config.clipWidth] set clip width
+   * @param {Number} [config.clipHeight] set clip height
+   * @param {Function} [config.clipFunc] set clip func
 
-     * @example
-     * var layer = new Konva.Layer();
-     */
+   * @example
+   * var layer = new Konva.Layer();
+   */
   Konva.Layer = function(config) {
     this.____init(config);
   };
@@ -10903,21 +10909,21 @@
       }
     },
     /**
-         * get visible intersection shape. This is the preferred
-         * method for determining if a point intersects a shape or not
-         * also you may pass optional selector parametr to return ancestor of intersected shape
-         * @method
-         * @memberof Konva.Layer.prototype
-         * @param {Object} pos
-         * @param {Number} pos.x
-         * @param {Number} pos.y
-         * @param {String} [selector]
-         * @returns {Konva.Node}
-         * @example
-         * var shape = layer.getIntersection({x: 50, y: 50});
-         * // or if you interested in shape parent:
-         * var group = layer.getIntersection({x: 50, y: 50}, 'Group');
-         */
+     * get visible intersection shape. This is the preferred
+     * method for determining if a point intersects a shape or not
+     * also you may pass optional selector parametr to return ancestor of intersected shape
+     * @method
+     * @memberof Konva.Layer.prototype
+     * @param {Object} pos
+     * @param {Number} pos.x
+     * @param {Number} pos.y
+     * @param {String} [selector]
+     * @returns {Konva.Node}
+     * @example
+     * var shape = layer.getIntersection({x: 50, y: 50});
+     * // or if you interested in shape parent:
+     * var group = layer.getIntersection({x: 50, y: 50}, 'Group');
+     */
     getIntersection: function(pos, selector) {
       var obj, i, intersectionOffset, shape;
 
@@ -10986,7 +10992,7 @@
         Math.round(pos.y * ratio),
         1,
         1
-      ).data,
+        ).data,
         p3 = p[3],
         colorKey,
         shape;
@@ -11060,23 +11066,23 @@
       return this;
     },
     /**
-         * enable hit graph
-         * @name enableHitGraph
-         * @method
-         * @memberof Konva.Layer.prototype
-         * @returns {Layer}
-         */
+     * enable hit graph
+     * @name enableHitGraph
+     * @method
+     * @memberof Konva.Layer.prototype
+     * @returns {Layer}
+     */
     enableHitGraph: function() {
       this.setHitGraphEnabled(true);
       return this;
     },
     /**
-         * disable hit graph
-         * @name disableHitGraph
-         * @method
-         * @memberof Konva.Layer.prototype
-         * @returns {Layer}
-         */
+     * disable hit graph
+     * @name disableHitGraph
+     * @method
+     * @memberof Konva.Layer.prototype
+     * @returns {Layer}
+     */
     disableHitGraph: function() {
       this.setHitGraphEnabled(false);
       return this;
@@ -11091,54 +11097,54 @@
 
   Konva.Factory.addGetterSetter(Konva.Layer, 'hitGraphEnabled', true);
   /**
-     * get/set hitGraphEnabled flag.  Disabling the hit graph will greatly increase
-     *  draw performance because the hit graph will not be redrawn each time the layer is
-     *  drawn.  This, however, also disables mouse/touch event detection
-     * @name hitGraphEnabled
-     * @method
-     * @memberof Konva.Layer.prototype
-     * @param {Boolean} enabled
-     * @returns {Boolean}
-     * @example
-     * // get hitGraphEnabled flag
-     * var hitGraphEnabled = layer.hitGraphEnabled();
-     *
-     * // disable hit graph
-     * layer.hitGraphEnabled(false);
-     *
-     * // enable hit graph
-     * layer.hitGraphEnabled(true);
-     */
+   * get/set hitGraphEnabled flag.  Disabling the hit graph will greatly increase
+   *  draw performance because the hit graph will not be redrawn each time the layer is
+   *  drawn.  This, however, also disables mouse/touch event detection
+   * @name hitGraphEnabled
+   * @method
+   * @memberof Konva.Layer.prototype
+   * @param {Boolean} enabled
+   * @returns {Boolean}
+   * @example
+   * // get hitGraphEnabled flag
+   * var hitGraphEnabled = layer.hitGraphEnabled();
+   *
+   * // disable hit graph
+   * layer.hitGraphEnabled(false);
+   *
+   * // enable hit graph
+   * layer.hitGraphEnabled(true);
+   */
   Konva.Collection.mapMethods(Konva.Layer);
 })();
 
 (function() {
   'use strict';
   /**
-     * FastLayer constructor. Layers are tied to their own canvas element and are used
-     * to contain shapes only.  If you don't need node nesting, mouse and touch interactions,
-     * or event pub/sub, you should use FastLayer instead of Layer to create your layers.
-     * It renders about 2x faster than normal layers.
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.BaseLayer
-     * @param {Object} config
-     * @param {Boolean} [config.clearBeforeDraw] set this property to false if you don't want
-     * to clear the canvas before each layer draw.  The default value is true.
-     * @param {Boolean} [config.visible]
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * * @param {Object} [config.clip] set clip
-     * @param {Number} [config.clipX] set clip x
-     * @param {Number} [config.clipY] set clip y
-     * @param {Number} [config.clipWidth] set clip width
-     * @param {Number} [config.clipHeight] set clip height
-     * @param {Function} [config.clipFunc] set clip func
+   * FastLayer constructor. Layers are tied to their own canvas element and are used
+   * to contain shapes only.  If you don't need node nesting, mouse and touch interactions,
+   * or event pub/sub, you should use FastLayer instead of Layer to create your layers.
+   * It renders about 2x faster than normal layers.
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.BaseLayer
+   * @param {Object} config
+   * @param {Boolean} [config.clearBeforeDraw] set this property to false if you don't want
+   * to clear the canvas before each layer draw.  The default value is true.
+   * @param {Boolean} [config.visible]
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * * @param {Object} [config.clip] set clip
+   * @param {Number} [config.clipX] set clip x
+   * @param {Number} [config.clipY] set clip y
+   * @param {Number} [config.clipWidth] set clip width
+   * @param {Number} [config.clipHeight] set clip height
+   * @param {Function} [config.clipFunc] set clip func
 
-     * @example
-     * var layer = new Konva.FastLayer();
-     */
+   * @example
+   * var layer = new Konva.FastLayer();
+   */
   Konva.FastLayer = function(config) {
     this.____init(config);
   };
@@ -11199,41 +11205,41 @@
 (function() {
   'use strict';
   /**
-     * Group constructor.  Groups are used to contain shapes or other groups.
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Container
-     * @param {Object} config
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * * @param {Object} [config.clip] set clip
-     * @param {Number} [config.clipX] set clip x
-     * @param {Number} [config.clipY] set clip y
-     * @param {Number} [config.clipWidth] set clip width
-     * @param {Number} [config.clipHeight] set clip height
-     * @param {Function} [config.clipFunc] set clip func
+   * Group constructor.  Groups are used to contain shapes or other groups.
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Container
+   * @param {Object} config
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * * @param {Object} [config.clip] set clip
+   * @param {Number} [config.clipX] set clip x
+   * @param {Number} [config.clipY] set clip y
+   * @param {Number} [config.clipWidth] set clip width
+   * @param {Number} [config.clipHeight] set clip height
+   * @param {Function} [config.clipFunc] set clip func
 
-     * @example
-     * var group = new Konva.Group();
-     */
+   * @example
+   * var group = new Konva.Group();
+   */
   Konva.Group = function(config) {
     this.___init(config);
   };
@@ -11275,12 +11281,14 @@
   }
 
   var RAF = (function() {
-    return Konva.global.requestAnimationFrame ||
+    return (
+      Konva.global.requestAnimationFrame ||
       Konva.global.webkitRequestAnimationFrame ||
       Konva.global.mozRequestAnimationFrame ||
       Konva.global.oRequestAnimationFrame ||
       Konva.global.msRequestAnimationFrame ||
-      FRAF;
+      FRAF
+    );
   })();
 
   function requestAnimFrame() {
@@ -11288,28 +11296,28 @@
   }
 
   /**
-     * Animation constructor.  A stage is used to contain multiple layers and handle
-     * @constructor
-     * @memberof Konva
-     * @param {Function} func function executed on each animation frame.  The function is passed a frame object, which contains
-     *  timeDiff, lastTime, time, and frameRate properties.  The timeDiff property is the number of milliseconds that have passed
-     *  since the last animation frame.  The lastTime property is time in milliseconds that elapsed from the moment the animation started
-     *  to the last animation frame.  The time property is the time in milliseconds that ellapsed from the moment the animation started
-     *  to the current animation frame.  The frameRate property is the current frame rate in frames / second. Return false from function,
-     *  if you don't need to redraw layer/layers on some frames.
-     * @param {Konva.Layer|Array} [layers] layer(s) to be redrawn on each animation frame. Can be a layer, an array of layers, or null.
-     *  Not specifying a node will result in no redraw.
-     * @example
-     * // move a node to the right at 50 pixels / second
-     * var velocity = 50;
-     *
-     * var anim = new Konva.Animation(function(frame) {
+   * Animation constructor.  A stage is used to contain multiple layers and handle
+   * @constructor
+   * @memberof Konva
+   * @param {Function} func function executed on each animation frame.  The function is passed a frame object, which contains
+   *  timeDiff, lastTime, time, and frameRate properties.  The timeDiff property is the number of milliseconds that have passed
+   *  since the last animation frame.  The lastTime property is time in milliseconds that elapsed from the moment the animation started
+   *  to the last animation frame.  The time property is the time in milliseconds that ellapsed from the moment the animation started
+   *  to the current animation frame.  The frameRate property is the current frame rate in frames / second. Return false from function,
+   *  if you don't need to redraw layer/layers on some frames.
+   * @param {Konva.Layer|Array} [layers] layer(s) to be redrawn on each animation frame. Can be a layer, an array of layers, or null.
+   *  Not specifying a node will result in no redraw.
+   * @example
+   * // move a node to the right at 50 pixels / second
+   * var velocity = 50;
+   *
+   * var anim = new Konva.Animation(function(frame) {
      *   var dist = velocity * (frame.timeDiff / 1000);
      *   node.move(dist, 0);
      * }, layer);
-     *
-     * anim.start();
-     */
+   *
+   * anim.start();
+   */
   Konva.Animation = function(func, layers) {
     var Anim = Konva.Animation;
     this.func = func;
@@ -11326,12 +11334,12 @@
      */
   Konva.Animation.prototype = {
     /**
-         * set layers to be redrawn on each animation frame
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @param {Konva.Layer|Array} [layers] layer(s) to be redrawn.&nbsp; Can be a layer, an array of layers, or null.  Not specifying a node will result in no redraw.
-         * @return {Konva.Animation} this
-         */
+     * set layers to be redrawn on each animation frame
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @param {Konva.Layer|Array} [layers] layer(s) to be redrawn.&nbsp; Can be a layer, an array of layers, or null.  Not specifying a node will result in no redraw.
+     * @return {Konva.Animation} this
+     */
     setLayers: function(layers) {
       var lays = [];
       // if passing in no layers
@@ -11351,21 +11359,21 @@
       return this;
     },
     /**
-         * get layers
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @return {Array} Array of Konva.Layer
-         */
+     * get layers
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @return {Array} Array of Konva.Layer
+     */
     getLayers: function() {
       return this.layers;
     },
     /**
-         * add layer.  Returns true if the layer was added, and false if it was not
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @param {Konva.Layer} layer to add
-         * @return {Bool} true if layer is added to animation, otherwise false
-         */
+     * add layer.  Returns true if the layer was added, and false if it was not
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @param {Konva.Layer} layer to add
+     * @return {Bool} true if layer is added to animation, otherwise false
+     */
     addLayer: function(layer) {
       var layers = this.layers, len = layers.length, n;
 
@@ -11380,11 +11388,11 @@
       return true;
     },
     /**
-         * determine if animation is running or not.  returns true or false
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @return {Bool} is animation running?
-         */
+     * determine if animation is running or not.  returns true or false
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @return {Bool} is animation running?
+     */
     isRunning: function() {
       var a = Konva.Animation,
         animations = a.animations,
@@ -11399,11 +11407,11 @@
       return false;
     },
     /**
-         * start animation
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @return {Konva.Animation} this
-         */
+     * start animation
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @return {Konva.Animation} this
+     */
     start: function() {
       var Anim = Konva.Animation;
       this.stop();
@@ -11413,11 +11421,11 @@
       return this;
     },
     /**
-         * stop animation
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @return {Konva.Animation} this
-         */
+     * stop animation
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @return {Konva.Animation} this
+     */
     stop: function() {
       Konva.Animation._removeAnimation(this);
       return this;
@@ -11523,23 +11531,20 @@
   };
 
   /**
-     * batch draw. this function will not do immediate draw
-     * but it will schedule drawing to next tick (requestAnimFrame)
-     * @method
-     * @return {Konva.Layer} this
-     * @memberof Konva.Base.prototype
-     */
+   * batch draw. this function will not do immediate draw
+   * but it will schedule drawing to next tick (requestAnimFrame)
+   * @method
+   * @return {Konva.Layer} this
+   * @memberof Konva.Base.prototype
+   */
   Konva.BaseLayer.prototype.batchDraw = function() {
     var that = this, Anim = Konva.Animation;
 
     if (!this.batchAnim) {
-      this.batchAnim = new Anim(
-        function() {
-          // stop animation after first tick
-          that.batchAnim.stop();
-        },
-        this
-      );
+      this.batchAnim = new Anim(function() {
+        // stop animation after first tick
+        that.batchAnim.stop();
+      }, this);
     }
 
     if (!this.batchAnim.isRunning()) {
@@ -11549,11 +11554,11 @@
   };
 
   /**
-     * batch draw
-     * @method
-     * @return {Konva.Stage} this
-     * @memberof Konva.Stage.prototype
-     */
+   * batch draw
+   * @method
+   * @return {Konva.Stage} this
+   * @memberof Konva.Stage.prototype
+   */
   Konva.Stage.prototype.batchDraw = function() {
     this.getChildren().each(function(layer) {
       layer.batchDraw();
@@ -11565,12 +11570,12 @@
 (function() {
   'use strict';
   var blacklist = {
-    node: 1,
-    duration: 1,
-    easing: 1,
-    onFinish: 1,
-    yoyo: 1
-  },
+      node: 1,
+      duration: 1,
+      easing: 1,
+      onFinish: 1,
+      yoyo: 1
+    },
     PAUSED = 1,
     PLAYING = 2,
     REVERSING = 3,
@@ -11690,26 +11695,26 @@
   };
 
   /**
-     * Tween constructor.  Tweens enable you to animate a node between the current state and a new state.
-     *  You can play, pause, reverse, seek, reset, and finish tweens.  By default, tweens are animated using
-     *  a linear easing.  For more tweening options, check out {@link Konva.Easings}
-     * @constructor
-     * @memberof Konva
-     * @example
-     * // instantiate new tween which fully rotates a node in 1 second
-     * var tween = new Konva.Tween({
+   * Tween constructor.  Tweens enable you to animate a node between the current state and a new state.
+   *  You can play, pause, reverse, seek, reset, and finish tweens.  By default, tweens are animated using
+   *  a linear easing.  For more tweening options, check out {@link Konva.Easings}
+   * @constructor
+   * @memberof Konva
+   * @example
+   * // instantiate new tween which fully rotates a node in 1 second
+   * var tween = new Konva.Tween({
      *   node: node,
      *   rotationDeg: 360,
      *   duration: 1,
      *   easing: Konva.Easings.EaseInOut
      * });
-     *
-     * // play tween
-     * tween.play();
-     *
-     * // pause tween
-     * tween.pause();
-     */
+   *
+   * // play tween
+   * tween.play();
+   *
+   * // pause tween
+   * tween.pause();
+   */
   Konva.Tween = function(config) {
     var that = this,
       node = config.node,
@@ -11730,19 +11735,17 @@
     this.node = node;
     this._id = idCounter++;
 
-    var layers = node.getLayer() ||
+    var layers =
+      node.getLayer() ||
       (node instanceof Konva.Stage ? node.getLayers() : null);
     if (!layers) {
       Konva.Util.error(
         'Tween constructor have `node` that is not in a layer. Please add node into layer first.'
       );
     }
-    this.anim = new Konva.Animation(
-      function() {
-        that.tween.onEnterFrame();
-      },
-      layers
-    );
+    this.anim = new Konva.Animation(function() {
+      that.tween.onEnterFrame();
+    }, layers);
 
     this.tween = new Tween(
       key,
@@ -11879,7 +11882,8 @@
             newVal.push((start[n] || 0) + diff[n] * i);
           }
         } else if (colorAttrs.indexOf(key) !== -1) {
-          newVal = 'rgba(' +
+          newVal =
+            'rgba(' +
             Math.round(start.r + diff.r * i) +
             ',' +
             Math.round(start.g + diff.g * i) +
@@ -11937,71 +11941,71 @@
       };
     },
     /**
-         * play
-         * @method
-         * @memberof Konva.Tween.prototype
-         * @returns {Tween}
-         */
+     * play
+     * @method
+     * @memberof Konva.Tween.prototype
+     * @returns {Tween}
+     */
     play: function() {
       this.tween.play();
       return this;
     },
     /**
-         * reverse
-         * @method
-         * @memberof Konva.Tween.prototype
-         * @returns {Tween}
-         */
+     * reverse
+     * @method
+     * @memberof Konva.Tween.prototype
+     * @returns {Tween}
+     */
     reverse: function() {
       this.tween.reverse();
       return this;
     },
     /**
-         * reset
-         * @method
-         * @memberof Konva.Tween.prototype
-         * @returns {Tween}
-         */
+     * reset
+     * @method
+     * @memberof Konva.Tween.prototype
+     * @returns {Tween}
+     */
     reset: function() {
       this.tween.reset();
       return this;
     },
     /**
-         * seek
-         * @method
-         * @memberof Konva.Tween.prototype
-         * @param {Integer} t time in seconds between 0 and the duration
-         * @returns {Tween}
-         */
+     * seek
+     * @method
+     * @memberof Konva.Tween.prototype
+     * @param {Integer} t time in seconds between 0 and the duration
+     * @returns {Tween}
+     */
     seek: function(t) {
       this.tween.seek(t * 1000);
       return this;
     },
     /**
-         * pause
-         * @method
-         * @memberof Konva.Tween.prototype
-         * @returns {Tween}
-         */
+     * pause
+     * @method
+     * @memberof Konva.Tween.prototype
+     * @returns {Tween}
+     */
     pause: function() {
       this.tween.pause();
       return this;
     },
     /**
-         * finish
-         * @method
-         * @memberof Konva.Tween.prototype
-         * @returns {Tween}
-         */
+     * finish
+     * @method
+     * @memberof Konva.Tween.prototype
+     * @returns {Tween}
+     */
     finish: function() {
       this.tween.finish();
       return this;
     },
     /**
-         * destroy
-         * @method
-         * @memberof Konva.Tween.prototype
-         */
+     * destroy
+     * @method
+     * @memberof Konva.Tween.prototype
+     */
     destroy: function() {
       var nodeId = this.node._id,
         thisId = this._id,
@@ -12019,18 +12023,18 @@
   };
 
   /**
-     * Tween node properties. Shorter usage of {@link Konva.Tween} object.
-     *
-     * @method Konva.Node#to
-     * @memberof Konva.Node
-     * @param {Object} [params] tween params
-     * @example
-     *
-     * circle.to({
+   * Tween node properties. Shorter usage of {@link Konva.Tween} object.
+   *
+   * @method Konva.Node#to
+   * @memberof Konva.Node
+   * @param {Object} [params] tween params
+   * @example
+   *
+   * circle.to({
      *  x : 50,
      *  duration : 0.5
      * });
-     */
+   */
   Konva.Node.prototype.to = function(params) {
     var onFinish = params.onFinish;
     params.node = this;
@@ -12050,33 +12054,33 @@
     */
 
   /**
-     * @namespace Easings
-     * @memberof Konva
-     */
+   * @namespace Easings
+   * @memberof Konva
+   */
   Konva.Easings = {
     /**
-        * back ease in
-        * @function
-        * @memberof Konva.Easings
-        */
+     * back ease in
+     * @function
+     * @memberof Konva.Easings
+     */
     BackEaseIn: function(t, b, c, d) {
       var s = 1.70158;
       return c * (t /= d) * t * ((s + 1) * t - s) + b;
     },
     /**
-        * back ease out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * back ease out
+     * @function
+     * @memberof Konva.Easings
+     */
     BackEaseOut: function(t, b, c, d) {
       var s = 1.70158;
       return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
     },
     /**
-        * back ease in out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * back ease in out
+     * @function
+     * @memberof Konva.Easings
+     */
     BackEaseInOut: function(t, b, c, d) {
       var s = 1.70158;
       if ((t /= d / 2) < 1) {
@@ -12085,10 +12089,10 @@
       return c / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;
     },
     /**
-        * elastic ease in
-        * @function
-        * @memberof Konva.Easings
-        */
+     * elastic ease in
+     * @function
+     * @memberof Konva.Easings
+     */
     ElasticEaseIn: function(t, b, c, d, a, p) {
       // added s = 0
       var s = 0;
@@ -12107,15 +12111,17 @@
       } else {
         s = p / (2 * Math.PI) * Math.asin(c / a);
       }
-      return -(a *
-        Math.pow(2, 10 * (t -= 1)) *
-        Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+      return (
+        -(a *
+          Math.pow(2, 10 * (t -= 1)) *
+          Math.sin((t * d - s) * (2 * Math.PI) / p)) + b
+      );
     },
     /**
-        * elastic ease out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * elastic ease out
+     * @function
+     * @memberof Konva.Easings
+     */
     ElasticEaseOut: function(t, b, c, d, a, p) {
       // added s = 0
       var s = 0;
@@ -12134,17 +12140,17 @@
       } else {
         s = p / (2 * Math.PI) * Math.asin(c / a);
       }
-      return a *
-        Math.pow(2, (-10) * t) *
-        Math.sin((t * d - s) * (2 * Math.PI) / p) +
+      return (
+        a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) +
         c +
-        b;
+        b
+      );
     },
     /**
-        * elastic ease in out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * elastic ease in out
+     * @function
+     * @memberof Konva.Easings
+     */
     ElasticEaseInOut: function(t, b, c, d, a, p) {
       // added s = 0
       var s = 0;
@@ -12164,24 +12170,28 @@
         s = p / (2 * Math.PI) * Math.asin(c / a);
       }
       if (t < 1) {
-        return (-0.5) *
+        return (
+          -0.5 *
           (a *
             Math.pow(2, 10 * (t -= 1)) *
             Math.sin((t * d - s) * (2 * Math.PI) / p)) +
-          b;
+          b
+        );
       }
-      return a *
-        Math.pow(2, (-10) * (t -= 1)) *
+      return (
+        a *
+        Math.pow(2, -10 * (t -= 1)) *
         Math.sin((t * d - s) * (2 * Math.PI) / p) *
         0.5 +
         c +
-        b;
+        b
+      );
     },
     /**
-        * bounce ease out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * bounce ease out
+     * @function
+     * @memberof Konva.Easings
+     */
     BounceEaseOut: function(t, b, c, d) {
       if ((t /= d) < 1 / 2.75) {
         return c * (7.5625 * t * t) + b;
@@ -12194,75 +12204,75 @@
       }
     },
     /**
-        * bounce ease in
-        * @function
-        * @memberof Konva.Easings
-        */
+     * bounce ease in
+     * @function
+     * @memberof Konva.Easings
+     */
     BounceEaseIn: function(t, b, c, d) {
       return c - Konva.Easings.BounceEaseOut(d - t, 0, c, d) + b;
     },
     /**
-        * bounce ease in out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * bounce ease in out
+     * @function
+     * @memberof Konva.Easings
+     */
     BounceEaseInOut: function(t, b, c, d) {
       if (t < d / 2) {
         return Konva.Easings.BounceEaseIn(t * 2, 0, c, d) * 0.5 + b;
       } else {
-        return Konva.Easings.BounceEaseOut(t * 2 - d, 0, c, d) * 0.5 +
-          c * 0.5 +
-          b;
+        return (
+          Konva.Easings.BounceEaseOut(t * 2 - d, 0, c, d) * 0.5 + c * 0.5 + b
+        );
       }
     },
     /**
-        * ease in
-        * @function
-        * @memberof Konva.Easings
-        */
+     * ease in
+     * @function
+     * @memberof Konva.Easings
+     */
     EaseIn: function(t, b, c, d) {
       return c * (t /= d) * t + b;
     },
     /**
-        * ease out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * ease out
+     * @function
+     * @memberof Konva.Easings
+     */
     EaseOut: function(t, b, c, d) {
-      return (-c) * (t /= d) * (t - 2) + b;
+      return -c * (t /= d) * (t - 2) + b;
     },
     /**
-        * ease in out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * ease in out
+     * @function
+     * @memberof Konva.Easings
+     */
     EaseInOut: function(t, b, c, d) {
       if ((t /= d / 2) < 1) {
         return c / 2 * t * t + b;
       }
-      return (-c) / 2 * (--t * (t - 2) - 1) + b;
+      return -c / 2 * (--t * (t - 2) - 1) + b;
     },
     /**
-        * strong ease in
-        * @function
-        * @memberof Konva.Easings
-        */
+     * strong ease in
+     * @function
+     * @memberof Konva.Easings
+     */
     StrongEaseIn: function(t, b, c, d) {
       return c * (t /= d) * t * t * t * t + b;
     },
     /**
-        * strong ease out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * strong ease out
+     * @function
+     * @memberof Konva.Easings
+     */
     StrongEaseOut: function(t, b, c, d) {
       return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
     },
     /**
-        * strong ease in out
-        * @function
-        * @memberof Konva.Easings
-        */
+     * strong ease in out
+     * @function
+     * @memberof Konva.Easings
+     */
     StrongEaseInOut: function(t, b, c, d) {
       if ((t /= d / 2) < 1) {
         return c / 2 * t * t * t * t * t + b;
@@ -12270,10 +12280,10 @@
       return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
     },
     /**
-        * linear
-        * @function
-        * @memberof Konva.Easings
-        */
+     * linear
+     * @function
+     * @memberof Konva.Easings
+     */
     Linear: function(t, b, c, d) {
       return c * t / d + b;
     }
@@ -12388,10 +12398,10 @@
   // Node extenders
 
   /**
-     * initiate drag and drop
-     * @method
-     * @memberof Konva.Node.prototype
-     */
+   * initiate drag and drop
+   * @method
+   * @memberof Konva.Node.prototype
+   */
   Konva.Node.prototype.startDrag = function() {
     var dd = Konva.DD,
       stage = this.getStage(),
@@ -12444,10 +12454,10 @@
   };
 
   /**
-     * stop drag and drop
-     * @method
-     * @memberof Konva.Node.prototype
-     */
+   * stop drag and drop
+   * @method
+   * @memberof Konva.Node.prototype
+   */
   Konva.Node.prototype.stopDrag = function() {
     var dd = Konva.DD, evt = {};
     dd._endDragBefore(evt);
@@ -12474,10 +12484,10 @@
   };
 
   /**
-     * determine if node is currently in drag and drop mode
-     * @method
-     * @memberof Konva.Node.prototype
-     */
+   * determine if node is currently in drag and drop mode
+   * @method
+   * @memberof Konva.Node.prototype
+   */
   Konva.Node.prototype.isDragging = function() {
     var dd = Konva.DD;
     return !!(dd.node && dd.node._id === this._id && dd.isDragging);
@@ -12546,46 +12556,46 @@
   Konva.Factory.addGetterSetter(Konva.Node, 'dragBoundFunc');
 
   /**
-     * get/set drag bound function.  This is used to override the default
-     *  drag and drop position
-     * @name dragBoundFunc
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Function} dragBoundFunc
-     * @returns {Function}
-     * @example
-     * // get drag bound function
-     * var dragBoundFunc = node.dragBoundFunc();
-     *
-     * // create vertical drag and drop
-     * node.dragBoundFunc(function(pos){
+   * get/set drag bound function.  This is used to override the default
+   *  drag and drop position
+   * @name dragBoundFunc
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Function} dragBoundFunc
+   * @returns {Function}
+   * @example
+   * // get drag bound function
+   * var dragBoundFunc = node.dragBoundFunc();
+   *
+   * // create vertical drag and drop
+   * node.dragBoundFunc(function(pos){
      *   return {
      *     x: this.getAbsolutePosition().x,
      *     y: pos.y
      *   };
      * });
-     */
+   */
 
   Konva.Factory.addGetter(Konva.Node, 'draggable', false);
   Konva.Factory.addOverloadedGetterSetter(Konva.Node, 'draggable');
 
   /**
-     * get/set draggable flag
-     * @name draggable
-     * @method
-     * @memberof Konva.Node.prototype
-     * @param {Boolean} draggable
-     * @returns {Boolean}
-     * @example
-     * // get draggable flag
-     * var draggable = node.draggable();
-     *
-     * // enable drag and drop
-     * node.draggable(true);
-     *
-     * // disable drag and drop
-     * node.draggable(false);
-     */
+   * get/set draggable flag
+   * @name draggable
+   * @method
+   * @memberof Konva.Node.prototype
+   * @param {Boolean} draggable
+   * @returns {Boolean}
+   * @example
+   * // get draggable flag
+   * var draggable = node.draggable();
+   *
+   * // enable drag and drop
+   * node.draggable(true);
+   *
+   * // disable drag and drop
+   * node.draggable(false);
+   */
 
   var html = Konva.document.documentElement;
   html.addEventListener('mouseup', Konva.DD._endDragBefore, true);
@@ -12601,92 +12611,92 @@
 (function() {
   'use strict';
   /**
-     * Rect constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Number} [config.cornerRadius]
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var rect = new Konva.Rect({
+   * Rect constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Number} [config.cornerRadius]
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var rect = new Konva.Rect({
      *   width: 100,
      *   height: 50,
      *   fill: 'red',
      *   stroke: 'black',
      *   strokeWidth: 5
      * });
-     */
+   */
   Konva.Rect = function(config) {
     this.___init(config);
   };
@@ -12757,19 +12767,19 @@
 
   Konva.Factory.addGetterSetter(Konva.Rect, 'cornerRadius', 0);
   /**
-     * get/set corner radius
-     * @name cornerRadius
-     * @method
-     * @memberof Konva.Rect.prototype
-     * @param {Number} cornerRadius
-     * @returns {Number}
-     * @example
-     * // get corner radius
-     * var cornerRadius = rect.cornerRadius();
-     *
-     * // set corner radius
-     * rect.cornerRadius(10);
-     */
+   * get/set corner radius
+   * @name cornerRadius
+   * @method
+   * @memberof Konva.Rect.prototype
+   * @param {Number} cornerRadius
+   * @returns {Number}
+   * @example
+   * // get corner radius
+   * var cornerRadius = rect.cornerRadius();
+   *
+   * // set corner radius
+   * rect.cornerRadius(10);
+   */
 
   Konva.Collection.mapMethods(Konva.Rect);
 })();
@@ -12780,92 +12790,92 @@
   var PIx2 = Math.PI * 2 - 0.0001, CIRCLE = 'Circle';
 
   /**
-     * Circle constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Number} config.radius
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * // create circle
-     * var circle = new Konva.Circle({
+   * Circle constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Number} config.radius
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * // create circle
+   * var circle = new Konva.Circle({
      *   radius: 40,
      *   fill: 'red',
      *   stroke: 'black'
      *   strokeWidth: 5
      * });
-     */
+   */
   Konva.Circle = function(config) {
     this.___init(config);
   };
@@ -12914,19 +12924,19 @@
   Konva.Factory.addOverloadedGetterSetter(Konva.Circle, 'radius');
 
   /**
-     * get/set radius
-     * @name radius
-     * @method
-     * @memberof Konva.Circle.prototype
-     * @param {Number} radius
-     * @returns {Number}
-     * @example
-     * // get radius
-     * var radius = circle.radius();
-     *
-     * // set radius
-     * circle.radius(10);
-     */
+   * get/set radius
+   * @name radius
+   * @method
+   * @memberof Konva.Circle.prototype
+   * @param {Number} radius
+   * @returns {Number}
+   * @example
+   * // get radius
+   * var radius = circle.radius();
+   *
+   * // set radius
+   * circle.radius(10);
+   */
 
   Konva.Collection.mapMethods(Konva.Circle);
 })();
@@ -12937,91 +12947,91 @@
   var PIx2 = Math.PI * 2 - 0.0001, ELLIPSE = 'Ellipse';
 
   /**
-     * Ellipse constructor
-     * @constructor
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Object} config.radius defines x and y radius
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var ellipse = new Konva.Ellipse({
+   * Ellipse constructor
+   * @constructor
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Object} config.radius defines x and y radius
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var ellipse = new Konva.Ellipse({
      *   radius : {
      *     x : 50,
      *     y : 50
      *   },
      *   fill: 'red'
      * });
-     */
+   */
   Konva.Ellipse = function(config) {
     this.___init(config);
   };
@@ -13076,56 +13086,56 @@
   Konva.Factory.addComponentsGetterSetter(Konva.Ellipse, 'radius', ['x', 'y']);
 
   /**
-     * get/set radius
-     * @name radius
-     * @method
-     * @memberof Konva.Ellipse.prototype
-     * @param {Object} radius
-     * @param {Number} radius.x
-     * @param {Number} radius.y
-     * @returns {Object}
-     * @example
-     * // get radius
-     * var radius = ellipse.radius();
-     *
-     * // set radius
-     * ellipse.radius({
+   * get/set radius
+   * @name radius
+   * @method
+   * @memberof Konva.Ellipse.prototype
+   * @param {Object} radius
+   * @param {Number} radius.x
+   * @param {Number} radius.y
+   * @returns {Object}
+   * @example
+   * // get radius
+   * var radius = ellipse.radius();
+   *
+   * // set radius
+   * ellipse.radius({
      *   x: 200,
      *   y: 100
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Ellipse, 'radiusX', 0);
   /**
-     * get/set radius x
-     * @name radiusX
-     * @method
-     * @memberof Konva.Ellipse.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get radius x
-     * var radiusX = ellipse.radiusX();
-     *
-     * // set radius x
-     * ellipse.radiusX(200);
-     */
+   * get/set radius x
+   * @name radiusX
+   * @method
+   * @memberof Konva.Ellipse.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get radius x
+   * var radiusX = ellipse.radiusX();
+   *
+   * // set radius x
+   * ellipse.radiusX(200);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Ellipse, 'radiusY', 0);
   /**
-     * get/set radius y
-     * @name radiusY
-     * @method
-     * @memberof Konva.Ellipse.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get radius y
-     * var radiusY = ellipse.radiusY();
-     *
-     * // set radius y
-     * ellipse.radiusY(200);
-     */
+   * get/set radius y
+   * @name radiusY
+   * @method
+   * @memberof Konva.Ellipse.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get radius y
+   * var radiusY = ellipse.radiusY();
+   *
+   * // set radius y
+   * ellipse.radiusY(200);
+   */
 
   Konva.Collection.mapMethods(Konva.Ellipse);
 })();
@@ -13135,93 +13145,93 @@
   // the 0.0001 offset fixes a bug in Chrome 27
   var PIx2 = Math.PI * 2 - 0.0001;
   /**
-     * Ring constructor
-     * @constructor
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Number} config.innerRadius
-     * @param {Number} config.outerRadius
-     * @param {Boolean} [config.clockwise]
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var ring = new Konva.Ring({
+   * Ring constructor
+   * @constructor
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Number} config.innerRadius
+   * @param {Number} config.outerRadius
+   * @param {Boolean} [config.clockwise]
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var ring = new Konva.Ring({
      *   innerRadius: 40,
      *   outerRadius: 80,
      *   fill: 'red',
      *   stroke: 'black',
      *   strokeWidth: 5
      * });
-     */
+   */
   Konva.Ring = function(config) {
     this.___init(config);
   };
@@ -13276,36 +13286,36 @@
   Konva.Factory.addGetterSetter(Konva.Ring, 'innerRadius', 0);
 
   /**
-     * get/set innerRadius
-     * @name innerRadius
-     * @method
-     * @memberof Konva.Ring.prototype
-     * @param {Number} innerRadius
-     * @returns {Number}
-     * @example
-     * // get inner radius
-     * var innerRadius = ring.innerRadius();
-     *
-     * // set inner radius
-     * ring.innerRadius(20);
-     */
+   * get/set innerRadius
+   * @name innerRadius
+   * @method
+   * @memberof Konva.Ring.prototype
+   * @param {Number} innerRadius
+   * @returns {Number}
+   * @example
+   * // get inner radius
+   * var innerRadius = ring.innerRadius();
+   *
+   * // set inner radius
+   * ring.innerRadius(20);
+   */
   Konva.Factory.addGetter(Konva.Ring, 'outerRadius', 0);
   Konva.Factory.addOverloadedGetterSetter(Konva.Ring, 'outerRadius');
 
   /**
-     * get/set outerRadius
-     * @name outerRadius
-     * @method
-     * @memberof Konva.Ring.prototype
-     * @param {Number} outerRadius
-     * @returns {Number}
-     * @example
-     * // get outer radius
-     * var outerRadius = ring.outerRadius();
-     *
-     * // set outer radius
-     * ring.outerRadius(20);
-     */
+   * get/set outerRadius
+   * @name outerRadius
+   * @method
+   * @memberof Konva.Ring.prototype
+   * @param {Number} outerRadius
+   * @returns {Number}
+   * @example
+   * // get outer radius
+   * var outerRadius = ring.outerRadius();
+   *
+   * // set outer radius
+   * ring.outerRadius(20);
+   */
 
   Konva.Collection.mapMethods(Konva.Ring);
 })();
@@ -13313,87 +13323,87 @@
 (function() {
   'use strict';
   /**
-     * Wedge constructor
-     * @constructor
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Number} config.angle in degrees
-     * @param {Number} config.radius
-     * @param {Boolean} [config.clockwise]
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * // draw a wedge that's pointing downwards
-     * var wedge = new Konva.Wedge({
+   * Wedge constructor
+   * @constructor
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Number} config.angle in degrees
+   * @param {Number} config.radius
+   * @param {Boolean} [config.clockwise]
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * // draw a wedge that's pointing downwards
+   * var wedge = new Konva.Wedge({
      *   radius: 40,
      *   fill: 'red',
      *   stroke: 'black'
@@ -13401,7 +13411,7 @@
      *   angleDeg: 60,
      *   rotationDeg: -120
      * });
-     */
+   */
   Konva.Wedge = function(config) {
     this.___init(config);
   };
@@ -13457,56 +13467,56 @@
   Konva.Factory.addGetterSetter(Konva.Wedge, 'radius', 0);
 
   /**
-     * get/set radius
-     * @name radius
-     * @method
-     * @memberof Konva.Wedge.prototype
-     * @param {Number} radius
-     * @returns {Number}
-     * @example
-     * // get radius
-     * var radius = wedge.radius();
-     *
-     * // set radius
-     * wedge.radius(10);
-     */
+   * get/set radius
+   * @name radius
+   * @method
+   * @memberof Konva.Wedge.prototype
+   * @param {Number} radius
+   * @returns {Number}
+   * @example
+   * // get radius
+   * var radius = wedge.radius();
+   *
+   * // set radius
+   * wedge.radius(10);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Wedge, 'angle', 0);
 
   /**
-     * get/set angle in degrees
-     * @name angle
-     * @method
-     * @memberof Konva.Wedge.prototype
-     * @param {Number} angle
-     * @returns {Number}
-     * @example
-     * // get angle
-     * var angle = wedge.angle();
-     *
-     * // set angle
-     * wedge.angle(20);
-     */
+   * get/set angle in degrees
+   * @name angle
+   * @method
+   * @memberof Konva.Wedge.prototype
+   * @param {Number} angle
+   * @returns {Number}
+   * @example
+   * // get angle
+   * var angle = wedge.angle();
+   *
+   * // set angle
+   * wedge.angle(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Wedge, 'clockwise', false);
 
   /**
-     * get/set clockwise flag
-     * @name clockwise
-     * @method
-     * @memberof Konva.Wedge.prototype
-     * @param {Number} clockwise
-     * @returns {Number}
-     * @example
-     * // get clockwise flag
-     * var clockwise = wedge.clockwise();
-     *
-     * // draw wedge counter-clockwise
-     * wedge.clockwise(false);
-     *
-     * // draw wedge clockwise
-     * wedge.clockwise(true);
-     */
+   * get/set clockwise flag
+   * @name clockwise
+   * @method
+   * @memberof Konva.Wedge.prototype
+   * @param {Number} clockwise
+   * @returns {Number}
+   * @example
+   * // get clockwise flag
+   * var clockwise = wedge.clockwise();
+   *
+   * // draw wedge counter-clockwise
+   * wedge.clockwise(false);
+   *
+   * // draw wedge clockwise
+   * wedge.clockwise(true);
+   */
 
   Konva.Factory.backCompat(Konva.Wedge, {
     angleDeg: 'angle',
@@ -13520,88 +13530,88 @@
 (function() {
   'use strict';
   /**
-     * Arc constructor
-     * @constructor
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Number} config.angle in degrees
-     * @param {Number} config.innerRadius
-     * @param {Number} config.outerRadius
-     * @param {Boolean} [config.clockwise]
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * // draw a Arc that's pointing downwards
-     * var arc = new Konva.Arc({
+   * Arc constructor
+   * @constructor
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Number} config.angle in degrees
+   * @param {Number} config.innerRadius
+   * @param {Number} config.outerRadius
+   * @param {Boolean} [config.clockwise]
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * // draw a Arc that's pointing downwards
+   * var arc = new Konva.Arc({
      *   innerRadius: 40,
      *   outerRadius: 80,
      *   fill: 'red',
@@ -13610,7 +13620,7 @@
      *   angle: 60,
      *   rotationDeg: -120
      * });
-     */
+   */
   Konva.Arc = function(config) {
     this.___init(config);
   };
@@ -13661,73 +13671,73 @@
   Konva.Factory.addGetterSetter(Konva.Arc, 'innerRadius', 0);
 
   /**
-     * get/set innerRadius
-     * @name innerRadius
-     * @method
-     * @memberof Konva.Arc.prototype
-     * @param {Number} innerRadius
-     * @returns {Number}
-     * @example
-     * // get inner radius
-     * var innerRadius = arc.innerRadius();
-     *
-     * // set inner radius
-     * arc.innerRadius(20);
-     */
+   * get/set innerRadius
+   * @name innerRadius
+   * @method
+   * @memberof Konva.Arc.prototype
+   * @param {Number} innerRadius
+   * @returns {Number}
+   * @example
+   * // get inner radius
+   * var innerRadius = arc.innerRadius();
+   *
+   * // set inner radius
+   * arc.innerRadius(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Arc, 'outerRadius', 0);
 
   /**
-     * get/set outerRadius
-     * @name outerRadius
-     * @method
-     * @memberof Konva.Arc.prototype
-     * @param {Number} outerRadius
-     * @returns {Number}
-     * @example
-     * // get outer radius
-     * var outerRadius = arc.outerRadius();
-     *
-     * // set outer radius
-     * arc.outerRadius(20);
-     */
+   * get/set outerRadius
+   * @name outerRadius
+   * @method
+   * @memberof Konva.Arc.prototype
+   * @param {Number} outerRadius
+   * @returns {Number}
+   * @example
+   * // get outer radius
+   * var outerRadius = arc.outerRadius();
+   *
+   * // set outer radius
+   * arc.outerRadius(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Arc, 'angle', 0);
 
   /**
-     * get/set angle in degrees
-     * @name angle
-     * @method
-     * @memberof Konva.Arc.prototype
-     * @param {Number} angle
-     * @returns {Number}
-     * @example
-     * // get angle
-     * var angle = arc.angle();
-     *
-     * // set angle
-     * arc.angle(20);
-     */
+   * get/set angle in degrees
+   * @name angle
+   * @method
+   * @memberof Konva.Arc.prototype
+   * @param {Number} angle
+   * @returns {Number}
+   * @example
+   * // get angle
+   * var angle = arc.angle();
+   *
+   * // set angle
+   * arc.angle(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Arc, 'clockwise', false);
 
   /**
-     * get/set clockwise flag
-     * @name clockwise
-     * @method
-     * @memberof Konva.Arc.prototype
-     * @param {Boolean} clockwise
-     * @returns {Boolean}
-     * @example
-     * // get clockwise flag
-     * var clockwise = arc.clockwise();
-     *
-     * // draw arc counter-clockwise
-     * arc.clockwise(false);
-     *
-     * // draw arc clockwise
-     * arc.clockwise(true);
-     */
+   * get/set clockwise flag
+   * @name clockwise
+   * @method
+   * @memberof Konva.Arc.prototype
+   * @param {Boolean} clockwise
+   * @returns {Boolean}
+   * @example
+   * // get clockwise flag
+   * var clockwise = arc.clockwise();
+   *
+   * // draw arc counter-clockwise
+   * arc.clockwise(false);
+   *
+   * // draw arc clockwise
+   * arc.clockwise(true);
+   */
 
   Konva.Collection.mapMethods(Konva.Arc);
 })();
@@ -13738,87 +13748,87 @@
   var IMAGE = 'Image';
 
   /**
-     * Image constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Image} config.image
-     * @param {Object} [config.crop]
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var imageObj = new Image();
-     * imageObj.onload = function() {
+   * Image constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Image} config.image
+   * @param {Object} [config.crop]
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var imageObj = new Image();
+   * imageObj.onload = function() {
      *   var image = new Konva.Image({
      *     x: 200,
      *     y: 50,
@@ -13827,8 +13837,8 @@
      *     height: 100
      *   });
      * };
-     * imageObj.src = '/path/to/image.jpg'
-     */
+   * imageObj.src = '/path/to/image.jpg'
+   */
   Konva.Image = function(config) {
     this.___init(config);
   };
@@ -13842,9 +13852,11 @@
       this.hitFunc(this._hitFunc);
     },
     _useBufferCanvas: function() {
-      return (this.hasShadow() || this.getAbsoluteOpacity() !== 1) &&
+      return (
+        (this.hasShadow() || this.getAbsoluteOpacity() !== 1) &&
         this.hasStroke() &&
-        this.getStage();
+        this.getStage()
+      );
     },
     _sceneFunc: function(context) {
       var width = this.getWidth(),
@@ -13908,20 +13920,20 @@
   Konva.Factory.addGetterSetter(Konva.Image, 'image');
 
   /**
-     * set image
-     * @name setImage
-     * @method
-     * @memberof Konva.Image.prototype
-     * @param {Image} image
-     */
+   * set image
+   * @name setImage
+   * @method
+   * @memberof Konva.Image.prototype
+   * @param {Image} image
+   */
 
   /**
-     * get image
-     * @name getImage
-     * @method
-     * @memberof Konva.Image.prototype
-     * @returns {Image}
-     */
+   * get image
+   * @name getImage
+   * @method
+   * @memberof Konva.Image.prototype
+   * @returns {Image}
+   */
 
   Konva.Factory.addComponentsGetterSetter(Konva.Image, 'crop', [
     'x',
@@ -13930,108 +13942,108 @@
     'height'
   ]);
   /**
-     * get/set crop
-     * @method
-     * @name crop
-     * @memberof Konva.Image.prototype
-     * @param {Object} crop
-     * @param {Number} crop.x
-     * @param {Number} crop.y
-     * @param {Number} crop.width
-     * @param {Number} crop.height
-     * @returns {Object}
-     * @example
-     * // get crop
-     * var crop = image.crop();
-     *
-     * // set crop
-     * image.crop({
+   * get/set crop
+   * @method
+   * @name crop
+   * @memberof Konva.Image.prototype
+   * @param {Object} crop
+   * @param {Number} crop.x
+   * @param {Number} crop.y
+   * @param {Number} crop.width
+   * @param {Number} crop.height
+   * @returns {Object}
+   * @example
+   * // get crop
+   * var crop = image.crop();
+   *
+   * // set crop
+   * image.crop({
      *   x: 20,
      *   y: 20,
      *   width: 20,
      *   height: 20
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Image, 'cropX', 0);
   /**
-     * get/set crop x
-     * @method
-     * @name cropX
-     * @memberof Konva.Image.prototype
-     * @param {Number} x
-     * @returns {Number}
-     * @example
-     * // get crop x
-     * var cropX = image.cropX();
-     *
-     * // set crop x
-     * image.cropX(20);
-     */
+   * get/set crop x
+   * @method
+   * @name cropX
+   * @memberof Konva.Image.prototype
+   * @param {Number} x
+   * @returns {Number}
+   * @example
+   * // get crop x
+   * var cropX = image.cropX();
+   *
+   * // set crop x
+   * image.cropX(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Image, 'cropY', 0);
   /**
-     * get/set crop y
-     * @name cropY
-     * @method
-     * @memberof Konva.Image.prototype
-     * @param {Number} y
-     * @returns {Number}
-     * @example
-     * // get crop y
-     * var cropY = image.cropY();
-     *
-     * // set crop y
-     * image.cropY(20);
-     */
+   * get/set crop y
+   * @name cropY
+   * @method
+   * @memberof Konva.Image.prototype
+   * @param {Number} y
+   * @returns {Number}
+   * @example
+   * // get crop y
+   * var cropY = image.cropY();
+   *
+   * // set crop y
+   * image.cropY(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Image, 'cropWidth', 0);
   /**
-     * get/set crop width
-     * @name cropWidth
-     * @method
-     * @memberof Konva.Image.prototype
-     * @param {Number} width
-     * @returns {Number}
-     * @example
-     * // get crop width
-     * var cropWidth = image.cropWidth();
-     *
-     * // set crop width
-     * image.cropWidth(20);
-     */
+   * get/set crop width
+   * @name cropWidth
+   * @method
+   * @memberof Konva.Image.prototype
+   * @param {Number} width
+   * @returns {Number}
+   * @example
+   * // get crop width
+   * var cropWidth = image.cropWidth();
+   *
+   * // set crop width
+   * image.cropWidth(20);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Image, 'cropHeight', 0);
   /**
-     * get/set crop height
-     * @name cropHeight
-     * @method
-     * @memberof Konva.Image.prototype
-     * @param {Number} height
-     * @returns {Number}
-     * @example
-     * // get crop height
-     * var cropHeight = image.cropHeight();
-     *
-     * // set crop height
-     * image.cropHeight(20);
-     */
+   * get/set crop height
+   * @name cropHeight
+   * @method
+   * @memberof Konva.Image.prototype
+   * @param {Number} height
+   * @returns {Number}
+   * @example
+   * // get crop height
+   * var cropHeight = image.cropHeight();
+   *
+   * // set crop height
+   * image.cropHeight(20);
+   */
 
   Konva.Collection.mapMethods(Konva.Image);
 
   /**
-     * load image from given url and create `Konva.Image` instance
-     * @method
-     * @memberof Konva.Image
-     * @param {String} url image source
-     * @param {Function} callback with Konva.Image instance as first argument
-     * @example
-     *  Konva.Image.fromURL(imageURL, function(image){
+   * load image from given url and create `Konva.Image` instance
+   * @method
+   * @memberof Konva.Image
+   * @param {String} url image source
+   * @param {Function} callback with Konva.Image instance as first argument
+   * @example
+   *  Konva.Image.fromURL(imageURL, function(image){
      *    // image is Konva.Image instance
      *    layer.add(image);
      *    layer.draw();
      *  });
-     */
+   */
   Konva.Image.fromURL = function(url, callback) {
     var img = new Image();
     img.onload = function() {
@@ -14087,93 +14099,93 @@
     dummyContext = Konva.Util.createCanvasElement().getContext(CONTEXT_2D);
 
   /**
-     * Text constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {String} [config.fontFamily] default is Arial
-     * @param {Number} [config.fontSize] in pixels.  Default is 12
-     * @param {String} [config.fontStyle] can be normal, bold, or italic.  Default is normal
-     * @param {String} [config.fontVariant] can be normal or small-caps.  Default is normal
-     * @param {String} config.text
-     * @param {String} [config.align] can be left, center, or right
-     * @param {Number} [config.padding]
-     * @param {Number} [config.lineHeight] default is 1
-     * @param {String} [config.wrap] can be word, char, or none. Default is word
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var text = new Konva.Text({
+   * Text constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {String} [config.fontFamily] default is Arial
+   * @param {Number} [config.fontSize] in pixels.  Default is 12
+   * @param {String} [config.fontStyle] can be normal, bold, or italic.  Default is normal
+   * @param {String} [config.fontVariant] can be normal or small-caps.  Default is normal
+   * @param {String} config.text
+   * @param {String} [config.align] can be left, center, or right
+   * @param {Number} [config.padding]
+   * @param {Number} [config.lineHeight] default is 1
+   * @param {String} [config.wrap] can be word, char, or none. Default is word
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var text = new Konva.Text({
      *   x: 10,
      *   y: 15,
      *   text: 'Simple Text',
@@ -14181,7 +14193,7 @@
      *   fontFamily: 'Calibri',
      *   fill: 'green'
      * });
-     */
+   */
   Konva.Text = function(config) {
     this.___init(config);
   };
@@ -14338,11 +14350,11 @@
       return this;
     },
     /**
-         * get width of text area, which includes padding
-         * @method
-         * @memberof Konva.Text.prototype
-         * @returns {Number}
-         */
+     * get width of text area, which includes padding
+     * @method
+     * @memberof Konva.Text.prototype
+     * @returns {Number}
+     */
     getWidth: function() {
       var isAuto = this.attrs.width === AUTO || this.attrs.width === undefined;
       return isAuto
@@ -14350,34 +14362,34 @@
         : this.attrs.width;
     },
     /**
-         * get the height of the text area, which takes into account multi-line text, line heights, and padding
-         * @method
-         * @memberof Konva.Text.prototype
-         * @returns {Number}
-         */
+     * get the height of the text area, which takes into account multi-line text, line heights, and padding
+     * @method
+     * @memberof Konva.Text.prototype
+     * @returns {Number}
+     */
     getHeight: function() {
-      var isAuto = this.attrs.height === AUTO ||
-        this.attrs.height === undefined;
+      var isAuto =
+        this.attrs.height === AUTO || this.attrs.height === undefined;
       return isAuto
         ? this.getTextHeight() * this.textArr.length * this.getLineHeight() +
-            this.getPadding() * 2
+        this.getPadding() * 2
         : this.attrs.height;
     },
     /**
-         * get text width
-         * @method
-         * @memberof Konva.Text.prototype
-         * @returns {Number}
-         */
+     * get text width
+     * @method
+     * @memberof Konva.Text.prototype
+     * @returns {Number}
+     */
     getTextWidth: function() {
       return this.textWidth;
     },
     /**
-         * get text height
-         * @method
-         * @memberof Konva.Text.prototype
-         * @returns {Number}
-         */
+     * get text height
+     * @method
+     * @memberof Konva.Text.prototype
+     * @returns {Number}
+     */
     getTextHeight: function() {
       return this.textHeight;
     },
@@ -14400,19 +14412,23 @@
       // removing font variant will solve
       // fix for: https://github.com/konvajs/konva/issues/94
       if (Konva.UA.isIE) {
-        return this.getFontStyle() +
+        return (
+          this.getFontStyle() +
           SPACE +
           this.getFontSize() +
           PX_SPACE +
-          this.getFontFamily();
+          this.getFontFamily()
+        );
       }
-      return this.getFontStyle() +
+      return (
+        this.getFontStyle() +
         SPACE +
         this.getFontVariant() +
         SPACE +
         this.getFontSize() +
         PX_SPACE +
-        this.getFontFamily();
+        this.getFontFamily()
+      );
     },
     _addTextLine: function(line) {
       if (this.align() === JUSTIFY) {
@@ -14424,8 +14440,10 @@
     _getTextWidth: function(text) {
       var latterSpacing = this.getLetterSpacing();
       var length = text.length;
-      return dummyContext.measureText(text).width +
-        (length ? latterSpacing * (length - 1) : 0);
+      return (
+        dummyContext.measureText(text).width +
+        (length ? latterSpacing * (length - 1) : 0)
+      );
     },
     _setTextData: function() {
       var lines = this.getText().split('\n'),
@@ -14463,7 +14481,7 @@
                          */
             var low = 0, high = line.length, match = '', matchWidth = 0;
             while (low < high) {
-              var mid = low + high >>> 1,
+              var mid = (low + high) >>> 1,
                 substr = line.slice(0, mid + 1),
                 substrWidth = this._getTextWidth(substr);
               if (substrWidth <= maxWidth) {
@@ -14483,10 +14501,9 @@
               // a fitting substring was found
               if (wrapAtWord) {
                 // try to find a space or dash where wrapping could be done
-                var wrapIndex = Math.max(
-                  match.lastIndexOf(SPACE),
-                  match.lastIndexOf(DASH)
-                ) + 1;
+                var wrapIndex =
+                  Math.max(match.lastIndexOf(SPACE), match.lastIndexOf(DASH)) +
+                  1;
                 if (wrapIndex > 0) {
                   // re-cut the substring found at the space/dash position
                   low = wrapIndex;
@@ -14550,192 +14567,192 @@
   Konva.Factory.addGetterSetter(Konva.Text, 'fontFamily', 'Arial');
 
   /**
-     * get/set font family
-     * @name fontFamily
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {String} fontFamily
-     * @returns {String}
-     * @example
-     * // get font family
-     * var fontFamily = text.fontFamily();
-     *
-     * // set font family
-     * text.fontFamily('Arial');
-     */
+   * get/set font family
+   * @name fontFamily
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} fontFamily
+   * @returns {String}
+   * @example
+   * // get font family
+   * var fontFamily = text.fontFamily();
+   *
+   * // set font family
+   * text.fontFamily('Arial');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'fontSize', 12);
 
   /**
-     * get/set font size in pixels
-     * @name fontSize
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {Number} fontSize
-     * @returns {Number}
-     * @example
-     * // get font size
-     * var fontSize = text.fontSize();
-     *
-     * // set font size to 22px
-     * text.fontSize(22);
-     */
+   * get/set font size in pixels
+   * @name fontSize
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {Number} fontSize
+   * @returns {Number}
+   * @example
+   * // get font size
+   * var fontSize = text.fontSize();
+   *
+   * // set font size to 22px
+   * text.fontSize(22);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'fontStyle', NORMAL);
 
   /**
-     * set font style.  Can be 'normal', 'italic', or 'bold'.  'normal' is the default.
-     * @name fontStyle
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {String} fontStyle
-     * @returns {String}
-     * @example
-     * // get font style
-     * var fontStyle = text.fontStyle();
-     *
-     * // set font style
-     * text.fontStyle('bold');
-     */
+   * set font style.  Can be 'normal', 'italic', or 'bold'.  'normal' is the default.
+   * @name fontStyle
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} fontStyle
+   * @returns {String}
+   * @example
+   * // get font style
+   * var fontStyle = text.fontStyle();
+   *
+   * // set font style
+   * text.fontStyle('bold');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'fontVariant', NORMAL);
 
   /**
-     * set font variant.  Can be 'normal' or 'small-caps'.  'normal' is the default.
-     * @name fontVariant
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {String} fontVariant
-     * @returns {String}
-     * @example
-     * // get font variant
-     * var fontVariant = text.fontVariant();
-     *
-     * // set font variant
-     * text.fontVariant('small-caps');
-     */
+   * set font variant.  Can be 'normal' or 'small-caps'.  'normal' is the default.
+   * @name fontVariant
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} fontVariant
+   * @returns {String}
+   * @example
+   * // get font variant
+   * var fontVariant = text.fontVariant();
+   *
+   * // set font variant
+   * text.fontVariant('small-caps');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'padding', 0);
 
   /**
-     * set padding
-     * @name padding
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {Number} padding
-     * @returns {Number}
-     * @example
-     * // get padding
-     * var padding = text.padding();
-     *
-     * // set padding to 10 pixels
-     * text.padding(10);
-     */
+   * set padding
+   * @name padding
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {Number} padding
+   * @returns {Number}
+   * @example
+   * // get padding
+   * var padding = text.padding();
+   *
+   * // set padding to 10 pixels
+   * text.padding(10);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'align', LEFT);
 
   /**
-     * get/set horizontal align of text.  Can be 'left', 'center', 'right' or 'justify'
-     * @name align
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {String} align
-     * @returns {String}
-     * @example
-     * // get text align
-     * var align = text.align();
-     *
-     * // center text
-     * text.align('center');
-     *
-     * // align text to right
-     * text.align('right');
-     */
+   * get/set horizontal align of text.  Can be 'left', 'center', 'right' or 'justify'
+   * @name align
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} align
+   * @returns {String}
+   * @example
+   * // get text align
+   * var align = text.align();
+   *
+   * // center text
+   * text.align('center');
+   *
+   * // align text to right
+   * text.align('right');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'lineHeight', 1);
 
   /**
-     * get/set line height.  The default is 1.
-     * @name lineHeight
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {Number} lineHeight
-     * @returns {Number}
-     * @example
-     * // get line height
-     * var lineHeight = text.lineHeight();
-     *
-     * // set the line height
-     * text.lineHeight(2);
-     */
+   * get/set line height.  The default is 1.
+   * @name lineHeight
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {Number} lineHeight
+   * @returns {Number}
+   * @example
+   * // get line height
+   * var lineHeight = text.lineHeight();
+   *
+   * // set the line height
+   * text.lineHeight(2);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'wrap', WORD);
 
   /**
-     * get/set wrap.  Can be word, char, or none. Default is word.
-     * @name wrap
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {String} wrap
-     * @returns {String}
-     * @example
-     * // get wrap
-     * var wrap = text.wrap();
-     *
-     * // set wrap
-     * text.wrap('word');
-     */
+   * get/set wrap.  Can be word, char, or none. Default is word.
+   * @name wrap
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} wrap
+   * @returns {String}
+   * @example
+   * // get wrap
+   * var wrap = text.wrap();
+   *
+   * // set wrap
+   * text.wrap('word');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'letterSpacing', 0);
 
   /**
-       * set letter spacing property. Default value is 0.
-       * @name letterSpacing
-       * @method
-       * @memberof Konva.TextPath.prototype
-       * @param {Number} letterSpacing
-       */
+   * set letter spacing property. Default value is 0.
+   * @name letterSpacing
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {Number} letterSpacing
+   */
 
   Konva.Factory.addGetter(Konva.Text, 'text', EMPTY_STRING);
   Konva.Factory.addOverloadedGetterSetter(Konva.Text, 'text');
 
   /**
-     * get/set text
-     * @name getText
-     * @method
-     * @memberof Konva.Text.prototype
-     * @param {String} text
-     * @returns {String}
-     * @example
-     * // get text
-     * var text = text.text();
-     *
-     * // set text
-     * text.text('Hello world!');
-     */
+   * get/set text
+   * @name getText
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} text
+   * @returns {String}
+   * @example
+   * // get text
+   * var text = text.text();
+   *
+   * // set text
+   * text.text('Hello world!');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Text, 'textDecoration', EMPTY_STRING);
 
   /**
-      * get/set text decoration of a text.  Possible values are 'underline', 'line-through' or combination of these values separated by space
-      * @name textDecoration
-      * @method
-      * @memberof Konva.Text.prototype
-      * @param {String} textDecoration
-      * @returns {String}
-      * @example
-      * // get text decoration
-      * var textDecoration = text.textDecoration();
-      *
-      * // underline text
-      * text.textDecoration('underline');
-      *
-      * // strike text
-      * text.textDecoration('line-through');
-      *
-      * // underline and strike text
-      * text.textDecoration('underline line-through');
-      */
+   * get/set text decoration of a text.  Possible values are 'underline', 'line-through' or combination of these values separated by space
+   * @name textDecoration
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} textDecoration
+   * @returns {String}
+   * @example
+   * // get text decoration
+   * var textDecoration = text.textDecoration();
+   *
+   * // underline text
+   * text.textDecoration('underline');
+   *
+   * // strike text
+   * text.textDecoration('line-through');
+   *
+   * // underline and strike text
+   * text.textDecoration('underline line-through');
+   */
 
   Konva.Collection.mapMethods(Konva.Text);
 })();
@@ -14743,96 +14760,97 @@
 (function() {
   'use strict';
   /**
-     * Line constructor.&nbsp; Lines are defined by an array of points and
-     *  a tension
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Array} config.points
-     * @param {Number} [config.tension] Higher values will result in a more curvy line.  A value of 0 will result in no interpolation.
-     *   The default is 0
-     * @param {Boolean} [config.closed] defines whether or not the line shape is closed, creating a polygon or blob
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var line = new Konva.Line({
+   * Line constructor.&nbsp; Lines are defined by an array of points and
+   *  a tension
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Array} config.points
+   * @param {Number} [config.tension] Higher values will result in a more curvy line.  A value of 0 will result in no interpolation.
+   *   The default is 0
+   * @param {Boolean} [config.closed] defines whether or not the line shape is closed, creating a polygon or blob
+   * @param {Boolean} [config.bezier] if no tension is provided but bezier=true, we draw the line as a bezier using the passed points
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var line = new Konva.Line({
      *   x: 100,
      *   y: 50,
      *   points: [73, 70, 340, 23, 450, 60, 500, 20],
      *   stroke: 'red',
      *   tension: 1
      * });
-     */
+   */
   Konva.Line = function(config) {
     this.___init(config);
   };
@@ -14844,7 +14862,7 @@
       this.className = 'Line';
 
       this.on(
-        'pointsChange.konva tensionChange.konva closedChange.konva',
+        'pointsChange.konva tensionChange.konva closedChange.konva bezierChange.konva',
         function() {
           this._clearCache('tensionPoints');
         }
@@ -14857,6 +14875,7 @@
         length = points.length,
         tension = this.getTension(),
         closed = this.getClosed(),
+        bezier = this.getBezier(),
         tp,
         len,
         n;
@@ -14895,6 +14914,20 @@
             tp[len - 1],
             points[length - 2],
             points[length - 1]
+          );
+        }
+      } else if (bezier) {
+        // no tension but bezier
+        n = 2;
+
+        while (n < length) {
+          context.bezierCurveTo(
+            points[n++],
+            points[n++],
+            points[n++],
+            points[n++],
+            points[n++],
+            points[n++]
           );
         }
       } else {
@@ -15005,59 +15038,76 @@
   Konva.Factory.addGetterSetter(Konva.Line, 'closed', false);
 
   /**
-     * get/set closed flag.  The default is false
-     * @name closed
-     * @method
-     * @memberof Konva.Line.prototype
-     * @param {Boolean} closed
-     * @returns {Boolean}
-     * @example
-     * // get closed flag
-     * var closed = line.closed();
-     *
-     * // close the shape
-     * line.closed(true);
-     *
-     * // open the shape
-     * line.closed(false);
-     */
+   * get/set closed flag.  The default is false
+   * @name closed
+   * @method
+   * @memberof Konva.Line.prototype
+   * @param {Boolean} closed
+   * @returns {Boolean}
+   * @example
+   * // get closed flag
+   * var closed = line.closed();
+   *
+   * // close the shape
+   * line.closed(true);
+   *
+   * // open the shape
+   * line.closed(false);
+   */
+
+  Konva.Factory.addGetterSetter(Konva.Line, 'bezier', false);
+
+  /**
+   * get/set bezier flag.  The default is false
+   * @name bezier
+   * @method
+   * @memberof Konva.Line.prototype
+   * @param {Boolean} bezier
+   * @returns {Boolean}
+   * @example
+   * // get whether the line is a bezier
+   * var isBezier = line.bezier();
+   *
+   * // set whether the line is a bezier
+   * line.bezier(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Line, 'tension', 0);
 
   /**
-     * get/set tension
-     * @name tension
-     * @method
-     * @memberof Konva.Line.prototype
-     * @param {Number} Higher values will result in a more curvy line.  A value of 0 will result in no interpolation.
-     *   The default is 0
-     * @returns {Number}
-     * @example
-     * // get tension
-     * var tension = line.tension();
-     *
-     * // set tension
-     * line.tension(3);
-     */
+   * get/set tension
+   * @name tension
+   * @method
+   * @memberof Konva.Line.prototype
+   * @param {Number} Higher values will result in a more curvy line.  A value of 0 will result in no interpolation.
+   *   The default is 0
+   * @returns {Number}
+   * @example
+   * // get tension
+   * var tension = line.tension();
+   *
+   * // set tension
+   * line.tension(3);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Line, 'points', []);
   /**
-     * get/set points array
-     * @name points
-     * @method
-     * @memberof Konva.Line.prototype
-     * @param {Array} points
-     * @returns {Array}
-     * @example
-     * // get points
-     * var points = line.points();
-     *
-     * // set points
-     * line.points([10, 20, 30, 40, 50, 60]);
-     *
-     * // push a new point
-     * line.points(line.points().concat([70, 80]));
-     */
+   * get/set points array
+   * @name points
+   * @method
+   * @memberof Konva.Line.prototype
+   * @param {Array} points
+   * @returns {Array}
+   * @example
+   * // get points
+   * var points = line.points();
+   *
+   * // set points
+   * line.points([10, 20, 30, 40, 50, 60]);
+   *
+   * // push a new point
+   * line.points(line.points().concat([70, 80]));
+   */
 
   Konva.Collection.mapMethods(Konva.Line);
 })();
@@ -15065,89 +15115,89 @@
 (function() {
   'use strict';
   /**
-     * Sprite constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {String} config.animation animation key
-     * @param {Object} config.animations animation map
-     * @param {Integer} [config.frameIndex] animation frame index
-     * @param {Image} config.image image object
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var imageObj = new Image();
-     * imageObj.onload = function() {
+   * Sprite constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {String} config.animation animation key
+   * @param {Object} config.animations animation map
+   * @param {Integer} [config.frameIndex] animation frame index
+   * @param {Image} config.image image object
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var imageObj = new Image();
+   * imageObj.onload = function() {
      *   var sprite = new Konva.Sprite({
      *     x: 200,
      *     y: 100,
@@ -15177,8 +15227,8 @@
      *     frameIndex: 0
      *   });
      * };
-     * imageObj.src = '/path/to/image.jpg'
-     */
+   * imageObj.src = '/path/to/image.jpg'
+   */
   Konva.Sprite = function(config) {
     this.___init(config);
   };
@@ -15275,23 +15325,22 @@
       context.fillShape(this);
     },
     _useBufferCanvas: function() {
-      return (this.hasShadow() || this.getAbsoluteOpacity() !== 1) &&
-        this.hasStroke();
+      return (
+        (this.hasShadow() || this.getAbsoluteOpacity() !== 1) &&
+        this.hasStroke()
+      );
     },
     _setInterval: function() {
       var that = this;
-      this.interval = setInterval(
-        function() {
-          that._updateIndex();
-        },
-        1000 / this.getFrameRate()
-      );
+      this.interval = setInterval(function() {
+        that._updateIndex();
+      }, 1000 / this.getFrameRate());
     },
     /**
-         * start sprite animation
-         * @method
-         * @memberof Konva.Sprite.prototype
-         */
+     * start sprite animation
+     * @method
+     * @memberof Konva.Sprite.prototype
+     */
     start: function() {
       var layer = this.getLayer();
 
@@ -15306,20 +15355,20 @@
       this.anim.start();
     },
     /**
-         * stop sprite animation
-         * @method
-         * @memberof Konva.Sprite.prototype
-         */
+     * stop sprite animation
+     * @method
+     * @memberof Konva.Sprite.prototype
+     */
     stop: function() {
       this.anim.stop();
       clearInterval(this.interval);
     },
     /**
-         * determine if animation of sprite is running or not.  returns true or false
-         * @method
-         * @memberof Konva.Animation.prototype
-         * @returns {Boolean}
-         */
+     * determine if animation of sprite is running or not.  returns true or false
+     * @method
+     * @memberof Konva.Animation.prototype
+     * @returns {Boolean}
+     */
     isRunning: function() {
       return this.anim.isRunning();
     },
@@ -15343,35 +15392,35 @@
   Konva.Factory.addGetterSetter(Konva.Sprite, 'animation');
 
   /**
-     * get/set animation key
-     * @name animation
-     * @method
-     * @memberof Konva.Sprite.prototype
-     * @param {String} anim animation key
-     * @returns {String}
-     * @example
-     * // get animation key
-     * var animation = sprite.animation();
-     *
-     * // set animation key
-     * sprite.animation('kicking');
-     */
+   * get/set animation key
+   * @name animation
+   * @method
+   * @memberof Konva.Sprite.prototype
+   * @param {String} anim animation key
+   * @returns {String}
+   * @example
+   * // get animation key
+   * var animation = sprite.animation();
+   *
+   * // set animation key
+   * sprite.animation('kicking');
+   */
 
   Konva.Factory.addGetterSetter(Konva.Sprite, 'animations');
 
   /**
-     * get/set animations map
-     * @name animations
-     * @method
-     * @memberof Konva.Sprite.prototype
-     * @param {Object} animations
-     * @returns {Object}
-     * @example
-     * // get animations map
-     * var animations = sprite.animations();
-     *
-     * // set animations map
-     * sprite.animations({
+   * get/set animations map
+   * @name animations
+   * @method
+   * @memberof Konva.Sprite.prototype
+   * @param {Object} animations
+   * @returns {Object}
+   * @example
+   * // get animations map
+   * var animations = sprite.animations();
+   *
+   * // set animations map
+   * sprite.animations({
      *   standing: [
      *     // x, y, width, height (6 frames)
      *     0, 0, 49, 109,
@@ -15391,23 +15440,23 @@
      *     287, 109, 41, 98
      *   ]
      * });
-     */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Sprite, 'frameOffsets');
 
   /**
-    * get/set offsets map
-    * @name offsets
-    * @method
-    * @memberof Konva.Sprite.prototype
-    * @param {Object} offsets
-    * @returns {Object}
-    * @example
-    * // get offsets map
-    * var offsets = sprite.offsets();
-    *
-    * // set offsets map
-    * sprite.offsets({
+   * get/set offsets map
+   * @name offsets
+   * @method
+   * @memberof Konva.Sprite.prototype
+   * @param {Object} offsets
+   * @returns {Object}
+   * @example
+   * // get offsets map
+   * var offsets = sprite.offsets();
+   *
+   * // set offsets map
+   * sprite.offsets({
     *   standing: [
     *     // x, y (6 frames)
     *     0, 0,
@@ -15427,60 +15476,60 @@
     *     0, 0
     *   ]
     * });
-    */
+   */
 
   Konva.Factory.addGetterSetter(Konva.Sprite, 'image');
 
   /**
-     * get/set image
-     * @name image
-     * @method
-     * @memberof Konva.Sprite.prototype
-     * @param {Image} image
-     * @returns {Image}
-     * @example
-     * // get image
-     * var image = sprite.image();
-     *
-     * // set image
-     * sprite.image(imageObj);
-     */
+   * get/set image
+   * @name image
+   * @method
+   * @memberof Konva.Sprite.prototype
+   * @param {Image} image
+   * @returns {Image}
+   * @example
+   * // get image
+   * var image = sprite.image();
+   *
+   * // set image
+   * sprite.image(imageObj);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Sprite, 'frameIndex', 0);
 
   /**
-     * set/set animation frame index
-     * @name frameIndex
-     * @method
-     * @memberof Konva.Sprite.prototype
-     * @param {Integer} frameIndex
-     * @returns {Integer}
-     * @example
-     * // get animation frame index
-     * var frameIndex = sprite.frameIndex();
-     *
-     * // set animation frame index
-     * sprite.frameIndex(3);
-     */
+   * set/set animation frame index
+   * @name frameIndex
+   * @method
+   * @memberof Konva.Sprite.prototype
+   * @param {Integer} frameIndex
+   * @returns {Integer}
+   * @example
+   * // get animation frame index
+   * var frameIndex = sprite.frameIndex();
+   *
+   * // set animation frame index
+   * sprite.frameIndex(3);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Sprite, 'frameRate', 17);
 
   /**
-     * get/set frame rate in frames per second.  Increase this number to make the sprite
-     *  animation run faster, and decrease the number to make the sprite animation run slower
-     *  The default is 17 frames per second
-     * @name frameRate
-     * @method
-     * @memberof Konva.Sprite.prototype
-     * @param {Integer} frameRate
-     * @returns {Integer}
-     * @example
-     * // get frame rate
-     * var frameRate = sprite.frameRate();
-     *
-     * // set frame rate to 2 frames per second
-     * sprite.frameRate(2);
-     */
+   * get/set frame rate in frames per second.  Increase this number to make the sprite
+   *  animation run faster, and decrease the number to make the sprite animation run slower
+   *  The default is 17 frames per second
+   * @name frameRate
+   * @method
+   * @memberof Konva.Sprite.prototype
+   * @param {Integer} frameRate
+   * @returns {Integer}
+   * @example
+   * // get frame rate
+   * var frameRate = sprite.frameRate();
+   *
+   * // set frame rate to 2 frames per second
+   * sprite.frameRate(2);
+   */
 
   Konva.Factory.backCompat(Konva.Sprite, {
     index: 'frameIndex',
@@ -15495,93 +15544,93 @@
 (function() {
   'use strict';
   /**
-     * Path constructor.
-     * @author Jason Follas
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {String} config.data SVG data string
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var path = new Konva.Path({
+   * Path constructor.
+   * @author Jason Follas
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {String} config.data SVG data string
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var path = new Konva.Path({
      *   x: 240,
      *   y: 40,
      *   data: 'M12.582,9.551C3.251,16.237,0.921,29.021,7.08,38.564l-2.36,1.689l4.893,2.262l4.893,2.262l-0.568-5.36l-0.567-5.359l-2.365,1.694c-4.657-7.375-2.83-17.185,4.352-22.33c7.451-5.338,17.817-3.625,23.156,3.824c5.337,7.449,3.625,17.813-3.821,23.152l2.857,3.988c9.617-6.893,11.827-20.277,4.935-29.896C35.591,4.87,22.204,2.658,12.582,9.551z',
      *   fill: 'green',
      *   scale: 2
      * });
-     */
+   */
   Konva.Path = function(config) {
     this.___init(config);
   };
@@ -15924,7 +15973,6 @@
             cpy = p.shift();
             points.push(cpx, cpy);
             break;
-
           // Note: lineTo handlers need to be above this point
           case 'm':
             var dx = p.shift();
@@ -16275,8 +16323,8 @@
     // Derived from: http://www.w3.org/TR/SVG/implnote.html#ArcImplementationNotes
     var psi = psiDeg * (Math.PI / 180.0);
     var xp = Math.cos(psi) * (x1 - x2) / 2.0 + Math.sin(psi) * (y1 - y2) / 2.0;
-    var yp = (-1) * Math.sin(psi) * (x1 - x2) / 2.0 +
-      Math.cos(psi) * (y1 - y2) / 2.0;
+    var yp =
+      -1 * Math.sin(psi) * (x1 - x2) / 2.0 + Math.cos(psi) * (y1 - y2) / 2.0;
 
     var lambda = xp * xp / (rx * rx) + yp * yp / (ry * ry);
 
@@ -16287,7 +16335,7 @@
 
     var f = Math.sqrt(
       (rx * rx * (ry * ry) - rx * rx * (yp * yp) - ry * ry * (xp * xp)) /
-        (rx * rx * (yp * yp) + ry * ry * (xp * xp))
+      (rx * rx * (yp * yp) + ry * ry * (xp * xp))
     );
 
     if (fa === fs) {
@@ -16298,7 +16346,7 @@
     }
 
     var cxp = f * rx * yp / ry;
-    var cyp = f * (-ry) * xp / rx;
+    var cyp = f * -ry * xp / rx;
 
     var cx = (x1 + x2) / 2.0 + Math.cos(psi) * cxp - Math.sin(psi) * cyp;
     var cy = (y1 + y2) / 2.0 + Math.sin(psi) * cxp + Math.cos(psi) * cyp;
@@ -16314,7 +16362,7 @@
     };
     var theta = vAngle([1, 0], [(xp - cxp) / rx, (yp - cyp) / ry]);
     var u = [(xp - cxp) / rx, (yp - cyp) / ry];
-    var v = [((-1) * xp - cxp) / rx, ((-1) * yp - cyp) / ry];
+    var v = [(-1 * xp - cxp) / rx, (-1 * yp - cyp) / ry];
     var dTheta = vAngle(u, v);
 
     if (vRatio(u, v) <= -1) {
@@ -16335,22 +16383,22 @@
   Konva.Factory.addGetterSetter(Konva.Path, 'data');
 
   /**
-     * set SVG path data string.  This method
-     *  also automatically parses the data string
-     *  into a data array.  Currently supported SVG data:
-     *  M, m, L, l, H, h, V, v, Q, q, T, t, C, c, S, s, A, a, Z, z
-     * @name setData
-     * @method
-     * @memberof Konva.Path.prototype
-     * @param {String} SVG path command string
-     */
+   * set SVG path data string.  This method
+   *  also automatically parses the data string
+   *  into a data array.  Currently supported SVG data:
+   *  M, m, L, l, H, h, V, v, Q, q, T, t, C, c, S, s, A, a, Z, z
+   * @name setData
+   * @method
+   * @memberof Konva.Path.prototype
+   * @param {String} SVG path command string
+   */
 
   /**
-     * get SVG path data string
-     * @name getData
-     * @method
-     * @memberof Konva.Path.prototype
-     */
+   * get SVG path data string
+   * @name getData
+   * @method
+   * @memberof Konva.Path.prototype
+   */
 
   Konva.Collection.mapMethods(Konva.Path);
 })();
@@ -16362,91 +16410,91 @@
     NORMAL = 'normal';
 
   /**
-     * Path constructor.
-     * @author Jason Follas
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {String} [config.fontFamily] default is Calibri
-     * @param {Number} [config.fontSize] default is 12
-     * @param {String} [config.fontStyle] can be normal, bold, or italic.  Default is normal
-     * @param {String} [config.fontVariant] can be normal or small-caps.  Default is normal
-     * @param {String} config.text
-     * @param {String} config.data SVG data string
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var textpath = new Konva.TextPath({
+   * Path constructor.
+   * @author Jason Follas
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {String} [config.fontFamily] default is Calibri
+   * @param {Number} [config.fontSize] default is 12
+   * @param {String} [config.fontStyle] can be normal, bold, or italic.  Default is normal
+   * @param {String} [config.fontVariant] can be normal or small-caps.  Default is normal
+   * @param {String} config.text
+   * @param {String} config.data SVG data string
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var textpath = new Konva.TextPath({
      *   x: 100,
      *   y: 50,
      *   fill: '#333',
@@ -16455,7 +16503,7 @@
      *   text: 'All the world\'s a stage, and all the men and women merely players.',
      *   data: 'M10,10 C0,0 10,150 100,100 S300,150 400,50'
      * });
-     */
+   */
   Konva.TextPath = function(config) {
     this.___init(config);
   };
@@ -16569,27 +16617,27 @@
       context.stroke();
     },
     /**
-         * get text width in pixels
-         * @method
-         * @memberof Konva.TextPath.prototype
-         */
+     * get text width in pixels
+     * @method
+     * @memberof Konva.TextPath.prototype
+     */
     getTextWidth: function() {
       return this.textWidth;
     },
     /**
-         * get text height in pixels
-         * @method
-         * @memberof Konva.TextPath.prototype
-         */
+     * get text height in pixels
+     * @method
+     * @memberof Konva.TextPath.prototype
+     */
     getTextHeight: function() {
       return this.textHeight;
     },
     /**
-         * set text
-         * @method
-         * @memberof Konva.TextPath.prototype
-         * @param {String} text
-         */
+     * set text
+     * @method
+     * @memberof Konva.TextPath.prototype
+     * @param {String} text
+     */
     setText: function(text) {
       Konva.Text.prototype.setText.call(this, text);
     },
@@ -16688,15 +16736,17 @@
 
         p1 = undefined;
         while (
-          Math.abs(glyphWidth - currLen) / glyphWidth > 0.01 && attempts < 25
-        ) {
+          Math.abs(glyphWidth - currLen) / glyphWidth > 0.01 &&
+          attempts < 25
+          ) {
           attempts++;
           var cumulativePathLength = currLen;
           while (pathCmd === undefined) {
             pathCmd = getNextPathSegment();
 
             if (
-              pathCmd && cumulativePathLength + pathCmd.pathLength < glyphWidth
+              pathCmd &&
+              cumulativePathLength + pathCmd.pathLength < glyphWidth
             ) {
               cumulativePathLength += pathCmd.pathLength;
               pathCmd = undefined;
@@ -16818,7 +16868,6 @@
                 pathCmd.points[3]
               );
               break;
-
           }
 
           if (p1 !== undefined) {
@@ -16913,7 +16962,8 @@
   };
 
   // map TextPath methods to Text
-  Konva.TextPath.prototype._getContextFont = Konva.Text.prototype._getContextFont;
+  Konva.TextPath.prototype._getContextFont =
+    Konva.Text.prototype._getContextFont;
 
   Konva.Util.extend(Konva.TextPath, Konva.Shape);
 
@@ -16921,136 +16971,136 @@
   Konva.Factory.addGetterSetter(Konva.TextPath, 'fontFamily', 'Arial');
 
   /**
-     * set font family
-     * @name setFontFamily
-     * @method
-     * @memberof Konva.TextPath.prototype
-     * @param {String} fontFamily
-     */
+   * set font family
+   * @name setFontFamily
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {String} fontFamily
+   */
 
   /**
-     * get font family
-     * @name getFontFamily
-     * @method
-     * @memberof Konva.TextPath.prototype
-     */
+   * get font family
+   * @name getFontFamily
+   * @method
+   * @memberof Konva.TextPath.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.TextPath, 'fontSize', 12);
 
   /**
-     * set font size
-     * @name setFontSize
-     * @method
-     * @memberof Konva.TextPath.prototype
-     * @param {int} fontSize
-     */
+   * set font size
+   * @name setFontSize
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {int} fontSize
+   */
 
   /**
-     * get font size
-     * @name getFontSize
-     * @method
-     * @memberof Konva.TextPath.prototype
-     */
+   * get font size
+   * @name getFontSize
+   * @method
+   * @memberof Konva.TextPath.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.TextPath, 'fontStyle', NORMAL);
 
   /**
-     * set font style.  Can be 'normal', 'italic', or 'bold'.  'normal' is the default.
-     * @name setFontStyle
-     * @method
-     * @memberof Konva.TextPath.prototype
-     * @param {String} fontStyle
-     */
+   * set font style.  Can be 'normal', 'italic', or 'bold'.  'normal' is the default.
+   * @name setFontStyle
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {String} fontStyle
+   */
   Konva.Factory.addGetterSetter(Konva.TextPath, 'align', 'left');
 
   /**
-      * get/set horizontal align of text.  Can be 'left', 'center', 'right' or 'justify'
-      * @name align
-      * @method
-      * @memberof Konva.Text.prototype
-      * @param {String} align
-      * @returns {String}
-      * @example
-      * // get text align
-      * var align = text.align();
-      *
-      * // center text
-      * text.align('center');
-      *
-      * // align text to right
-      * text.align('right');
-      */
+   * get/set horizontal align of text.  Can be 'left', 'center', 'right' or 'justify'
+   * @name align
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} align
+   * @returns {String}
+   * @example
+   * // get text align
+   * var align = text.align();
+   *
+   * // center text
+   * text.align('center');
+   *
+   * // align text to right
+   * text.align('right');
+   */
 
   Konva.Factory.addGetterSetter(Konva.TextPath, 'letterSpacing', 0);
 
   /**
-      * set letter spacing property. Default value is 0.
-      * @name letterSpacing
-      * @method
-      * @memberof Konva.TextPath.prototype
-      * @param {Number} letterSpacing
-      */
+   * set letter spacing property. Default value is 0.
+   * @name letterSpacing
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {Number} letterSpacing
+   */
 
   Konva.Factory.addGetterSetter(Konva.TextPath, 'textBaseline', 'middle');
 
   /**
-      * set textBaseline property. Default value is 'middle'.
-      * Can be 'top', 'bottom', 'middle', 'alphabetic', 'hanging'
-      * @name textBaseline
-      * @method
-      * @memberof Konva.TextPath.prototype
-      * @param {Number} textBaseline
-      */
+   * set textBaseline property. Default value is 'middle'.
+   * Can be 'top', 'bottom', 'middle', 'alphabetic', 'hanging'
+   * @name textBaseline
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {Number} textBaseline
+   */
 
   /**
-     * get font style
-     * @name getFontStyle
-     * @method
-     * @memberof Konva.TextPath.prototype
-     */
+   * get font style
+   * @name getFontStyle
+   * @method
+   * @memberof Konva.TextPath.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.TextPath, 'fontVariant', NORMAL);
 
   /**
-     * set font variant.  Can be 'normal' or 'small-caps'.  'normal' is the default.
-     * @name setFontVariant
-     * @method
-     * @memberof Konva.TextPath.prototype
-     * @param {String} fontVariant
-     */
+   * set font variant.  Can be 'normal' or 'small-caps'.  'normal' is the default.
+   * @name setFontVariant
+   * @method
+   * @memberof Konva.TextPath.prototype
+   * @param {String} fontVariant
+   */
 
   /**
-     * @get font variant
-     * @name getFontVariant
-     * @method
-     * @memberof Konva.TextPath.prototype
-     */
+   * @get font variant
+   * @name getFontVariant
+   * @method
+   * @memberof Konva.TextPath.prototype
+   */
 
   Konva.Factory.addGetter(Konva.TextPath, 'text', EMPTY_STRING);
 
   /**
-     * get text
-     * @name getText
-     * @method
-     * @memberof Konva.TextPath.prototype
-     */
+   * get text
+   * @name getText
+   * @method
+   * @memberof Konva.TextPath.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.TextPath, 'textDecoration', null);
 
   /**
-      * get/set text decoration of a text.  Can be '' or 'underline'
-      * @name textDecoration
-      * @method
-      * @memberof Konva.Text.prototype
-      * @param {String} textDecoration
-      * @returns {String}
-      * @example
-      * // get text decoration
-      * var textDecoration = text.textDecoration();
-      *
-      * // center text
-      * text.textDecoration('underline');
-      */
+   * get/set text decoration of a text.  Can be '' or 'underline'
+   * @name textDecoration
+   * @method
+   * @memberof Konva.Text.prototype
+   * @param {String} textDecoration
+   * @returns {String}
+   * @example
+   * // get text decoration
+   * var textDecoration = text.textDecoration();
+   *
+   * // center text
+   * text.textDecoration('underline');
+   */
 
   Konva.Collection.mapMethods(Konva.TextPath);
 })();
@@ -17058,86 +17108,86 @@
 (function() {
   'use strict';
   /**
-     * RegularPolygon constructor.&nbsp; Examples include triangles, squares, pentagons, hexagons, etc.
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Number} config.sides
-     * @param {Number} config.radius
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var hexagon = new Konva.RegularPolygon({
+   * RegularPolygon constructor.&nbsp; Examples include triangles, squares, pentagons, hexagons, etc.
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Number} config.sides
+   * @param {Number} config.radius
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var hexagon = new Konva.RegularPolygon({
      *   x: 100,
      *   y: 200,
      *   sides: 6,
@@ -17146,7 +17196,7 @@
      *   stroke: 'black',
      *   strokeWidth: 4
      * });
-     */
+   */
   Konva.RegularPolygon = function(config) {
     this.___init(config);
   };
@@ -17167,7 +17217,7 @@
 
       for (n = 1; n < sides; n++) {
         x = radius * Math.sin(n * 2 * Math.PI / sides);
-        y = (-1) * radius * Math.cos(n * 2 * Math.PI / sides);
+        y = -1 * radius * Math.cos(n * 2 * Math.PI / sides);
         context.lineTo(x, y);
       }
       context.closePath();
@@ -17201,36 +17251,36 @@
   Konva.Factory.addGetterSetter(Konva.RegularPolygon, 'radius', 0);
 
   /**
-     * set radius
-     * @name setRadius
-     * @method
-     * @memberof Konva.RegularPolygon.prototype
-     * @param {Number} radius
-     */
+   * set radius
+   * @name setRadius
+   * @method
+   * @memberof Konva.RegularPolygon.prototype
+   * @param {Number} radius
+   */
 
   /**
-     * get radius
-     * @name getRadius
-     * @method
-     * @memberof Konva.RegularPolygon.prototype
-     */
+   * get radius
+   * @name getRadius
+   * @method
+   * @memberof Konva.RegularPolygon.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.RegularPolygon, 'sides', 0);
 
   /**
-     * set number of sides
-     * @name setSides
-     * @method
-     * @memberof Konva.RegularPolygon.prototype
-     * @param {int} sides
-     */
+   * set number of sides
+   * @name setSides
+   * @method
+   * @memberof Konva.RegularPolygon.prototype
+   * @param {int} sides
+   */
 
   /**
-     * get number of sides
-     * @name getSides
-     * @method
-     * @memberof Konva.RegularPolygon.prototype
-     */
+   * get number of sides
+   * @name getSides
+   * @method
+   * @memberof Konva.RegularPolygon.prototype
+   */
 
   Konva.Collection.mapMethods(Konva.RegularPolygon);
 })();
@@ -17238,87 +17288,87 @@
 (function() {
   'use strict';
   /**
-     * Star constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Integer} config.numPoints
-     * @param {Number} config.innerRadius
-     * @param {Number} config.outerRadius
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var star = new Konva.Star({
+   * Star constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Integer} config.numPoints
+   * @param {Number} config.innerRadius
+   * @param {Number} config.outerRadius
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var star = new Konva.Star({
      *   x: 100,
      *   y: 200,
      *   numPoints: 5,
@@ -17328,7 +17378,7 @@
      *   stroke: 'black',
      *   strokeWidth: 4
      * });
-     */
+   */
   Konva.Star = function(config) {
     this.___init(config);
   };
@@ -17352,7 +17402,7 @@
       for (var n = 1; n < numPoints * 2; n++) {
         var radius = n % 2 === 0 ? outerRadius : innerRadius;
         var x = radius * Math.sin(n * Math.PI / numPoints);
-        var y = (-1) * radius * Math.cos(n * Math.PI / numPoints);
+        var y = -1 * radius * Math.cos(n * Math.PI / numPoints);
         context.lineTo(x, y);
       }
       context.closePath();
@@ -17388,53 +17438,53 @@
   Konva.Factory.addGetterSetter(Konva.Star, 'numPoints', 5);
 
   /**
-     * set number of points
-     * @name setNumPoints
-     * @method
-     * @memberof Konva.Star.prototype
-     * @param {Integer} points
-     */
+   * set number of points
+   * @name setNumPoints
+   * @method
+   * @memberof Konva.Star.prototype
+   * @param {Integer} points
+   */
 
   /**
-     * get number of points
-     * @name getNumPoints
-     * @method
-     * @memberof Konva.Star.prototype
-     */
+   * get number of points
+   * @name getNumPoints
+   * @method
+   * @memberof Konva.Star.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.Star, 'innerRadius', 0);
 
   /**
-     * set inner radius
-     * @name setInnerRadius
-     * @method
-     * @memberof Konva.Star.prototype
-     * @param {Number} radius
-     */
+   * set inner radius
+   * @name setInnerRadius
+   * @method
+   * @memberof Konva.Star.prototype
+   * @param {Number} radius
+   */
 
   /**
-     * get inner radius
-     * @name getInnerRadius
-     * @method
-     * @memberof Konva.Star.prototype
-     */
+   * get inner radius
+   * @name getInnerRadius
+   * @method
+   * @memberof Konva.Star.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.Star, 'outerRadius', 0);
 
   /**
-     * set outer radius
-     * @name setOuterRadius
-     * @method
-     * @memberof Konva.Star.prototype
-     * @param {Number} radius
-     */
+   * set outer radius
+   * @name setOuterRadius
+   * @method
+   * @memberof Konva.Star.prototype
+   * @param {Number} radius
+   */
 
   /**
-     * get outer radius
-     * @name getOuterRadius
-     * @method
-     * @memberof Konva.Star.prototype
-     */
+   * get outer radius
+   * @name getOuterRadius
+   * @method
+   * @memberof Konva.Star.prototype
+   */
 
   Konva.Collection.mapMethods(Konva.Star);
 })();
@@ -17443,14 +17493,14 @@
   'use strict';
   // constants
   var ATTR_CHANGE_LIST = [
-    'fontFamily',
-    'fontSize',
-    'fontStyle',
-    'padding',
-    'lineHeight',
-    'text',
-    'width'
-  ],
+      'fontFamily',
+      'fontSize',
+      'fontStyle',
+      'padding',
+      'lineHeight',
+      'text',
+      'width'
+    ],
     CHANGE_KONVA = 'Change.konva',
     NONE = 'none',
     UP = 'up',
@@ -17462,40 +17512,40 @@
     attrChangeListLen = ATTR_CHANGE_LIST.length;
 
   /**
-     * Label constructor.&nbsp; Labels are groups that contain a Text and Tag shape
-     * @constructor
-     * @memberof Konva
-     * @param {Object} config
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * // create label
-     * var label = new Konva.Label({
+   * Label constructor.&nbsp; Labels are groups that contain a Text and Tag shape
+   * @constructor
+   * @memberof Konva
+   * @param {Object} config
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * // create label
+   * var label = new Konva.Label({
      *   x: 100,
      *   y: 100,
      *   draggable: true
      * });
-     *
-     * // add a tag to the label
-     * label.add(new Konva.Tag({
+   *
+   * // add a tag to the label
+   * label.add(new Konva.Tag({
      *   fill: '#bbb',
      *   stroke: '#333',
      *   shadowColor: 'black',
@@ -17508,16 +17558,16 @@
      *   pointerHeight: 20,
      *   cornerRadius: 5
      * }));
-     *
-     * // add text to the label
-     * label.add(new Konva.Text({
+   *
+   * // add text to the label
+   * label.add(new Konva.Text({
      *   text: 'Hello World!',
      *   fontSize: 50,
      *   lineHeight: 1.2,
      *   padding: 10,
      *   fill: 'green'
      *  }));
-     */
+   */
   Konva.Label = function(config) {
     this.____init(config);
   };
@@ -17535,22 +17585,22 @@
       });
     },
     /**
-         * get Text shape for the label.  You need to access the Text shape in order to update
-         * the text properties
-         * @name getText
-         * @method
-         * @memberof Konva.Label.prototype
-         */
+     * get Text shape for the label.  You need to access the Text shape in order to update
+     * the text properties
+     * @name getText
+     * @method
+     * @memberof Konva.Label.prototype
+     */
     getText: function() {
       return this.find('Text')[0];
     },
     /**
-         * get Tag shape for the label.  You need to access the Tag shape in order to update
-         * the pointer properties and the corner radius
-         * @name getTag
-         * @method
-         * @memberof Konva.Label.prototype
-         */
+     * get Tag shape for the label.  You need to access the Tag shape in order to update
+     * the pointer properties and the corner radius
+     * @name getTag
+     * @method
+     * @memberof Konva.Label.prototype
+     */
     getTag: function() {
       return this.find('Tag')[0];
     },
@@ -17594,7 +17644,7 @@
         switch (pointerDirection) {
           case UP:
             x = width / 2;
-            y = (-1) * pointerHeight;
+            y = -1 * pointerHeight;
             break;
           case RIGHT:
             x = width + pointerWidth;
@@ -17605,21 +17655,21 @@
             y = height + pointerHeight;
             break;
           case LEFT:
-            x = (-1) * pointerWidth;
+            x = -1 * pointerWidth;
             y = height / 2;
             break;
         }
 
         tag.setAttrs({
-          x: (-1) * x,
-          y: (-1) * y,
+          x: -1 * x,
+          y: -1 * y,
           width: width,
           height: height
         });
 
         text.setAttrs({
-          x: (-1) * x,
-          y: (-1) * y
+          x: -1 * x,
+          y: -1 * y
         });
       }
     }
@@ -17630,17 +17680,17 @@
   Konva.Collection.mapMethods(Konva.Label);
 
   /**
-     * Tag constructor.&nbsp; A Tag can be configured
-     *  to have a pointer element that points up, right, down, or left
-     * @constructor
-     * @memberof Konva
-     * @param {Object} config
-     * @param {String} [config.pointerDirection] can be up, right, down, left, or none; the default
-     *  is none.  When a pointer is present, the positioning of the label is relative to the tip of the pointer.
-     * @param {Number} [config.pointerWidth]
-     * @param {Number} [config.pointerHeight]
-     * @param {Number} [config.cornerRadius]
-     */
+   * Tag constructor.&nbsp; A Tag can be configured
+   *  to have a pointer element that points up, right, down, or left
+   * @constructor
+   * @memberof Konva
+   * @param {Object} config
+   * @param {String} [config.pointerDirection] can be up, right, down, left, or none; the default
+   *  is none.  When a pointer is present, the positioning of the label is relative to the tip of the pointer.
+   * @param {Number} [config.pointerWidth]
+   * @param {Number} [config.pointerHeight]
+   * @param {Number} [config.cornerRadius]
+   */
   Konva.Tag = function(config) {
     this.___init(config);
   };
@@ -17668,7 +17718,7 @@
 
       if (pointerDirection === UP) {
         context.lineTo((width - pointerWidth) / 2, 0);
-        context.lineTo(width / 2, (-1) * pointerHeight);
+        context.lineTo(width / 2, -1 * pointerHeight);
         context.lineTo((width + pointerWidth) / 2, 0);
       }
 
@@ -17728,7 +17778,7 @@
 
       if (pointerDirection === LEFT) {
         context.lineTo(0, (height + pointerHeight) / 2);
-        context.lineTo((-1) * pointerWidth, height / 2);
+        context.lineTo(-1 * pointerWidth, height / 2);
         context.lineTo(0, (height - pointerHeight) / 2);
       }
 
@@ -17781,71 +17831,71 @@
   Konva.Factory.addGetterSetter(Konva.Tag, 'pointerDirection', NONE);
 
   /**
-     * set pointer Direction
-     * @name setPointerDirection
-     * @method
-     * @memberof Konva.Tag.prototype
-     * @param {String} pointerDirection can be up, right, down, left, or none.  The
-     *  default is none
-     */
+   * set pointer Direction
+   * @name setPointerDirection
+   * @method
+   * @memberof Konva.Tag.prototype
+   * @param {String} pointerDirection can be up, right, down, left, or none.  The
+   *  default is none
+   */
 
   /**
-     * get pointer Direction
-     * @name getPointerDirection
-     * @method
-     * @memberof Konva.Tag.prototype
-     */
+   * get pointer Direction
+   * @name getPointerDirection
+   * @method
+   * @memberof Konva.Tag.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.Tag, 'pointerWidth', 0);
 
   /**
-     * set pointer width
-     * @name setPointerWidth
-     * @method
-     * @memberof Konva.Tag.prototype
-     * @param {Number} pointerWidth
-     */
+   * set pointer width
+   * @name setPointerWidth
+   * @method
+   * @memberof Konva.Tag.prototype
+   * @param {Number} pointerWidth
+   */
 
   /**
-     * get pointer width
-     * @name getPointerWidth
-     * @method
-     * @memberof Konva.Tag.prototype
-     */
+   * get pointer width
+   * @name getPointerWidth
+   * @method
+   * @memberof Konva.Tag.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.Tag, 'pointerHeight', 0);
 
   /**
-     * set pointer height
-     * @name setPointerHeight
-     * @method
-     * @memberof Konva.Tag.prototype
-     * @param {Number} pointerHeight
-     */
+   * set pointer height
+   * @name setPointerHeight
+   * @method
+   * @memberof Konva.Tag.prototype
+   * @param {Number} pointerHeight
+   */
 
   /**
-     * get pointer height
-     * @name getPointerHeight
-     * @method
-     * @memberof Konva.Tag.prototype
-     */
+   * get pointer height
+   * @name getPointerHeight
+   * @method
+   * @memberof Konva.Tag.prototype
+   */
 
   Konva.Factory.addGetterSetter(Konva.Tag, 'cornerRadius', 0);
 
   /**
-     * set corner radius
-     * @name setCornerRadius
-     * @method
-     * @memberof Konva.Tag.prototype
-     * @param {Number} corner radius
-     */
+   * set corner radius
+   * @name setCornerRadius
+   * @method
+   * @memberof Konva.Tag.prototype
+   * @param {Number} corner radius
+   */
 
   /**
-     * get corner radius
-     * @name getCornerRadius
-     * @method
-     * @memberof Konva.Tag.prototype
-     */
+   * get corner radius
+   * @name getCornerRadius
+   * @method
+   * @memberof Konva.Tag.prototype
+   */
 
   Konva.Collection.mapMethods(Konva.Tag);
 })();
@@ -17853,96 +17903,96 @@
 (function() {
   'use strict';
   /**
-     * Arrow constructor
-     * @constructor
-     * @memberof Konva
-     * @augments Konva.Shape
-     * @param {Object} config
-     * @param {Array} config.points
-     * @param {Number} [config.tension] Higher values will result in a more curvy line.  A value of 0 will result in no interpolation.
-     *   The default is 0
-     * @param {Number} config.pointerLength
-     * @param {Number} config.pointerWidth
-     * @param {String} [config.fill] fill color
-     * @param {Image} [config.fillPatternImage] fill pattern image
-     * @param {Number} [config.fillPatternX]
-     * @param {Number} [config.fillPatternY]
-     * @param {Object} [config.fillPatternOffset] object with x and y component
-     * @param {Number} [config.fillPatternOffsetX] 
-     * @param {Number} [config.fillPatternOffsetY] 
-     * @param {Object} [config.fillPatternScale] object with x and y component
-     * @param {Number} [config.fillPatternScaleX]
-     * @param {Number} [config.fillPatternScaleY]
-     * @param {Number} [config.fillPatternRotation]
-     * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
-     * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientStartPointX]
-     * @param {Number} [config.fillLinearGradientStartPointY]
-     * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillLinearGradientEndPointX]
-     * @param {Number} [config.fillLinearGradientEndPointY]
-     * @param {Array} [config.fillLinearGradientColorStops] array of color stops
-     * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientStartPointX]
-     * @param {Number} [config.fillRadialGradientStartPointY]
-     * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
-     * @param {Number} [config.fillRadialGradientEndPointX] 
-     * @param {Number} [config.fillRadialGradientEndPointY] 
-     * @param {Number} [config.fillRadialGradientStartRadius]
-     * @param {Number} [config.fillRadialGradientEndRadius]
-     * @param {Array} [config.fillRadialGradientColorStops] array of color stops
-     * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
-     * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
-     * @param {String} [config.stroke] stroke color
-     * @param {Number} [config.strokeWidth] stroke width
-     * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
-     * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
-     * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
-     * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
-     * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
-     * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
-     *  is miter
-     * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
-     *  is butt
-     * @param {String} [config.shadowColor]
-     * @param {Number} [config.shadowBlur]
-     * @param {Object} [config.shadowOffset] object with x and y component
-     * @param {Number} [config.shadowOffsetX]
-     * @param {Number} [config.shadowOffsetY]
-     * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
-     *  between 0 and 1
-     * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
-     * @param {Array} [config.dash]
-     * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
-     * @param {Number} [config.x]
-     * @param {Number} [config.y]
-     * @param {Number} [config.width]
-     * @param {Number} [config.height]
-     * @param {Boolean} [config.visible]
-     * @param {Boolean} [config.listening] whether or not the node is listening for events
-     * @param {String} [config.id] unique id
-     * @param {String} [config.name] non-unique name
-     * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
-     * @param {Object} [config.scale] set scale
-     * @param {Number} [config.scaleX] set scale x
-     * @param {Number} [config.scaleY] set scale y
-     * @param {Number} [config.rotation] rotation in degrees
-     * @param {Object} [config.offset] offset from center point and rotation point
-     * @param {Number} [config.offsetX] set offset x
-     * @param {Number} [config.offsetY] set offset y
-     * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
-     *  the entire stage by dragging any portion of the stage
-     * @param {Number} [config.dragDistance]
-     * @param {Function} [config.dragBoundFunc]
-     * @example
-     * var line = new Konva.Line({
+   * Arrow constructor
+   * @constructor
+   * @memberof Konva
+   * @augments Konva.Shape
+   * @param {Object} config
+   * @param {Array} config.points
+   * @param {Number} [config.tension] Higher values will result in a more curvy line.  A value of 0 will result in no interpolation.
+   *   The default is 0
+   * @param {Number} config.pointerLength
+   * @param {Number} config.pointerWidth
+   * @param {String} [config.fill] fill color
+   * @param {Image} [config.fillPatternImage] fill pattern image
+   * @param {Number} [config.fillPatternX]
+   * @param {Number} [config.fillPatternY]
+   * @param {Object} [config.fillPatternOffset] object with x and y component
+   * @param {Number} [config.fillPatternOffsetX]
+   * @param {Number} [config.fillPatternOffsetY]
+   * @param {Object} [config.fillPatternScale] object with x and y component
+   * @param {Number} [config.fillPatternScaleX]
+   * @param {Number} [config.fillPatternScaleY]
+   * @param {Number} [config.fillPatternRotation]
+   * @param {String} [config.fillPatternRepeat] can be "repeat", "repeat-x", "repeat-y", or "no-repeat".  The default is "no-repeat"
+   * @param {Object} [config.fillLinearGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientStartPointX]
+   * @param {Number} [config.fillLinearGradientStartPointY]
+   * @param {Object} [config.fillLinearGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillLinearGradientEndPointX]
+   * @param {Number} [config.fillLinearGradientEndPointY]
+   * @param {Array} [config.fillLinearGradientColorStops] array of color stops
+   * @param {Object} [config.fillRadialGradientStartPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientStartPointX]
+   * @param {Number} [config.fillRadialGradientStartPointY]
+   * @param {Object} [config.fillRadialGradientEndPoint] object with x and y component
+   * @param {Number} [config.fillRadialGradientEndPointX]
+   * @param {Number} [config.fillRadialGradientEndPointY]
+   * @param {Number} [config.fillRadialGradientStartRadius]
+   * @param {Number} [config.fillRadialGradientEndRadius]
+   * @param {Array} [config.fillRadialGradientColorStops] array of color stops
+   * @param {Boolean} [config.fillEnabled] flag which enables or disables the fill.  The default value is true
+   * @param {String} [config.fillPriority] can be color, linear-gradient, radial-graident, or pattern.  The default value is color.  The fillPriority property makes it really easy to toggle between different fill types.  For example, if you want to toggle between a fill color style and a fill pattern style, simply set the fill property and the fillPattern properties, and then use setFillPriority('color') to render the shape with a color fill, or use setFillPriority('pattern') to render the shape with the pattern fill configuration
+   * @param {String} [config.stroke] stroke color
+   * @param {Number} [config.strokeWidth] stroke width
+   * @param {Boolean} [config.strokeHitEnabled] flag which enables or disables stroke hit region.  The default is true
+   * @param {Boolean} [config.perfectDrawEnabled] flag which enables or disables using buffer canvas.  The default is true
+   * @param {Boolean} [config.shadowForStrokeEnabled] flag which enables or disables shasow for stroke.  The default is true
+   * @param {Boolean} [config.strokeScaleEnabled] flag which enables or disables stroke scale.  The default is true
+   * @param {Boolean} [config.strokeEnabled] flag which enables or disables the stroke.  The default value is true
+   * @param {String} [config.lineJoin] can be miter, round, or bevel.  The default
+   *  is miter
+   * @param {String} [config.lineCap] can be butt, round, or sqare.  The default
+   *  is butt
+   * @param {String} [config.shadowColor]
+   * @param {Number} [config.shadowBlur]
+   * @param {Object} [config.shadowOffset] object with x and y component
+   * @param {Number} [config.shadowOffsetX]
+   * @param {Number} [config.shadowOffsetY]
+   * @param {Number} [config.shadowOpacity] shadow opacity.  Can be any real number
+   *  between 0 and 1
+   * @param {Boolean} [config.shadowEnabled] flag which enables or disables the shadow.  The default value is true
+   * @param {Array} [config.dash]
+   * @param {Boolean} [config.dashEnabled] flag which enables or disables the dashArray.  The default value is true
+   * @param {Number} [config.x]
+   * @param {Number} [config.y]
+   * @param {Number} [config.width]
+   * @param {Number} [config.height]
+   * @param {Boolean} [config.visible]
+   * @param {Boolean} [config.listening] whether or not the node is listening for events
+   * @param {String} [config.id] unique id
+   * @param {String} [config.name] non-unique name
+   * @param {Number} [config.opacity] determines node opacity.  Can be any number between 0 and 1
+   * @param {Object} [config.scale] set scale
+   * @param {Number} [config.scaleX] set scale x
+   * @param {Number} [config.scaleY] set scale y
+   * @param {Number} [config.rotation] rotation in degrees
+   * @param {Object} [config.offset] offset from center point and rotation point
+   * @param {Number} [config.offsetX] set offset x
+   * @param {Number} [config.offsetY] set offset y
+   * @param {Boolean} [config.draggable] makes the node draggable.  When stages are draggable, you can drag and drop
+   *  the entire stage by dragging any portion of the stage
+   * @param {Number} [config.dragDistance]
+   * @param {Function} [config.dragBoundFunc]
+   * @example
+   * var line = new Konva.Line({
      *   points: [73, 70, 340, 23, 450, 60, 500, 20],
      *   stroke: 'red',
      *   tension: 1,
      *   pointerLength : 10,
      *   pointerWidth : 12
      * });
-     */
+   */
   Konva.Arrow = function(config) {
     this.____init(config);
   };
@@ -17970,7 +18020,7 @@
       ctx.rotate(radians);
       ctx.moveTo(0, 0);
       ctx.lineTo(-length, width / 2);
-      ctx.lineTo(-length, (-width) / 2);
+      ctx.lineTo(-length, -width / 2);
       ctx.closePath();
       ctx.restore();
 
@@ -17982,7 +18032,7 @@
         ctx.rotate((Math.atan2(-dy, -dx) + PI2) % PI2);
         ctx.moveTo(0, 0);
         ctx.lineTo(-length, width / 2);
-        ctx.lineTo(-length, (-width) / 2);
+        ctx.lineTo(-length, -width / 2);
         ctx.closePath();
         ctx.restore();
       }
@@ -17992,54 +18042,54 @@
 
   Konva.Util.extend(Konva.Arrow, Konva.Line);
   /**
-     * get/set pointerLength
-     * @name pointerLength
-     * @method
-     * @memberof Konva.Arrow.prototype
-     * @param {Number} Length of pointer of arrow.
-     *   The default is 10.
-     * @returns {Number}
-     * @example
-     * // get tension
-     * var pointerLength = line.pointerLength();
-     *
-     * // set tension
-     * line.pointerLength(15);
-     */
+   * get/set pointerLength
+   * @name pointerLength
+   * @method
+   * @memberof Konva.Arrow.prototype
+   * @param {Number} Length of pointer of arrow.
+   *   The default is 10.
+   * @returns {Number}
+   * @example
+   * // get tension
+   * var pointerLength = line.pointerLength();
+   *
+   * // set tension
+   * line.pointerLength(15);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Arrow, 'pointerLength', 10);
   /**
-     * get/set pointerWidth
-     * @name pointerWidth
-     * @method
-     * @memberof Konva.Arrow.prototype
-     * @param {Number} Width of pointer of arrow.
-     *   The default is 10.
-     * @returns {Number}
-     * @example
-     * // get tension
-     * var pointerWidth = line.pointerWidth();
-     *
-     * // set tension
-     * line.pointerWidth(15);
-     */
+   * get/set pointerWidth
+   * @name pointerWidth
+   * @method
+   * @memberof Konva.Arrow.prototype
+   * @param {Number} Width of pointer of arrow.
+   *   The default is 10.
+   * @returns {Number}
+   * @example
+   * // get tension
+   * var pointerWidth = line.pointerWidth();
+   *
+   * // set tension
+   * line.pointerWidth(15);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Arrow, 'pointerWidth', 10);
   /**
-     * get/set pointerAtBeginning
-     * @name pointerAtBeginning
-     * @method
-     * @memberof Konva.Arrow.prototype
-     * @param {Number} Should pointer displayed at beginning of arrow.
-     *   The default is false.
-     * @returns {Boolean}
-     * @example
-     * // get tension
-     * var pointerAtBeginning = line.pointerAtBeginning();
-     *
-     * // set tension
-     * line.pointerAtBeginning(true);
-     */
+   * get/set pointerAtBeginning
+   * @name pointerAtBeginning
+   * @method
+   * @memberof Konva.Arrow.prototype
+   * @param {Number} Should pointer displayed at beginning of arrow.
+   *   The default is false.
+   * @returns {Boolean}
+   * @example
+   * // get tension
+   * var pointerAtBeginning = line.pointerAtBeginning();
+   *
+   * // set tension
+   * line.pointerAtBeginning(true);
+   */
 
   Konva.Factory.addGetterSetter(Konva.Arrow, 'pointerAtBeginning', false);
   Konva.Collection.mapMethods(Konva.Arrow);
