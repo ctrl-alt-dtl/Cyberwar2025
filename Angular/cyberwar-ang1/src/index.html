@@ -2,13 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>CyberwarAng1</title>
+  <title>CyberWar:2025</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
+
 <body>
-  <app-root></app-root>
+<app-root></app-root>
+<div ng-app="myApp" >
+  <div ng-controller="canvasCtrl">
+    canvas
+    <div data-draggable-canvas Konvaobj=canvasKonvaObj konvastageobj=canvasKonvaStageObj isdraggable=isDraggable id="canvas">&nbsp;</div>
+  </div>
+</div>
+
+  <!--KONVA (canvas) Library-->
+  <script src="./app.js"></script>
+  <script src="./assets/lib/angular.js"></script>
+  <script src="./assets/lib/canvas/konva.js"></script>
+
 </body>
 </html>
+
