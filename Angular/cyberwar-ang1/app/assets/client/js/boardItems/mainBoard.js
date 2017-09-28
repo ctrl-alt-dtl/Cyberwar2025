@@ -4,7 +4,60 @@
  *    ../domainLibs/konvaConfigSettings.js
  */
 
+var centerHex = new Konva.RegularPolygon({
+  x: stage.width() / 2,
+  y: stage.height() / 2,
+  sides: 6,
+  radius: BASE_BOARD_WIDTH / 38,
+  fill: 'white',
+  stroke: 'black',
+  strokeWidth: 2,
+  rotation: 90
+});
 
+var boardEdge= new Konva.RegularPolygon({
+  x: stage.width() / 2,
+  y: stage.height() / 2,
+  sides: 6,
+  radius: BASE_BOARD_WIDTH / 2.79,
+  fill: 'white',
+  stroke: 'black',
+  strokeWidth: 4,
+  rotation: 90
+});
+
+var tier3= new Konva.RegularPolygon({
+  x: stage.width() / 2,
+  y: stage.height() / 2,
+  sides: 6,
+  radius: BASE_BOARD_WIDTH / 3.5,
+  fill: '#E3E3E3',
+  stroke: 'black',
+  strokeWidth: 1,
+  rotation: 90
+});
+
+var tier2= new Konva.RegularPolygon({
+  x: stage.width() / 2,
+  y: stage.height() / 2,
+  sides: 6,
+  radius: BASE_BOARD_WIDTH / 5,
+  fill: 'white',
+  stroke: 'black',
+  strokeWidth: 1,
+  rotation: 90
+});
+
+var tier1= new Konva.RegularPolygon({
+  x: stage.width() / 2,
+  y: stage.height() / 2,
+  sides: 6,
+  radius: BASE_BOARD_WIDTH / 9,
+  fill: '#E3E3E3',
+  stroke: 'black',
+  strokeWidth: 1,
+  rotation: 90
+});
 
 var origin = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
