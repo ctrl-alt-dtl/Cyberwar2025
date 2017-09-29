@@ -380,15 +380,15 @@ var cewTier3CNEBlk = new Konva.Rect({
 
 // Cyber Effects COST/AP Text
 var cewCostText = new Konva.Text({
-  text: 'USE',
-  x: BASE_BOARD_WIDTH / 1.046,
-  y: BASE_BOARD_HEIGHT / 23,
-  width: ceWindowTitleTextWidth,
+  text: 'COST TO USE',
+  x: BASE_BOARD_WIDTH / 1.05,
+  y: BASE_BOARD_HEIGHT / 26,
+  width: BASE_BOARD_WIDTH / 31.22,
   fontFamily:'sans-serif',
-  fontSize: ceWindowTextSize,
+  fontSize: BASE_BOARD_WIDTH / 116.36,
   fontStyle: 'bold',
   fill: 'black',
-  rotation: 0
+  align: 'center'
 });
 
 var cewTier1CostText = new Konva.Text({
