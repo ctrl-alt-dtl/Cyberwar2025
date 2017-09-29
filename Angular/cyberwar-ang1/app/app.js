@@ -100,7 +100,6 @@ app.directive('gameBoardRedServers', ['$rootScope', function ($rootScope) {
       // domainsGroup.add(origin);
       // add the layer to the stage -- 4 for now
       domainsGroup.add(r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
-      domainsLayer(domainsGroup);
 
       /*var layer = new Konva.Layer();
       var rectX = scope.konvastageobj.getWidth() / 2 - 50;
@@ -168,7 +167,6 @@ app.directive('gameBoardPurpleServers', ['$rootScope', function ($rootScope) {
 
       // add the layer to the stage -- 4 for now
       domainsGroup.add(p1Hex, p2Hex,p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
-      domainsLayer(domainsGroup);
 
       /*var layer = new Konva.Layer();
       var rectX = scope.konvastageobj.getWidth() / 2 - 50;
