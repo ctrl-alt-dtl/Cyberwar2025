@@ -41,6 +41,18 @@ var serverTextSize =  BASE_BOARD_WIDTH / 34.1;
 var baseTextWidth = BASE_BOARD_WIDTH / 4.8;
 var baseTextSize = BASE_BOARD_WIDTH / 46.5;
 
-// Cyber Window Text Sizes/Widths
+// Cyber Window Title Text Sizes/Widths
+var ceWindowTitleTextWidth = BASE_BOARD_WIDTH / 4.8;
+var ceWindowTitleTextSize = BASE_BOARD_WIDTH / 80;
+
+// Cyber Window Text Regular Size/Widths
 var ceWindowTextWidth = BASE_BOARD_WIDTH / 4.8;
-var ceWindowTextSize = BASE_BOARD_WIDTH / 80;
+var ceWindowTextSize = BASE_BOARD_WIDTH / 100;
+
+// Cyber Window Action Points Text Size/Widths
+var ceWindowAPTextWidth = BASE_BOARD_WIDTH / 4.8;
+var ceWindowAPTextSize = BASE_BOARD_WIDTH / 80;
+
+// Cyber Window Research Blocks Minus/Plus Text Size/Widths
+var cewResTextWidth = BASE_BOARD_WIDTH / 4.8;
+var cewResTextSize = BASE_BOARD_WIDTH / 60;
