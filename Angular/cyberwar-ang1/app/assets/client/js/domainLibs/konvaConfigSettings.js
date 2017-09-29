@@ -26,6 +26,10 @@ var point_y = BASE_BOARD_HEIGHT;
 
 var radius = BASE_BOARD_WIDTH / 55;
 
+// Tier Text Sizing
+var textWidth = BASE_BOARD_WIDTH / 25.6;
+var tierTextSize = BASE_BOARD_WIDTH / 106.67;
+
 // For Server text centering
 var text_offset_x = BASE_BOARD_WIDTH / 114;
 var text_offset_y = BASE_BOARD_HEIGHT / 55;
@@ -40,3 +44,19 @@ var serverTextSize =  BASE_BOARD_WIDTH / 34.1;
 
 var baseTextWidth = BASE_BOARD_WIDTH / 4.8;
 var baseTextSize = BASE_BOARD_WIDTH / 46.5;
+
+// Cyber Window Title Text Sizes/Widths
+var ceWindowTitleTextWidth = BASE_BOARD_WIDTH / 4.8;
+var ceWindowTitleTextSize = BASE_BOARD_WIDTH / 80;
+
+// Cyber Window Text Regular Size/Widths
+var ceWindowTextWidth = BASE_BOARD_WIDTH / 4.8;
+var ceWindowTextSize = BASE_BOARD_WIDTH / 100;
+
+// Cyber Window Action Points Text Size/Widths
+var ceWindowAPTextWidth = BASE_BOARD_WIDTH / 4.8;
+var ceWindowAPTextSize = BASE_BOARD_WIDTH / 80;
+
+// Cyber Window Research Blocks Minus/Plus Text Size/Widths
+var cewResTextWidth = BASE_BOARD_WIDTH / 4.8;
+var cewResTextSize = BASE_BOARD_WIDTH / 60;

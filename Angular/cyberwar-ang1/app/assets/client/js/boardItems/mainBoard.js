@@ -70,39 +70,37 @@ var origin = new Konva.RegularPolygon({
 // Text labeling for different board tiers.
 var tier3Text = new Konva.Text({
   text: 'Tier 3',
-  x: BASE_BOARD_WIDTH / 2.06,
+  x: BASE_BOARD_WIDTH / 2.05,
   y: BASE_BOARD_HEIGHT / 1.225,
-  width: 50,
-  stroke: 'black',
-  strokeWidth: 1,
+  width: BASE_BOARD_WIDTH / 40,
   fontFamily: 'sans-serif',
-  fontSize: 12,
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
   fill: '#000'
 });
 
 
 var tier2Text = new Konva.Text({
   text: 'Tier 2',
-  x: BASE_BOARD_WIDTH / 2.06,
+  x: BASE_BOARD_WIDTH / 2.05,
   y: BASE_BOARD_HEIGHT / 1.395,
-  width: 50,
-  stroke: 'black',
-  strokeWidth: 1,
+  width: BASE_BOARD_WIDTH / 40,
   fontFamily: 'sans-serif',
-  fontSize: 12,
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
   fill: '#000'
 });
 
 var tier1Text = new Konva.Text({
   text: 'Tier 1',
-  x: BASE_BOARD_WIDTH / 2.06,
+  x: BASE_BOARD_WIDTH / 2.05,
   y: BASE_BOARD_HEIGHT / 1.63,
-  width: 50,
-  stroke: 'black',
-  strokeWidth: 1,
+  width: BASE_BOARD_WIDTH / 40,
   fontFamily: 'sans-serif',
-  fontSize: 13,
-  fill: '#000'
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
 });
 
 // Domain boundary lines
