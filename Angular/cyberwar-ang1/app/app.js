@@ -25,86 +25,6 @@ var stage = new Konva.Stage({
 var bgLayer = new Konva.Layer();
 var boardItems = new Konva.Layer();
 
-var app = angular.module('CyberWar', []);
-
-app.controller('canvasCtrl', function($scope){
-  $scope.canvasKonvaObj = false;
-  $scope.canvaskonvaStageObj = false;
-});
-
-console.log("beforeDirective");
-
-app.directive('gameBoardServers', ['$rootScope', function ($rootScope) {
-  return {
-    restrict: 'A',
-    scope: {
-      konvaobj: '=',
-      konvastageobj: '='
-    },
-    link: function (scope, el, attrs) {
-      console.log("gameBoardLinksLoading");
-      if (!scope.konvastageobj) {
-        var id = attrs["id"];
-        //create random unique id
-        if (!id) {
-          id = Math.random().toString(36).substring(7);
-        }
-        if (!scope.kineticstageobj) {
-          scope.kineticstageobj = stage;
-        }
-        if (!scope.konvastageobj.container) {
-          scope.konvastageobj.attrs.container = id;
-        }
-      }
-
-      var domainsLayer = new Konva.Layer();
-
-      // domainsGroup.add(origin);
-      // add the layer to the stage -- 4 for now
-      domainsLayer.add(r1Hex);
-
-
-      var rectX = scope.kineticstageobj.getWidth() / 2 - 50;
-      var rectY = scope.kineticstageobj.getHeight() / 2 - 25;
-
-      //if kineticObj is null, init
-      var options = {
-        x: rectX,
-        y: rectY,
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 4,
-      };
-      if (scope.isdraggable) {
-        options.draggable = true;
-      }
-      if (!scope.kineticobj) {
-        scope.kineticobj = new Konva.Rect(options);
-      }
-
-      // add cursor styling
-      scope.kineticobj.on('mouseover', function () {
-
-        document.body.style.cursor = 'pointer';
-
-      });
-      scope.kineticobj.on('mouseout', function () {
-        document.body.style.cursor = 'default';
-        $rootScope.$emit("CANVAS-MOUSEOUT");
-      });
-
-      layer.add(scope.kineticobj);
-
-      console.log("gameBoardLinksLoaded")
-      scope.kineticstageobj.add(layer);
-    }
-  }
-}]);
-
-console.log("afterDirective");
-
 var imageObj = new Image();
 // background board
 imageObj.onload = function() {
@@ -130,3 +50,87 @@ imageObj.onload = function() {
 };
 
 imageObj.src = 'assets/client/img/empty-transparency-bg-1024x768.png';
+
+var app = angular.module('CyberWar', []);
+
+app.controller('canvasCtrl', function($scope){
+  $scope.canvasKonvaObj = false;
+  $scope.canvaskonvaStageObj = false;
+});
+
+console.log("beforeDirective");
+
+app.directive('gameBoardServers', ['$rootScope', function ($rootScope) {
+  return {
+    restrict: 'A',
+    scope: {
+      konvaobj: '=',
+      konvastageobj: '='
+    },
+    link: function (scope, el, attrs) {
+      console.log("gameBoardLinksLoading");
+      if (!scope.konvastageobj) {
+        var id = attrs["id"];
+        //create random unique id
+        if (!id) {
+          id = Math.random().toString(36).substring(7);
+        }
+        if (!scope.konvastageobj) {
+          scope.konvastageobj = stage;
+        }
+        if (!scope.konvastageobj.container) {
+          scope.konvastageobj.attrs.container = id;
+        }
+      }
+
+      var domainsLayer = new Konva.Layer();
+
+      // domainsGroup.add(origin);
+      // add the layer to the stage -- 4 for now
+      domainsLayer.add(r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+
+      /*var layer = new Konva.Layer();
+      var rectX = scope.konvastageobj.getWidth() / 2 - 50;
+      var rectY = scope.konvastageobj.getHeight() / 2 - 25;
+
+      //if kineticObj is null, init
+      var options = {
+        x: rectX,
+        y: rectY,
+        width: 100,
+        height: 50,
+        fill: '#00D2FF',
+        stroke: 'black',
+        strokeWidth: 4,
+      };
+      if (scope.isdraggable) {
+        options.draggable = true;
+      }
+      if (!scope.konvaobj) {
+        scope.konvaobj = new Konva.Rect(options);
+      }
+
+      // add cursor styling
+      scope.konvaobj.on('mouseover', function () {
+
+        document.body.style.cursor = 'pointer';
+
+      });
+      scope.konvaobj.on('mouseout', function () {
+        document.body.style.cursor = 'default';
+        $rootScope.$emit("CANVAS-MOUSEOUT");
+      });
+
+      layer.add(scope.konvaobj);*/
+
+      console.log("gameBoardLinksLoaded")
+      scope.konvastageobj.add(domainsLayer);
+
+
+    }
+  }
+}]);
+
+console.log("afterDirective");
+
+

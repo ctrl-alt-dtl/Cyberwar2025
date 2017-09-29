@@ -37,15 +37,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-controller="canvasCtrl">
-      <div data-game-board Konvaobj=canvasKonvaObj konvastageobj=canvasKonvaStageObj id="canvasServers">&nbsp</div>
-  </div>
+
 
   <div id="stage-parent">
       <div class="center">CyberWar:2025</div>
-      <div class="container">
-
+      <div class="container"></div>
+      <div ng-controller="canvasCtrl">
+          <div data-game-board-servers Konvaobj=canvasKonvaObj konvastageobj=canvasKonvaStageObj id="canvasServer">&nbsp</div>
       </div>
+
       <!--
       <div id="buttons">
           <input type="button" id="activate" value="Activate rectangle">
