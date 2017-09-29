@@ -203,8 +203,6 @@ app.directive('gameBoardPurpleServers', ['$rootScope', function ($rootScope) {
       layer.add(scope.konvaobj);*/
 
       console.log("gameBoardPurpleServersLoaded")
-      // scope.konvastageobj.add(domainsLayer);
-
     }
   }
 }]);
