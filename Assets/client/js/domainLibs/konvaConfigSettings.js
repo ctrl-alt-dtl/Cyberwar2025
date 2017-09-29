@@ -40,3 +40,7 @@ var serverTextSize =  BASE_BOARD_WIDTH / 34.1;
 
 var baseTextWidth = BASE_BOARD_WIDTH / 4.8;
 var baseTextSize = BASE_BOARD_WIDTH / 46.5;
+
+// Cyber Window Text Sizes/Widths
+var ceWindowTextWidth = BASE_BOARD_WIDTH / 4.8;
+var ceWindowTextSize = BASE_BOARD_WIDTH / 80;

@@ -63,6 +63,10 @@ imageObj.onload = function() {
   bgLayer.add(tier3Text, tier2Text, tier1Text);
   // Extra board items (Windows, Buttons, Chat, and Actions)
   boardItems.add(submitOrdersBtn, ordersQueue, effectsWindow, chatWindow, notesRulesWindow);
+  // Board Items on top of the Template
+  boardItems.add(cewTopRow, cewEffectTypesRow, cewTier1Row, cewTier2Row, cewTier3Row, cewLevelBarRow);
+  // Cyber Effects Window Text
+  boardItems.add(cewTopRowText, cewEffectsLabelText);
 
   // Domain Inter-Server Paths (LINKS)
   // Red Domain
