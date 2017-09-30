@@ -13,18 +13,29 @@ var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
 var stage = new Konva.Stage({
   container: '.container',
-  width: BASE_BOARD_WIDTH,
+  width: BASE_BOARD_HEIGHT,
   height: BASE_BOARD_HEIGHT
 });
 
 var bgLayer = new Konva.Layer();
-var boardItems = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
 
-var domainsGroup = new Konva.Group({
-  width: BASE_BOARD_WIDTH,
+var bgGroup = new Konva.Group({
+  width: BASE_BOARD_HEIGHT,
   height: BASE_BOARD_HEIGHT,
-  x: BASE_BOARD_WIDTH / 2,
+  x: BASE_BOARD_WIDTH / 2.665,
+  y: BASE_BOARD_HEIGHT / 2,
+  offset: {
+    x: BASE_BOARD_WIDTH / 2,
+    y: BASE_BOARD_HEIGHT / 2,
+  },
+  rotation: DOMAIN_LAYER_BOARD_ROTATION
+});
+
+var domainsGroup = new Konva.Group({
+  width: BASE_BOARD_HEIGHT,
+  height: BASE_BOARD_HEIGHT,
+  x: BASE_BOARD_WIDTH / 2.665,
   y: BASE_BOARD_HEIGHT / 2,
   offset: {
     x: BASE_BOARD_WIDTH / 2,
@@ -43,42 +54,14 @@ imageObj.onload = function() {
   });
 
   // add the shapes to the layer, the order matters (background, links, bases, then servers).
-  bgLayer.add(bgBoard);
-  bgLayer.add(boardEdge, tier3, tier2, tier1);
-  bgLayer.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
-  bgLayer.add(mainBoundary3, mainBoundary2, mainBoundary1, centerHex);
-  bgLayer.add(tier3Text, tier2Text, tier1Text);
-  // Extra board items (Windows, Buttons, Chat, and Actions)
-  boardItems.add(submitOrdersBtn, ordersQueue, effectsWindow, chatWindow, notesRulesWindow);
-  // Board Items on top of the Template
-  boardItems.add(cewTopRow, cewEffectTypesRow, cewTier1Row, cewTier2Row, cewTier3Row, cewLevelBarRow, cewCostText);
-  // Cyber Effects Window Grid Lines
-  boardItems.add(cewLineDCO, cewLineOCO, cewLineCNE);
-  // Cyber Effects Window Text
-  boardItems.add(cewTopRowText, cewEffectsLabelText, cewEffectsDCOText, cewEffectsOCOText, cewEffectsCNEText);
-  // Cyber Effect DCO Blocks
-  boardItems.add(cewTier1DCOBlk, cewTier2DCOBlk, cewTier3DCOBlk);
-  // Cyber Effect OCO Blocks
-  boardItems.add(cewTier1OCOBlk, cewTier2OCOBlk, cewTier3OCOBlk);
-  // Cyber Effect CNE Blocks
-  boardItems.add(cewTier1CNEBlk, cewTier2CNEBlk, cewTier3CNEBlk);
-  // Cyber Effects Tier 1 Text
-  boardItems.add(cewTier1DCOText, cewTier1OCOText, cewTier1CNEText, cewTier1CostText);
-  // Cyber Effects Tier 2 Text
-  boardItems.add(cewTier2DCOText, cewTier2OCOText, cewTier2CNEText, cewTier2CostText);
-  // Cyber Effects Tier 3 Text
-  boardItems.add(cewTier3DCOText, cewTier3OCOText, cewTier3CNEText, cewTier3CostText);
-  // Cyber Effects Action Points Text
-  boardItems.add(cewActionPointsLabelText, cewActionPointsText);
-  // Research Blocks DCO
-  boardItems.add(cewDCOresBlk1, cewDCOresBlk2, cewDCOresBlk3, cewDCOresBlk4, cewDCOresBlk5, cewDCOresBlk6, cewDCOresBlk7, cewDCOresBlk8);
-  // Research Blocks OCO
-  boardItems.add(cewOCOresBlk1, cewOCOresBlk2, cewOCOresBlk3, cewOCOresBlk4, cewOCOresBlk5, cewOCOresBlk6, cewOCOresBlk7, cewOCOresBlk8);
-  // Research Blocks CNE
-  boardItems.add(cewCNEresBlk1, cewCNEresBlk2, cewCNEresBlk3, cewCNEresBlk4, cewCNEresBlk5, cewCNEresBlk6, cewCNEresBlk7, cewCNEresBlk8);
+  bgGroup.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
+  bgGroup.add(mainBoundary3, mainBoundary2, mainBoundary1);
+  bgGroup.add(tier3Text, tier2Text, tier1Text);
+
+  bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
 
   domainsLayer.add(domainsGroup);
-  stage.add(bgLayer,boardItems, domainsLayer);
+  stage.add(bgLayer, domainsLayer);
 
 };
 
@@ -94,7 +77,6 @@ app.controller('canvasCtrl', function($scope){
 console.log("beforeDirective");
 
 app.directive('gameBoardRedServers', function ($timeout) {
-  var ctrl = this;
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
@@ -109,7 +91,7 @@ app.directive('gameBoardRedServers', function ($timeout) {
         sides: 6,
         radius: radius,
         rotation: 90,
-        id: 'y1HexListener'
+        id: 'r1HexListener'
       });
 
       domainsGroup.add(r8HexListener);
@@ -118,7 +100,7 @@ app.directive('gameBoardRedServers', function ($timeout) {
       // CLICK TEST!!!!!
       scope.clickCount = 0;
       r8HexListener.on ('click', function () {
-        console.log("test");
+        console.log("test red");
         $timeout(function() {
           scope.clickCount++;
         });
@@ -127,29 +109,35 @@ app.directive('gameBoardRedServers', function ($timeout) {
   }
 });
 
-app.directive('gameBoardPurpleServers', function () {
+app.directive('gameBoardPurpleServers', function ($timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
       console.log("gameBoardPurpleServersLoading");
-      if (!scope.konvastageobj) {
-        var id = attrs["id"];
-        //create random unique id
-        if (!id) {
-          id = Math.random().toString(36).substring(7);
-        }
-        if (!scope.konvastageobj) {
-          scope.konvastageobj = stage;
-        }
-        if (!scope.konvastageobj.container) {
-          scope.konvastageobj.attrs.container = id;
-        }
-      }
 
       // add the layer to the stage -- 4 for now
       domainsGroup.add(p1Hex, p2Hex,p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
 
+      var p8HexListener = new Konva.RegularPolygon({
+        x: pt_p8Hex_X,
+        y: pt_p8Hex_Y,
+        sides: 6,
+        radius: radius,
+        rotation: 90,
+        id: 'p1HexListener'
+      });
+
+      domainsGroup.add(p8HexListener);
+
       console.log("gameBoardPurpleServersLoaded")
+      // CLICK TEST!!!!!
+      scope.clickCount2 = 0;
+      p8HexListener.on ('click', function () {
+        console.log("test purple");
+        $timeout(function() {
+          scope.clickCount2++;
+        });
+      });
     }
   }
 });
