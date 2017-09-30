@@ -99,22 +99,8 @@ app.directive('gameBoardRedServers', function ($timeout) {
     restrict: 'AE',
     link: function (scope, el, attrs) {
       console.log("gameBoardRedServersLoading");
-      if (!scope.konvastageobj) {
-        var id = attrs["id"];
-        //create random unique id
-        if (!id) {
-          id = Math.random().toString(36).substring(7);
-        }
-        if (!scope.konvastageobj) {
-          scope.konvastageobj = stage;
-        }
-        if (!scope.konvastageobj.container) {
-          scope.konvastageobj.attrs.container = id;
-        }
-      }
 
-      // domainsGroup.add(origin);
-      // add the layer to the stage -- 4 for now
+      // add server point to the domain
       domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
 
       var r8HexListener = new Konva.RegularPolygon({
