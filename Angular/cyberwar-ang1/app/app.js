@@ -120,40 +120,6 @@ app.directive('gameBoardRedServers', ['$rootScope', function ($rootScope) {
       // add the layer to the stage -- 4 for now
       domainsGroup.add(r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
 
-      /*var layer = new Konva.Layer();
-      var rectX = scope.konvastageobj.getWidth() / 2 - 50;
-      var rectY = scope.konvastageobj.getHeight() / 2 - 25;
-
-      //if kineticObj is null, init
-      var options = {
-        x: rectX,
-        y: rectY,
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 4,
-      };
-      if (scope.isdraggable) {
-        options.draggable = true;
-      }
-      if (!scope.konvaobj) {
-        scope.konvaobj = new Konva.Rect(options);
-      }
-
-      // add cursor styling
-      scope.konvaobj.on('mouseover', function () {
-
-        document.body.style.cursor = 'pointer';
-
-      });
-      scope.konvaobj.on('mouseout', function () {
-        document.body.style.cursor = 'default';
-        $rootScope.$emit("CANVAS-MOUSEOUT");
-      });
-
-      layer.add(scope.konvaobj);*/
-
       console.log("gameBoardRedServersLoaded")
       scope.konvastageobj.add(domainsLayer);
 
@@ -186,40 +152,6 @@ app.directive('gameBoardPurpleServers', ['$rootScope', function ($rootScope) {
 
       // add the layer to the stage -- 4 for now
       domainsGroup.add(p1Hex, p2Hex,p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
-
-      /*var layer = new Konva.Layer();
-      var rectX = scope.konvastageobj.getWidth() / 2 - 50;
-      var rectY = scope.konvastageobj.getHeight() / 2 - 25;
-
-      //if kineticObj is null, init
-      var options = {
-        x: rectX,
-        y: rectY,
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 4,
-      };
-      if (scope.isdraggable) {
-        options.draggable = true;
-      }
-      if (!scope.konvaobj) {
-        scope.konvaobj = new Konva.Rect(options);
-      }
-
-      // add cursor styling
-      scope.konvaobj.on('mouseover', function () {
-
-        document.body.style.cursor = 'pointer';
-
-      });
-      scope.konvaobj.on('mouseout', function () {
-        document.body.style.cursor = 'default';
-        $rootScope.$emit("CANVAS-MOUSEOUT");
-      });
-
-      layer.add(scope.konvaobj);*/
 
       console.log("gameBoardPurpleServersLoaded")
     }
