@@ -81,30 +81,40 @@ app.controller('canvasCtrl', function($scope){
 
 console.log("beforeDirective");
 
-app.directive('gameBoardRedServers', function ($timeout) {
+app.directive('gameBoardRedBase', function ($timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardRedServersLoading");
+      console.log("gameBoardRedBaseLoading");
 
       // add server point to the domain
-      domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+      domainsGroup.add(rBase);
 
-      var r8HexListener = new Konva.RegularPolygon({
-        x: pt_r8Hex_X,
-        y: pt_r8Hex_Y,
-        sides: 6,
-        radius: radius,
-        rotation: 90,
-        id: 'r1HexListener'
+      var rBaseHexListener = new Konva.Line({
+        points: [
+          pt_rBase1Hex_X,       // X1
+          pt_rBase1Hex_Y,      // Y1
+          point_x / 2.42,       // X2
+          point_y / 1.154,      // Y2
+          point_x / 1.705,      // X3
+          point_y / 1.154,      // Y3
+          pt_rBase2Hex_X,       // X4
+          pt_rBase2Hex_Y,      // Y4
+          point_x / 1.705,      // X5
+          point_y / 1.1,        // Y5
+          point_x / 2.42,       // X6
+          point_y / 1.1         // Y6
+        ],
+        closed: true,
+        id: 'rBaseHexListener'
       });
 
-      domainsGroup.add(r8HexListener);
-      console.log("gameBoardRedServersLoaded");
+      domainsGroup.add(rBaseHexListener);
+      console.log("gameBoardRedBaseLoaded");
 
       // CLICK TEST!!!!!
       scope.clickCount = 0;
-      r8HexListener.on ('click', function () {
+      rBaseHexListener.on ('click', function () {
         console.log("test red");
         $timeout(function() {
           scope.clickCount++;
