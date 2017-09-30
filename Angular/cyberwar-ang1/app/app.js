@@ -28,8 +28,7 @@ var bgGroup = new Konva.Group({
   offset: {
     x: BASE_BOARD_WIDTH / 2,
     y: BASE_BOARD_HEIGHT / 2,
-  },
-  rotation: DOMAIN_LAYER_BOARD_ROTATION
+  }
 });
 
 var domainsGroup = new Konva.Group({
