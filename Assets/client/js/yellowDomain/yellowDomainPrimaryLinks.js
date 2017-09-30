@@ -14,7 +14,7 @@ var yBaseToY1Hex = new Konva.Line({
     pt_y1Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -29,7 +29,7 @@ var yBaseToY2Hex = new Konva.Line({
     pt_y2Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -45,7 +45,7 @@ var y1HexToY3Hex = new Konva.Line({
     pt_y3Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -61,7 +61,7 @@ var y2HexToY5Hex = new Konva.Line({
     pt_y5Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -77,7 +77,7 @@ var y3HexToY4Hex = new Konva.Line({
     pt_y4Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -92,7 +92,7 @@ var y5HexToY4Hex = new Konva.Line({
     pt_y4Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -108,7 +108,7 @@ var y4HexToY7Hex = new Konva.Line({
     pt_y7Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -123,7 +123,7 @@ var y5HexToY7Hex = new Konva.Line({
     pt_y7Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -138,7 +138,7 @@ var y4HexToY6Hex = new Konva.Line({
     pt_y6Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -153,7 +153,7 @@ var y3HexToY6Hex = new Konva.Line({
     pt_y6Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -169,7 +169,7 @@ var y6HexToY7Hex = new Konva.Line({
     pt_y7Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -185,7 +185,7 @@ var y6HexToY8Hex = new Konva.Line({
     pt_y8Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible
@@ -200,7 +200,7 @@ var y7HexToY8Hex = new Konva.Line({
     pt_y8Hex_Y
   ],
   stroke: darkYellowColor,
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible

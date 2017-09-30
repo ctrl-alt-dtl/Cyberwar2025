@@ -15,7 +15,7 @@ var centerHex = new Konva.RegularPolygon({
   rotation: 90
 });
 
-var boardEdge= new Konva.RegularPolygon({
+var boardEdge = new Konva.RegularPolygon({
   x: stage.width() / 2,
   y: stage.height() / 2,
   sides: 6,
@@ -26,7 +26,7 @@ var boardEdge= new Konva.RegularPolygon({
   rotation: 90
 });
 
-var tier3= new Konva.RegularPolygon({
+var tier3 = new Konva.RegularPolygon({
   x: stage.width() / 2,
   y: stage.height() / 2,
   sides: 6,
@@ -37,7 +37,7 @@ var tier3= new Konva.RegularPolygon({
   rotation: 90
 });
 
-var tier2= new Konva.RegularPolygon({
+var tier2 = new Konva.RegularPolygon({
   x: stage.width() / 2,
   y: stage.height() / 2,
   sides: 6,
@@ -48,7 +48,7 @@ var tier2= new Konva.RegularPolygon({
   rotation: 90
 });
 
-var tier1= new Konva.RegularPolygon({
+var tier1 = new Konva.RegularPolygon({
   x: stage.width() / 2,
   y: stage.height() / 2,
   sides: 6,

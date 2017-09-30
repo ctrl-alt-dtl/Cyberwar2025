@@ -14,7 +14,7 @@ var gBaseToG1Hex = new Konva.Line({
     pt_g1Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -29,7 +29,7 @@ var gBaseToG2Hex = new Konva.Line({
     pt_g2Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -45,7 +45,7 @@ var g1HexToG3Hex = new Konva.Line({
     pt_g3Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -60,7 +60,7 @@ var g2HexToG5Hex = new Konva.Line({
     pt_g5Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -76,7 +76,7 @@ var g3HexToG4Hex = new Konva.Line({
     pt_g4Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -91,7 +91,7 @@ var g5HexToG4Hex = new Konva.Line({
     pt_g4Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -107,7 +107,7 @@ var g4HexToG7Hex = new Konva.Line({
     pt_g7Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -122,7 +122,7 @@ var g5HexToG7Hex = new Konva.Line({
     pt_g7Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -137,7 +137,7 @@ var g4HexToG6Hex = new Konva.Line({
     pt_g6Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -152,7 +152,7 @@ var g3HexToG6Hex = new Konva.Line({
     pt_g6Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -168,7 +168,7 @@ var g6HexToG7Hex = new Konva.Line({
     pt_g7Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -184,7 +184,7 @@ var g6HexToG8Hex = new Konva.Line({
     pt_g8Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -199,7 +199,7 @@ var g7HexToG8Hex = new Konva.Line({
     pt_g8Hex_Y
   ],
   stroke: 'green',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,

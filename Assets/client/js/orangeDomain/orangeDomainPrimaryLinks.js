@@ -14,7 +14,7 @@ var oBaseToO1Hex = new Konva.Line({
     pt_o1Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -29,7 +29,7 @@ var oBaseToO2Hex = new Konva.Line({
     pt_o2Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -45,7 +45,7 @@ var o1HexToO3Hex = new Konva.Line({
     pt_o3Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -60,7 +60,7 @@ var o2HexToO5Hex = new Konva.Line({
     pt_o5Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -76,7 +76,7 @@ var o3HexToO4Hex = new Konva.Line({
     pt_o4Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -91,7 +91,7 @@ var o5HexToO4Hex = new Konva.Line({
     pt_o4Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -107,7 +107,7 @@ var o4HexToO7Hex = new Konva.Line({
     pt_o7Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -122,7 +122,7 @@ var o5HexToO7Hex = new Konva.Line({
     pt_o7Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -137,7 +137,7 @@ var o4HexToO6Hex = new Konva.Line({
     pt_o6Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -152,7 +152,7 @@ var o3HexToO6Hex = new Konva.Line({
     pt_o6Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -168,7 +168,7 @@ var o6HexToO7Hex = new Konva.Line({
     pt_o7Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -184,7 +184,7 @@ var o6HexToO8Hex = new Konva.Line({
     pt_o8Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,
@@ -199,7 +199,7 @@ var o7HexToO8Hex = new Konva.Line({
     pt_o8Hex_Y
   ],
   stroke: 'orange',
-  strokeWidth: 2,
+  strokeWidth: mainLinksStroke,
   lineCap: 'round',
   lineJoin: 'round',
   visible: lineVisible,

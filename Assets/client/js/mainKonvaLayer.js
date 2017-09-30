@@ -101,7 +101,7 @@ imageObj.onload = function() {
   boardItems.add(cewCNEresBlk1, cewCNEresBlk2, cewCNEresBlk3, cewCNEresBlk4, cewCNEresBlk5, cewCNEresBlk6, cewCNEresBlk7, cewCNEresBlk8);
   boardItems.add(cewCNEresMinus, cewCNEresPlus, cewCNEresMinusText, cewCNEresPlusText);
 
-/*  // Domain Inter-Server Paths (LINKS)
+  // Domain Inter-Server Paths (LINKS)
   // Red Domain
   domainsGroup.add(rBaseToR1Hex, rBaseToR2Hex, r1HexToR3Hex, r2HexToR5Hex);
   domainsGroup.add(r3HexToR4Hex, r5HexToR4Hex, r3HexToR6Hex, r4HexToR6Hex, r4HexToR7Hex, r5HexToR7Hex);
@@ -139,7 +139,7 @@ imageObj.onload = function() {
   domainsGroup.add(R8HexB8Hex, R8HexG8Hex, R8HexY8Hex);
   domainsGroup.add(P8HexG8Hex, P8HexY8Hex, P8HexO8Hex);
   domainsGroup.add(B8HexY8Hex, B8HexO8Hex);
-  domainsGroup.add(G8HexO8Hex);*/
+  domainsGroup.add(G8HexO8Hex);
 
   // Exploit Links
   // Red Domain

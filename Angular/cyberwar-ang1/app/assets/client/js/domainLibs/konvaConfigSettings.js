@@ -26,10 +26,6 @@ var point_y = BASE_BOARD_HEIGHT;
 
 var radius = BASE_BOARD_WIDTH / 55;
 
-// Tier Text Sizing
-var textWidth = BASE_BOARD_WIDTH / 25.6;
-var tierTextSize = BASE_BOARD_WIDTH / 106.67;
-
 // For Server text centering
 var text_offset_x = BASE_BOARD_WIDTH / 114;
 var text_offset_y = BASE_BOARD_HEIGHT / 55;
@@ -68,3 +64,4 @@ var dashStroke = BASE_BOARD_HEIGHT / BASE_BOARD_HEIGHT;
 
 // Board Links Size
 var mainLinksStroke = BASE_BOARD_HEIGHT / 384;
+var exploitLinksStroke = BASE_BOARD_HEIGHT / 256;
