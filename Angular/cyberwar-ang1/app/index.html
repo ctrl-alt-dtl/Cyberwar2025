@@ -19,6 +19,7 @@
         }
         #stage-parent{
             width: 100%;
+            text-align: center;
         }
         canvas {
             width: 100% !important;
@@ -36,13 +37,14 @@
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
+
   <div id="stage-parent">
-      <div class="center">CyberWar:2025</div>
       <div class="container"></div>
-      <div ng-controller="canvasCtrl as cc">
+      <div ng-controller="canvasCtrl">
+          clicks: {{clickCount}}
           <div data-game-board-red-servers Konvaobj=canvasKonvaObj konvastageobj=canvasKonvaStageObj id="canvasRedServer">&nbsp</div>
           <div data-game-board-purple-servers Konvaobj=canvasKonvaObj konvastageobj=canvasKonvaStageObj id="canvasPurpleServer">&nbsp</div>
-          clicks: {{clickCount}}
+
       </div>
       <!--
       <div id="buttons">

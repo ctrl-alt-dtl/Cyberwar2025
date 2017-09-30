@@ -115,7 +115,7 @@ app.directive('gameBoardRedServers', function ($timeout) {
 
       // domainsGroup.add(origin);
       // add the layer to the stage -- 4 for now
-      domainsGroup.add(r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
+      domainsGroup.add(rBase, r1Hex, r2Hex, r3Hex, r4Hex, r5Hex, r6Hex, r7Hex, r8Hex);
 
       var r8HexListener = new Konva.RegularPolygon({
         x: pt_r8Hex_X,
@@ -141,13 +141,9 @@ app.directive('gameBoardRedServers', function ($timeout) {
   }
 });
 
-app.directive('gameBoardPurpleServers', ['$rootScope', function ($rootScope) {
+app.directive('gameBoardPurpleServers', function () {
   return {
     restrict: 'AE',
-    scope: {
-      konvaobj: '=',
-      konvastageobj: '='
-    },
     link: function (scope, el, attrs) {
       console.log("gameBoardPurpleServersLoading");
       if (!scope.konvastageobj) {
@@ -170,7 +166,7 @@ app.directive('gameBoardPurpleServers', ['$rootScope', function ($rootScope) {
       console.log("gameBoardPurpleServersLoaded")
     }
   }
-}]);
+});
 
 console.log("afterDirective");
 
