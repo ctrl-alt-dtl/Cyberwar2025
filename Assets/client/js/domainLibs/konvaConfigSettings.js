@@ -56,3 +56,11 @@ var ceWindowAPTextSize = BASE_BOARD_WIDTH / 80;
 // Cyber Window Research Blocks Minus/Plus Text Size/Widths
 var cewResTextWidth = BASE_BOARD_WIDTH / 4.8;
 var cewResTextSize = BASE_BOARD_WIDTH / 60;
+
+// Main Board Dashed Line Settings
+var dashLength = BASE_BOARD_HEIGHT / 153.6;
+var dashSize = BASE_BOARD_HEIGHT / 384;
+var dashStroke = BASE_BOARD_HEIGHT / BASE_BOARD_HEIGHT;
+
+// Board Links Size
+var mainLinksStroke = BASE_BOARD_HEIGHT / 384;
