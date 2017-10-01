@@ -25,8 +25,10 @@
   <div id="stage-parent">
       <div class="container"></div>
       <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
+          clicks red: {{clickCount}}<br>
+          clicks purple: {{clickCount2}}
 
-
+          <!--MODAL TESTING-->
           <script type="text/ng-template" id="myModalContent.html">
               <div class="modal-header">
                   <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
@@ -44,9 +46,8 @@
                   <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
               </div>
           </script>
+          <!--END MODAL TESTING-->
 
-          clicks red: {{clickCount}}<br>
-          clicks purple: {{clickCount2}}
           <div data-game-board-red-base id="canvasRedBase" callback-Ctrl-Fn="$ctrl.open()"></div>
           <div data-game-board-red-1-hex id="canvasRed1Hex"></div>
           <div data-game-board-purple-servers id="canvasPurpleServer">&nbsp</div>
