@@ -1,30 +1,30 @@
-// Purple Base
-app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
+// Blue Base
+app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
   return {
     restrict: 'A',
     scope: {
       callbackFn: '&callbackFn'
     },
     link: function (scope, element, attrs) {
-      console.log("gameBoardPurpleBaseLoading");
+      console.log("gameBoardBlueBaseLoading");
 
       // add server point to the domain
-      domainsGroup.add(pBase);
+      domainsGroup.add(bBase);
 
       var options = {
         points: [
-          pt_pBase1Hex_X,       // X1
-          pt_pBase1Hex_Y,      // Y1
-          point_x / 4.6,        // X2
-          point_y / 1.715,      // Y2
-          point_x / 3.28,       // X3
-          point_y / 1.28,       // Y3
-          pt_pBase2Hex_X,       // X4
-          pt_pBase2Hex_Y,       // Y4
-          point_x / 3.595,        // X5
-          point_y / 1.24,       // Y5
-          point_x / 5.23,       // X6
-          point_y / 1.652         // Y6
+          pt_bBase1Hex_X,       // X1
+          pt_bBase1Hex_Y,       // Y1
+          point_x / 3.28,       // X2
+          point_y / 4.65,       // Y2
+          point_x / 4.57,       // X3
+          point_y / 2.4,        // Y3
+          pt_bBase2Hex_X,       // X4
+          pt_bBase2Hex_Y,       // Y4
+          point_x / 5.26,       // X5
+          point_y / 2.52,       // Y5
+          point_x / 3.6,        // X6
+          point_y / 5.15        // Y6
         ],
         closed: true,
         id: 'pBaseHexListener'
@@ -43,9 +43,9 @@ app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
       scope.clickCountRed = 0;
 
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex Base");
+        console.log("Blue Hex Base");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
 
         // Modal Callback Function
@@ -53,27 +53,27 @@ app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurpleBaseLoaded");
+      console.log("gameBoardBlueBaseLoaded");
     }
   }
 });
 
 // Hex 1
-app.directive('gameBoardPurple1Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple1HexLoading");
+      console.log("gameBoardBlue1HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p1Hex);
 
       var options = {
-        x: pt_p1Hex_X,
-        y: pt_p1Hex_Y,
+        x: pt_b1Hex_X,
+        y: pt_b1Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -89,36 +89,36 @@ app.directive('gameBoardPurple1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 1");
+        console.log("Blue Hex 1");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple1HexLoaded");
+      console.log("gameBoardBlue1HexLoaded");
     }
   }
 });
 
 // Hex 2
-app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple2HexLoading");
+      console.log("gameBoardBlue2HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p2Hex);
 
       var options = {
-        x: pt_p2Hex_X,
-        y: pt_p2Hex_Y,
+        x: pt_b2Hex_X,
+        y: pt_b2Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -134,36 +134,36 @@ app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 2");
+        console.log("Blue Hex 2");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple2HexLoaded");
+      console.log("gameBoardBlue2HexLoaded");
     }
   }
 });
 
 // Hex 3
-app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple3HexLoading");
+      console.log("gameBoardBlue3HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p3Hex);
 
       var options = {
-        x: pt_p3Hex_X,
-        y: pt_p3Hex_Y,
+        x: pt_b3Hex_X,
+        y: pt_b3Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -179,36 +179,36 @@ app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 3");
+        console.log("Blue Hex 3");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple3HexLoaded");
+      console.log("gameBoardBlue3HexLoaded");
     }
   }
 });
 
 // Hex 4
-app.directive('gameBoardPurple4Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple4HexLoading");
+      console.log("gameBoardBlue4HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p4Hex);
 
       var options = {
-        x: pt_p4Hex_X,
-        y: pt_p4Hex_Y,
+        x: pt_b4Hex_X,
+        y: pt_b4Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -224,36 +224,36 @@ app.directive('gameBoardPurple4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 4");
+        console.log("Blue Hex 4");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple4HexLoaded");
+      console.log("gameBoardBlue4HexLoaded");
     }
   }
 });
 
 // Hex 5
-app.directive('gameBoardPurple5Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple5HexLoading");
+      console.log("gameBoardBlue5HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p5Hex);
 
       var options = {
-        x: pt_p5Hex_X,
-        y: pt_p5Hex_Y,
+        x: pt_b5Hex_X,
+        y: pt_b5Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -269,36 +269,36 @@ app.directive('gameBoardPurple5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 5");
+        console.log("Blue Hex 5");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple5HexLoaded");
+      console.log("gameBoardBlue5HexLoaded");
     }
   }
 });
 
 // Hex 6
-app.directive('gameBoardPurple6Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple6HexLoading");
+      console.log("gameBoardBlue6HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p6Hex);
 
       var options = {
-        x: pt_p6Hex_X,
-        y: pt_p6Hex_Y,
+        x: pt_b6Hex_X,
+        y: pt_b6Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -314,36 +314,36 @@ app.directive('gameBoardPurple6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 6");
+        console.log("Blue Hex 6");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple6HexLoaded");
+      console.log("gameBoardBlue6HexLoaded");
     }
   }
 });
 
 // Hex 7
-app.directive('gameBoardPurple7Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple7HexLoading");
+      console.log("gameBoardBlue7HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p7Hex);
 
       var options = {
-        x: pt_p7Hex_X,
-        y: pt_p7Hex_Y,
+        x: pt_b7Hex_X,
+        y: pt_b7Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -359,36 +359,36 @@ app.directive('gameBoardPurple7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 7");
+        console.log("Blue Hex 7");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple7HexLoaded");
+      console.log("gameBoardBlue7HexLoaded");
     }
   }
 });
 
 // Hex 8
-app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple8HexLoading");
+      console.log("gameBoardBlue8HexLoading");
 
       // add server point to the domain
       domainsGroup.add(p8Hex);
 
       var options = {
-        x: pt_p8Hex_X,
-        y: pt_p8Hex_Y,
+        x: pt_b8Hex_X,
+        y: pt_b8Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
+        fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -404,16 +404,16 @@ app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      scope.clickCountBlue = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 8");
+        console.log("Blue Hex 8");
         $timeout(function() {
-          scope.clickCountPurple++;
+          scope.clickCountBlue++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple8HexLoaded");
+      console.log("gameBoardBlue8HexLoaded");
     }
   }
 });

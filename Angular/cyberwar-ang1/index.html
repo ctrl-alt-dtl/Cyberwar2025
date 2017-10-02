@@ -27,8 +27,9 @@
   <div id="stage-parent">
       <div class="container"></div>
       <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
-          clicks red: {{clickCountRed}}<br>
+          clicks red: {{clickCountRed}}
           clicks purple: {{clickCountPurple}}
+          clicks blue: {{clickCountBlue}}
 
           <div id="grid1" ui-grid="{ data: items } " class="myGrid"></div>
 
@@ -77,6 +78,16 @@
           <div data-game-board-purple-7-hex id="canvasPurple7Hex"></div>
           <div data-game-board-purple-8-hex id="canvasPurple8Hex"></div>
 
+          <div data-game-board-blue-base id="canvasBlueBase" callback-fn="$ctrl.open()"></div>
+          <div data-game-board-blue-1-hex id="canvasBlue1Hex"></div>
+          <div data-game-board-blue-2-hex id="canvasBlue2Hex"></div>
+          <div data-game-board-blue-3-hex id="canvasBlue3Hex"></div>
+          <div data-game-board-blue-4-hex id="canvasBlue4Hex"></div>
+          <div data-game-board-blue-5-hex id="canvasBlue5Hex"></div>
+          <div data-game-board-blue-6-hex id="canvasBlue6Hex"></div>
+          <div data-game-board-blue-7-hex id="canvasBlue7Hex"></div>
+          <div data-game-board-blue-8-hex id="canvasBlue8Hex"></div>
+
       </div>
       <!--
       <div id="buttons">
@@ -106,6 +117,7 @@
   <!--DIRECTIVES-->
   <script src="app/assets/client/js/directive/redDomain.js"></script>
   <script src="app/assets/client/js/directive/purpleDomain.js"></script>
+  <script src="app/assets/client/js/directive/blueDomain.js"></script>
 
   <!--LIBRARIES-->
   <script src="app/assets/client/js/canvas/domainLibs/konvaConfigSettings.js"></script>
