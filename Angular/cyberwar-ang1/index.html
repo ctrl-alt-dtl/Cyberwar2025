@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
     <link rel="stylesheet" href="app.css">
     <script src="app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -28,6 +30,8 @@
           clicks red: {{clickCount}}<br>
           clicks purple: {{clickCount2}}
 
+          <div id="grid1" ui-grid="{ data: items } " class="myGrid"></div>
+
           <!--MODAL TESTING-->
           <script type="text/ng-template" id="myModalContent.html">
               <div class="modal-header">
@@ -36,9 +40,13 @@
               <div class="modal-body" id="modal-body">
                   <ul>
                       <li ng-repeat="item in $ctrl.items">
-                          <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+                          <!--ATTEMPTING TO BUTTONIZE CYBER EFFECTS IN A TABLE FOR EASY MODIFICATION AND LAUNCHING-->
+                          <button type="button" ng-class="{{ $ctrl.buttonStyle }}" ng-click="$event.preventDefault(); $ctrl.selected.item = item" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                              {{ item }}
+                          </button>
                       </li>
                   </ul>
+
                   Selected: <b>{{ $ctrl.selected.item }}</b>
               </div>
               <div class="modal-footer">
@@ -68,6 +76,8 @@
   <script src="node_modules/angular-route/angular-route.js"></script>
   <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
   <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
+  <script src="node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
   <script src="node_modules/howler/dist/howler.js"></script>
   <script src="node_modules/underscore/underscore.js"></script>
   <script src="node_modules/konva/konva.js"></script>
@@ -77,49 +87,52 @@
 
   <script src="app.js"></script>
 
+  <!--DIRECTIVES-->
+  <script src="app/assets/client/js/directive/redDomain.js"></script>
+
   <!--LIBRARIES-->
-  <script src="app/assets/client/js/domainLibs/konvaConfigSettings.js"></script>
-  <script src="app/assets/client/js/domainLibs/serverPointCoordinates.js"></script>
-  <script src="app/assets/client/js/boardItems/mainBoard.js"></script>
-  <script src="app/assets/client/js/boardItems/mainBoardLinks.js"></script>
-  <script src="app/assets/client/js/boardItems/interactiveBoxes.js"></script>
+  <script src="app/assets/client/js/canvas/domainLibs/konvaConfigSettings.js"></script>
+  <script src="app/assets/client/js/canvas/domainLibs/serverPointCoordinates.js"></script>
+  <script src="app/assets/client/js/canvas/boardItems/mainBoard.js"></script>
+  <script src="app/assets/client/js/canvas/boardItems/mainBoardLinks.js"></script>
+  <script src="app/assets/client/js/canvas/boardItems/interactiveBoxes.js"></script>
 
   <!--INTERACTION WINDOWS-->
-  <script src="app/assets/client/js/boardItems/cyberEffectsWindow.js"></script>
+  <script src="app/assets/client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
 
   <!--DOMAINS-->
-  <script src="app/assets/client/js/redDomain/redDomainServers.js"></script>
-  <script src="app/assets/client/js/redDomain/redDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/redDomain/redDomainExploitLinks.js"></script>
-  <script src="app/assets/client/js/redDomain/redDomainServerText.js"></script>
-  <script src="app/assets/client/js/purpleDomain/purpleDomainSevers.js"></script>
-  <script src="app/assets/client/js/purpleDomain/purpleDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/purpleDomain/purpleDomainExploitLinks.js"></script>
-  <script src="app/assets/client/js/purpleDomain/purpleDomainServerText.js"></script>
+  <script src="app/assets/client/js/canvas/redDomain/redDomainServers.js"></script>
+  <script src="app/assets/client/js/canvas/redDomain/redDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/redDomain/redDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/redDomain/redDomainServerText.js"></script>
+  <script src="app/assets/client/js/canvas/purpleDomain/purpleDomainSevers.js"></script>
+  <script src="app/assets/client/js/canvas/purpleDomain/purpleDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/purpleDomain/purpleDomainServerText.js"></script>
 
-  <script src="app/assets/client/js/blueDomain/blueDomainServers.js"></script>
-  <script src="app/assets/client/js/blueDomain/blueDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/blueDomain/blueDomainExploitLinks.js"></script>
-  <script src="app/assets/client/js/blueDomain/blueDomainServerText.js"></script>
+  <script src="app/assets/client/js/canvas/blueDomain/blueDomainServers.js"></script>
+  <script src="app/assets/client/js/canvas/blueDomain/blueDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/blueDomain/blueDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/blueDomain/blueDomainServerText.js"></script>
 
-  <script src="app/assets/client/js/greenDomain/greenDomainServers.js"></script>
-  <script src="app/assets/client/js/greenDomain/greenDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/greenDomain/greenDomainExploitLinks.js"></script>
-  <script src="app/assets/client/js/greenDomain/greenDomainServerText.js"></script>
+  <script src="app/assets/client/js/canvas/greenDomain/greenDomainServers.js"></script>
+  <script src="app/assets/client/js/canvas/greenDomain/greenDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/greenDomain/greenDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/greenDomain/greenDomainServerText.js"></script>
 
-  <script src="app/assets/client/js/yellowDomain/yellowDomainServers.js"></script>
-  <script src="app/assets/client/js/yellowDomain/yellowDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/yellowDomain/yellowDomainServerText.js"></script>
-  <script src="app/assets/client/js/yellowDomain/yellowDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/yellowDomain/yellowDomainServers.js"></script>
+  <script src="app/assets/client/js/canvas/yellowDomain/yellowDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/yellowDomain/yellowDomainServerText.js"></script>
+  <script src="app/assets/client/js/canvas/yellowDomain/yellowDomainExploitLinks.js"></script>
 
-  <script src="app/assets/client/js/orangeDomain/orangeDomainServers.js"></script>
-  <script src="app/assets/client/js/orangeDomain/orangeDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/orangeDomain/orangeDomainExploitLinks.js"></script>
-  <script src="app/assets/client/js/orangeDomain/orangeDomainServerText.js"></script>
+  <script src="app/assets/client/js/canvas/orangeDomain/orangeDomainServers.js"></script>
+  <script src="app/assets/client/js/canvas/orangeDomain/orangeDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/orangeDomain/orangeDomainServerText.js"></script>
 
   <!--INTER-DOMAIN-->
-  <script src="app/assets/client/js/interDomain/interDomainPrimaryLinks.js"></script>
-  <script src="app/assets/client/js/interDomain/interDomainExploitLinks.js"></script>
+  <script src="app/assets/client/js/canvas/interDomain/interDomainPrimaryLinks.js"></script>
+  <script src="app/assets/client/js/canvas/interDomain/interDomainExploitLinks.js"></script>
 
 </body>
 </html>
