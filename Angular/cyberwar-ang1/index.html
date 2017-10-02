@@ -27,8 +27,8 @@
   <div id="stage-parent">
       <div class="container"></div>
       <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
-          clicks red: {{clickCount}}<br>
-          clicks purple: {{clickCount2}}
+          clicks red: {{clickCountRed}}<br>
+          clicks purple: {{clickCountPurple}}
 
           <div id="grid1" ui-grid="{ data: items } " class="myGrid"></div>
 
@@ -57,9 +57,25 @@
           <!--END MODAL TESTING-->
 
           <!--GAME BOARD SERVER POINTS-->
-          <div data-game-board-red-base id="canvasRedBase" callback-fn="$ctrl.open()" class="tooltip-demo"></div>
+          <div data-game-board-red-base id="canvasRedBase" callback-fn="$ctrl.open()"></div>
           <div data-game-board-red-1-hex id="canvasRed1Hex"></div>
-          <div data-game-board-purple-servers id="canvasPurpleServer">&nbsp</div>
+          <div data-game-board-red-2-hex id="canvasRed2Hex"></div>
+          <div data-game-board-red-3-hex id="canvasRed3Hex"></div>
+          <div data-game-board-red-4-hex id="canvasRed4Hex"></div>
+          <div data-game-board-red-5-hex id="canvasRed5Hex"></div>
+          <div data-game-board-red-6-hex id="canvasRed6Hex"></div>
+          <div data-game-board-red-7-hex id="canvasRed7Hex"></div>
+          <div data-game-board-red-8-hex id="canvasRed8Hex"></div>
+
+          <div data-game-board-purple-base id="canvasPurpleBase" callback-fn="$ctrl.open()"></div>
+          <div data-game-board-purple-1-hex id="canvasPurple1Hex"></div>
+          <div data-game-board-purple-2-hex id="canvasPurple2Hex"></div>
+          <div data-game-board-purple-3-hex id="canvasPurple3Hex"></div>
+          <div data-game-board-purple-4-hex id="canvasPurple4Hex"></div>
+          <div data-game-board-purple-5-hex id="canvasPurple5Hex"></div>
+          <div data-game-board-purple-6-hex id="canvasPurple6Hex"></div>
+          <div data-game-board-purple-7-hex id="canvasPurple7Hex"></div>
+          <div data-game-board-purple-8-hex id="canvasPurple8Hex"></div>
 
       </div>
       <!--
@@ -89,6 +105,7 @@
 
   <!--DIRECTIVES-->
   <script src="app/assets/client/js/directive/redDomain.js"></script>
+  <script src="app/assets/client/js/directive/purpleDomain.js"></script>
 
   <!--LIBRARIES-->
   <script src="app/assets/client/js/canvas/domainLibs/konvaConfigSettings.js"></script>

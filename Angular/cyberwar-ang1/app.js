@@ -140,45 +140,6 @@ app.controller('toolTipCtrl', function ($scope) {
   $scope.dynamicTooltipText = "dynamic!";
 });
 
-console.log("beforeDirective");
-
-
-
-app.directive('gameBoardPurpleServers', function ($timeout) {
-  return {
-    restrict: 'AE',
-    link: function (scope, el, attrs) {
-      console.log("gameBoardPurpleServersLoading");
-
-      // add the layer to the stage -- 4 for now
-      domainsGroup.add(p1Hex, p2Hex,p3Hex, p4Hex, p5Hex, p6Hex, p7Hex, p8Hex);
-
-      var p8HexListener = new Konva.RegularPolygon({
-        x: pt_p8Hex_X,
-        y: pt_p8Hex_Y,
-        sides: 6,
-        radius: radius,
-        rotation: 90,
-        id: 'p1HexListener'
-      });
-
-      domainsGroup.add(p8HexListener);
-
-      console.log("gameBoardPurpleServersLoaded")
-      // CLICK TEST!!!!!
-      scope.clickCount2 = 0;
-      p8HexListener.on ('click', function () {
-        console.log("test purple");
-        $timeout(function() {
-          scope.clickCount2++;
-        });
-      });
-    }
-  }
-});
-
-console.log("afterDirective");
-
 // MODAL TEST
 app.controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
   var $ctrl = this;

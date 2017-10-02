@@ -194,8 +194,7 @@ imageObj.onload = function() {
   // domainsGroup.add(r6r8ExploitBlue, r6r8ExploitYellow, r6r8ExploitPurple, r6r8ExploitGreen, r6r8ExploitOrange);
   // domainsGroup.add(r7r8ExploitBlue, r7r8ExploitYellow, r7r8ExploitPurple, r7r8ExploitGreen, r7r8ExploitOrange);
 
-
-/*  // Green Domains Servers
+  // Green Domains Servers
   domainsGroup.add(gBase, g1Hex, g2Hex, g3Hex, g4Hex, g5Hex, g6Hex, g7Hex, g8Hex);
   // Blue Domain Servers
   domainsGroup.add(bBase, b1Hex, b2Hex, b3Hex, b4Hex, b5Hex, b6Hex, b7Hex, b8Hex);
@@ -214,7 +213,7 @@ imageObj.onload = function() {
   domainsGroup.add(b1Text, b2Text, b3Text, b4Text, b5Text, b6Text, b7Text, b8Text);
   domainsGroup.add(g1Text, g2Text, g3Text, g4Text, g5Text, g6Text, g7Text, g8Text);
   domainsGroup.add(y1Text, y2Text, y3Text, y4Text, y5Text, y6Text, y7Text, y8Text);
-  domainsGroup.add(o1Text, o2Text, o3Text, o4Text, o5Text, o6Text, o7Text, o8Text);*/
+  domainsGroup.add(o1Text, o2Text, o3Text, o4Text, o5Text, o6Text, o7Text, o8Text);
 
   // Base Text
   domainsGroup.add(redBaseText, purpleBaseText, blueBaseText, greenBaseText, yellowBaseText, orangeBaseText);
