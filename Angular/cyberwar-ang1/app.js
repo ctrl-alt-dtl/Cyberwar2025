@@ -81,9 +81,7 @@ var app = angular.module('CyberWar', ['ui.bootstrap']);
 app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
   $scope.canvasKonvaObj = false;
   $scope.canvaskonvaStageObj = false;
-  $scope.primary = function(){
-    Notification('Test Notification');
-  }
+
 
   // MODAL TEST
   var $ctrl = this;
@@ -94,6 +92,7 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
   $ctrl.open = function (size, parentSelector) {
     var parentElem = parentSelector ?
       app.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+
     var modalInstance = $uibModal.open({
       animation: $ctrl.animationsEnabled,
       ariaLabelledBy: 'modal-title',
@@ -110,10 +109,9 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
       }
     });
 
-    console.log('Modal');
-
     modalInstance.result.then(function (selectedItem) {
       $ctrl.selected = selectedItem;
+      console.log("Selected: " + $ctrl.selected)
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
@@ -126,7 +124,7 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
 
 });
 
-app.controller('toolTipCtrl', function ($scope, $sce) {
+app.controller('toolTipCtrl', function ($scope) {
   $scope.dynamicTooltip = "Testing Tooltip!";
   $scope.dynamicTooltipText = "dynamic!";
 });
@@ -136,35 +134,15 @@ console.log("beforeDirective");
 app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
   return {
     restrict: 'A',
-    scope: { callbackFn: '&callbackCtrlFn'},
+    scope: {
+      callbackFn: '&callbackFn',
+      uibTooltip: '&'
+    },
     link: function (scope, element, attrs) {
       console.log("gameBoardRedBaseLoading");
 
       // add server point to the domain
       domainsGroup.add(rBase);
-
-      /*
-      var rBaseHexListener = new Konva.Line({
-        points: [
-          pt_rBase1Hex_X,       // X1
-          pt_rBase1Hex_Y,      // Y1
-          point_x / 2.42,       // X2
-          point_y / 1.154,      // Y2
-          point_x / 1.705,      // X3
-          point_y / 1.154,      // Y3
-          pt_rBase2Hex_X,       // X4
-          pt_rBase2Hex_Y,      // Y4
-          point_x / 1.705,      // X5
-          point_y / 1.1,        // Y5
-          point_x / 2.42,       // X6
-          point_y / 1.1         // Y6
-        ],
-        closed: true,
-        id: 'rBaseHexListener'
-      });
-
-      domainsGroup.add(rBaseHexListener);
-      */
 
       var options = {
         points: [
@@ -194,6 +172,9 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
+
+      scope.uibTooltip;
+
       scope.clickCount = 0;
 
       scope.konvaobj.on ('click', function () {
@@ -208,21 +189,6 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
 
       domainsGroup.add(scope.konvaobj);
       console.log("gameBoardRedBaseLoaded");
-
-      // CLICK TEST!!!!!
-      /*
-      scope.clickCount = 0;
-      rBaseHexListener.on ('click', function () {
-        console.log("test red");
-        scope.primary = function () {
-          Notification("test");
-          console.log("notification test?");
-        };
-        $timeout(function() {
-          scope.clickCount++;
-        });
-      });
-      */
     }
   }
 });

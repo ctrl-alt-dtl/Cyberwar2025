@@ -31,7 +31,7 @@
           <!--MODAL TESTING-->
           <script type="text/ng-template" id="myModalContent.html">
               <div class="modal-header">
-                  <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+                  <h3 class="modal-title" id="modal-title">Cyber Effects & Server Status</h3>
               </div>
               <div class="modal-body" id="modal-body">
                   <ul>
@@ -48,7 +48,8 @@
           </script>
           <!--END MODAL TESTING-->
 
-          <div data-game-board-red-base id="canvasRedBase" callback-Ctrl-Fn="$ctrl.open()"></div>
+          <!--GAME BOARD SERVER POINTS-->
+          <div data-game-board-red-base id="canvasRedBase" callback-fn="$ctrl.open()" class="tooltip-demo"></div>
           <div data-game-board-red-1-hex id="canvasRed1Hex"></div>
           <div data-game-board-purple-servers id="canvasPurpleServer">&nbsp</div>
 

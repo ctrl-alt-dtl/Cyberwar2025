@@ -36,3 +36,107 @@ scope.konvaobj.on('mouseout', function () {
 });
 
 layer.add(scope.konvaobj);
+
+
+
+
+app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
+  return {
+    restrict: 'A',
+    scope: {
+      callbackFn: '&callbackFn'
+    },
+    link: function (scope, element, attrs) {
+      console.log("gameBoardRedBaseLoading");
+
+      // add server point to the domain
+      domainsGroup.add(rBase);
+
+      /*
+      var rBaseHexListener = new Konva.Line({
+        points: [
+          pt_rBase1Hex_X,       // X1
+          pt_rBase1Hex_Y,      // Y1
+          point_x / 2.42,       // X2
+          point_y / 1.154,      // Y2
+          point_x / 1.705,      // X3
+          point_y / 1.154,      // Y3
+          pt_rBase2Hex_X,       // X4
+          pt_rBase2Hex_Y,      // Y4
+          point_x / 1.705,      // X5
+          point_y / 1.1,        // Y5
+          point_x / 2.42,       // X6
+          point_y / 1.1         // Y6
+        ],
+        closed: true,
+        id: 'rBaseHexListener'
+      });
+
+      domainsGroup.add(rBaseHexListener);
+      */
+
+      var options = {
+        points: [
+          pt_rBase1Hex_X,       // X1
+          pt_rBase1Hex_Y,       // Y1
+          point_x / 2.42,       // X2
+          point_y / 1.154,      // Y2
+          point_x / 1.705,      // X3
+          point_y / 1.154,      // Y3
+          pt_rBase2Hex_X,       // X4
+          pt_rBase2Hex_Y,       // Y4
+          point_x / 1.705,      // X5
+          point_y / 1.1,        // Y5
+          point_x / 2.42,       // X6
+          point_y / 1.1         // Y6
+        ],
+        closed: true,
+        id: 'rBaseHexListener'
+      }
+
+      scope.konvaobj = new Konva.Line(options);
+      // add cursor styling
+      scope.konvaobj.on('mouseover', function () {
+        document.body.style.cursor = 'pointer';
+
+
+
+
+
+      });
+      scope.konvaobj.on('mouseout', function () {
+        document.body.style.cursor = 'default';
+        $rootScope.$emit("CANVAS-MOUSEOUT");
+      });
+      scope.clickCount = 0;
+
+      scope.konvaobj.on ('click', function () {
+        console.log("test red");
+        $timeout(function() {
+          scope.clickCount++;
+        });
+
+        // Modal Callback Function
+        scope.callbackFn();
+      });
+
+      domainsGroup.add(scope.konvaobj);
+      console.log("gameBoardRedBaseLoaded");
+
+      // CLICK TEST!!!!!
+      /*
+      scope.clickCount = 0;
+      rBaseHexListener.on ('click', function () {
+        console.log("test red");
+        scope.primary = function () {
+          Notification("test");
+          console.log("notification test?");
+        };
+        $timeout(function() {
+          scope.clickCount++;
+        });
+      });
+      */
+    }
+  }
+});
