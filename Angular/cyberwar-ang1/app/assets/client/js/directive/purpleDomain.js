@@ -17,13 +17,13 @@ app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
           pt_pBase1Hex_Y,      // Y1
           point_x / 4.6,        // X2
           point_y / 1.715,      // Y2
-          point_x / 8.28,       // X8
-          point_y / 1.28,       // Y8
+          point_x / 3.28,       // X3
+          point_y / 1.28,       // Y3
           pt_pBase2Hex_X,       // X4
           pt_pBase2Hex_Y,       // Y4
-          point_x / 8.595,        // X5
+          point_x / 3.595,        // X5
           point_y / 1.24,       // Y5
-          point_x / 5.28,       // X6
+          point_x / 5.23,       // X6
           point_y / 1.652         // Y6
         ],
         closed: true,
@@ -40,10 +40,10 @@ app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountPurple = 0;
+      scope.clickCountRed = 0;
 
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Base");
+        console.log("Purple Hex Base");
         $timeout(function() {
           scope.clickCountPurple++;
         });
@@ -111,7 +111,7 @@ app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p1Hex);
+      domainsGroup.add(p2Hex);
 
       var options = {
         x: pt_p2Hex_X,
@@ -148,19 +148,19 @@ app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
   }
 });
 
-// Hex 8
-app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
+// Hex 3
+app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope, el, attrs) {
-      console.log("gameBoardPurple8HexLoading");
+      console.log("gameBoardPurple3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p8Hex);
+      domainsGroup.add(p3Hex);
 
       var options = {
-        x: pt_p8Hex_X,
-        y: pt_p8Hex_Y,
+        x: pt_p3Hex_X,
+        y: pt_p3Hex_Y,
         sides: 6,
         radius: radius,
         fill: 'purple',
@@ -181,14 +181,14 @@ app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
       });
       scope.clickCountPurple = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Purple Hex 8");
+        console.log("Purple Hex 3");
         $timeout(function() {
           scope.clickCountPurple++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardPurple8HexLoaded");
+      console.log("gameBoardPurple3HexLoaded");
     }
   }
 });
