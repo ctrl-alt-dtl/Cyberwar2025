@@ -1,33 +1,33 @@
-// Blue Base
-app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
+// Green Base
+app.directive('gameBoardGreenBase', function ($rootScope, $timeout) {
   return {
     restrict: 'A',
     scope: {
       callbackFn: '&callbackFn'
     },
     link: function (scope) {
-      console.log("gameBoardBlueBaseLoading");
+      console.log("gameBoardGreenBaseLoading");
 
       // add server point to the domain
-      domainsGroup.add(bBase);
+      domainsGroup.add(gBase);
 
       var options = {
         points: [
-          pt_bBase1Hex_X,       // X1
-          pt_bBase1Hex_Y,       // Y1
-          point_x / 3.28,       // X2
-          point_y / 4.65,       // Y2
-          point_x / 4.57,       // X3
-          point_y / 2.4,        // Y3
-          pt_bBase2Hex_X,       // X4
-          pt_bBase2Hex_Y,       // Y4
-          point_x / 5.26,       // X5
-          point_y / 2.52,       // Y5
-          point_x / 3.6,        // X6
-          point_y / 5.15        // Y6
+          pt_gBase1Hex_X,       // X1
+          pt_gBase1Hex_Y,      // Y1
+          point_x / 1.705,       // X2
+          point_y / 7.5,      // Y2
+          point_x / 2.42,      // X3
+          point_y / 7.5,      // Y3
+          pt_gBase2Hex_X,       // X4
+          pt_gBase2Hex_Y,      // Y4
+          point_x / 2.42,      // X5
+          point_y / 11,        // Y5
+          point_x / 1.705,       // X6
+          point_y / 11         // Y6
         ],
         closed: true,
-        id: 'pBaseHexListener'
+        id: 'gBaseHexListener'
       }
 
       scope.konvaobj = new Konva.Line(options);
@@ -40,12 +40,12 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountRed = 0;
+      scope.clickCountGreen = 0;
 
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex Base");
+        console.log("Green Hex Base");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
 
         // Modal Callback Function
@@ -53,31 +53,31 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlueBaseLoaded");
+      console.log("gameBoardGreenBaseLoaded");
     }
   }
 });
 
-// Hex 1
-app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
+// Hex1
+app.directive('gameBoardGreen1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue1HexLoading");
+      console.log("gameBoardGreen1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b1Hex);
+      domainsGroup.add(g1Hex);
 
       var options = {
-        x: pt_b1Hex_X,
-        y: pt_b1Hex_Y,
+        x: pt_g1Hex_X,
+        y: pt_g1Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p1Hex'
+        id: 'g1Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -89,40 +89,40 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 1");
+        console.log("Green Hex 1");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue1HexLoaded");
+      console.log("gameBoardGreen1HexLoaded");
     }
   }
 });
 
 // Hex 2
-app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue2HexLoading");
+      console.log("gameBoardGreen2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b2Hex);
+      domainsGroup.add(g2Hex);
 
       var options = {
-        x: pt_b2Hex_X,
-        y: pt_b2Hex_Y,
+        x: pt_g2Hex_X,
+        y: pt_g2Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p2Hex'
+        id: 'g2Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -134,40 +134,40 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 2");
+        console.log("Green Hex 2");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue2HexLoaded");
+      console.log("gameBoardGreen2HexLoaded");
     }
   }
 });
 
 // Hex 3
-app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue3HexLoading");
+      console.log("gameBoardGreen3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b3Hex);
+      domainsGroup.add(g3Hex);
 
       var options = {
-        x: pt_b3Hex_X,
-        y: pt_b3Hex_Y,
+        x: pt_g3Hex_X,
+        y: pt_g3Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p8Hex'
+        id: 'g3Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -179,40 +179,40 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 3");
+        console.log("Green Hex 3");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue3HexLoaded");
+      console.log("gameBoardGreen3HexLoaded");
     }
   }
 });
 
 // Hex 4
-app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue4HexLoading");
+      console.log("gameBoardGreen4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b4Hex);
+      domainsGroup.add(g4Hex);
 
       var options = {
-        x: pt_b4Hex_X,
-        y: pt_b4Hex_Y,
+        x: pt_g4Hex_X,
+        y: pt_g4Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p4Hex'
+        id: 'g4Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -224,40 +224,40 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 4");
+        console.log("Green Hex 4");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue4HexLoaded");
+      console.log("gameBoardGreen4HexLoaded");
     }
   }
 });
 
 // Hex 5
-app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue5HexLoading");
+      console.log("gameBoardGreen5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b5Hex);
+      domainsGroup.add(g5Hex);
 
       var options = {
-        x: pt_b5Hex_X,
-        y: pt_b5Hex_Y,
+        x: pt_g5Hex_X,
+        y: pt_g5Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p5Hex'
+        id: 'g5Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -269,40 +269,40 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 5");
+        console.log("Green Hex 5");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue5HexLoaded");
+      console.log("gameBoardGreen5HexLoaded");
     }
   }
 });
 
 // Hex 6
-app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue6HexLoading");
+      console.log("gameBoardGreen6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b6Hex);
+      domainsGroup.add(g6Hex);
 
       var options = {
-        x: pt_b6Hex_X,
-        y: pt_b6Hex_Y,
+        x: pt_g6Hex_X,
+        y: pt_g6Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p6Hex'
+        id: 'g6Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -314,40 +314,40 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 6");
+        console.log("Green Hex 6");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue6HexLoaded");
+      console.log("gameBoardGreen6HexLoaded");
     }
   }
 });
 
 // Hex 7
-app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue7HexLoading");
+      console.log("gameBoardGreen7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b7Hex);
+      domainsGroup.add(g7Hex);
 
       var options = {
-        x: pt_b7Hex_X,
-        y: pt_b7Hex_Y,
+        x: pt_g7Hex_X,
+        y: pt_g7Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p7Hex'
+        id: 'g7Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -359,40 +359,40 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 7");
+        console.log("Green Hex 7");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue7HexLoaded");
+      console.log("gameBoardGreen7HexLoaded");
     }
   }
-});
+})
 
 // Hex 8
-app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardGreen8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue8HexLoading");
+      console.log("gameBoardGreen8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b8Hex);
+      domainsGroup.add(g8Hex);
 
       var options = {
-        x: pt_b8Hex_X,
-        y: pt_b8Hex_Y,
+        x: pt_g8Hex_X,
+        y: pt_g8Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'blue',
+        fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p8Hex'
+        id: 'g1Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -404,16 +404,16 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+      scope.clickCountGreen = 0;
       scope.konvaobj.on ('click', function () {
-        console.log("Blue Hex 8");
+        console.log("Green Hex 8");
         $timeout(function() {
-          scope.clickCountBlue++;
+          scope.clickCountGreen++;
         });
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue8HexLoaded");
+      console.log("gameBoardGreen8HexLoaded");
     }
   }
 });

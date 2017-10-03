@@ -111,7 +111,7 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r2Hex);
 
       var options = {
         x: pt_r2Hex_X,
@@ -156,7 +156,7 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r3Hex);
 
       var options = {
         x: pt_r3Hex_X,
@@ -201,7 +201,7 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r4Hex);
 
       var options = {
         x: pt_r4Hex_X,
@@ -246,7 +246,7 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r5Hex);
 
       var options = {
         x: pt_r5Hex_X,
@@ -291,7 +291,7 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r6Hex);
 
       var options = {
         x: pt_r6Hex_X,
@@ -336,7 +336,7 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r7Hex);
 
       var options = {
         x: pt_r7Hex_X,
@@ -381,7 +381,7 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r8Hex);
 
       var options = {
         x: pt_r8Hex_X,

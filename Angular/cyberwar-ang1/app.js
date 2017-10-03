@@ -61,7 +61,7 @@ app.get("/", function (require, response) {
 
 // ----------------------------------------------------------------------------
 socketServer.installHandlers(httpServer, {prefix: '/game'});
-// Game.start(socketServer);
+Game.start(socketServer);
 // Chat.start(socketServer);
 httpServer.listen(PORT);
 log.info("Listening on port:" + PORT);

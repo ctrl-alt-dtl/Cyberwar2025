@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.css">
     <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
-    <link rel="stylesheet" href="client/app.css">
+    <link rel="stylesheet" href="client/css/app.css">
     <script src="app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -92,6 +92,36 @@
           <div data-game-board-blue-7-hex id="canvasBlue7Hex"></div>
           <div data-game-board-blue-8-hex id="canvasBlue8Hex"></div>
 
+          <div data-game-board-green-base id="canvasGreenBase" callback-fn="$ctrl.open()"></div>
+          <div data-game-board-green-1-hex id="canvasGreen1Hex"></div>
+          <div data-game-board-green-2-hex id="canvasGreen2Hex"></div>
+          <div data-game-board-green-3-hex id="canvasGreen3Hex"></div>
+          <div data-game-board-green-4-hex id="canvasGreen4Hex"></div>
+          <div data-game-board-green-5-hex id="canvasGreen5Hex"></div>
+          <div data-game-board-green-6-hex id="canvasGreen6Hex"></div>
+          <div data-game-board-green-7-hex id="canvasGreen7Hex"></div>
+          <div data-game-board-green-8-hex id="canvasGreen8Hex"></div>
+
+          <div data-game-board-yellow-base id="canvasYellowBase" callback-fn="$ctrl.open()"></div>
+          <div data-game-board-yellow-1-hex id="canvasYellow1Hex"></div>
+          <div data-game-board-yellow-2-hex id="canvasYellow2Hex"></div>
+          <div data-game-board-yellow-3-hex id="canvasYellow3Hex"></div>
+          <div data-game-board-yellow-4-hex id="canvasYellow4Hex"></div>
+          <div data-game-board-yellow-5-hex id="canvasYellow5Hex"></div>
+          <div data-game-board-yellow-6-hex id="canvasYellow6Hex"></div>
+          <div data-game-board-yellow-7-hex id="canvasYellow7Hex"></div>
+          <div data-game-board-yellow-8-hex id="canvasYellow8Hex"></div>
+
+          <div data-game-board-orange-base id="canvasOrangeBase" callback-fn="$ctrl.open()"></div>
+          <div data-game-board-orange-1-hex id="canvasOrange1Hex"></div>
+          <div data-game-board-orange-2-hex id="canvasOrange2Hex"></div>
+          <div data-game-board-orange-3-hex id="canvasOrange3Hex"></div>
+          <div data-game-board-orange-4-hex id="canvasOrange4Hex"></div>
+          <div data-game-board-orange-5-hex id="canvasOrange5Hex"></div>
+          <div data-game-board-orange-6-hex id="canvasOrange6Hex"></div>
+          <div data-game-board-orange-7-hex id="canvasOrange7Hex"></div>
+          <div data-game-board-orange-8-hex id="canvasOrange8Hex"></div>
+
       </div>
       <!--
       <div id="buttons">
@@ -116,6 +146,14 @@
   <script src="app/components/version/version-directive.js"></script>
   <script src="app/components/version/interpolate-filter.js"></script>
 
+  <!--LIBRARIES-->
+  <script src="client/js/canvas/mainKonvaStage.js"></script>
+  <script src="client/js/canvas/domainLibs/konvaConfigSettings.js"></script>
+  <script src="client/js/canvas/domainLibs/serverPointCoordinates.js"></script>
+  <script src="client/js/canvas/boardItems/mainBoard.js"></script>
+  <script src="client/js/canvas/boardItems/mainBoardLinks.js"></script>
+  <script src="client/js/canvas/boardItems/interactiveBoxes.js"></script>
+
   <!--CONTROLLERS-->
   <script src="client/js/controller/canvasCtrl.js"></script>
   <script src="client/js/controller/modalInstanceCtrl.js"></script>
@@ -124,14 +162,9 @@
   <script src="client/js/directive/redDomain.js"></script>
   <script src="client/js/directive/purpleDomain.js"></script>
   <script src="client/js/directive/blueDomain.js"></script>
-
-  <!--LIBRARIES-->
-  <script src="client/js/canvas/mainKonvaStage.js"></script>
-  <script src="client/js/canvas/domainLibs/konvaConfigSettings.js"></script>
-  <script src="client/js/canvas/domainLibs/serverPointCoordinates.js"></script>
-  <script src="client/js/canvas/boardItems/mainBoard.js"></script>
-  <script src="client/js/canvas/boardItems/mainBoardLinks.js"></script>
-  <script src="client/js/canvas/boardItems/interactiveBoxes.js"></script>
+  <script src="client/js/directive/greenDomain.js"></script>
+  <script src="client/js/directive/yellowDomain.js"></script>
+  <script src="client/js/directive/orangeDomain.js"></script>
 
   <!--INTERACTION WINDOWS-->
   <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
