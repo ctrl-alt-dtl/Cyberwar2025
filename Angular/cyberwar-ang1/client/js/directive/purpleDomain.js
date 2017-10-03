@@ -167,7 +167,7 @@ app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p8Hex'
+        id: 'p3Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);

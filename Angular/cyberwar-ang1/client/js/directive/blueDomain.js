@@ -27,7 +27,7 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
           point_y / 5.15        // Y6
         ],
         closed: true,
-        id: 'pBaseHexListener'
+        id: 'bBaseHexListener'
       }
 
       scope.konvaobj = new Konva.Line(options);
@@ -77,7 +77,7 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p1Hex'
+        id: 'b1Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -122,7 +122,7 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p2Hex'
+        id: 'b2Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -167,7 +167,7 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p8Hex'
+        id: 'b8Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -212,7 +212,7 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p4Hex'
+        id: 'b4Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -257,7 +257,7 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p5Hex'
+        id: 'b5Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -302,7 +302,7 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p6Hex'
+        id: 'b6Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -347,7 +347,7 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p7Hex'
+        id: 'b7Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -392,7 +392,7 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'p8Hex'
+        id: 'b8Hex'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
