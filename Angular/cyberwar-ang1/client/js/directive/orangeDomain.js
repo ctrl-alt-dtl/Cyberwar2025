@@ -9,7 +9,7 @@ app.directive('gameBoardOrangeBase', function ($rootScope, $timeout) {
       console.log("gameBoardOrangeBaseLoading");
 
       // add server point to the domain
-      domainsGroup.add(oBase);
+      domainsGroup.add(oBase, orangeBaseText);
 
       var options = {
         points: [
@@ -73,11 +73,10 @@ app.directive('gameBoardOrange1Hex', function ($rootScope, $timeout) {
         y: pt_o1Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'orange',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o1Hex'
+        id: 'o1HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -94,10 +93,11 @@ app.directive('gameBoardOrange1Hex', function ($rootScope, $timeout) {
         console.log("Orange Hex 1");
         $timeout(function() {
           scope.clickCountOrange++;
+          y1Hex.fill() === orangeColor;
         });
       });
 
-      domainsGroup.add(scope.konvaobj);
+      domainsGroup.add(o1Text, scope.konvaobj);
       console.log("gameBoardOrange1HexLoaded");
     }
   }
