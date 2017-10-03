@@ -5,7 +5,7 @@ app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
     scope: {
       callbackFn: '&callbackFn'
     },
-    link: function (scope, element, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurpleBaseLoading");
 
       // add server point to the domain
@@ -62,7 +62,7 @@ app.directive('gameBoardPurpleBase', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple1HexLoading");
 
       // add server point to the domain
@@ -107,7 +107,7 @@ app.directive('gameBoardPurple1Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple2HexLoading");
 
       // add server point to the domain
@@ -152,7 +152,7 @@ app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple3HexLoading");
 
       // add server point to the domain
@@ -197,7 +197,7 @@ app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple4HexLoading");
 
       // add server point to the domain
@@ -242,7 +242,7 @@ app.directive('gameBoardPurple4Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple5HexLoading");
 
       // add server point to the domain
@@ -287,7 +287,7 @@ app.directive('gameBoardPurple5Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple6HexLoading");
 
       // add server point to the domain
@@ -332,7 +332,7 @@ app.directive('gameBoardPurple6Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple7HexLoading");
 
       // add server point to the domain
@@ -377,7 +377,7 @@ app.directive('gameBoardPurple7Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
-    link: function (scope, el, attrs) {
+    link: function (scope) {
       console.log("gameBoardPurple8HexLoading");
 
       // add server point to the domain
