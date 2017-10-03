@@ -1,5 +1,3 @@
-var app = angular.module('CyberWar', ['ui.bootstrap', 'ui.grid']);
-
 // MODAL TEST
 app.controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
   var $ctrl = this;

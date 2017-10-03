@@ -7,17 +7,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CyberWar:2025</title>
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../app/bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="../../app/bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../node_modules/angular-ui-notification/dist/angular-ui-notification.css">
-    <link rel="stylesheet" href="../../node_modules/angular-ui-grid/ui-grid.css">
-    <link rel="stylesheet" href="../../app.css">
-    <script src="../../app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
   <!--[if lt IE 7]>
@@ -99,69 +99,72 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-  <script src="../../node_modules/angular/angular.js"></script>
-  <script src="../../node_modules/angular-route/angular-route.js"></script>
-  <script src="../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-  <script src="../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-  <script src="../../node_modules/angular-ui-grid/ui-grid.js"></script>
-  <script src="../../node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
-  <script src="../../node_modules/howler/dist/howler.js"></script>
-  <script src="../../node_modules/underscore/underscore.js"></script>
-  <script src="../../node_modules/konva/konva.js"></script>
-  <script src="../../app/components/version/version.js"></script>
-  <script src="../../app/components/version/version-directive.js"></script>
-  <script src="../../app/components/version/interpolate-filter.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
+  <script src="node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
+  <script src="node_modules/howler/dist/howler.js"></script>
+  <script src="node_modules/underscore/underscore.js"></script>
+  <script src="node_modules/konva/konva.js"></script>
+  <script src="app/components/version/version.js"></script>
+  <script src="app/components/version/version-directive.js"></script>
+  <script src="app/components/version/interpolate-filter.js"></script>
 
-  <script src="../../app.js"></script>
+  <!--CONTROLLERS-->
+  <script src="client/js/controller/canvasCtrl.js"></script>
+  <script src="client/js/controller/modalInstanceCtrl.js"></script>
 
   <!--DIRECTIVES-->
-  <script src="../js/directive/redDomain.js"></script>
-  <script src="../js/directive/purpleDomain.js"></script>
-  <script src="../js/directive/blueDomain.js"></script>
+  <script src="client/js/directive/redDomain.js"></script>
+  <script src="client/js/directive/purpleDomain.js"></script>
+  <script src="client/js/directive/blueDomain.js"></script>
 
   <!--LIBRARIES-->
-  <script src="../js/canvas/domainLibs/konvaConfigSettings.js"></script>
-  <script src="../js/canvas/domainLibs/serverPointCoordinates.js"></script>
-  <script src="../js/canvas/boardItems/mainBoard.js"></script>
-  <script src="../js/canvas/boardItems/mainBoardLinks.js"></script>
-  <script src="../js/canvas/boardItems/interactiveBoxes.js"></script>
+  <script src="client/js/canvas/mainKonvaStage.js"></script>
+  <script src="client/js/canvas/domainLibs/konvaConfigSettings.js"></script>
+  <script src="client/js/canvas/domainLibs/serverPointCoordinates.js"></script>
+  <script src="client/js/canvas/boardItems/mainBoard.js"></script>
+  <script src="client/js/canvas/boardItems/mainBoardLinks.js"></script>
+  <script src="client/js/canvas/boardItems/interactiveBoxes.js"></script>
 
   <!--INTERACTION WINDOWS-->
-  <script src="../js/canvas/boardItems/cyberEffectsWindow.js"></script>
+  <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
 
   <!--DOMAINS-->
-  <script src="../js/canvas/redDomain/redDomainServers.js"></script>
-  <script src="../js/canvas/redDomain/redDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/redDomain/redDomainExploitLinks.js"></script>
-  <script src="../js/canvas/redDomain/redDomainServerText.js"></script>
-  <script src="../js/canvas/purpleDomain/purpleDomainSevers.js"></script>
-  <script src="../js/canvas/purpleDomain/purpleDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
-  <script src="../js/canvas/purpleDomain/purpleDomainServerText.js"></script>
+  <script src="client/js/canvas/redDomain/redDomainServers.js"></script>
+  <script src="client/js/canvas/redDomain/redDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/redDomain/redDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/redDomain/redDomainServerText.js"></script>
+  <script src="client/js/canvas/purpleDomain/purpleDomainSevers.js"></script>
+  <script src="client/js/canvas/purpleDomain/purpleDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/purpleDomain/purpleDomainServerText.js"></script>
 
-  <script src="../js/canvas/blueDomain/blueDomainServers.js"></script>
-  <script src="../js/canvas/blueDomain/blueDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/blueDomain/blueDomainExploitLinks.js"></script>
-  <script src="../js/canvas/blueDomain/blueDomainServerText.js"></script>
+  <script src="client/js/canvas/blueDomain/blueDomainServers.js"></script>
+  <script src="client/js/canvas/blueDomain/blueDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/blueDomain/blueDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/blueDomain/blueDomainServerText.js"></script>
 
-  <script src="../js/canvas/greenDomain/greenDomainServers.js"></script>
-  <script src="../js/canvas/greenDomain/greenDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/greenDomain/greenDomainExploitLinks.js"></script>
-  <script src="../js/canvas/greenDomain/greenDomainServerText.js"></script>
+  <script src="client/js/canvas/greenDomain/greenDomainServers.js"></script>
+  <script src="client/js/canvas/greenDomain/greenDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/greenDomain/greenDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/greenDomain/greenDomainServerText.js"></script>
 
-  <script src="../js/canvas/yellowDomain/yellowDomainServers.js"></script>
-  <script src="../js/canvas/yellowDomain/yellowDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/yellowDomain/yellowDomainServerText.js"></script>
-  <script src="../js/canvas/yellowDomain/yellowDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/yellowDomain/yellowDomainServers.js"></script>
+  <script src="client/js/canvas/yellowDomain/yellowDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/yellowDomain/yellowDomainServerText.js"></script>
+  <script src="client/js/canvas/yellowDomain/yellowDomainExploitLinks.js"></script>
 
-  <script src="../js/canvas/orangeDomain/orangeDomainServers.js"></script>
-  <script src="../js/canvas/orangeDomain/orangeDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
-  <script src="../js/canvas/orangeDomain/orangeDomainServerText.js"></script>
+  <script src="client/js/canvas/orangeDomain/orangeDomainServers.js"></script>
+  <script src="client/js/canvas/orangeDomain/orangeDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/orangeDomain/orangeDomainServerText.js"></script>
 
   <!--INTER-DOMAIN-->
-  <script src="../js/canvas/interDomain/interDomainPrimaryLinks.js"></script>
-  <script src="../js/canvas/interDomain/interDomainExploitLinks.js"></script>
+  <script src="client/js/canvas/interDomain/interDomainPrimaryLinks.js"></script>
+  <script src="client/js/canvas/interDomain/interDomainExploitLinks.js"></script>
 
 </body>
 </html>

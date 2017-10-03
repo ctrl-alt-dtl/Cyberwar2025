@@ -70,4 +70,4 @@ imageObj.onload = function() {
 
 };
 
-imageObj.src = 'app/assets/client/img/empty-transparency-bg-1024x768.png';
+imageObj.src = 'client/img/empty-transparency-bg-1024x768.png';
