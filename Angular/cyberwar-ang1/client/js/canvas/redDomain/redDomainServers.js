@@ -23,7 +23,8 @@ var rBase = new Konva.Line({
   fill: 'red',
   stroke: 'black',
   strokeWidth: 2,
-  closed: true
+  closed: true,
+  id: 'rBase'
 });
 
 var r1Hex = new Konva.RegularPolygon({

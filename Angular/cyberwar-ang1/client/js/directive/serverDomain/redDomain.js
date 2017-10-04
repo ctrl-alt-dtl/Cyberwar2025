@@ -49,6 +49,7 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
         });
 
         // Modal Callback Function
+        console.log(rBase.id());
         scope.callbackFn();
       });
 

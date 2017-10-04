@@ -46,6 +46,7 @@
                   <ul>
                       <li ng-repeat="item in $ctrl.items">
                           <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+
                           <!--ATTEMPTING TO BUTTONIZE CYBER EFFECTS IN A TABLE FOR EASY MODIFICATION AND LAUNCHING-->
                           <!--
                           <button type="button" ng-class="{{ $ctrl.buttonStyle }}" ng-click="$event.preventDefault(); $ctrl.selected.item = item" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
@@ -65,7 +66,7 @@
           <!--END MODAL TESTING-->
 
           <!--GAME BOARD SERVER POINTS-->
-          <div data-game-board-red-base id="canvasRedBase" callback-fn="$ctrl.open()"></div>
+          <div data-game-board-red-base id="canvasRedBase" callback-fn="$ctrl.open(id)"></div>
           <div data-game-board-red-1-hex id="canvasRed1Hex" callback-fn-test=""></div>
           <div data-game-board-red-2-hex id="canvasRed2Hex"></div>
           <div data-game-board-red-3-hex id="canvasRed3Hex" callback-fn-test=""></div>

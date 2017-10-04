@@ -1,9 +1,6 @@
 var app = angular.module('CyberWar', ['ui.bootstrap', 'ui.grid']);
 
 app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
-  $scope.canvasKonvaObj = false;
-  $scope.canvaskonvaStageObj = false;
-
 
   // MODAL TEST
   var $ctrl = this;
@@ -50,15 +47,17 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
         items: function () {
           return $ctrl.items;
         },
-        pareElem: function () {
-          return $ctrl.component;
+        parentId: function () {
+          return 'test';
         }
       }
     });
 
-    modalInstance.result.then(function (selectedItem) {
+    modalInstance.result.then(function (selectedItem, parentId) {
       $ctrl.selected = selectedItem;
-      console.log("Selected: " + $ctrl.selected + " From: " + $ctrl.component);
+      $ctrl.parentId = parentId; // I want this to be the id of the calling hex (e.g. r1Hex).
+
+      console.log("Selected: " + $ctrl.selected + " From: " + $ctrl.parentId);
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
