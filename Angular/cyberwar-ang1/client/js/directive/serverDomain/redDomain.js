@@ -62,22 +62,25 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
 app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
+    scope: {
+      callbackFnTest: '&callbackFnTest'
+    },
     link: function (scope) {
       console.log("gameBoardRed1HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r1Hex);
 
+
       var options = {
         x: pt_r1Hex_X,
         y: pt_r1Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r1Hex'
+        id: 'r1HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -95,6 +98,10 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
         $timeout(function() {
           scope.clickCountRed++;
         });
+
+        // Modal Callback Function (ATTEMPT TO FILL A HEX ONCLICK)
+        scope.callbackFnTest(r1Hex.fill(purpleColor));
+        domainsLayer.draw();
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -118,11 +125,10 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
         y: pt_r2Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r2Hex'
+        id: 'r2HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -152,6 +158,9 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
 app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
+    scope: {
+      callbackFnTest: '&callbackFnTest'
+    },
     link: function (scope) {
       console.log("gameBoardRed3HexLoading");
 
@@ -163,11 +172,10 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
         y: pt_r3Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r3Hex'
+        id: 'r3HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -185,6 +193,9 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
         $timeout(function() {
           scope.clickCountRed++;
         });
+
+        scope.callbackFnTest(r3Hex.fill(purpleColor));
+        domainsLayer.draw();
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -208,11 +219,10 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
         y: pt_r4Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r4Hex'
+        id: 'r4HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -253,11 +263,10 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
         y: pt_r5Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r5Hex'
+        id: 'r5HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -298,11 +307,10 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
         y: pt_r6Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r6Hex'
+        id: 'r6HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -343,11 +351,10 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
         y: pt_r7Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r7Hex'
+        id: 'r7HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -388,11 +395,10 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
         y: pt_r8Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'red',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'r8Hex'
+        id: 'r8HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);

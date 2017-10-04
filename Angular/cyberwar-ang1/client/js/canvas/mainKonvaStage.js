@@ -43,6 +43,18 @@ var domainsGroup = new Konva.Group({
   rotation: DOMAIN_LAYER_BOARD_ROTATION
 });
 
+var linksGroup = new Konva.Group({
+  width: BASE_BOARD_HEIGHT,
+  height: BASE_BOARD_HEIGHT,
+  x: BASE_BOARD_WIDTH / 2.665,
+  y: BASE_BOARD_HEIGHT / 2,
+  offset: {
+    x: BASE_BOARD_WIDTH / 2,
+    y: BASE_BOARD_HEIGHT / 2,
+  },
+  rotation: DOMAIN_LAYER_BOARD_ROTATION
+});
+
 var imageObj = new Image();
 // background board
 imageObj.onload = function() {
@@ -65,7 +77,7 @@ imageObj.onload = function() {
 
   bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
 
-  domainsLayer.add(domainsGroup);
+  domainsLayer.add(linksGroup, domainsGroup);
   stage.add(bgLayer, domainsLayer);
 
 };

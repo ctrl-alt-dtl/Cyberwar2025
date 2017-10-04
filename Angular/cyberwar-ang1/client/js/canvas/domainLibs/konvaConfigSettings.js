@@ -15,6 +15,7 @@ var redColor = 'red';
 var purpleColor = 'purple';
 var greenColor = 'green';
 var orangeColor = 'orange';
+var noColor = '';
 
 // Line dash width and gap for exploit links
 var exploitLineDashWidth = 2;
@@ -63,5 +64,5 @@ var dashSize = BASE_BOARD_HEIGHT / 384;
 var dashStroke = BASE_BOARD_HEIGHT / BASE_BOARD_HEIGHT;
 
 // Board Links Size
-var mainLinksStroke = BASE_BOARD_HEIGHT / 384;
+var mainLinksStroke = BASE_BOARD_HEIGHT / 256;
 var exploitLinksStroke = BASE_BOARD_HEIGHT / 256;

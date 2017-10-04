@@ -45,10 +45,13 @@
               <div class="modal-body" id="modal-body">
                   <ul>
                       <li ng-repeat="item in $ctrl.items">
+                          <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
                           <!--ATTEMPTING TO BUTTONIZE CYBER EFFECTS IN A TABLE FOR EASY MODIFICATION AND LAUNCHING-->
+                          <!--
                           <button type="button" ng-class="{{ $ctrl.buttonStyle }}" ng-click="$event.preventDefault(); $ctrl.selected.item = item" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
                               {{ item }}
                           </button>
+                          -->
                       </li>
                   </ul>
 
@@ -63,9 +66,9 @@
 
           <!--GAME BOARD SERVER POINTS-->
           <div data-game-board-red-base id="canvasRedBase" callback-fn="$ctrl.open()"></div>
-          <div data-game-board-red-1-hex id="canvasRed1Hex"></div>
+          <div data-game-board-red-1-hex id="canvasRed1Hex" callback-fn-test=""></div>
           <div data-game-board-red-2-hex id="canvasRed2Hex"></div>
-          <div data-game-board-red-3-hex id="canvasRed3Hex"></div>
+          <div data-game-board-red-3-hex id="canvasRed3Hex" callback-fn-test=""></div>
           <div data-game-board-red-4-hex id="canvasRed4Hex"></div>
           <div data-game-board-red-5-hex id="canvasRed5Hex"></div>
           <div data-game-board-red-6-hex id="canvasRed6Hex"></div>
@@ -122,6 +125,8 @@
           <div data-game-board-orange-7-hex id="canvasOrange7Hex"></div>
           <div data-game-board-orange-8-hex id="canvasOrange8Hex"></div>
 
+          <!--RED DOMAIN LINKS-->
+          <div data-game-board-r1-r3-overt-link id="canvasOvertLink"></div>
       </div>
       <!--
       <div id="buttons">
@@ -159,12 +164,14 @@
   <script src="client/js/controller/modalInstanceCtrl.js"></script>
 
   <!--DIRECTIVES-->
-  <script src="client/js/directive/redDomain.js"></script>
-  <script src="client/js/directive/purpleDomain.js"></script>
-  <script src="client/js/directive/blueDomain.js"></script>
-  <script src="client/js/directive/greenDomain.js"></script>
-  <script src="client/js/directive/yellowDomain.js"></script>
-  <script src="client/js/directive/orangeDomain.js"></script>
+  <script src="client/js/directive/serverDomain/redDomain.js"></script>
+  <script src="client/js/directive/serverDomain/purpleDomain.js"></script>
+  <script src="client/js/directive/serverDomain/blueDomain.js"></script>
+  <script src="client/js/directive/serverDomain/greenDomain.js"></script>
+  <script src="client/js/directive/serverDomain/yellowDomain.js"></script>
+  <script src="client/js/directive/serverDomain/orangeDomain.js"></script>
+
+  <script src="client/js/directive/overtLinks/redDomainOvertLinks.js"></script>
 
   <!--INTERACTION WINDOWS-->
   <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>

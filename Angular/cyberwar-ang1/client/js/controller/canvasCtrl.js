@@ -8,6 +8,16 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
   // MODAL TEST
   var $ctrl = this;
   $ctrl.items = [
+    "Red",
+    "Purple",
+    "Blue",
+    "Green",
+    "Yellow",
+    "Orange"
+  ];
+
+ /*
+  $ctrl.items = [
     "Secure",
     "Expel",
     "Analyze",
@@ -18,6 +28,7 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
     "Exploit",
     "Implant"
   ];
+  */
   $ctrl.buttonStyle='btn-success';
 
   $ctrl.animationsEnabled = true;
@@ -38,13 +49,16 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
       resolve: {
         items: function () {
           return $ctrl.items;
+        },
+        pareElem: function () {
+          return $ctrl.component;
         }
       }
     });
 
     modalInstance.result.then(function (selectedItem) {
       $ctrl.selected = selectedItem;
-      console.log("Selected: " + $ctrl.selected)
+      console.log("Selected: " + $ctrl.selected + " From: " + $ctrl.component);
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
