@@ -48,7 +48,7 @@
     	border-width: 1px;
 	}
 	.submitBtn {
-		height: 66px;
+		height: 70px;
 		width: 400px;
 		background: #E1E1E1;
 		position: inherit;
@@ -63,6 +63,9 @@
 		border-style: solid;
     	border-width: 1px;
 	}
+    #effects-window {
+
+    }
 </style>
 </head>
 
@@ -73,7 +76,51 @@
 	<div id="left_aside"></div>
 	<div class="board">Main Board (Konva Canvas)</div>
 	<div class="ui-area">
-		<div class="effects">Cyber Effects Window (table)</div>
+		<div class="effects">
+            <div id="effects-window">
+                <table border="1">
+                    <tr>
+                        <td colspan="4" align=center>&nbsp;Cyber Effects Window&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align=center>&nbsp; DCO/CND &nbsp;</td>
+                        <td align=center>&nbsp; OCO/CNO &nbsp;</td>
+                        <td align=center>&nbsp;   CND   &nbsp;</td>
+                        <td align=center>&nbsp; Cost to Use: &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height=40px>&nbsp; Secure &nbsp;</td>
+                        <td height=40px>&nbsp; Acquire &nbsp;</td>
+                        <td height=40px>&nbsp; Scan &nbsp;</td>
+                        <td align=center>&nbsp; 1</td>
+                    </tr>
+                    <tr>
+                        <td height=40px>&nbsp; Expel &nbsp;</td>
+                        <td height=40px>&nbsp; Manipulate &nbsp;</td>
+                        <td height=40px>&nbsp; Explpoit </td>
+                        <td align=center>&nbsp; 2</td>
+                    </tr>
+                    <tr>
+                        <td height=40px>&nbsp; Analyze &nbsp;</td>
+                        <td height=40px>&nbsp; Deny &nbsp;</td>
+                        <td height=40px>&nbsp; Implant &nbsp;</td>
+                        <td align=center>&nbsp; 3</td>
+                    </tr>
+                    <tr>
+                        <td height=70px>&nbsp; Research Box &nbsp;</td>
+                        <td height=70px>&nbsp; Research Box &nbsp;</td>
+                        <td height=70px>&nbsp; Research Box &nbsp;</td>
+                        <td height=70px>&nbsp; Action Points &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp; -/+ &nbsp;</td>
+                        <td>&nbsp; -/+ &nbsp;</td>
+                        <td>&nbsp; -/+ &nbsp;</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
 		<div class="submitBtn">Submit Button</div>
 		<div class="adjudication">Orders Adjudication</div>
 	</div>
