@@ -52,8 +52,24 @@
 		width: 400px;
 		background: #E1E1E1;
 		position: inherit;
+		justify-content: center;
+		display: flex;
 		border-style: solid;
     	border-width: 1px;
+	}
+	.minusPlusBtn {
+		background-color: white; /* Green */
+		border: 1px solid black;
+		width: 45px;
+		color: black;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+	}
+	.minusPlusBtn:hover {
+    background-color: #4F4E4E;
 	}
 	.adjudication{
 		height: 350px;
@@ -80,13 +96,13 @@
             <div id="effects-window">
                 <table border="1">
                     <tr>
-                        <td colspan="4" align=center>&nbsp;Cyber Effects Window&nbsp;</td>
+                        <td colspan="4" align="center" width="400px">&nbsp;Cyber Effects Window&nbsp;</td>
                     </tr>
                     <tr>
-                        <td align=center>&nbsp; DCO/CND &nbsp;</td>
-                        <td align=center>&nbsp; OCO/CNO &nbsp;</td>
-                        <td align=center>&nbsp;   CND   &nbsp;</td>
-                        <td align=center>&nbsp; Cost to Use: &nbsp;</td>
+                        <td align="center" width="100px">DCO/CND</td>
+                        <td align="center" width="100px">OCO/CNO</td>
+                        <td align="center" width="100px">CNE</td>
+                        <td align="center">Cost to Use:</td>
                     </tr>
                     <tr>
                         <td height=40px>&nbsp; Secure &nbsp;</td>
@@ -107,21 +123,24 @@
                         <td align=center>&nbsp; 3</td>
                     </tr>
                     <tr>
-                        <td height=70px>&nbsp; Research Box &nbsp;</td>
-                        <td height=70px>&nbsp; Research Box &nbsp;</td>
-                        <td height=70px>&nbsp; Research Box &nbsp;</td>
-                        <td height=70px>&nbsp; Action Points &nbsp;</td>
+                        <td height=70px>Research Box</td>
+                        <td height=70px>Research Box</td>
+                        <td height=70px>Research Box</td>
+                        <td height=10px align="center">Action Points</td>
                     </tr>
                     <tr>
-                        <td>&nbsp; -/+ &nbsp;</td>
-                        <td>&nbsp; -/+ &nbsp;</td>
-                        <td>&nbsp; -/+ &nbsp;</td>
+                        <td align="center"><button type="button" class="minusPlusBtn"> - </button><button type="button" class="minusPlusBtn"> + </button></td>
+                        <td align="center"><button type="button" class="minusPlusBtn"> - </button><button type="button" class="minusPlusBtn"> + </button></td>
+                        <td align="center"><button type="button" class="minusPlusBtn"> - </button><button type="button" class="minusPlusBtn"> + </button></td>
+                        <td align="center">##</td>
                     </tr>
 
                 </table>
             </div>
         </div>
-		<div class="submitBtn">Submit Button</div>
+		<div class="submitBtn">
+            <button type="submitButton" align="center"> Submit Orders </button>
+        </div>
 		<div class="adjudication">Orders Adjudication</div>
 	</div>
 </div>
