@@ -71,7 +71,10 @@ imageObj.onload = function() {
   bgGroup.add(gbg1, gbg2, g1g3, g2g5, g5g4, g3g4, g4g6, g4g7, g3g6, g5g7, g6g7, g6g8, g7g8);
   bgGroup.add(yby1, yby2, y1y3, y2y5, y5y4, y3y4, y4y6, y4y7, y3y6, y5y7, y6y7, y6y8, y7y8);
   bgGroup.add(obo1, obo2, o1o3, o2o5, o5o4, o3o4, o4o6, o4o7, o3o6, o5o7, o6o7, o6o8, o7o8);
-  bgGroup.add(r1p2);
+  // Intra-Domain Links
+  bgGroup.add(r1p2, r2o1, r3p5, r5o3, r6p7, r7o6, r8p8, r8o8);
+  bgGroup.add(b1g2, b2p1, b3g5, b5p3, b6g7, b7p6, b8g8, b8p8);
+  bgGroup.add(y1o2, y2g1, y3o5, y5g3, y6o7, y7g6, y8o8, y8g8);
 
   bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
 

@@ -1189,3 +1189,350 @@ var r1p2 = new Konva.Line({
   lineJoin: 'round',
   dash: [dashLength, dashSize]
 });
+
+var r2o1 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r2Hex_X,
+    pt_r2Hex_Y,
+    pt_o1Hex_X,
+    pt_o1Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var r3p5 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r3Hex_X,
+    pt_r3Hex_Y,
+    pt_p5Hex_X,
+    pt_p5Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var r5o3 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r5Hex_X,
+    pt_r5Hex_Y,
+    pt_o3Hex_X,
+    pt_o3Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var r6p7 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r6Hex_X,
+    pt_r6Hex_Y,
+    pt_p7Hex_X,
+    pt_p7Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var r7o6 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r7Hex_X,
+    pt_r7Hex_Y,
+    pt_o6Hex_X,
+    pt_o6Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var r8p8 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r8Hex_X,
+    pt_r8Hex_Y,
+    pt_p8Hex_X,
+    pt_p8Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var r8o8 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r8Hex_X,
+    pt_r8Hex_Y,
+    pt_o8Hex_X,
+    pt_o8Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+// Inter-Domain Links 2
+var b1g2 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b1Hex_X,
+    pt_b1Hex_Y,
+    pt_g2Hex_X,
+    pt_g2Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b2p1 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b2Hex_X,
+    pt_b2Hex_Y,
+    pt_p1Hex_X,
+    pt_p1Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b3g5 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b3Hex_X,
+    pt_b3Hex_Y,
+    pt_g5Hex_X,
+    pt_g5Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b5p3 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b5Hex_X,
+    pt_b5Hex_Y,
+    pt_p3Hex_X,
+    pt_p3Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b6g7 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b6Hex_X,
+    pt_b6Hex_Y,
+    pt_g7Hex_X,
+    pt_g7Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b7p6 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b7Hex_X,
+    pt_b7Hex_Y,
+    pt_p6Hex_X,
+    pt_p6Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b8g8 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b8Hex_X,
+    pt_b8Hex_Y,
+    pt_g8Hex_X,
+    pt_g8Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var b8p8 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_b8Hex_X,
+    pt_b8Hex_Y,
+    pt_p8Hex_X,
+    pt_p8Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+// Inter-Domain Links 3
+var y1o2 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y1Hex_X,
+    pt_y1Hex_Y,
+    pt_o2Hex_X,
+    pt_o2Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y2g1 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y2Hex_X,
+    pt_y2Hex_Y,
+    pt_g1Hex_X,
+    pt_g1Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y3o5 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y3Hex_X,
+    pt_y3Hex_Y,
+    pt_o5Hex_X,
+    pt_o5Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y5g3 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y5Hex_X,
+    pt_y5Hex_Y,
+    pt_g3Hex_X,
+    pt_g3Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y6o7 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y6Hex_X,
+    pt_y6Hex_Y,
+    pt_o7Hex_X,
+    pt_o7Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y7g6 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y7Hex_X,
+    pt_y7Hex_Y,
+    pt_g6Hex_X,
+    pt_g6Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y8o8 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y8Hex_X,
+    pt_y8Hex_Y,
+    pt_o8Hex_X,
+    pt_o8Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
+
+var y8g8 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_y8Hex_X,
+    pt_y8Hex_Y,
+    pt_g8Hex_X,
+    pt_g8Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});
