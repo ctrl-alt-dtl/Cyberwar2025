@@ -1174,3 +1174,18 @@ var o7o8 = new Konva.Line({
   dash: [dashLength, dashSize]
 });
 
+// Inter-Domain Links
+var r1p2 = new Konva.Line({
+  //       XS    YS   XE   YE
+  points: [
+    pt_r1Hex_X,
+    pt_r1Hex_Y,
+    pt_p2Hex_X,
+    pt_p2Hex_Y
+  ],
+  stroke: 'black',
+  strokeWidth: dashStroke,
+  lineCap: 'round',
+  lineJoin: 'round',
+  dash: [dashLength, dashSize]
+});

@@ -14,7 +14,7 @@ var greenBaseText = new Konva.Text({
   },
   width: baseTextWidth,
   stroke: 'black',
-  strokeWidth: 1.5,
+  strokeWidth: 1,
   fontFamily:'sans-serif',
   fontSize: baseTextSize,
   fontStyle: 'bold',

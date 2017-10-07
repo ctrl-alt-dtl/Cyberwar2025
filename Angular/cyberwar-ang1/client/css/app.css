@@ -135,6 +135,17 @@
 }
 .effectRow1 {
     background: green;
+    color: white;
+}
+.effectItemGreen {
+    background: green;
+    color: white;
+}
+.effectItemYellow {
+    background: yellow;
+}
+.effectItemRed {
+    background: red;
 }
 td {
     border: 1px black solid;
