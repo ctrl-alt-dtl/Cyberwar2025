@@ -1,5 +1,6 @@
 {
   "name": "CyberWar-2025",
+  "author": "David 'Ty' Long and Chris Mulch",
   "private": true,
   "version": "1.0.0",
   "description": "A cyber themed educational wargame. Designed and developed at Naval Postgraduate School.",
@@ -16,12 +17,13 @@
     "karma-junit-reporter": "^0.4.1",
     "protractor": "^4.0.9"
   },
+  "main": "app.js",
   "scripts": {
     "postinstall": "bower install",
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
     "prestart": "npm install",
-    "start": "http-server -a 0.0.0.0 -p 8000 -c-1 ../cyberwar-ang1",
+    "start": "node app.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
@@ -46,10 +48,10 @@
     "minimatch": "^3.0.4",
     "mongoose": "^4.11.14",
     "ng-popup": "^0.5.0",
-    "ng-table": "^3.0.1",
+    "ng-table": "^3.1.0",
     "request": "^2.83.0",
     "sockjs": "^0.3.18",
     "underscore": "^1.8.3",
-    "winston": "^2.3.1"
+    "winston": "^2.4.0"
   }
 }
