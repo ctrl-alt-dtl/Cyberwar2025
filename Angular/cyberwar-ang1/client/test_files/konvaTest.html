@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            height: auto !important;
+            overflow: hidden;
+            background-color: black;
+        }
+        #stage-parent{
+            width: 100%;
+        }
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="stage-parent">
+        <div class="container"></div>
+        <!--
+        <div id="buttons">
+            <input type="button" id="activate" value="Activate rectangle">
+        </div>
+        -->
+    </div>
+    <script src="../../node_modules/konva/konva.js"></script>
+
+    <!--MAIN BOARD VIEW-->
+    <script src="old_code/canvas/mainKonvaLayer.js"></script>
+    <script src="../js/canvas/boardItems/mainBoard.js"></script>
+    <script src="../js/canvas/boardItems/interactiveBoxes.js"></script>
+
+    <!--LIBRARIES-->
+    <script src="../js/canvas/domainLibs/serverPointCoordinates.js"></script>
+    <script src="../js/canvas/domainLibs/konvaConfigSettings.js"></script>
+
+    <!--DOMAINS-->
+    <script src="../js/canvas/redDomain/redDomainServers.js"></script>
+    <script src="../js/canvas/redDomain/redDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/redDomain/redDomainExploitLinks.js"></script>
+    <script src="../js/canvas/redDomain/redDomainServerText.js"></script>
+
+    <script src="../js/canvas/purpleDomain/purpleDomainSevers.js"></script>
+    <script src="../js/canvas/purpleDomain/purpleDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
+    <script src="../js/canvas/purpleDomain/purpleDomainServerText.js"></script>
+
+    <script src="../js/canvas/blueDomain/blueDomainServers.js"></script>
+    <script src="../js/canvas/blueDomain/blueDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/blueDomain/blueDomainExploitLinks.js"></script>
+    <script src="../js/canvas/blueDomain/blueDomainServerText.js"></script>
+
+    <script src="../js/canvas/greenDomain/greenDomainServers.js"></script>
+    <script src="../js/canvas/greenDomain/greenDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/greenDomain/greenDomainExploitLinks.js"></script>
+    <script src="../js/canvas/greenDomain/greenDomainServerText.js"></script>
+
+    <script src="../js/canvas/yellowDomain/yellowDomainServers.js"></script>
+    <script src="../js/canvas/yellowDomain/yellowDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/yellowDomain/yellowDomainServerText.js"></script>
+    <script src="../js/canvas/yellowDomain/yellowDomainExploitLinks.js"></script>
+
+    <script src="../js/canvas/orangeDomain/orangeDomainServers.js"></script>
+    <script src="../js/canvas/orangeDomain/orangeDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
+    <script src="../js/canvas/orangeDomain/orangeDomainServerText.js"></script>
+
+    <!--INTER-DOMAIN-->
+    <script src="../js/canvas/interDomain/interDomainPrimaryLinks.js"></script>
+    <script src="../js/canvas/interDomain/interDomainExploitLinks.js"></script>
+
+    <!--EVENTS-->
+    <script src="eventsListeningTest.js"></script>
+
+</body>
+</html>
