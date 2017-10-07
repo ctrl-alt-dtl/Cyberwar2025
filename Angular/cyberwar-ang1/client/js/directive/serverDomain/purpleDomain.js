@@ -89,12 +89,9 @@ app.directive('gameBoardPurple1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+      
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 1");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -134,12 +131,9 @@ app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 2");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -179,12 +173,9 @@ app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 3");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -224,12 +215,9 @@ app.directive('gameBoardPurple4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 4");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -269,12 +257,9 @@ app.directive('gameBoardPurple5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 5");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -314,12 +299,9 @@ app.directive('gameBoardPurple6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 6");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -359,12 +341,9 @@ app.directive('gameBoardPurple7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 7");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -404,12 +383,9 @@ app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountPurple = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Purple Hex 8");
-        $timeout(function() {
-          scope.clickCountPurple++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);

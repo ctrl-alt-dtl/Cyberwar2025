@@ -12,7 +12,7 @@ var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
 
 var stage = new Konva.Stage({
-  container: '.container',
+  container: '.board',
   width: BASE_BOARD_HEIGHT,
   height: BASE_BOARD_HEIGHT
 });

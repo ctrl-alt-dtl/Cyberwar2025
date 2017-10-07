@@ -40,13 +40,8 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex Base");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
 
         // Modal Callback Function
         scope.callbackFn();
@@ -89,12 +84,9 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 1");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -134,12 +126,9 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 2");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -179,12 +168,9 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 3");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -224,12 +210,9 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 4");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -269,12 +252,9 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 5");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -314,12 +294,9 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 6");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -359,12 +336,9 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 7");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -404,12 +378,9 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountBlue = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 8");
-        $timeout(function() {
-          scope.clickCountBlue++;
-        });
       });
 
       domainsGroup.add(scope.konvaobj);

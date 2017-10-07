@@ -40,12 +40,13 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountRed = 0;
+      $rootScope.clickCountRed = 0;
+      $rootScope.actionPoints = 8;
 
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex Base");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
 
         // Modal Callback Function
@@ -93,15 +94,18 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 1");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
 
         // Modal Callback Function (ATTEMPT TO FILL A HEX ONCLICK)
         scope.callbackFnTest(r1Hex.fill(purpleColor));
+        $rootScope.actionPoints--;
         domainsLayer.draw();
       });
 
@@ -141,11 +145,13 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 2");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
       });
 
@@ -188,14 +194,17 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 3");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
 
         scope.callbackFnTest(r3Hex.fill(purpleColor));
+        $rootScope.actionPoints--;
         domainsLayer.draw();
       });
 
@@ -235,11 +244,13 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 4");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
       });
 
@@ -279,11 +290,13 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 5");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
       });
 
@@ -323,11 +336,13 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 6");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
       });
 
@@ -367,11 +382,13 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 7");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
       });
 
@@ -411,11 +428,13 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountRed = 0;
+
+      $rootScope.clickCountRed = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 8");
         $timeout(function() {
-          scope.clickCountRed++;
+          $rootScope.clickCountRed++;
         });
       });
 
