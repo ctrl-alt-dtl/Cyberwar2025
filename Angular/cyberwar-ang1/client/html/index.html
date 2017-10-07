@@ -147,21 +147,15 @@
                             <td align=center>1</td>
                         </tr>
                         <tr>
-                            <td ng-if="effectsNumDCO  <= 1" height=40px class="effectItemRed">&nbsp; Expel &nbsp;</td>
-                            <td ng-if="effectsNumDCO  >= 2 && effectsNumDCO <=3" height=40px class="effectItemYellow">&nbsp; Expel &nbsp;</td>
-                            <td ng-if="effectsNumDCO  == 4" height=40px class="effectItemGreen">&nbsp; Expel &nbsp;</td>
-                            <td ng-if="effectsNumOCO  <= 1" height=40px class="effectItemRed">&nbsp; Manipulate &nbsp;</td>
-                            <td ng-if="effectsNumOCO  >= 2 && effectsNumOCO <=3" height=40px class="effectItemYellow">&nbsp; Manipulate &nbsp;</td>
-                            <td ng-if="effectsNumOCO  == 4" height=40px class="effectItemGreen">&nbsp; Manipulate &nbsp;</td>
-                            <td ng-if="effectsNumCNE  <= 1" height=40px class="effectItemRed">&nbsp; Exploit &nbsp;</td>
-                            <td ng-if="effectsNumCNE  >= 2 && effectsNumCNE <=3" height=40px class="effectItemYellow">&nbsp; Exploit &nbsp;</td>
-                            <td ng-if="effectsNumCNE  == 4" height=40px class="effectItemGreen">&nbsp; Exploit &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2DCO}" height=40px class="effectItemRed">&nbsp; Expel &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2OCO}" height=40px class="effectItemRed">&nbsp; Manipulate &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2CNE}" height=40px class="effectItemRed">&nbsp; Exploit &nbsp;</td>
                             <td align=center>2</td>
                         </tr>
                         <tr>
-                            <td height=40px>&nbsp; Analyze &nbsp;</td>
-                            <td height=40px>&nbsp; Deny &nbsp;</td>
-                            <td height=40px>&nbsp; Implant &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL3DCO}" height=40px>&nbsp; Analyze &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL3OCO}" height=40px>&nbsp; Deny &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL3CNE}" height=40px>&nbsp; Implant &nbsp;</td>
                             <td align=center>3</td>
                         </tr>
                         <tr>

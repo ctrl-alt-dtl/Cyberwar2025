@@ -42,9 +42,19 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
 
       $rootScope.clickCountRed = 0;
       $rootScope.actionPoints = 8;
-      $rootScope.effectsNumDCO = 1;
-      $rootScope.effectsNumOCO = 4;
-      $rootScope.effectsNumCNE = 3;
+      // $rootScope.effectsNumDCO = 1;
+      // $rootScope.effectsNumOCO = 4;
+      // $rootScope.effectsNumCNE = 3;
+
+
+
+      $rootScope.effectsL2DCO = 'red';
+      $rootScope.effectsL2OCO = 'green';
+      $rootScope.effectsL2CNE = 'yellow';
+
+      $rootScope.effectsL3DCO = 'red';
+      $rootScope.effectsL3OCO = 'yellow';
+      $rootScope.effectsL3CNE = 'red';
 
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex Base");

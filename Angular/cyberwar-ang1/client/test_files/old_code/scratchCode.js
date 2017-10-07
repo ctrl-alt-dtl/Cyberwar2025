@@ -140,3 +140,6 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
     }
   }
 });
+
+
+
