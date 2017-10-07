@@ -47,7 +47,7 @@
 		border-style: solid;
     	border-width: 1px;
 	}
-	.submitBtn {
+	.submitBtnArea {
 		height: 70px;
 		width: 400px;
 		background: #E1E1E1;
@@ -57,8 +57,22 @@
 		border-style: solid;
     	border-width: 1px;
 	}
+	.submitBtn {
+		background-color: white;
+		border: 1px solid black;
+		color: black;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+	}
+	.submitBtn:hover {
+    	background-color: #4F4E4E;
+		color: white;
+	}
 	.minusPlusBtn {
-		background-color: white; /* Green */
+		background-color: white;
 		border: 1px solid black;
 		width: 45px;
 		color: black;
@@ -69,7 +83,8 @@
 		cursor: pointer;
 	}
 	.minusPlusBtn:hover {
-    background-color: #4F4E4E;
+    	background-color: #4F4E4E;
+		color: white;
 	}
 	.adjudication{
 		height: 350px;
@@ -108,19 +123,19 @@
                         <td height=40px>&nbsp; Secure &nbsp;</td>
                         <td height=40px>&nbsp; Acquire &nbsp;</td>
                         <td height=40px>&nbsp; Scan &nbsp;</td>
-                        <td align=center>&nbsp; 1</td>
+                        <td align=center>1</td>
                     </tr>
                     <tr>
                         <td height=40px>&nbsp; Expel &nbsp;</td>
                         <td height=40px>&nbsp; Manipulate &nbsp;</td>
                         <td height=40px>&nbsp; Explpoit </td>
-                        <td align=center>&nbsp; 2</td>
+                        <td align=center>2</td>
                     </tr>
                     <tr>
                         <td height=40px>&nbsp; Analyze &nbsp;</td>
                         <td height=40px>&nbsp; Deny &nbsp;</td>
                         <td height=40px>&nbsp; Implant &nbsp;</td>
-                        <td align=center>&nbsp; 3</td>
+                        <td align=center>3</td>
                     </tr>
                     <tr>
                         <td height=70px>Research Box</td>
@@ -138,8 +153,8 @@
                 </table>
             </div>
         </div>
-		<div class="submitBtn">
-            <button type="submitButton" align="center"> Submit Orders </button>
+		<div class="submitBtnArea">
+            <button type="submitButton" class="submitBtn" align="center"> Submit Orders </button>
         </div>
 		<div class="adjudication">Orders Adjudication</div>
 	</div>
