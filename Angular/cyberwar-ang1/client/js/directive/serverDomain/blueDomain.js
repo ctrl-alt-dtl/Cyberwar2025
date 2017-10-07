@@ -9,7 +9,7 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
       console.log("gameBoardBlueBaseLoading");
 
       // add server point to the domain
-      domainsGroup.add(bBase);
+      domainsGroup.add(bBase, blueBaseText);
 
       var options = {
         points: [
