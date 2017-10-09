@@ -11,8 +11,10 @@
 ## [1.1.0] - 2017-10-03
 - ALPHA
 - Still unreleased and in development.
+
 ### Added
-- Implemented ExpressJS and NodeJS
+- Implemented ExpressJS and NodeJS.
+- Improved HTML/CSS layout with Canvas.
 
 ## [1.0.0] 2017-07-05
 - ALPHA
