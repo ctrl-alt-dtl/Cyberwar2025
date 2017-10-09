@@ -1,4 +1,4 @@
-var app = angular.module('CyberWar', ['ui.bootstrap', 'ui.grid']);
+var app = angular.module('CyberWar', ['ui.bootstrap', 'ui.grid', 'ui.scroll']);
 
 app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
 

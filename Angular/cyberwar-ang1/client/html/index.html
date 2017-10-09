@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.css">
     <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="client/css/app.css">
     <script src="app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -182,6 +183,12 @@
             </div>
             <div class="adjudication">Orders Adjudication
                 <br>clicks red: {{clickCountRed}}
+                <ul ui-scroll-viewport>
+                    <li ng-repeat="order in orders" class="{'fadeOut' : order.done}">
+                        <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
+                        <span>{{order.title}}</span>
+                    </li>
+                </ul>
             </div>
         </div>
         <!--
@@ -189,6 +196,12 @@
             <input type="button" id="activate" value="Activate rectangle">
         </div>
         -->
+        <div data-orders-adjudication-list id="canvasOrdersAdjudicationList">
+            <form name="ordersFrm" ng-submit="addOrder()">
+                <input type="text" name="newOrder" ng-model="newOrder" required />
+                <button ng-disabled="ordersFrm.$invalid" ng-click="addOrder()">Add</button>
+        </form>
+        </div>
     </div>
 
     <!-- In production use:
@@ -199,6 +212,7 @@
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
+    <script src="node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
     <script src="node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
     <script src="node_modules/howler/dist/howler.js"></script>
     <script src="node_modules/underscore/underscore.js"></script>
@@ -219,6 +233,7 @@
     <script src="client/js/controller/canvasCtrl.js"></script>
     <script src="client/js/controller/modalInstanceCtrl.js"></script>
 
+
     <!--DIRECTIVES-->
     <script src="client/js/directive/serverDomain/redDomain.js"></script>
     <script src="client/js/directive/serverDomain/purpleDomain.js"></script>
@@ -233,6 +248,7 @@
 
     <!--INTERACTION WINDOWS-->
     <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
+    <script src="client/js/directive/ordersAdjudicationList.js"></script>
 
     <!--CANVAS DOMAINS-->
     <script src="client/js/canvas/redDomain/redDomainServers.js"></script>
