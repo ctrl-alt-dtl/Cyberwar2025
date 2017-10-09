@@ -125,6 +125,9 @@
 
                 <!--RED DOMAIN LINKS-->
                 <div data-game-board-r1-r3-overt-link id="canvasOvertLink"></div>
+
+                <div data-game-board-r1-r3-exploit-link id="canvasExploitLink"></div>
+                <div data-game-board-r3-r6-exploit-link id="canvasExploitLink"></div>
             </div>
 
         <div class="ui-area">
@@ -141,15 +144,15 @@
                             <td align="center">Cost to Use:</td>
                         </tr>
                         <tr>
-                            <td height=40px class="effectRow1">&nbsp; Secure &nbsp;</td>
-                            <td height=40px class="effectRow1">&nbsp; Acquire &nbsp;</td>
-                            <td height=40px class="effectRow1">&nbsp; Scan &nbsp;</td>
+                            <td height=40px ng-style="{'background-color': 'green'}">&nbsp; Secure &nbsp;</td>
+                            <td height=40px ng-style="{'background-color': 'green'}">&nbsp; Acquire &nbsp;</td>
+                            <td height=40px ng-style="{'background-color': 'green'}">&nbsp; Scan &nbsp;</td>
                             <td align=center>1</td>
                         </tr>
                         <tr>
-                            <td ng-style="{'background-color': effectsL2DCO}" height=40px class="effectItemRed">&nbsp; Expel &nbsp;</td>
-                            <td ng-style="{'background-color': effectsL2OCO}" height=40px class="effectItemRed">&nbsp; Manipulate &nbsp;</td>
-                            <td ng-style="{'background-color': effectsL2CNE}" height=40px class="effectItemRed">&nbsp; Exploit &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2DCO}" height=40px>&nbsp; Expel &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2OCO}" height=40px>&nbsp; Manipulate &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2CNE}" height=40px>&nbsp; Exploit &nbsp;</td>
                             <td align=center>2</td>
                         </tr>
                         <tr>
@@ -226,14 +229,17 @@
 
     <script src="client/js/directive/overtLinks/redDomainOvertLinks.js"></script>
 
+    <script src="client/js/directive/exploitLinks/redDomainExploitLinks.js"></script>
+
     <!--INTERACTION WINDOWS-->
     <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
 
-    <!--DOMAINS-->
+    <!--CANVAS DOMAINS-->
     <script src="client/js/canvas/redDomain/redDomainServers.js"></script>
     <script src="client/js/canvas/redDomain/redDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/redDomain/redDomainExploitLinks.js"></script>
     <script src="client/js/canvas/redDomain/redDomainServerText.js"></script>
+
     <script src="client/js/canvas/purpleDomain/purpleDomainSevers.js"></script>
     <script src="client/js/canvas/purpleDomain/purpleDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
@@ -259,9 +265,10 @@
     <script src="client/js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
     <script src="client/js/canvas/orangeDomain/orangeDomainServerText.js"></script>
 
-    <!--INTER-DOMAIN-->
+    <!--CANVAS INTER-DOMAIN-->
     <script src="client/js/canvas/interDomain/interDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/interDomain/interDomainExploitLinks.js"></script>
 
+</div>
 </body>
 </html>

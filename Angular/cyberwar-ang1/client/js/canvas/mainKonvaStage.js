@@ -16,6 +16,7 @@ var stage = new Konva.Stage({
 
 var bgLayer = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
+var toolTipLayer = new Konva.Layer();
 
 var bgGroup = new Konva.Group({
   width: BASE_BOARD_HEIGHT,
@@ -52,6 +53,37 @@ var linksGroup = new Konva.Group({
   rotation: DOMAIN_LAYER_BOARD_ROTATION
 });
 
+// Tooltip Test Code
+var toolTipRect = new Konva.Rect({
+  width: 75,
+  height: 50,
+  fill: '#4F618F',
+  visible: false
+});
+
+var toolTipText = new Konva.Text({
+  text: "",
+  fontFamily: "Calibri",
+  fontSize: 12,
+  padding: 5,
+  textFill: "black",
+  fill: "white",
+  alpha: 0.75,
+  visible: false
+});
+
+var r3r6ToolTipText = new Konva.Text({
+  text: "",
+  fontFamily: "Calibri",
+  fontSize: 12,
+  padding: 5,
+  textFill: "black",
+  fill: "white",
+  alpha: 0.75,
+  visible: false
+});
+// End Tooltip Test Code
+
 var imageObj = new Image();
 // background board
 imageObj.onload = function() {
@@ -78,8 +110,10 @@ imageObj.onload = function() {
 
   bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
 
+  toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
+
   domainsLayer.add(linksGroup, domainsGroup);
-  stage.add(bgLayer, domainsLayer);
+  stage.add(bgLayer, domainsLayer, toolTipLayer);
 
 };
 

@@ -19,7 +19,7 @@ var noColor = '';
 
 // Line dash width and gap for exploit links
 var exploitLineDashWidth = 2;
-var exploitLineDashGap = 5;
+var exploitLineDashGap = 6;
 
 // Resizing math used for all server and link points
 var point_x = BASE_BOARD_WIDTH;
@@ -64,5 +64,5 @@ var dashSize = BASE_BOARD_HEIGHT / 384;
 var dashStroke = BASE_BOARD_HEIGHT / BASE_BOARD_HEIGHT;
 
 // Board Links Size
-var mainLinksStroke = BASE_BOARD_HEIGHT / 256;
-var exploitLinksStroke = BASE_BOARD_HEIGHT / 256;
+var mainLinksStroke = BASE_BOARD_HEIGHT / 192;
+var exploitLinksStroke = BASE_BOARD_HEIGHT / 192;
