@@ -8,8 +8,8 @@ new Vue({
   el: '#app',
   data: {
     attackResult: '', s1result: '', s2result: '', s3result: '', s4result: '', s5result: '',
-    defender: 0, defenderResult: '', defenderOdds: '',
-    attacker: 0, server1: 0, server2: 0, server3: 0, server4: 0, server5: 0,
+    defender: '', defenderResult: '', defenderOdds: '',
+    attacker: '', server1: '', server2: '', server3: '', server4: '', server5: '',
     greenResult: '', blueResult: '', purpleResult: '', redResult: '', orangeResult: '', yellowResult: '',
     plGreen: 0, plBlue: 0, plPurple: 0, plRed: 0, plOrange: 0, plYellow: 0
   },
@@ -17,9 +17,10 @@ new Vue({
     btnSubmit() {
 
       // Input checking. We do not want extra inputs to confuse our math.
+      // @TODO: Need to input checking with the 'pl[SERVER]' and the 'server[#]' together.
       if((this.attacker && (this.server1 || this.server2 || this.server3 || this.server4 || this.server5)) ||
-        (this.plGreen || this.plBlue || this.plPurple || this.plRed || this.plOrange || this.plYellow)) {
-        alert("Too many variables!");
+        (this.attacker && (this.plGreen || this.plBlue || this.plPurple || this.plRed || this.plOrange || this.plYellow))) {
+        // alert("Too many variables!");
         console.error("Too many variables!");
         // throw new Error("Too many variables!");
         // location.reload();
