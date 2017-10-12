@@ -12,6 +12,8 @@ app.controller('uiCtrl', function($scope){
   }
 
   $scope.invest = function (amount) {
+    $scope.currentInvestment += amount;
+    $scope.investmentPoints -= amount;
     console.log("Invest: " + amount);
   }
 
