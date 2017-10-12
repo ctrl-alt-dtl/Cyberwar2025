@@ -131,7 +131,7 @@
                 <div data-game-board-r3-r6-exploit-link id="canvasExploitLink"></div>
             </div>
 
-        <div class="ui-area">
+        <div class="ui-area" ng-controller="uiCtrl as $ctrl">
             <div class="effects">
                 <div id="effects-window">
                     <table>
@@ -145,33 +145,51 @@
                             <td align="center">Cost to Use:</td>
                         </tr>
                         <tr>
-                            <td height=40px ng-style="{'background-color': 'green'}">&nbsp; Secure &nbsp;</td>
-                            <td height=40px ng-style="{'background-color': 'green'}">&nbsp; Acquire &nbsp;</td>
-                            <td height=40px ng-style="{'background-color': 'green'}">&nbsp; Scan &nbsp;</td>
+                            <td height=40px ng-style="{'background-color': 'green'}">Secure</td>
+                            <td height=40px ng-style="{'background-color': 'green'}">Acquire</td>
+                            <td height=40px ng-style="{'background-color': 'green'}">Scan</td>
                             <td align=center>1</td>
                         </tr>
                         <tr>
-                            <td ng-style="{'background-color': effectsL2DCO}" height=40px>&nbsp; Expel &nbsp;</td>
-                            <td ng-style="{'background-color': effectsL2OCO}" height=40px>&nbsp; Manipulate &nbsp;</td>
-                            <td ng-style="{'background-color': effectsL2CNE}" height=40px>&nbsp; Exploit &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL2DCO}" height=40px>Expel</td>
+                            <td ng-style="{'background-color': effectsL2OCO}" height=40px>Manipulate</td>
+                            <td ng-style="{'background-color': effectsL2CNE}" height=40px>Exploit</td>
                             <td align=center>2</td>
                         </tr>
                         <tr>
-                            <td ng-style="{'background-color': effectsL3DCO}" height=40px>&nbsp; Analyze &nbsp;</td>
-                            <td ng-style="{'background-color': effectsL3OCO}" height=40px>&nbsp; Deny &nbsp;</td>
-                            <td ng-style="{'background-color': effectsL3CNE}" height=40px>&nbsp; Implant &nbsp;</td>
+                            <td ng-style="{'background-color': effectsL3DCO}" height=40px>Analyze</td>
+                            <td ng-style="{'background-color': effectsL3OCO}" height=40px>Deny</td>
+                            <td ng-style="{'background-color': effectsL3CNE}" height=40px>Implant</td>
                             <td align=center>3</td>
                         </tr>
-                        <tr>
-                            <td height=70px>Research Box</td>
-                            <td height=70px>Research Box</td>
-                            <td height=70px>Research Box</td>
-                            <td height=10px align="center">Action<br>Points</td>
+                        <tr class="ui-row">
+                            <td>
+                                <div class="recharge-meter">
+                                    <div class="meter-bg">
+                                        <div class="blocks" ng-repeat="meter in getMeterArray(8) track by $index" ng-click="invest($index + 1)"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="recharge-meter">
+                                    <div class="meter-bg">
+                                        <div class="blocks" ng-repeat="meter in getMeterArray(8) track by $index" ng-click="invest($index + 1)"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="recharge-meter">
+                                    <div class="meter-bg">
+                                        <div class="blocks" ng-repeat="meter in getMeterArray(8) track by $index" ng-click="invest($index + 1)"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td height=10px align="center" margin-left="auto" margin-right="auto">Action Points</td>
                         </tr>
                         <tr>
-                            <td align="center"><button type="button" class="minusPlusBtn"> - </button><button type="button" class="minusPlusBtn"> + </button></td>
-                            <td align="center"><button type="button" class="minusPlusBtn"> - </button><button type="button" class="minusPlusBtn"> + </button></td>
-                            <td align="center"><button type="button" class="minusPlusBtn"> - </button><button type="button" class="minusPlusBtn"> + </button></td>
+                            <td align="center"><button type="button" class="minusPlusBtn" ng-click="invest(-1)"> - </button><button type="button" class="minusPlusBtn" ng-click="invest(1)"> + </button></td>
+                            <td align="center"><button type="button" class="minusPlusBtn" ng-click="invest(-1)"> - </button><button type="button" class="minusPlusBtn" ng-click="invest(1)"> + </button></td>
+                            <td align="center"><button type="button" class="minusPlusBtn" ng-click="invest(-1)"> - </button><button type="button" class="minusPlusBtn" ng-click="invest(1)"> + </button></td>
                             <td align="center" class="actionPointsNumber">{{actionPoints}}</td>
                         </tr>
 
@@ -182,9 +200,9 @@
                 <button type="submitButton" class="submitBtn" align="center"> Submit Orders </button>
             </div>
             <div class="adjudication">Orders Adjudication
-                <br>clicks red: {{clickCountRed}}
-                <ul ui-scroll-viewport>
-                    <li ng-repeat="order in orders" class="{'fadeOut' : order.done}">
+
+                <ul class="adjudicationUnorderedList" ui-scroll-viewport>
+                    <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
                         <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
                         <span>{{order.title}}</span>
                     </li>
@@ -231,6 +249,7 @@
 
     <!--CONTROLLERS-->
     <script src="client/js/controller/canvasCtrl.js"></script>
+    <script src="client/js/controller/uiCtrl.js"></script>
     <script src="client/js/controller/modalInstanceCtrl.js"></script>
 
 
@@ -245,6 +264,8 @@
     <script src="client/js/directive/overtLinks/redDomainOvertLinks.js"></script>
 
     <script src="client/js/directive/exploitLinks/redDomainExploitLinks.js"></script>
+
+    <script src="client/js/directive/action.js"></script>
 
     <!--INTERACTION WINDOWS-->
     <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>

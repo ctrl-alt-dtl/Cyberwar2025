@@ -58,7 +58,6 @@
 .ui-area {
     height: 770px;
     width: 400px;
-    display: block;
     background-color: #000000;
     float: left;
     display: inline-block;
@@ -157,12 +156,12 @@ td {
 
 }
 
-ul {
+.adjudicationUnorderedList {
     list-style: none;
     padding-left: 0;
 }
 
-li {
+.adjudicationList {
     border: 1px solid black;
     display: block;
     padding: 1px 10px;
@@ -174,4 +173,23 @@ li {
 
 .fa-close {
     cursor: pointer;
+}
+.ui-row {
+    height: 40px;
+}
+
+.blocks {
+    position: relative;
+    display: inline-block;
+    border: solid .5px black;
+    width: 24.75px;
+    margin: 0;
+    height: 20px;
+    background: dodgerblue;
+    text-align:center;
+    margin-bottom: -5px;
+}
+
+.wrap{
+    width:125px;
 }

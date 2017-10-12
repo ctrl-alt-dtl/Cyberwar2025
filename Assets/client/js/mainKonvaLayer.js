@@ -68,7 +68,7 @@ imageObj.onload = function() {
   bgLayer.add(yby1, yby2, y1y3, y2y5, y5y4, y3y4, y4y6, y4y7, y3y6, y5y7, y6y7, y6y8, y7y8);
   bgLayer.add(obo1, obo2, o1o3, o2o5, o5o4, o3o4, o4o6, o4o7, o3o6, o5o7, o6o7, o6o8, o7o8);
 
-
+/*
   // Extra board items (Windows, Buttons, Chat, and Actions)
   boardItems.add(submitOrdersBtn, ordersQueue, effectsWindow, chatWindow, notesRulesWindow);
   // Board Items on top of the Template
@@ -100,6 +100,7 @@ imageObj.onload = function() {
   // Research Blocks CNE
   boardItems.add(cewCNEresBlk1, cewCNEresBlk2, cewCNEresBlk3, cewCNEresBlk4, cewCNEresBlk5, cewCNEresBlk6, cewCNEresBlk7, cewCNEresBlk8);
   boardItems.add(cewCNEresMinus, cewCNEresPlus, cewCNEresMinusText, cewCNEresPlusText);
+*/
 
   // Domain Inter-Server Paths (LINKS)
   // Red Domain
@@ -195,7 +196,7 @@ imageObj.onload = function() {
   // domainsGroup.add(r7r8ExploitBlue, r7r8ExploitYellow, r7r8ExploitPurple, r7r8ExploitGreen, r7r8ExploitOrange);
 
 
-/*  // Green Domains Servers
+  // Green Domains Servers
   domainsGroup.add(gBase, g1Hex, g2Hex, g3Hex, g4Hex, g5Hex, g6Hex, g7Hex, g8Hex);
   // Blue Domain Servers
   domainsGroup.add(bBase, b1Hex, b2Hex, b3Hex, b4Hex, b5Hex, b6Hex, b7Hex, b8Hex);
@@ -214,7 +215,7 @@ imageObj.onload = function() {
   domainsGroup.add(b1Text, b2Text, b3Text, b4Text, b5Text, b6Text, b7Text, b8Text);
   domainsGroup.add(g1Text, g2Text, g3Text, g4Text, g5Text, g6Text, g7Text, g8Text);
   domainsGroup.add(y1Text, y2Text, y3Text, y4Text, y5Text, y6Text, y7Text, y8Text);
-  domainsGroup.add(o1Text, o2Text, o3Text, o4Text, o5Text, o6Text, o7Text, o8Text);*/
+  domainsGroup.add(o1Text, o2Text, o3Text, o4Text, o5Text, o6Text, o7Text, o8Text);
 
   // Base Text
   domainsGroup.add(redBaseText, purpleBaseText, blueBaseText, greenBaseText, yellowBaseText, orangeBaseText);
@@ -230,7 +231,7 @@ imageObj.onload = function() {
 
 };
 
-imageObj.src = '../img/boardWeb-1024x768.png';
+imageObj.src = '../img/empty-transparency-bg-1024x768.png';
 
 
 // Somewhat dynamic resizing of the canvas.

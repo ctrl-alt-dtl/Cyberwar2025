@@ -4,7 +4,7 @@
 - Balancing of cyber effects (Deny is too powerful).
 - Alliances.
 - Time limits between rounds.
-- Higher rewards the deeper down the tier structure (e.g. T2 > T4).
+- Higher rewards the deeper down the tier structure (e.g. T4 > T1).
 - The ability to rebuild server points (at least in own player's domain).
 - Possibly incorporate effects and their as a support ability with OPE and maneuver elements.
 

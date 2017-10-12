@@ -4,7 +4,7 @@ app.directive('gameBoardR1R3OvertLink', function ($rootScope) {
     restrict: 'A',
     link: function (scope) {
       console.log("gameBoardRedR1R3OvertLinkLoading");
-      linksGroup.add(r1HexToR3Hex);
+      // linksGroup.add(r1HexToR3Hex);
       r1HexToR3Hex.stroke(noColor);
 
       scope.$watch(function() {
