@@ -199,8 +199,7 @@
             <div class="submitBtnArea">
                 <button type="submitButton" class="submitBtn" align="center"> Submit Orders </button>
             </div>
-            <div class="adjudication">Orders Adjudication
-
+            <div class="adjudication">Orders Adjudication:
                 <ul class="adjudicationUnorderedList" ui-scroll-viewport>
                     <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
                         <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
