@@ -1,5 +1,5 @@
 // Red Domain Links
-app.directive('gameBoardPbaseP2OvertLink', function ($rootScope) {
+app.directive('gameBoardPbaseP2OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {

@@ -1,5 +1,5 @@
 // Inter Domain Links
-app.directive('gameBoardR1P2OvertLink', function ($rootScope) {
+app.directive('gameBoardR1P2OvertLink', function () {
     return {
       restrict: 'A',
       link: function (scope) {

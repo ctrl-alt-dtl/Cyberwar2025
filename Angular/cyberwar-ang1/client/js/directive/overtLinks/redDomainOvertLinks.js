@@ -1,5 +1,5 @@
 // Red Domain Links
-app.directive('gameBoardRbaseR2OvertLink', function ($rootScope) {
+app.directive('gameBoardRbaseR2OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
@@ -42,7 +42,7 @@ app.directive('gameBoardRbaseR2OvertLink', function ($rootScope) {
 });
 
 // Red Domain Links
-app.directive('gameBoardRbaseR1OvertLink', function ($rootScope) {
+app.directive('gameBoardRbaseR1OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
@@ -84,7 +84,7 @@ app.directive('gameBoardRbaseR1OvertLink', function ($rootScope) {
   }
 });
 
-app.directive('gameBoardR1R3OvertLink', function ($rootScope) {
+app.directive('gameBoardR1R3OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
