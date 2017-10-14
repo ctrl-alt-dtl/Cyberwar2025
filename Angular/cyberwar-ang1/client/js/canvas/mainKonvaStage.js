@@ -53,6 +53,18 @@ var linksGroup = new Konva.Group({
   rotation: DOMAIN_LAYER_BOARD_ROTATION
 });
 
+var exploitLinksGroup = new Konva.Group({
+  width: BASE_BOARD_HEIGHT,
+  height: BASE_BOARD_HEIGHT,
+  x: BASE_BOARD_WIDTH / 2.665,
+  y: BASE_BOARD_HEIGHT / 2,
+  offset: {
+    x: BASE_BOARD_WIDTH / 2,
+    y: BASE_BOARD_HEIGHT / 2,
+  },
+  rotation: DOMAIN_LAYER_BOARD_ROTATION
+});
+
 // Tooltip Test Code
 var toolTipRect = new Konva.Rect({
   width: 75,
@@ -112,7 +124,7 @@ imageObj.onload = function() {
 
   toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
 
-  domainsLayer.add(linksGroup, domainsGroup);
+  domainsLayer.add(linksGroup, domainsGroup, exploitLinksGroup);
   stage.add(bgLayer, domainsLayer, toolTipLayer);
 
 };
