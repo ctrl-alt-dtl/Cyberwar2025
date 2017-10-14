@@ -66,14 +66,13 @@ app.directive('gameBoardPurple1Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p1Hex);
+      domainsGroup.add(p1Hex, p1Text);
 
       var options = {
         x: pt_p1Hex_X,
         y: pt_p1Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -108,14 +107,13 @@ app.directive('gameBoardPurple2Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p2Hex);
+      domainsGroup.add(p2Hex, p2Text);
 
       var options = {
         x: pt_p2Hex_X,
         y: pt_p2Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -150,14 +148,13 @@ app.directive('gameBoardPurple3Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p3Hex);
+      domainsGroup.add(p3Hex, p3Text);
 
       var options = {
         x: pt_p3Hex_X,
         y: pt_p3Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -192,14 +189,13 @@ app.directive('gameBoardPurple4Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p4Hex);
+      domainsGroup.add(p4Hex, p4Text);
 
       var options = {
         x: pt_p4Hex_X,
         y: pt_p4Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -234,14 +230,13 @@ app.directive('gameBoardPurple5Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p5Hex);
+      domainsGroup.add(p5Hex, p5Text);
 
       var options = {
         x: pt_p5Hex_X,
         y: pt_p5Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -276,14 +271,13 @@ app.directive('gameBoardPurple6Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p6Hex);
+      domainsGroup.add(p6Hex, p6Text);
 
       var options = {
         x: pt_p6Hex_X,
         y: pt_p6Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -318,14 +312,13 @@ app.directive('gameBoardPurple7Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p7Hex);
+      domainsGroup.add(p7Hex, p7Text);
 
       var options = {
         x: pt_p7Hex_X,
         y: pt_p7Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
@@ -360,14 +353,13 @@ app.directive('gameBoardPurple8Hex', function ($rootScope, $timeout) {
       console.log("gameBoardPurple8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(p8Hex);
+      domainsGroup.add(p8Hex, p8Text);
 
       var options = {
         x: pt_p8Hex_X,
         y: pt_p8Hex_Y,
         sides: 6,
         radius: radius,
-        fill: 'purple',
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,

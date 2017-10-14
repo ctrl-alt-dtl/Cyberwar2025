@@ -40,21 +40,22 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
+      // HARD CODED VALUES FOR TESTING ONLY
       $rootScope.clickCountRed = 0;
-      $rootScope.actionPoints = 8;
+      $rootScope.actionPoints = 0;
       // $rootScope.effectsNumDCO = 1;
       // $rootScope.effectsNumOCO = 4;
       // $rootScope.effectsNumCNE = 3;
 
+      $rootScope.effectsL2DCO = 'white';
+      $rootScope.effectsL2OCO = 'white';
+      $rootScope.effectsL2CNE = 'white';
 
+      $rootScope.effectsL3DCO = 'white';
+      $rootScope.effectsL3OCO = 'white';
+      $rootScope.effectsL3CNE = 'white';
+      // END HARD CODED TESTING VALUES
 
-      $rootScope.effectsL2DCO = 'red';
-      $rootScope.effectsL2OCO = 'green';
-      $rootScope.effectsL2CNE = 'yellow';
-
-      $rootScope.effectsL3DCO = 'red';
-      $rootScope.effectsL3OCO = 'yellow';
-      $rootScope.effectsL3CNE = 'red';
 
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex Base");
@@ -84,7 +85,7 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r1Hex);
+      domainsGroup.add(r1Hex, r1Text);
 
 
       var options = {
@@ -136,7 +137,7 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r2Hex);
+      domainsGroup.add(r2Hex, r2Text);
 
       var options = {
         x: pt_r2Hex_X,
@@ -185,7 +186,7 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r3Hex);
+      domainsGroup.add(r3Hex, r3Text);
 
       var options = {
         x: pt_r3Hex_X,
@@ -235,7 +236,7 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r4Hex);
+      domainsGroup.add(r4Hex, r4Text);
 
       var options = {
         x: pt_r4Hex_X,
@@ -281,7 +282,7 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r5Hex);
+      domainsGroup.add(r5Hex, r5Text);
 
       var options = {
         x: pt_r5Hex_X,
@@ -327,7 +328,7 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r6Hex);
+      domainsGroup.add(r6Hex, r6Text);
 
       var options = {
         x: pt_r6Hex_X,
@@ -373,7 +374,7 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r7Hex);
+      domainsGroup.add(r7Hex, r7Text);
 
       var options = {
         x: pt_r7Hex_X,
@@ -419,7 +420,7 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
       console.log("gameBoardRed8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(r8Hex);
+      domainsGroup.add(r8Hex, r8Text);
 
       var options = {
         x: pt_r8Hex_X,

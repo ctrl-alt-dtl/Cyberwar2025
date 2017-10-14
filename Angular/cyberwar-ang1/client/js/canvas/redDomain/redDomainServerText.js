@@ -44,7 +44,7 @@ var r1Text = new Konva.Text({
 });
 
 var r2Text = new Konva.Text({
-  text: '2',
+  text: '1',
   x: pt_r2Hex_X,
   y: pt_r2Hex_Y,
   offset: {
