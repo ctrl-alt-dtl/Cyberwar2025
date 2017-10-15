@@ -178,6 +178,10 @@
                             <td ng-style="{'background-color': effectsL3CNE}" height=40px>Implant</td>
                             <td align=center>3</td>
                         </tr>
+                        <tr>
+                            <td height=10px colspan="3">Research Investment Table</td>
+                            <td align=center>Action Points</td>
+                        </tr>
                         <tr class="ui-row">
                             <td>
                                 <div class="recharge-meter">
@@ -200,13 +204,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <td height=10px align="center" margin-left="auto" margin-right="auto">Action Points</td>
+                            <td class="actionPointsNumber" rowspan="2">{{actionPoints}}</td>
                         </tr>
                         <tr>
                             <td align="center"><button type="button" class="minusPlusBtn" ng-click="invest(-1)"> - </button><button type="button" class="minusPlusBtn" ng-click="invest(1)"> + </button></td>
                             <td align="center"><button type="button" class="minusPlusBtn" ng-click="invest(-1)"> - </button><button type="button" class="minusPlusBtn" ng-click="invest(1)"> + </button></td>
                             <td align="center"><button type="button" class="minusPlusBtn" ng-click="invest(-1)"> - </button><button type="button" class="minusPlusBtn" ng-click="invest(1)"> + </button></td>
-                            <td align="center" class="actionPointsNumber">{{actionPoints}}</td>
                         </tr>
 
                     </table>
