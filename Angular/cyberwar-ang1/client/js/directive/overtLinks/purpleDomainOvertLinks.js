@@ -12,6 +12,10 @@ app.directive('gameBoardPbaseP2OvertLink', function () {
           pBaseToP2Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
+        else {
+          pBaseToP2Hex.stroke(noColor);
+          domainsLayer.batchDraw();
+        }
         /* Positive link building to base is allowed but no one can control/occupy another player's base.
         if((rBase.fill() === purpleColor) && (r2Hex.fill() === purpleColor)) {
           rBaseToR2Hex.stroke(purpleColor);

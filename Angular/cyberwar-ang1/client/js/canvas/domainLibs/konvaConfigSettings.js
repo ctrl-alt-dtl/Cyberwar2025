@@ -15,6 +15,7 @@ var redColor = 'red';
 var purpleColor = 'purple';
 var greenColor = 'green';
 var orangeColor = 'orange';
+var grayColor = 'gray';
 var noColor = '';
 
 // Line dash width and gap for exploit links

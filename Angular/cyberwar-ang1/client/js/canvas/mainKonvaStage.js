@@ -125,6 +125,7 @@ imageObj.onload = function() {
   toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
 
   domainsLayer.add(linksGroup, domainsGroup, exploitLinksGroup);
+
   stage.add(bgLayer, domainsLayer, toolTipLayer);
 
 };
