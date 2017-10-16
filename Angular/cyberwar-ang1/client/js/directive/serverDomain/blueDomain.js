@@ -6,7 +6,7 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
       callbackFn: '&callbackFn'
     },
     link: function (scope) {
-      console.log("gameBoardBlueBaseLoading");
+      // console.log("gameBoardBlueBaseLoading");
 
       // add server point to the domain
       domainsGroup.add(bBase, blueBaseText);
@@ -58,10 +58,10 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue1HexLoading");
+      // console.log("gameBoardBlue1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b1Hex);
+      domainsGroup.add(b1Hex, b1Text);
 
       var options = {
         x: pt_b1Hex_X,
@@ -71,7 +71,7 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b1Hex'
+        id: 'b1HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -86,6 +86,9 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 1");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -99,10 +102,10 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue2HexLoading");
+      // console.log("gameBoardBlue2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b2Hex);
+      domainsGroup.add(b2Hex, b2Text);
 
       var options = {
         x: pt_b2Hex_X,
@@ -112,7 +115,7 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b2Hex'
+        id: 'b2HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -127,6 +130,9 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 2");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -140,10 +146,10 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue3HexLoading");
+      // console.log("gameBoardBlue3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b3Hex);
+      domainsGroup.add(b3Hex, b3Text);
 
       var options = {
         x: pt_b3Hex_X,
@@ -153,7 +159,7 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b8Hex'
+        id: 'b3HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -168,6 +174,9 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 3");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -181,10 +190,10 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue4HexLoading");
+      // console.log("gameBoardBlue4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b4Hex);
+      domainsGroup.add(b4Hex, b4Text);
 
       var options = {
         x: pt_b4Hex_X,
@@ -194,7 +203,7 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b4Hex'
+        id: 'b4HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -209,6 +218,9 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 4");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -222,10 +234,10 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue5HexLoading");
+      // console.log("gameBoardBlue5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b5Hex);
+      domainsGroup.add(b5Hex, b5Text);
 
       var options = {
         x: pt_b5Hex_X,
@@ -235,7 +247,7 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b5Hex'
+        id: 'b5HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -250,6 +262,9 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 5");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -263,10 +278,10 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue6HexLoading");
+      // console.log("gameBoardBlue6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b6Hex);
+      domainsGroup.add(b6Hex, b6Text);
 
       var options = {
         x: pt_b6Hex_X,
@@ -276,7 +291,7 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b6Hex'
+        id: 'b6HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -291,6 +306,9 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 6");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -304,10 +322,10 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue7HexLoading");
+      // console.log("gameBoardBlue7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b7Hex);
+      domainsGroup.add(b7Hex, b7Text);
 
       var options = {
         x: pt_b7Hex_X,
@@ -317,7 +335,7 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b7Hex'
+        id: 'b7HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -332,6 +350,9 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 7");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);
@@ -345,10 +366,10 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardBlue8HexLoading");
+      // console.log("gameBoardBlue8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(b8Hex);
+      domainsGroup.add(b8Hex, b8Text);
 
       var options = {
         x: pt_b8Hex_X,
@@ -358,7 +379,7 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'b8Hex'
+        id: 'b8HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -373,6 +394,9 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
 
       scope.konvaobj.on ('click', function () {
         console.log("Blue Hex 8");
+        $timeout(function() {
+          // Implement server point on-click logic here
+        });
       });
 
       domainsGroup.add(scope.konvaobj);

@@ -6,7 +6,7 @@ app.directive('gameBoardYellowBase', function ($rootScope, $timeout) {
       callbackFn: '&callbackFn'
     },
     link: function (scope) {
-      console.log("gameBoardYellowBaseLoading");
+      // console.log("gameBoardYellowBaseLoading");
 
       // add server point to the domain
       domainsGroup.add(yBase, yellowBaseText);
@@ -40,12 +40,10 @@ app.directive('gameBoardYellowBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountYellow = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex Base");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
 
         // Modal Callback Function
@@ -63,21 +61,20 @@ app.directive('gameBoardYellow1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow1HexLoading");
+      // console.log("gameBoardYellow1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y1Hex);
+      domainsGroup.add(y1Hex, y1Text);
 
       var options = {
         x: pt_y1Hex_X,
         y: pt_y1Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y1Hex'
+        id: 'y1HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -89,11 +86,11 @@ app.directive('gameBoardYellow1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 1");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -108,21 +105,20 @@ app.directive('gameBoardYellow2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow2HexLoading");
+      // console.log("gameBoardYellow2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y2Hex);
+      domainsGroup.add(y2Hex, y2Text);
 
       var options = {
         x: pt_y2Hex_X,
         y: pt_y2Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y2Hex'
+        id: 'y2HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -134,11 +130,11 @@ app.directive('gameBoardYellow2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 2");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -153,21 +149,20 @@ app.directive('gameBoardYellow3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow3HexLoading");
+      // console.log("gameBoardYellow3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y3Hex);
+      domainsGroup.add(y3Hex, y3Text);
 
       var options = {
         x: pt_y3Hex_X,
         y: pt_y3Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y3Hex'
+        id: 'y3HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -179,11 +174,11 @@ app.directive('gameBoardYellow3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 3");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -198,21 +193,20 @@ app.directive('gameBoardYellow4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow4HexLoading");
+      // console.log("gameBoardYellow4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y4Hex);
+      domainsGroup.add(y4Hex, y4Text);
 
       var options = {
         x: pt_y4Hex_X,
         y: pt_y4Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y4Hex'
+        id: 'y4HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -224,11 +218,11 @@ app.directive('gameBoardYellow4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 4");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -243,21 +237,20 @@ app.directive('gameBoardYellow5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow5HexLoading");
+      // console.log("gameBoardYellow5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y5Hex);
+      domainsGroup.add(y5Hex, y5Text);
 
       var options = {
         x: pt_y5Hex_X,
         y: pt_y5Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y5Hex'
+        id: 'y5HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -269,11 +262,11 @@ app.directive('gameBoardYellow5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 5");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -288,21 +281,20 @@ app.directive('gameBoardYellow6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow6HexLoading");
+      // console.log("gameBoardYellow6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y6Hex);
+      domainsGroup.add(y6Hex, y6Text);
 
       var options = {
         x: pt_y6Hex_X,
         y: pt_y6Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y6Hex'
+        id: 'y6HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -314,11 +306,11 @@ app.directive('gameBoardYellow6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 6");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -333,21 +325,20 @@ app.directive('gameBoardYellow7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow7HexLoading");
+      // console.log("gameBoardYellow7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y7Hex);
+      domainsGroup.add(y7Hex, y7Text);
 
       var options = {
         x: pt_y7Hex_X,
         y: pt_y7Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y7Hex'
+        id: 'y7HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -359,11 +350,11 @@ app.directive('gameBoardYellow7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 7");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -378,21 +369,20 @@ app.directive('gameBoardYellow8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardYellow8HexLoading");
+      // console.log("gameBoardYellow8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(y8Hex);
+      domainsGroup.add(y8Hex, y8Text);
 
       var options = {
         x: pt_y8Hex_X,
         y: pt_y8Hex_Y,
         sides: 6,
         radius: radius,
-        fill: yellowColor,
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'y8Hex'
+        id: 'y8HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -404,11 +394,11 @@ app.directive('gameBoardYellow8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountYellow = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Yellow Hex 8");
         $timeout(function() {
-          scope.clickCountYellow++;
+          // Implement server point on-click logic here
         });
       });
 

@@ -6,7 +6,7 @@ app.directive('gameBoardOrangeBase', function ($rootScope, $timeout) {
       callbackFn: '&callbackFn'
     },
     link: function (scope) {
-      console.log("gameBoardOrangeBaseLoading");
+      // console.log("gameBoardOrangeBaseLoading");
 
       // add server point to the domain
       domainsGroup.add(oBase, orangeBaseText);
@@ -40,12 +40,10 @@ app.directive('gameBoardOrangeBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountOrange = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex Base");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
 
         // Modal Callback Function
@@ -63,10 +61,10 @@ app.directive('gameBoardOrange1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange1HexLoading");
+      // console.log("gameBoardOrange1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o1Hex);
+      domainsGroup.add(o1Hex, o1Text);
 
       var options = {
         x: pt_o1Hex_X,
@@ -88,12 +86,11 @@ app.directive('gameBoardOrange1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 1");
         $timeout(function() {
-          scope.clickCountOrange++;
-          y1Hex.fill() === orangeColor;
+          // Implement server point on-click logic here
         });
       });
 
@@ -108,10 +105,10 @@ app.directive('gameBoardOrange2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange2HexLoading");
+      // console.log("gameBoardOrange2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o2Hex);
+      domainsGroup.add(o2Hex, o2Text);
 
       var options = {
         x: pt_o2Hex_X,
@@ -121,7 +118,7 @@ app.directive('gameBoardOrange2Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o2Hex'
+        id: 'o2HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -133,11 +130,11 @@ app.directive('gameBoardOrange2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 2");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -152,10 +149,10 @@ app.directive('gameBoardOrange3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange3HexLoading");
+      // console.log("gameBoardOrange3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o3Hex);
+      domainsGroup.add(o3Hex, o3Text);
 
       var options = {
         x: pt_o3Hex_X,
@@ -165,7 +162,7 @@ app.directive('gameBoardOrange3Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o3Hex'
+        id: 'o3HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -177,11 +174,11 @@ app.directive('gameBoardOrange3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 3");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -196,10 +193,10 @@ app.directive('gameBoardOrange4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange4HexLoading");
+      // console.log("gameBoardOrange4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o4Hex);
+      domainsGroup.add(o4Hex, o4Text);
 
       var options = {
         x: pt_o4Hex_X,
@@ -209,7 +206,7 @@ app.directive('gameBoardOrange4Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o4Hex'
+        id: 'o4HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -221,11 +218,11 @@ app.directive('gameBoardOrange4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 4");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -240,10 +237,10 @@ app.directive('gameBoardOrange5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange5HexLoading");
+      // console.log("gameBoardOrange5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o5Hex);
+      domainsGroup.add(o5Hex, o5Text);
 
       var options = {
         x: pt_o5Hex_X,
@@ -253,7 +250,7 @@ app.directive('gameBoardOrange5Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o5Hex'
+        id: 'o5HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -265,11 +262,11 @@ app.directive('gameBoardOrange5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 5");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -284,10 +281,10 @@ app.directive('gameBoardOrange6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange6HexLoading");
+      // console.log("gameBoardOrange6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o6Hex);
+      domainsGroup.add(o6Hex, o6Text);
 
       var options = {
         x: pt_o6Hex_X,
@@ -297,7 +294,7 @@ app.directive('gameBoardOrange6Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o6Hex'
+        id: 'o6HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -309,11 +306,11 @@ app.directive('gameBoardOrange6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 6");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -328,10 +325,10 @@ app.directive('gameBoardOrange7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange7HexLoading");
+      // console.log("gameBoardOrange7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o7Hex);
+      domainsGroup.add(o7Hex, o7Text);
 
       var options = {
         x: pt_o7Hex_X,
@@ -341,7 +338,7 @@ app.directive('gameBoardOrange7Hex', function ($rootScope, $timeout) {
         stroke: 'black',
         strokeWidth: 2,
         rotation: 90,
-        id: 'o7Hex'
+        id: 'o7HexListener'
       }
 
       scope.konvaobj = new Konva.RegularPolygon(options);
@@ -353,11 +350,11 @@ app.directive('gameBoardOrange7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 7");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -372,10 +369,10 @@ app.directive('gameBoardOrange8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardOrange8HexLoading");
+      // console.log("gameBoardOrange8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(o8Hex);
+      domainsGroup.add(o8Hex, o8Text);
 
       var options = {
         x: pt_o8Hex_X,
@@ -397,11 +394,11 @@ app.directive('gameBoardOrange8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountOrange = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Orange Hex 8");
         $timeout(function() {
-          scope.clickCountOrange++;
+          // Implement server point on-click logic here
         });
       });
 

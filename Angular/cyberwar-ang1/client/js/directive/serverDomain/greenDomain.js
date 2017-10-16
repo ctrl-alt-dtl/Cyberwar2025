@@ -6,7 +6,7 @@ app.directive('gameBoardGreenBase', function ($rootScope, $timeout) {
       callbackFn: '&callbackFn'
     },
     link: function (scope) {
-      console.log("gameBoardGreenBaseLoading");
+      // console.log("gameBoardGreenBaseLoading");
 
       // add server point to the domain
       domainsGroup.add(gBase, greenBaseText);
@@ -40,12 +40,10 @@ app.directive('gameBoardGreenBase', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      scope.clickCountGreen = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex Base");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
 
         // Modal Callback Function
@@ -63,10 +61,10 @@ app.directive('gameBoardGreen1Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen1HexLoading");
+      // console.log("gameBoardGreen1HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g1Hex);
+      domainsGroup.add(g1Hex, g1Text);
 
       var options = {
         x: pt_g1Hex_X,
@@ -88,11 +86,11 @@ app.directive('gameBoardGreen1Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 1");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -107,10 +105,10 @@ app.directive('gameBoardGreen2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen2HexLoading");
+      // console.log("gameBoardGreen2HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g2Hex);
+      domainsGroup.add(g2Hex, g2Text);
 
       var options = {
         x: pt_g2Hex_X,
@@ -132,11 +130,11 @@ app.directive('gameBoardGreen2Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 2");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -151,10 +149,10 @@ app.directive('gameBoardGreen3Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen3HexLoading");
+      // console.log("gameBoardGreen3HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g3Hex);
+      domainsGroup.add(g3Hex, g3Text);
 
       var options = {
         x: pt_g3Hex_X,
@@ -176,11 +174,11 @@ app.directive('gameBoardGreen3Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 3");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -195,10 +193,10 @@ app.directive('gameBoardGreen4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen4HexLoading");
+      // console.log("gameBoardGreen4HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g4Hex);
+      domainsGroup.add(g4Hex, g4Text);
 
       var options = {
         x: pt_g4Hex_X,
@@ -220,11 +218,11 @@ app.directive('gameBoardGreen4Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 4");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -239,10 +237,10 @@ app.directive('gameBoardGreen5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen5HexLoading");
+      // console.log("gameBoardGreen5HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g5Hex);
+      domainsGroup.add(g5Hex, g5Text);
 
       var options = {
         x: pt_g5Hex_X,
@@ -264,11 +262,11 @@ app.directive('gameBoardGreen5Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+      
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 5");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -283,10 +281,10 @@ app.directive('gameBoardGreen6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen6HexLoading");
+      // console.log("gameBoardGreen6HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g6Hex);
+      domainsGroup.add(g6Hex, g6Text);
 
       var options = {
         x: pt_g6Hex_X,
@@ -308,11 +306,11 @@ app.directive('gameBoardGreen6Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 6");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -327,10 +325,10 @@ app.directive('gameBoardGreen7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen7HexLoading");
+      // console.log("gameBoardGreen7HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g7Hex);
+      domainsGroup.add(g7Hex, g7Text);
 
       var options = {
         x: pt_g7Hex_X,
@@ -352,11 +350,11 @@ app.directive('gameBoardGreen7Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 7");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -371,10 +369,10 @@ app.directive('gameBoardGreen8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardGreen8HexLoading");
+      // console.log("gameBoardGreen8HexLoading");
 
       // add server point to the domain
-      domainsGroup.add(g8Hex);
+      domainsGroup.add(g8Hex, g8Text);
 
       var options = {
         x: pt_g8Hex_X,
@@ -396,11 +394,11 @@ app.directive('gameBoardGreen8Hex', function ($rootScope, $timeout) {
         document.body.style.cursor = 'default';
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
-      scope.clickCountGreen = 0;
+
       scope.konvaobj.on ('click', function () {
         console.log("Green Hex 8");
         $timeout(function() {
-          scope.clickCountGreen++;
+          // Implement server point on-click logic here
         });
       });
 
