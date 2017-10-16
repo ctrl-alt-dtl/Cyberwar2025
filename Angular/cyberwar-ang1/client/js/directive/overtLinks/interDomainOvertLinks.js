@@ -3,7 +3,7 @@ app.directive('gameBoardR1P2OvertLink', function () {
     return {
       restrict: 'A',
       link: function (scope) {
-        console.log("gameBoardR1P2OvertLinkLoading");
+        // console.log("gameBoardR1P2OvertLinkLoading");
         linksGroup.add(R1HexP2Hex);
         R1HexP2Hex.stroke(noColor);
 

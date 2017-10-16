@@ -149,6 +149,7 @@
 
             </div>
 
+        <!-- UI/Cyber Effects Window Area -->
         <div class="ui-area" ng-controller="uiCtrl as $ctrl">
             <div class="effects">
                 <div id="effects-window">
@@ -228,11 +229,8 @@
                 </ul>
             </div>
         </div>
-        <!--
-        <div id="buttons">
-            <input type="button" id="activate" value="Activate rectangle">
-        </div>
-        -->
+
+        <!-- TEMPORARY - List population (for testing) -->
         <div data-orders-adjudication-list id="canvasOrdersAdjudicationList">
             <form name="ordersFrm" ng-submit="addOrder()">
                 <input type="text" name="newOrder" ng-model="newOrder" required />
@@ -286,7 +284,6 @@
 
     <script src="client/js/directive/exploitLinks/redDomainExploitLinks.js"></script>
     <script src="client/js/directive/exploitLinks/interDomainExploitLinks.js"></script>
-
 
     <script src="client/js/directive/action.js"></script>
 

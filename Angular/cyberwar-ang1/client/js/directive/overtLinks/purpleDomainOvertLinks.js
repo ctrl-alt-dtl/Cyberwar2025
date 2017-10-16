@@ -3,7 +3,7 @@ app.directive('gameBoardPbaseP2OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardPurpleBaseP2OvertLinkLoading");
+      // console.log("gameBoardPurpleBaseP2OvertLinkLoading");
       linksGroup.add(pBaseToP2Hex);
       pBaseToP2Hex.stroke(noColor);
 
