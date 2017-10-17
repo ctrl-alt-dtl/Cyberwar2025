@@ -155,13 +155,13 @@
                 <div id="effects-window">
                     <table>
                         <tr>
-                            <td colspan="4" align="center" width="400px" height="30px">&nbsp;Cyber Effects Window&nbsp;</td>
+                            <td colspan="4" align="center" width="400px" height="30px" style="font-weight:bold">&nbsp;Cyber Effects Window&nbsp;</td>
                         </tr>
                         <tr>
-                            <td align="center" width="100px">DCO/CND</td>
-                            <td align="center" width="100px">OCO/CNO</td>
-                            <td align="center" width="100px">CNE</td>
-                            <td align="center">Cost to Use:</td>
+                            <td align="center" width="100px" style="font-weight:bold">DCO/CND</td>
+                            <td align="center" width="100px" style="font-weight:bold">OCO/CNO</td>
+                            <td align="center" width="100px" style="font-weight:bold">CNE</td>
+                            <td align="center" style="font-weight:bold">Cost to Use:</td>
                         </tr>
                         <tr>
                             <td height=40px ng-style="{'background-color': 'white'}">Secure</td>
@@ -182,8 +182,8 @@
                             <td align=center>3</td>
                         </tr>
                         <tr>
-                            <td height=10px colspan="3">Research Investment Table</td>
-                            <td align=center>Action Points</td>
+                            <td height=10px colspan="3" style="font-weight:bold">Research Investment Table</td>
+                            <td align=center style="font-weight:bold">Action Points</td>
                         </tr>
                         <tr class="ui-row">
                             <td>
@@ -220,7 +220,7 @@
             <div class="submitBtnArea">
                 <button type="submitButton" class="submitBtn" align="center"> Submit Orders </button>
             </div>
-            <div class="adjudication">Orders Adjudication:
+            <div class="adjudication" style="font-weight:bold">Orders Adjudication:
                 <ul class="adjudicationUnorderedList" ui-scroll-viewport>
                     <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
                         <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
@@ -233,7 +233,7 @@
         <!-- TEMPORARY - List population (for testing) -->
         <div data-orders-adjudication-list id="canvasOrdersAdjudicationList">
             <form name="ordersFrm" ng-submit="addOrder()">
-                <input type="text" name="newOrder" ng-model="newOrder" required />
+                <input type="text" placeholder="For Orders Adjudication Test" name="newOrder" ng-model="newOrder" required/>
                 <button ng-disabled="ordersFrm.$invalid" ng-click="addOrder()">Add</button>
         </form>
         </div>
