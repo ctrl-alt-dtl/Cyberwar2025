@@ -182,6 +182,10 @@ td {
     height: 40px;
 }
 
+/*
+UI blocks will start a gray, then when a point is added it's a yellow color for a temporary choice.
+When the round is finished it'll be a blue color, signifying a permanent choice.
+ */
 .blocks {
     position: relative;
     display: inline-block;
@@ -189,7 +193,7 @@ td {
     width: 24.75px;
     margin: 0;
     height: 20px;
-    background: dodgerblue;
+    background: dimgray;
     text-align:center;
     margin-bottom: -5px;
 }

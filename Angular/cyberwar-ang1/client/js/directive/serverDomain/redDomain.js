@@ -6,7 +6,7 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
       callbackFn: '&callbackFn'
     },
     link: function (scope) {
-      console.log("gameBoardRedBaseLoading");
+      // console.log("gameBoardRedBaseLoading");
 
       // add server point to the domain
       domainsGroup.add(rBase, redBaseText);
@@ -64,6 +64,7 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
         });
 
         // Modal Callback Function
+        // Looking to use this to call the attacker ID as a means for adjudication with the defender point.
         console.log(rBase.id());
         scope.callbackFn();
       });
@@ -82,7 +83,7 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
       callbackFnTest: '&callbackFnTest'
     },
     link: function (scope) {
-      console.log("gameBoardRed1HexLoading");
+      // console.log("gameBoardRed1HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r1Hex, r1Text);
@@ -109,14 +110,13 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 1");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
 
+        // TESTING
         // Modal Callback Function (ATTEMPT TO FILL A HEX ONCLICK)
         scope.callbackFnTest(r1Hex.fill(purpleColor));
         $rootScope.actionPoints--;
@@ -134,7 +134,7 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardRed2HexLoading");
+      // console.log("gameBoardRed2HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r2Hex, r2Text);
@@ -160,12 +160,10 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 2");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -183,7 +181,7 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
       callbackFnTest: '&callbackFnTest'
     },
     link: function (scope) {
-      console.log("gameBoardRed3HexLoading");
+      // console.log("gameBoardRed3HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r3Hex, r3Text);
@@ -209,14 +207,13 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 3");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
 
+        // TESTING
         scope.callbackFnTest(r3Hex.fill(purpleColor));
         $rootScope.actionPoints--;
         domainsLayer.draw();
@@ -233,7 +230,7 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardRed4HexLoading");
+      // console.log("gameBoardRed4HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r4Hex, r4Text);
@@ -259,12 +256,10 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 4");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -279,7 +274,7 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardRed5HexLoading");
+      // console.log("gameBoardRed5HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r5Hex, r5Text);
@@ -305,12 +300,10 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 5");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -325,7 +318,7 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardRed6HexLoading");
+      // console.log("gameBoardRed6HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r6Hex, r6Text);
@@ -351,12 +344,10 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 6");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -371,7 +362,7 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardRed7HexLoading");
+      // console.log("gameBoardRed7HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r7Hex, r7Text);
@@ -397,12 +388,10 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 7");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
       });
 
@@ -417,7 +406,7 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
   return {
     restrict: 'AE',
     link: function (scope) {
-      console.log("gameBoardRed8HexLoading");
+      // console.log("gameBoardRed8HexLoading");
 
       // add server point to the domain
       domainsGroup.add(r8Hex, r8Text);
@@ -443,12 +432,10 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
         $rootScope.$emit("CANVAS-MOUSEOUT");
       });
 
-      $rootScope.clickCountRed = 0;
-
       scope.konvaobj.on ('click', function () {
         console.log("Red Hex 8");
         $timeout(function() {
-          $rootScope.clickCountRed++;
+          // Implement server point on-click logic here
         });
       });
 
