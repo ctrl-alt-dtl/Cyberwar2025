@@ -1,3 +1,37 @@
+/*
+CyberWar:2025
+Defense Analysis Thesis/Capstone Project
+December 2017
+ */
+
+/*
+Konva Object Naming Conventions:
+
+Using the Red Domain (a.k.a. "DotEvil") as an example:
+  - Red Base = rBase
+  - Red Server Nodes = r[#]Hex (e.g. r1Hex, r2Hex,..., r8Hex)
+  - Red Primary/Overt Links:
+    - Red Base = rBaseToR1Hex & rBaseToR2Hex
+    - Red Server Nodes = r1HexToR3Hex, r2HexToR5Hex, etc.
+  - Red Exploit/Covert Links:
+
+    PLEASE NOTE:
+    Naming convention order goes from Tier 4 (Base, r1Hex, r2Hex) up to Tier 3 and then inward to center.
+    From there it goes to Tier 2, then Tier 1.
+
+                ->[Node8]<-                 #Tier 1
+               |           |
+            ->[Node6]-->[Node7]<-           #Tier 2
+           |       ^     ^       |
+           |        \   /        |
+       ->[Node3]-->[Node4]<--[Node5]<-      #Tier 3
+       |                              |
+    [Node1]<--------[Base]-------->[Node2]  #Tier 4
+
+
+ */
+
+
 var PORT = process.env.PORT || 8080;
 var enableHeapDebug = false;
 
