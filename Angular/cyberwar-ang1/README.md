@@ -34,24 +34,34 @@ this server is:
 npm start
 ```
 
-Now browse to the app at [`localhost:8000/index.html`][local-app-url].
+Now browse to the app at [`localhost:8080/index.html`][local-app-url].
 
 
 ## Directory Layout
 
 ```
-app/                    --> all of the source files for the application
-  app.css               --> default stylesheet
-  components/           --> all app specific modules
-    version/              --> version related components
-      version.js                 --> version module declaration and basic "version" value service
-      version_test.js            --> "version" value service tests
-      version-directive.js       --> custom directive that returns the current app version
-      version-directive_test.js  --> version directive tests
-      interpolate-filter.js      --> custom interpolation filter
-      interpolate-filter_test.js --> interpolate filter tests
-  index.html            --> app layout file (the main html template file of the app)
-  index-async.html      --> just like index.html, but loads js files asynchronously
+app/                    --> UNUSED
+client/                 --> all source files for the client view
+    audio/                  --> game audio and sfx (not implemented yet)
+    css/                    --> default stylesheets
+    fonts/                  --> game fonts (not implemented yet)
+    html/                   --> the index.html entry for the game board
+    img/                    --> background images that were designed for the game but not used (yet)
+    js/                     --> client view specific source files
+        canvas/                 --> source files for the Konva "Canvas" Layer Objects 
+            [dirs]                  --> specific player/domain source files using Konva library 
+            mainKonvaStage.js       --> the main stage for the Konva "Canvas" library
+        conroller/
+            canvasCtrl.js       --> the main controller that was used to test modal actions with Konva objects.
+            main.js             --> unused (at this time)
+            modalInstance.js    --> copy/paste code for modal testing
+            uiCtrl.js           --> for the user interaction area on the right side of the board
+        directive/
+            exploitLinks/
+            overtLinks/
+            serverDomain/
+server/                 --> all source files for the game server (not implemented yet)
+    
 karma.conf.js         --> config file for running unit tests with Karma
 e2e-tests/            --> end-to-end tests
   protractor-conf.js    --> Protractor config file
@@ -106,53 +116,11 @@ etc to function properly when an HTML page is opened via the `file://` scheme in
 ### Running the App during Development
 
 `CyberWar:2025` comes preconfigured with a local development web server. It is a Node.js
-tool called [http-server][http-server]. You can start this web server with `npm start`, but you may
-choose to install the tool globally:
-
-```
-sudo npm install -g http-server
-```
-
-Then you can start your own development web server to serve static files from a folder by running:
-
-```
-http-server -a localhost -p 8000
-```
+tool called [http-server][http-server]. You can start this web server with `npm start`.
 
 Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just
 configure your server to serve the files under the `app/` directory.
 
-### Running the App in Production
-
-This really depends on how complex your app is and the overall infrastructure of your system, but
-the general rule is that all you need in production are the files under the `app/` directory.
-Everything else should be omitted.
-
-Angular apps are really just a bunch of static HTML, CSS and JavaScript files that need to be hosted
-somewhere they can be accessed by browsers.
-
-If your Angular app is talking to the backend server via XHR or other means, you need to figure out
-what is the best way to host the static files to comply with the same origin policy if applicable.
-Usually this is done by hosting the files by the backend server or through reverse-proxying the
-backend server(s) and web server(s).
-
-
-## Continuous Integration
-
-### Travis CI
-
-[Travis CI][travis] is a continuous integration service, which can monitor GitHub for new commits to
-your repository and execute scripts such as building the app or running tests. `CyberWar:2025`
-contains a Travis configuration file, `.travis.yml`, which will cause Travis to run your
-tests when you push to GitHub.
-
-You will need to enable the integration between Travis and GitHub. See the
-[Travis website][travis-docs] for instructions on how to do this.
-
-
-## Contact
-
-For more information on AngularJS please check out [angularjs.org][angularjs].
 
 
 [angularjs]: https://angularjs.org/
