@@ -1,6 +1,7 @@
 # CyberWar:2025 — NPS Thesis/Capstone Project
 
-> A cyber themed educational wargame. Designed and developed at Naval Postgraduate School (Grad: December 2017).
+> A cyber themed educational wargame. Designed and developed at Naval Postgraduate School.
+> Graduation date: December 2017.
 
 ### Install Dependencies
 
@@ -106,36 +107,27 @@ This will call `npm update` and `bower update`, which in turn will find and inst
 versions that match the version ranges specified in the `package.json` and `bower.json` files
 respectively.
 
-## Serving the Application Files
-
-While Angular is client-side-only technology and it is possible to create Angular web apps that
-do not require a backend server at all, we recommend serving the project files using a local
-web server during development to avoid issues with security restrictions (sandbox) in browsers. The
-sandbox implementation varies between browsers, but quite often prevents things like cookies, XHR,
-etc to function properly when an HTML page is opened via the `file://` scheme instead of `http://`.
-
-### Running the App during Development
-
-`CyberWar:2025` comes preconfigured with a local development web server. It is a Node.js
-tool called [http-server][http-server]. You can start this web server with `npm start`.
-
-Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just
-configure your server to serve the files under the `app/` directory.
-
-
 # CyberWar:2025 Game Specific Development Documentation
 ## Board Layout
-![ScreenShot](documentation/img/initalGameBoard.png)
+![ScreenShot](documentation/img/initialRound.png)
 ## Konva Object Naming Conventions
 ## Konva Object Flow
 ## Cyber Effects
-### DCO
-#### Secure
+#### Defensive Cyberspace Operations (DCO)
+##### Secure
 ![ScreenShot](documentation/img/secure.png)
-#### Expel
+##### Expel
 ![ScreenShot](documentation/img/expel.png)
-#### Analyze
+##### Analyze
 ![ScreenShot](documentation/img/analyze.png)
+
+#### Offensive Cyberspace Operations (OCO)
+##### Secure
+![ScreenShot](documentation/img/acquire.png)
+##### Expel
+![ScreenShot](documentation/img/manipulate.png)
+##### Analyze
+![ScreenShot](documentation/img/deny.png)
 
 
 [angularjs]: https://angularjs.org/
