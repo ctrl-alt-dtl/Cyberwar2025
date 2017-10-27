@@ -1,4 +1,4 @@
-# `CyberWar:2025` — NPS Thesis/Capstone Project
+# CyberWar:2025 — NPS Thesis/Capstone Project
 
 > A cyber themed educational wargame. Designed and developed at Naval Postgraduate School (Grad: December 2017).
 
