@@ -60,8 +60,9 @@ client/                 --> all source files for the client view
             exploitLinks/
             overtLinks/
             serverDomain/
+documentation/          --> documentation and supported files only
 server/                 --> all source files for the game server (not implemented yet)
-    
+shared/                 --> shared game objects, references, and libraries
 karma.conf.js         --> config file for running unit tests with Karma
 e2e-tests/            --> end-to-end tests
   protractor-conf.js    --> Protractor config file
@@ -122,6 +123,11 @@ Alternatively, you can choose to configure your own web server, such as Apache o
 configure your server to serve the files under the `app/` directory.
 
 
+# CyberWar:2025 Game Specific Development Documentation
+## Board Layout
+## Konva Object Naming Conventions
+## Konva Object Flow
+
 
 [angularjs]: https://angularjs.org/
 [bower]: http://bower.io/
@@ -138,3 +144,4 @@ configure your server to serve the files under the `app/` directory.
 [selenium]: http://docs.seleniumhq.org/
 [travis]: https://travis-ci.org/
 [travis-docs]: https://docs.travis-ci.com/user/getting-started
+[konva]: https://konvajs.github.io/
