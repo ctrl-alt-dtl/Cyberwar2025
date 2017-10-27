@@ -125,8 +125,17 @@ configure your server to serve the files under the `app/` directory.
 
 # CyberWar:2025 Game Specific Development Documentation
 ## Board Layout
+![ScreenShot](documentation/img/initalGameBoard.png)
 ## Konva Object Naming Conventions
 ## Konva Object Flow
+## Cyber Effects
+### DCO
+#### Secure
+![ScreenShot](documentation/img/secure.png)
+#### Expel
+![ScreenShot](documentation/img/expel.png)
+#### Analyze
+![ScreenShot](documentation/img/analyze.png)
 
 
 [angularjs]: https://angularjs.org/
