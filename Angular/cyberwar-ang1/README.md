@@ -156,12 +156,7 @@ Inter-Domain Link Naming Conventions:
   Tier 1: r8p8Exploit
   (There is reason why lower case was used here, it just is. However, it can be changed fairly easily.)
 ## Konva Object Flow
-## Cyber Effects
-| OCO       | DCO           | CNE          | 
-| :-------: |: -----------: | :----------: |
-| Secure    | Acquire       | Scan         |
-| Expel     | Manipulate    | Exploit      |
-| Analyze   | Deny          | Implant      | 
+## Cyber Effects 
 #### Defensive Cyberspace Operations (DCO)
 ##### Secure
 ![ScreenShot](documentation/img/secure.png)
