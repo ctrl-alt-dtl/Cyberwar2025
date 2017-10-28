@@ -122,11 +122,11 @@ respectively.
 ![ScreenShot](documentation/img/analyze.png)
 
 #### Offensive Cyberspace Operations (OCO)
-##### Secure
+##### Acquire
 ![ScreenShot](documentation/img/acquire.png)
-##### Expel
+##### Manipulate
 ![ScreenShot](documentation/img/manipulate.png)
-##### Analyze
+##### Deny
 ![ScreenShot](documentation/img/deny.png)
 
 
