@@ -1,6 +1,6 @@
 # CyberWar:2025 — NPS Thesis/Capstone Project
 
-> A cyber themed educational wargame. Designed and developed at Naval Postgraduate School.
+> A multi-player cyber themed educational interactive wargame. Designed and developed at Naval Postgraduate School.
 > Graduation date: December 2017.
 
 ### Install Dependencies
