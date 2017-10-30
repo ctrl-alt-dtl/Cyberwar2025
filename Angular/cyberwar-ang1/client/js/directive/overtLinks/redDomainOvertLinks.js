@@ -207,7 +207,7 @@ app.directive('gameBoardR2R5OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r5Hex.fill() === greenColor) && (r2Hex.fill() === greenColor)) {
-          r2HexTor5Hex.stroke(greenColor);
+          r2HexToR5Hex.stroke(greenColor);
           domainsLayer.draw();
         }
         if ((r5Hex.fill() === yellowColor) && (r2Hex.fill() === yellowColor)) {
@@ -438,7 +438,7 @@ app.directive('gameBoardR3R6OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r6Hex.fill() === redColor) && (r3Hex.fill() === grayColor)) {
-          console.debug("R2toR5BreakLink")
+          console.debug("R3toR6BreakLink")
           r3HexToR6Hex.stroke(noColor);
           domainsLayer.draw();
         }
