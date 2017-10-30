@@ -1,52 +1,8 @@
 // Red Domain Links
-app.directive('gameBoardRbaseR2OvertLink', function () {
-  return {
-    restrict: 'A',
-    link: function (scope) {
-      console.log("gameBoardRedRBaseR2OvertLinkLoading");
-      linksGroup.add(rBaseToR2Hex);
-      rBaseToR2Hex.stroke(noColor);
-
-      scope.$watch(function() {
-        if((rBase.fill() === redColor) && (r2Hex.fill() === redColor)) {
-          rBaseToR2Hex.stroke(redColor);
-          domainsLayer.draw();
-        }
-        /* Positive link building to base is allowed but no one can control/occupy another player's base.
-        if((rBase.fill() === purpleColor) && (r2Hex.fill() === purpleColor)) {
-          rBaseToR2Hex.stroke(purpleColor);
-          domainsLayer.draw();
-        }
-        if((rBase.fill() === blueColor) && (r2Hex.fill() === blueColor)) {
-          rBaseToR2Hex.stroke(blueColor);
-          domainsLayer.draw();
-        }
-        if((rBase.fill() === greenColor) && (r2Hex.fill() === greenColor)) {
-          rBaseToR2Hex.stroke(greenColor);
-          domainsLayer.draw();
-        }
-        if((rBase.fill() === yellowColor) && (r2Hex.fill() === yellowColor)) {
-          rBaseToR2Hex.stroke(darkYellowColor);
-          domainsLayer.draw();
-        }
-        if((rBase.fill() === orangeColor) && (r2Hex.fill() === orangeColor)) {
-          rBaseToR2Hex.stroke(orangeColor);
-          domainsLayer.draw();
-        }
-        */
-      });
-
-      console.log("gameBoardRedRBaseR2OvertLinkLoaded");
-    }
-  }
-});
-
-// Red Domain Links
 app.directive('gameBoardRbaseR1OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedRBaseR1OvertLinkLoading");
       linksGroup.add(rBaseToR1Hex);
       rBaseToR1Hex.stroke(noColor);
 
@@ -89,11 +45,51 @@ app.directive('gameBoardRbaseR1OvertLink', function () {
   }
 });
 
+app.directive('gameBoardRbaseR2OvertLink', function () {
+  return {
+    restrict: 'A',
+    link: function (scope) {
+      linksGroup.add(rBaseToR2Hex);
+      rBaseToR2Hex.stroke(noColor);
+
+      scope.$watch(function() {
+        if((rBase.fill() === redColor) && (r2Hex.fill() === redColor)) {
+          rBaseToR2Hex.stroke(redColor);
+          domainsLayer.draw();
+        }
+        /* Positive link building to base is allowed but no one can control/occupy another player's base.
+        if((rBase.fill() === purpleColor) && (r2Hex.fill() === purpleColor)) {
+          rBaseToR2Hex.stroke(purpleColor);
+          domainsLayer.draw();
+        }
+        if((rBase.fill() === blueColor) && (r2Hex.fill() === blueColor)) {
+          rBaseToR2Hex.stroke(blueColor);
+          domainsLayer.draw();
+        }
+        if((rBase.fill() === greenColor) && (r2Hex.fill() === greenColor)) {
+          rBaseToR2Hex.stroke(greenColor);
+          domainsLayer.draw();
+        }
+        if((rBase.fill() === yellowColor) && (r2Hex.fill() === yellowColor)) {
+          rBaseToR2Hex.stroke(darkYellowColor);
+          domainsLayer.draw();
+        }
+        if((rBase.fill() === orangeColor) && (r2Hex.fill() === orangeColor)) {
+          rBaseToR2Hex.stroke(orangeColor);
+          domainsLayer.draw();
+        }
+        */
+      });
+
+      console.log("gameBoardRedRBaseR2OvertLinkLoaded");
+    }
+  }
+});
+
 app.directive('gameBoardR1R3OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR1R3OvertLinkLoading");
       linksGroup.add(r1HexToR3Hex);
       r1HexToR3Hex.stroke(noColor);
 
@@ -168,7 +164,6 @@ app.directive('gameBoardR2R5OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR2R5OvertLinkLoading");
       linksGroup.add(r2HexToR5Hex);
       r2HexToR5Hex.stroke(noColor);
 
@@ -243,7 +238,6 @@ app.directive('gameBoardR3R4OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR3R4OvertLinkLoading");
       linksGroup.add(r3HexToR4Hex);
       r1HexToR3Hex.stroke(noColor);
 
@@ -318,7 +312,6 @@ app.directive('gameBoardR5R4OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR3R4OvertLinkLoading");
       linksGroup.add(r5HexToR4Hex);
       r5HexToR4Hex.stroke(noColor);
 
@@ -393,7 +386,6 @@ app.directive('gameBoardR3R6OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR3R6OvertLinkLoading");
       linksGroup.add(r3HexToR6Hex);
       r3HexToR6Hex.stroke(noColor);
 
@@ -468,7 +460,6 @@ app.directive('gameBoardR5R7OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR5R7OvertLinkLoading");
       linksGroup.add(r5HexToR7Hex);
       r5HexToR7Hex.stroke(noColor);
 
@@ -543,7 +534,6 @@ app.directive('gameBoardR4R6OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR4R6OvertLinkLoading");
       linksGroup.add(r4HexToR6Hex);
       r4HexToR6Hex.stroke(noColor);
 
@@ -618,7 +608,6 @@ app.directive('gameBoardR4R7OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR4R7OvertLinkLoading");
       linksGroup.add(r4HexToR7Hex);
       r4HexToR7Hex.stroke(noColor);
 
@@ -693,7 +682,6 @@ app.directive('gameBoardR6R7OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR6R7OvertLinkLoading");
       linksGroup.add(r6HexToR7Hex);
       r6HexToR7Hex.stroke(noColor);
 
@@ -768,7 +756,6 @@ app.directive('gameBoardR6R8OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR6R8OvertLinkLoading");
       linksGroup.add(r6HexToR8Hex);
       r6HexToR8Hex.stroke(noColor);
 
@@ -843,7 +830,6 @@ app.directive('gameBoardR7R8OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      console.log("gameBoardRedR7R8OvertLinkLoading");
       linksGroup.add(r7HexToR8Hex);
       r7HexToR8Hex.stroke(noColor);
 
