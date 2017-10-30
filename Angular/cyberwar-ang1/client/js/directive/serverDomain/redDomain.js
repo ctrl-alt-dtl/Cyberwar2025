@@ -70,7 +70,6 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRedBaseLoaded");
     }
   }
 });
@@ -87,7 +86,6 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
 
       // add server point to the domain
       domainsGroup.add(r1Hex, r1Text);
-
 
       var options = {
         x: pt_r1Hex_X,
@@ -122,9 +120,7 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
         $rootScope.actionPoints--;
         domainsLayer.draw();
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed1HexLoaded");
     }
   }
 });
@@ -166,9 +162,7 @@ app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {
           // Implement server point on-click logic here
         });
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed2HexLoaded");
     }
   }
 });
@@ -218,9 +212,7 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
         $rootScope.actionPoints--;
         domainsLayer.draw();
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed3HexLoaded");
     }
   }
 });
@@ -262,9 +254,7 @@ app.directive('gameBoardRed4Hex', function ($rootScope, $timeout) {
           // Implement server point on-click logic here
         });
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed4HexLoaded");
     }
   }
 });
@@ -306,9 +296,7 @@ app.directive('gameBoardRed5Hex', function ($rootScope, $timeout) {
           // Implement server point on-click logic here
         });
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed5HexLoaded");
     }
   }
 });
@@ -350,9 +338,7 @@ app.directive('gameBoardRed6Hex', function ($rootScope, $timeout) {
           // Implement server point on-click logic here
         });
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed6HexLoaded");
     }
   }
 });
@@ -394,9 +380,7 @@ app.directive('gameBoardRed7Hex', function ($rootScope, $timeout) {
           // Implement server point on-click logic here
         });
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed7HexLoaded");
     }
   }
 })
@@ -438,9 +422,7 @@ app.directive('gameBoardRed8Hex', function ($rootScope, $timeout) {
           // Implement server point on-click logic here
         });
       });
-
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardRed8HexLoaded");
     }
   }
 });

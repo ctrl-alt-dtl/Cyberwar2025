@@ -12,7 +12,7 @@ app.directive('gameBoardRbaseR1OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r1Hex.fill() === grayColor)) {
-          console.log("RBaseToR1BreakLink")
+          console.debug("RBaseToR1BreakLink")
           rBaseToR1Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -39,8 +39,6 @@ app.directive('gameBoardRbaseR1OvertLink', function () {
         }
         */
       });
-
-      console.log("gameBoardRedRBaseR1OvertLinkLoaded");
     }
   }
 });
@@ -80,8 +78,6 @@ app.directive('gameBoardRbaseR2OvertLink', function () {
         }
         */
       });
-
-      console.log("gameBoardRedRBaseR2OvertLinkLoaded");
     }
   }
 });
@@ -119,7 +115,7 @@ app.directive('gameBoardR1R3OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r1Hex.fill() === redColor) && (r3Hex.fill() === grayColor)) {
-          console.log("R3toR4BreakLink")
+          console.debug("R1toR3BreakLink")
           r1HexToR3Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -150,12 +146,11 @@ app.directive('gameBoardR1R3OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r3Hex.fill() === redColor) && (r1Hex.fill() === grayColor)) {
-          console.log("R3toR4BreakLink")
+          console.debug("R1toR3BreakLink")
           r1HexToR3Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR1R3OvertLinkLoaded");
     }
   }
 });
@@ -193,7 +188,7 @@ app.directive('gameBoardR2R5OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r2Hex.fill() === redColor) && (r5Hex.fill() === grayColor)) {
-          console.log("R2toR5BreakLink")
+          console.debug("R2toR5BreakLink")
           r2HexToR5Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -224,12 +219,11 @@ app.directive('gameBoardR2R5OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r5Hex.fill() === redColor) && (r2Hex.fill() === grayColor)) {
-          console.log("R2toR5BreakLink")
+          console.debug("R2toR5BreakLink")
           r2HexToR5Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR2R5OvertLinkLoaded");
     }
   }
 });
@@ -267,7 +261,7 @@ app.directive('gameBoardR3R4OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r3Hex.fill() === redColor) && (r4Hex.fill() === grayColor)) {
-          console.log("R3toR4BreakLink")
+          console.debug("R3toR4BreakLink")
           r3HexToR4Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -298,12 +292,11 @@ app.directive('gameBoardR3R4OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r4Hex.fill() === redColor) && (r3Hex.fill() === grayColor)) {
-          console.log("R3toR4BreakLink")
+          console.debug("R3toR4BreakLink")
           r3HexToR4Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR3R4OvertLinkLoaded");
     }
   }
 });
@@ -341,7 +334,7 @@ app.directive('gameBoardR5R4OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r5Hex.fill() === redColor) && (r4Hex.fill() === grayColor)) {
-          console.log("R5toR4BreakLink")
+          console.debug("R5toR4BreakLink")
           r5HexToR4Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -372,12 +365,11 @@ app.directive('gameBoardR5R4OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r4Hex.fill() === redColor) && (r5Hex.fill() === grayColor)) {
-          console.log("R5toR4BreakLink")
+          console.debug("R5toR4BreakLink")
           r5HexToR4Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR5R4OvertLinkLoaded");
     }
   }
 });
@@ -415,7 +407,7 @@ app.directive('gameBoardR3R6OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r3Hex.fill() === redColor) && (r6Hex.fill() === grayColor)) {
-          console.log("R3toR6BreakLink")
+          console.debug("R3toR6BreakLink")
           r3HexToR6Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -446,12 +438,11 @@ app.directive('gameBoardR3R6OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r6Hex.fill() === redColor) && (r3Hex.fill() === grayColor)) {
-          console.log("R2toR5BreakLink")
+          console.debug("R2toR5BreakLink")
           r3HexToR6Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR3R6OvertLinkLoaded");
     }
   }
 });
@@ -489,7 +480,7 @@ app.directive('gameBoardR5R7OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r5Hex.fill() === redColor) && (r7Hex.fill() === grayColor)) {
-          console.log("R5toR7BreakLink")
+          console.debug("R5toR7BreakLink")
           r5HexToR7Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -520,12 +511,11 @@ app.directive('gameBoardR5R7OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r7Hex.fill() === redColor) && (r5Hex.fill() === grayColor)) {
-          console.log("R5toR7BreakLink")
+          console.debug("R5toR7BreakLink")
           r5HexToR7Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR5R7OvertLinkLoaded");
     }
   }
 });
@@ -563,7 +553,7 @@ app.directive('gameBoardR4R6OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r4Hex.fill() === redColor) && (r6Hex.fill() === grayColor)) {
-          console.log("R4toR6BreakLink")
+          console.debug("R4toR6BreakLink")
           r4HexToR6Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -594,12 +584,11 @@ app.directive('gameBoardR4R6OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r6Hex.fill() === redColor) && (r4Hex.fill() === grayColor)) {
-          console.log("R4toR6BreakLink")
+          console.debug("R4toR6BreakLink")
           r4HexToR6Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR4R6OvertLinkLoaded");
     }
   }
 });
@@ -637,7 +626,7 @@ app.directive('gameBoardR4R7OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r4Hex.fill() === redColor) && (r7Hex.fill() === grayColor)) {
-          console.log("R4toR7BreakLink")
+          console.debug("R4toR7BreakLink")
           r4HexToR7Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -668,12 +657,11 @@ app.directive('gameBoardR4R7OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r7Hex.fill() === redColor) && (r4Hex.fill() === grayColor)) {
-          console.log("R4toR7BreakLink")
+          console.debug("R4toR7BreakLink")
           r4HexToR7Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR4R7OvertLinkLoaded");
     }
   }
 });
@@ -711,7 +699,7 @@ app.directive('gameBoardR6R7OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r6Hex.fill() === redColor) && (r7Hex.fill() === grayColor)) {
-          console.log("R6toR7BreakLink")
+          console.debug("R6toR7BreakLink")
           r6HexToR7Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -742,12 +730,11 @@ app.directive('gameBoardR6R7OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r7Hex.fill() === redColor) && (r6Hex.fill() === grayColor)) {
-          console.log("R6toR7BreakLink")
+          console.debug("R6toR7BreakLink")
           r6HexToR7Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR6R7OvertLinkLoaded");
     }
   }
 });
@@ -785,7 +772,7 @@ app.directive('gameBoardR6R8OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r6Hex.fill() === redColor) && (r8Hex.fill() === grayColor)) {
-          console.log("R6toR8BreakLink")
+          console.debug("R6toR8BreakLink")
           r6HexToR8Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -816,12 +803,11 @@ app.directive('gameBoardR6R8OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r8Hex.fill() === redColor) && (r6Hex.fill() === grayColor)) {
-          console.log("R6toR8BreakLink")
+          console.debug("R6toR8BreakLink")
           r6HexToR8Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR6R8OvertLinkLoaded");
     }
   }
 });
@@ -859,7 +845,7 @@ app.directive('gameBoardR7R8OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r7Hex.fill() === redColor) && (r8Hex.fill() === grayColor)) {
-          console.log("R7toR8BreakLink")
+          console.debug("R7toR8BreakLink")
           r7HexToR8Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -890,12 +876,11 @@ app.directive('gameBoardR7R8OvertLink', function () {
           domainsLayer.draw();
         }
         if ((r8Hex.fill() === redColor) && (r7Hex.fill() === grayColor)) {
-          console.log("R7toR8BreakLink")
+          console.debug("R7toR8BreakLink")
           r7HexToR8Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
-      console.log("gameBoardRedR7R8OvertLinkLoaded");
     }
   }
 });

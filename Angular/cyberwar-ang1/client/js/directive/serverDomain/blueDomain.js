@@ -48,7 +48,6 @@ app.directive('gameBoardBlueBase', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlueBaseLoaded");
     }
   }
 });
@@ -92,7 +91,6 @@ app.directive('gameBoardBlue1Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue1HexLoaded");
     }
   }
 });
@@ -136,7 +134,6 @@ app.directive('gameBoardBlue2Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue2HexLoaded");
     }
   }
 });
@@ -180,7 +177,6 @@ app.directive('gameBoardBlue3Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue3HexLoaded");
     }
   }
 });
@@ -224,7 +220,6 @@ app.directive('gameBoardBlue4Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue4HexLoaded");
     }
   }
 });
@@ -268,7 +263,6 @@ app.directive('gameBoardBlue5Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue5HexLoaded");
     }
   }
 });
@@ -312,7 +306,6 @@ app.directive('gameBoardBlue6Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue6HexLoaded");
     }
   }
 });
@@ -356,7 +349,6 @@ app.directive('gameBoardBlue7Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue7HexLoaded");
     }
   }
 });
@@ -400,7 +392,6 @@ app.directive('gameBoardBlue8Hex', function ($rootScope, $timeout) {
       });
 
       domainsGroup.add(scope.konvaobj);
-      console.log("gameBoardBlue8HexLoaded");
     }
   }
 });

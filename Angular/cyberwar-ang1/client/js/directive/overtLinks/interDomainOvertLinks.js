@@ -33,8 +33,6 @@ app.directive('gameBoardR1P2OvertLink', function () {
             domainsLayer.draw();
           }
         });
-
-        console.log("gameBoardR1P2OvertLinkLoaded");
       }
     }
   });
