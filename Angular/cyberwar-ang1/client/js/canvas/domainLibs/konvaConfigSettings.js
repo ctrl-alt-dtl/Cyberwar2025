@@ -18,6 +18,12 @@ var orangeColor = 'orange';
 var grayColor = 'gray';
 var noColor = '';
 
+var nodeValNull = '';
+var nodeValOne = '1';
+var nodeValTwo = '2';
+var nodeValThree = '3';
+var nodeValFour = '4';
+
 // Line dash width and gap for exploit links
 var exploitLineDashWidth = 2;
 var exploitLineDashGap = 6;
