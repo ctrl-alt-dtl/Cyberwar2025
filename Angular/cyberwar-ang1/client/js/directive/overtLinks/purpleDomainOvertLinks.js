@@ -119,7 +119,7 @@ app.directive('gameBoardP1P3OvertLink', function () {
           domainsLayer.draw();
         }
         if ((p1Hex.fill() === redColor) && (p3Hex.fill() === grayColor)) {
-          console.log("P3toR4BreakLink")
+          console.log("P1toP3BreakLink")
           p1HexToP3Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -150,7 +150,7 @@ app.directive('gameBoardP1P3OvertLink', function () {
           domainsLayer.draw();
         }
         if ((p3Hex.fill() === redColor) && (p1Hex.fill() === grayColor)) {
-          console.log("P3toR4BreakLink")
+          console.log("P1toP3BreakLink")
           p1HexToP3Hex.stroke(noColor);
           domainsLayer.draw();
         }
@@ -159,72 +159,72 @@ app.directive('gameBoardP1P3OvertLink', function () {
   }
 });
 
-app.directive('gameBoardR2R5OvertLink', function () {
+app.directive('gameBoardP2P5OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      linksGroup.add(r2HexToR5Hex);
-      r2HexToR5Hex.stroke(noColor);
+      linksGroup.add(p2HexToP5Hex);
+      p2HexToP5Hex.stroke(noColor);
 
       scope.$watch(function() {
-        if ((r2Hex.fill() === redColor) && (r5Hex.fill() === redColor)) {
-          r2HexToR5Hex.stroke(redColor);
+        if ((p2Hex.fill() === redColor) && (p5Hex.fill() === redColor)) {
+          p2HexToP5Hex.stroke(redColor);
           domainsLayer.draw();
         }
-        if ((r2Hex.fill() === purpleColor) && (r5Hex.fill() === purpleColor)) {
-          r2HexToR5Hex.stroke(purpleColor);
+        if ((p2Hex.fill() === purpleColor) && (p5Hex.fill() === purpleColor)) {
+          p2HexToP5Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
-        if ((r2Hex.fill() === blueColor) && (r5Hex.fill() === blueColor)) {
-          r2HexToR5Hex.stroke(blueColor);
+        if ((p2Hex.fill() === blueColor) && (p5Hex.fill() === blueColor)) {
+          p2HexToP5Hex.stroke(blueColor);
           domainsLayer.draw();
         }
-        if ((r2Hex.fill() === greenColor) && (r5Hex.fill() === greenColor)) {
-          r2HexToR5Hex.stroke(greenColor);
+        if ((p2Hex.fill() === greenColor) && (p5Hex.fill() === greenColor)) {
+          p2HexToP5Hex.stroke(greenColor);
           domainsLayer.draw();
         }
-        if ((r2Hex.fill() === yellowColor) && (r5Hex.fill() === yellowColor)) {
-          r2HexToR5Hex.stroke(darkYellowColor);
+        if ((p2Hex.fill() === yellowColor) && (p5Hex.fill() === yellowColor)) {
+          p2HexToP5Hex.stroke(darkYellowColor);
           domainsLayer.draw();
         }
-        if ((r2Hex.fill() === orangeColor) && (r5Hex.fill() === orangeColor)) {
-          r2HexToR5Hex.stroke(orangeColor);
+        if ((p2Hex.fill() === orangeColor) && (p5Hex.fill() === orangeColor)) {
+          p2HexToP5Hex.stroke(orangeColor);
           domainsLayer.draw();
         }
-        if ((r2Hex.fill() === redColor) && (r5Hex.fill() === grayColor)) {
-          console.log("R2toR5BreakLink")
-          r2HexToR5Hex.stroke(noColor);
+        if ((p2Hex.fill() === redColor) && (p5Hex.fill() === grayColor)) {
+          console.log("P2toP5BreakLink")
+          p2HexToP5Hex.stroke(noColor);
           domainsLayer.draw();
         }
 
         // Reverse link.
-        if ((r5Hex.fill() === redColor) && (r2Hex.fill() === redColor)) {
-          r2HexToR5Hex.stroke(redColor);
+        if ((p5Hex.fill() === redColor) && (p2Hex.fill() === redColor)) {
+          p2HexToP5Hex.stroke(redColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === purpleColor) && (r2Hex.fill() === purpleColor)) {
-          r2HexToR5Hex.stroke(purpleColor);
+        if ((p5Hex.fill() === purpleColor) && (p2Hex.fill() === purpleColor)) {
+          p2HexToP5Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === blueColor) && (r2Hex.fill() === blueColor)) {
-          r2HexToR5Hex.stroke(blueColor);
+        if ((p5Hex.fill() === blueColor) && (p2Hex.fill() === blueColor)) {
+          p2HexToP5Hex.stroke(blueColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === greenColor) && (r2Hex.fill() === greenColor)) {
-          r2HexTor5Hex.stroke(greenColor);
+        if ((p5Hex.fill() === greenColor) && (p2Hex.fill() === greenColor)) {
+          p2HexTop5Hex.stroke(greenColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === yellowColor) && (r2Hex.fill() === yellowColor)) {
-          r2HexToR5Hex.stroke(darkYellowColor);
+        if ((p5Hex.fill() === yellowColor) && (p2Hex.fill() === yellowColor)) {
+          p2HexToP5Hex.stroke(darkYellowColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === orangeColor) && (r2Hex.fill() === orangeColor)) {
-          r2HexToR5Hex.stroke(orangeColor);
+        if ((p5Hex.fill() === orangeColor) && (p2Hex.fill() === orangeColor)) {
+          p2HexToP5Hex.stroke(orangeColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === redColor) && (r2Hex.fill() === grayColor)) {
-          console.log("R2toR5BreakLink")
-          r2HexToR5Hex.stroke(noColor);
+        if ((p5Hex.fill() === redColor) && (p2Hex.fill() === grayColor)) {
+          console.log("P2toP5BreakLink")
+          p2HexToP5Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
@@ -232,72 +232,72 @@ app.directive('gameBoardR2R5OvertLink', function () {
   }
 });
 
-app.directive('gameBoardR3R4OvertLink', function () {
+app.directive('gameBoardP3P4OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      linksGroup.add(r3HexToR4Hex);
-      r1HexToR3Hex.stroke(noColor);
+      linksGroup.add(p3HexToP4Hex);
+      p3HexToP4Hex.stroke(noColor);
 
       scope.$watch(function() {
-        if ((r3Hex.fill() === redColor) && (r4Hex.fill() === redColor)) {
-          r3HexToR4Hex.stroke(redColor);
+        if ((p3Hex.fill() === redColor) && (p4Hex.fill() === redColor)) {
+          p3HexToP4Hex.stroke(redColor);
           domainsLayer.draw();
         }
-        if ((r3Hex.fill() === purpleColor) && (r4Hex.fill() === purpleColor)) {
-          r3HexToR4Hex.stroke(purpleColor);
+        if ((p3Hex.fill() === purpleColor) && (p4Hex.fill() === purpleColor)) {
+          p3HexToP4Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
-        if ((r3Hex.fill() === blueColor) && (r4Hex.fill() === blueColor)) {
-          r3HexToR4Hex.stroke(blueColor);
+        if ((p3Hex.fill() === blueColor) && (p4Hex.fill() === blueColor)) {
+          p3HexToP4Hex.stroke(blueColor);
           domainsLayer.draw();
         }
-        if ((r3Hex.fill() === greenColor) && (r4Hex.fill() === greenColor)) {
-          r3HexToR4Hex.stroke(greenColor);
+        if ((p3Hex.fill() === greenColor) && (p4Hex.fill() === greenColor)) {
+          p3HexToP4Hex.stroke(greenColor);
           domainsLayer.draw();
         }
-        if ((r3Hex.fill() === yellowColor) && (r4Hex.fill() === yellowColor)) {
-          r3HexToR4Hex.stroke(darkYellowColor);
+        if ((p3Hex.fill() === yellowColor) && (p4Hex.fill() === yellowColor)) {
+          p3HexToP4Hex.stroke(darkYellowColor);
           domainsLayer.draw();
         }
-        if ((r3Hex.fill() === orangeColor) && (r4Hex.fill() === orangeColor)) {
-          r3HexToR4Hex.stroke(orangeColor);
+        if ((p3Hex.fill() === orangeColor) && (p4Hex.fill() === orangeColor)) {
+          p3HexToP4Hex.stroke(orangeColor);
           domainsLayer.draw();
         }
-        if ((r3Hex.fill() === redColor) && (r4Hex.fill() === grayColor)) {
-          console.log("R3toR4BreakLink")
-          r3HexToR4Hex.stroke(noColor);
+        if ((p3Hex.fill() === redColor) && (p4Hex.fill() === grayColor)) {
+          console.log("P3toP4BreakLink")
+          p3HexToP4Hex.stroke(noColor);
           domainsLayer.draw();
         }
 
         // Reverse link.
-        if ((r4Hex.fill() === redColor) && (r3Hex.fill() === redColor)) {
-          r3HexToR4Hex.stroke(redColor);
+        if ((p4Hex.fill() === redColor) && (p3Hex.fill() === redColor)) {
+          p3HexToP4Hex.stroke(redColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === purpleColor) && (r3Hex.fill() === purpleColor)) {
-          r3HexToR4Hex.stroke(purpleColor);
+        if ((p4Hex.fill() === purpleColor) && (p3Hex.fill() === purpleColor)) {
+          p3HexToP4Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === blueColor) && (r3Hex.fill() === blueColor)) {
-          r3HexToR4Hex.stroke(blueColor);
+        if ((p4Hex.fill() === blueColor) && (p3Hex.fill() === blueColor)) {
+          p3HexToP4Hex.stroke(blueColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === greenColor) && (r3Hex.fill() === greenColor)) {
-          r3HexToR4Hex.stroke(greenColor);
+        if ((p4Hex.fill() === greenColor) && (p3Hex.fill() === greenColor)) {
+          p3HexToP4Hex.stroke(greenColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === yellowColor) && (r3Hex.fill() === yellowColor)) {
-          r3HexToR4Hex.stroke(darkYellowColor);
+        if ((p4Hex.fill() === yellowColor) && (p3Hex.fill() === yellowColor)) {
+          p3HexToP4Hex.stroke(darkYellowColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === orangeColor) && (r3Hex.fill() === orangeColor)) {
-          r3HexToR4Hex.stroke(orangeColor);
+        if ((p4Hex.fill() === orangeColor) && (p3Hex.fill() === orangeColor)) {
+          p3HexToP4Hex.stroke(orangeColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === redColor) && (r3Hex.fill() === grayColor)) {
-          console.log("R3toR4BreakLink")
-          r3HexToR4Hex.stroke(noColor);
+        if ((p4Hex.fill() === redColor) && (p3Hex.fill() === grayColor)) {
+          console.log("P3toP4BreakLink")
+          p3HexToP4Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });
@@ -305,72 +305,72 @@ app.directive('gameBoardR3R4OvertLink', function () {
   }
 });
 
-app.directive('gameBoardR5R4OvertLink', function () {
+app.directive('gameBoardP5P4OvertLink', function () {
   return {
     restrict: 'A',
     link: function (scope) {
-      linksGroup.add(r5HexToR4Hex);
-      r5HexToR4Hex.stroke(noColor);
+      linksGroup.add(p5HexToP4Hex);
+      p5HexToP4Hex.stroke(noColor);
 
       scope.$watch(function() {
-        if ((r5Hex.fill() === redColor) && (r4Hex.fill() === redColor)) {
-          r5HexToR4Hex.stroke(redColor);
+        if ((p5Hex.fill() === redColor) && (p4Hex.fill() === redColor)) {
+          p5HexToP4Hex.stroke(redColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === purpleColor) && (r4Hex.fill() === purpleColor)) {
-          r5HexToR4Hex.stroke(purpleColor);
+        if ((p5Hex.fill() === purpleColor) && (p4Hex.fill() === purpleColor)) {
+          p5HexToP4Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === blueColor) && (r4Hex.fill() === blueColor)) {
-          r5HexToR4Hex.stroke(blueColor);
+        if ((p5Hex.fill() === blueColor) && (p4Hex.fill() === blueColor)) {
+          p5HexToP4Hex.stroke(blueColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === greenColor) && (r4Hex.fill() === greenColor)) {
-          r5HexToR4Hex.stroke(greenColor);
+        if ((p5Hex.fill() === greenColor) && (p4Hex.fill() === greenColor)) {
+          p5HexToP4Hex.stroke(greenColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === yellowColor) && (r4Hex.fill() === yellowColor)) {
-          r5HexToR4Hex.stroke(darkYellowColor);
+        if ((p5Hex.fill() === yellowColor) && (p4Hex.fill() === yellowColor)) {
+          p5HexToP4Hex.stroke(darkYellowColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === orangeColor) && (r4Hex.fill() === orangeColor)) {
-          r5HexToR4Hex.stroke(orangeColor);
+        if ((p5Hex.fill() === orangeColor) && (p4Hex.fill() === orangeColor)) {
+          p5HexToP4Hex.stroke(orangeColor);
           domainsLayer.draw();
         }
-        if ((r5Hex.fill() === redColor) && (r4Hex.fill() === grayColor)) {
-          console.log("R5toR4BreakLink")
-          r5HexToR4Hex.stroke(noColor);
+        if ((p5Hex.fill() === redColor) && (p4Hex.fill() === grayColor)) {
+          console.log("P5toP4BreakLink")
+          p5HexToP4Hex.stroke(noColor);
           domainsLayer.draw();
         }
 
         // Reverse link.
-        if ((r4Hex.fill() === redColor) && (r5Hex.fill() === redColor)) {
-          r5HexToR4Hex.stroke(redColor);
+        if ((p4Hex.fill() === redColor) && (p5Hex.fill() === redColor)) {
+          p5HexToP4Hex.stroke(redColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === purpleColor) && (r5Hex.fill() === purpleColor)) {
-          r5HexToR4Hex.stroke(purpleColor);
+        if ((p4Hex.fill() === purpleColor) && (p5Hex.fill() === purpleColor)) {
+          p5HexToP4Hex.stroke(purpleColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === blueColor) && (r5Hex.fill() === blueColor)) {
-          r5HexToR4Hex.stroke(blueColor);
+        if ((p4Hex.fill() === blueColor) && (p5Hex.fill() === blueColor)) {
+          p5HexToP4Hex.stroke(blueColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === greenColor) && (r5Hex.fill() === greenColor)) {
-          r5HexToR4Hex.stroke(greenColor);
+        if ((p4Hex.fill() === greenColor) && (p5Hex.fill() === greenColor)) {
+          p5HexToP4Hex.stroke(greenColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === yellowColor) && (r5Hex.fill() === yellowColor)) {
-          r5HexToR4Hex.stroke(darkYellowColor);
+        if ((p4Hex.fill() === yellowColor) && (p5Hex.fill() === yellowColor)) {
+          p5HexToP4Hex.stroke(darkYellowColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === orangeColor) && (r5Hex.fill() === orangeColor)) {
-          r5HexToR4Hex.stroke(orangeColor);
+        if ((p4Hex.fill() === orangeColor) && (p5Hex.fill() === orangeColor)) {
+          p5HexToP4Hex.stroke(orangeColor);
           domainsLayer.draw();
         }
-        if ((r4Hex.fill() === redColor) && (r5Hex.fill() === grayColor)) {
-          console.log("R5toR4BreakLink")
-          r5HexToR4Hex.stroke(noColor);
+        if ((p4Hex.fill() === redColor) && (p5Hex.fill() === grayColor)) {
+          console.log("P5toP4BreakLink")
+          p5HexToP4Hex.stroke(noColor);
           domainsLayer.draw();
         }
       });

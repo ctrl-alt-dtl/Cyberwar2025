@@ -233,7 +233,7 @@ app.directive('gameBoardR3R4OvertLink', function () {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(r3HexToR4Hex);
-      r1HexToR3Hex.stroke(noColor);
+      r3HexToR4Hex.stroke(noColor);
 
       scope.$watch(function() {
         if ((r3Hex.fill() === redColor) && (r4Hex.fill() === redColor)) {
