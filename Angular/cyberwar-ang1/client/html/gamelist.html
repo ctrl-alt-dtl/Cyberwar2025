@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" ng-app="CyberWar 2025" id="ng-app">
+  <head>
+    <title>CyberWar 2025 (maint. page)</title>
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" type="text/css" href="gamelist.css"/>
+
+    <!-- 3rd Party Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/sockjs.min.js"></script>
+    <script src="lib/underscore.js"></script>
+
+    <!-- Create Custom Angular Module -->
+    <script>angular.module("CyberWar 2025", [])</script>
+
+    <!-- Angular Services -->
+    <script src="service/httpHandler.js"></script>
+
+    <!-- Angular Controllers -->
+    <script src="controller/gamelist.js"></script>
+  </head>
+  <body ng-controller="GameListController">
+    <h2>Here are some games:</h2>
+    <div id="gamelist" ng-repeat="game in gameList">
+      <div class="gameListItem" ng-repeat="player in game.players track by $index">
+        <span>Play as </span>
+        <button class="gameLink" ng-click="playGame(game.gid, player.color)">{{player.color}}</button>
+      </div>
+      <div class="gameListItem turn">Turn: {{game.turnNumber}}</div>
+      <div class="gameListItem gid">Game ID: {{game.gid}}</div>
+      <button class="trashLink" ng-click="deleteGame(game.gid)">Trash</button>
+    </div>
+
+    <br/>
+    <button id="newGameButton" ng-click="newGame()">New Game</button>
+
+    <p class="error">{{error}}</p>
+  </body>
+</html>

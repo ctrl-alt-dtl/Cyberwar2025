@@ -1,0 +1,42 @@
+.textLink
+{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.text
+{
+  display:inline-block;
+}
+
+.error
+{
+  color: red;
+}
+
+.gameListItem
+{
+  display: inline-block;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.gameListItem.gid
+{
+  border: none;
+}
+
+.gameListItem.turn
+{
+  border-color: black;
+}
+
+.gameListItem.activePlayer
+{
+  border-color: black;
+}
+
+.gameListItem.phase
+{
+  border-color: black;
+}

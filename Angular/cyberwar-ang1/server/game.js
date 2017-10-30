@@ -5,8 +5,10 @@ var _ = require("underscore");
 // var auth = require("./authenticator.js");
 var log = require("./log.js").log;
 var database = require("./database.js");
+var db = database.getGameModel();
+var gameController = require("./gameLogic/gameController.js");
+var Util = require("./gameLogic/util.js");
 var SocketType = require("../shared/socketType.js").SocketType;
-
 
 var inDebugMode = true;
 var clients = {};
@@ -14,13 +16,13 @@ var clients = {};
 module.exports = {
   setDebugMode: setDebugMode,
   start: start,
-  // getGameList: getGameList,
-  // createGame: createGame,
-  // deleteGame: deleteGame,
-  // getGame: getGame,
-  // updateGame: updateGame,
-  // saveGame: saveGame,
-  // isValidPlayer: isValidPlayer,
+  getGameList: getGameList,
+  createGame: createGame,
+  deleteGame: deleteGame,
+  getGame: getGame,
+  updateGame: updateGame,
+  saveGame: saveGame,
+  isValidPlayer: isValidPlayer,
 };
 
 //------------------------------------------------------------------------------
@@ -43,11 +45,11 @@ function getGameList(callback) {
 
 //------------------------------------------------------------------------------
 // Create a new game in the database and initialize the first turn
-function createGame(playerNames, callback) {
+function createGame(callback) {
   // Create and initialize our game
   var newGame = new db();
   //log.debug("player names are: " + JSON.stringify(playerNames));
-  gameController.initializeNewGame(newGame, playerNames);
+  gameController.initializeNewGame(newGame);
   newGame.save(function(err) {
     if (err) {
       log.error("Failed to initialize new game: " + err);
@@ -147,7 +149,7 @@ function isValidPlayer(game, user) {
   //log.info(JSON.stringify(Util.getCurrentTurn(game)));
 
   var validUser = _.find(Util.getCurrentTurn(game).players, function(player) {
-    return player.name === user;
+    return player.color === user;
   });
 
   return validUser !== undefined;
