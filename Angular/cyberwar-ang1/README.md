@@ -23,8 +23,8 @@ npm install
 Behind the scenes this will also call `bower install`. After that, you should find out that you have
 two new folders in your project.
 
-* `node_modules` - contains the npm packages for the tools we need
-* `app/bower_components` - contains the Angular framework files
+* `node_modules` - contains the npm packages for the tools needed
+* `bower_components` - is not used in this project
 
 ### Run the Application
 
