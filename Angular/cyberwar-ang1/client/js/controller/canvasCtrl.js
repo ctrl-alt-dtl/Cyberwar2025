@@ -1,6 +1,16 @@
-var app = angular.module('CyberWar', ['ui.bootstrap', 'ui.grid', 'ui.scroll']);
+var app = angular.module('CyberWar');
+app.controller('canvasCtrl', ['$scope', 'GameState', '$uibModal', '$log', '$document', function($scope, GameState, $uibModal, $log, $document){
+  GameState.addListener(onGameStateChanged);
 
-app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
+  // ----------------------------------------------------------------------------
+  $scope.$on('$destroy', function() {
+    GameState.removeListener(onGameStateChanged);
+  });
+
+  // ----------------------------------------------------------------------------
+  function onGameStateChanged() {
+    drawBoard(GameState.currentPlayerData);
+  }
 
   // MODAL TEST
   var $ctrl = this;
@@ -66,4 +76,4 @@ app.controller('canvasCtrl', function($scope, $uibModal, $log, $document){
   $ctrl.toggleAnimation = function () {
     $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
   }; //MODAL TEST END
-});
+}]);

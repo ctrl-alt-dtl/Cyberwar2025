@@ -24,13 +24,40 @@
     <link rel="stylesheet" href="node_modules/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="node_modules/html5-boilerplate/dist/css/main.css">
     <script src="node_modules/html5-boilerplate/dist/js/vendor/modernizr-3.5.0.min.js"></script>
+
+    <!-- 3rd Party Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/sockjs.min.js"></script>
+    <script src="lib/underscore.js"></script>
+
+    <!-- Shared Libraries -->
+    <script src="shared/color.js"></script>
+    <script src="shared/gameRequest.js"></script>
+    <script src="shared/sharedUtil.js"></script>
+    <script src="shared/socketType.js"></script>
+
+    <!-- Non-Angular Classes/Modules -->
+    <script src="module/callbackListener.js"></script>
+
+    <!-- Create Custom Angular Module -->
+    <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll'])</script>
+
+    <!-- Angular Services -->
+    <script src="service/gameSocket.js"></script>
+    <script src="service/gameState.js"></script>
+    <script src="service/gameUtil.js"></script>
+    <script src="service/httpHandler.js"></script>
+    <script src="service/socket.js"></script>
+
+    <!-- Angular Controllers -->
+    <script src="controller/game.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div id="stage-parent">
+<div ng-controller="GameController" id="stage-parent">
     <div id="main-view">
         <div id="left_aside"></div>
         <div class="board"></div>
@@ -82,13 +109,6 @@
                 <div data-game-board-r2-r5-overt-link id="canvasOvertLink"></div>
                 <div data-game-board-r3-r4-overt-link id="canvasOvertLink"></div>
                 <div data-game-board-r5-r4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r3-r6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r5-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r4-r6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r4-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r6-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r6-r8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r7-r8-overt-link id="canvasOvertLink"></div>
 
                 <div data-game-board-r1-r3-exploit-link id="canvasExploitLink"></div>
                 <div data-game-board-r3-r4-exploit-link id="canvasExploitLink"></div>
@@ -107,7 +127,6 @@
                 <div data-game-board-purple-8-hex id="canvasPurple8Hex"></div>
 
                 <!--PURPLE DOMAIN LINKS-->
-                <div data-game-board-pbase-p1-overt-link id="canvasOvertLink"></div>
                 <div data-game-board-pbase-p2-overt-link id="canvasOvertLink"></div>
 
                 <div data-game-board-blue-base id="canvasBlueBase" callback-fn="$ctrl.open()"></div>
@@ -251,7 +270,6 @@
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
-    <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
@@ -261,6 +279,9 @@
     <script src="node_modules/howler/dist/howler.js"></script>
     <script src="node_modules/underscore/underscore.js"></script>
     <script src="node_modules/konva/konva.js"></script>
+    <!--<script src="app/components/version/version.js"></script>-->
+    <!--<script src="app/components/version/version-directive.js"></script>-->
+    <!--<script src="app/components/version/interpolate-filter.js"></script>-->
 
     <!--LIBRARIES-->
     <script src="client/js/canvas/mainKonvaStage.js"></script>

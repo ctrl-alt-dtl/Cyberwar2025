@@ -1,4 +1,4 @@
-angular.module("CyberWar 2025")
+angular.module("CyberWar")
 .service('HTTPHandler', ['$http', '$window', '$location', function($http, $window, $location) {
   // ----------------------------------------------------------------------------
   this.createGame = function(successCB, errorCB) {

@@ -1,4 +1,4 @@
-angular.module("CyberWar 2025")
+angular.module("CyberWar")
 .controller("GameListController", ["$scope", "$window", "HTTPHandler", function($scope, $window, HTTPHandler) {
   // ----------------------------------------------------------------------------
   $scope.newGame = function() {

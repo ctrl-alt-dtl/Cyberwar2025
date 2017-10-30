@@ -170,4 +170,13 @@ var p8Text = new Konva.Text({
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
 
-
+rotationChangedListener.addListener(function() {
+  p1Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p2Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p3Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p4Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p5Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p6Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p7Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+  p8Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+});

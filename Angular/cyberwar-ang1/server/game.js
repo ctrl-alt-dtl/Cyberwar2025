@@ -8,6 +8,7 @@ var database = require("./database.js");
 var db = database.getGameModel();
 var gameController = require("./gameLogic/gameController.js");
 var Util = require("./gameLogic/util.js");
+var GameRequest = require("../shared/gameRequest.js").GameRequest;
 var SocketType = require("../shared/socketType.js").SocketType;
 
 var inDebugMode = true;
@@ -165,8 +166,8 @@ function onConnection(connection) {
   connection.on('data', function(data) {
     var message = JSON.parse(data);
     switch (message.request) {
-      case GameRequest.TURN:
-        getTurnData(message.data.gid, message.data.turnNumber, clients[connection.id]);
+      case GameRequest.GET:
+        getCurrentTurnData(message.data.gid, clients[connection.id]);
         break;
       case GameRequest.SUBMIT:
         submitTurn(message.data.gid, message.data.user, message.data.turnData, clients[connection.id]);
@@ -177,21 +178,13 @@ function onConnection(connection) {
 
 //------------------------------------------------------------------------------
 // Send a given game state turn and its previous turn state back to the client.
-var getTurnData = function(gid, turnNumber, client) {
+var getCurrentTurnData = function(gid, client) {
   db.findById(gid).lean().exec(function (err, gameFound) {
     if (err) {
       log.error("Error finding the game: " + err);
     }
     else if (gameFound) {
-      if (turnNumber === undefined) {
-        // This is the player's first turn request, so mark which game they are part of
-        client.gid = gid;
-        turnNumber = getCurrentTurnNumber(gameFound);
-      } else {
-        turnNumber = parseInt(turnNumber);
-      }
-      client.playback = turnNumber !== getCurrentTurnNumber(gameFound);
-      sendMessage(getGameData(gameFound, turnNumber), client);
+      sendMessage({ request: GameRequest.GET, data: getGameData(gameFound, getCurrentTurnNumber(gameFound)) }, client);
     }
   });
 }
@@ -281,7 +274,6 @@ var getGameData = function(game, turnNumber) {
   var turn = getTurn(game, turnNumber);
   var lastTurn = getTurn(game, getCurrentTurnNumber(game));
   return {
-    finalTurnNumber: lastTurn.phase === GamePhase.END ? lastTurn.roundNumber : -1,
     latestTurnNumber: lastTurn.roundNumber,
     turnNumber: turn.roundNumber,
     turn: turn
@@ -291,7 +283,7 @@ var getGameData = function(game, turnNumber) {
 //------------------------------------------------------------------------------
 // Send message to client
 var sendMessage = function(message, client) {
-  client.connection.write(JSON.stringify({ socket: SocketType.GAME, message: message }));
+  client.connection.write(JSON.stringify({ socketType: SocketType.GAME, message: message }));
 }
 
 //------------------------------------------------------------------------------

@@ -6,7 +6,7 @@ var BASE_BOARD_HEIGHT = 768; // Don't change because it will alter the CSS layou
  */
 
 var DOMAIN_LAYER_BOARD_ROTATION = 0;
-
+var rotationChangedListener = new Gambit.CallbackListener();
 
 var stage = new Konva.Stage({
   container: '.board',
@@ -124,10 +124,40 @@ imageObj.onload = function() {
 
   toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
 
+  domainsLayer.hide();
   domainsLayer.add(linksGroup, domainsGroup, exploitLinksGroup);
 
   stage.add(bgLayer, domainsLayer, toolTipLayer);
-
 };
+
+//---------------------------------------------------------------------------
+var drawBoard = function(playerData) {
+  // Setup board rotation based on player
+  switch (playerData.color) {
+    case Color.RED:
+      DOMAIN_LAYER_BOARD_ROTATION = 0;
+      break;
+    case Color.ORANGE:
+      DOMAIN_LAYER_BOARD_ROTATION = 60;
+      break;
+    case Color.YELLOW:
+      DOMAIN_LAYER_BOARD_ROTATION = 120;
+      break;
+    case Color.GREEN:
+      DOMAIN_LAYER_BOARD_ROTATION = 180;
+      break;
+    case Color.BLUE:
+      DOMAIN_LAYER_BOARD_ROTATION = 240;
+      break;
+    case Color.PURPLE:
+      DOMAIN_LAYER_BOARD_ROTATION = 300;
+      break;
+  }
+  domainsGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
+  linksGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
+  exploitLinksGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
+  rotationChangedListener.triggerAll();
+  domainsLayer.show();
+}
 
 imageObj.src = 'client/img/empty-transparency-bg-1024x768.png';
