@@ -42,7 +42,6 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
 
       // HARD CODED VALUES FOR TESTING ONLY
       $rootScope.clickCountRed = 0;
-      $rootScope.actionPoints = 0;
       // $rootScope.effectsNumDCO = 1;
       // $rootScope.effectsNumOCO = 4;
       // $rootScope.effectsNumCNE = 3;
@@ -117,7 +116,7 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
         // TESTING
         // Modal Callback Function (ATTEMPT TO FILL A HEX ONCLICK)
         scope.callbackFnTest(r1Hex.fill(purpleColor));
-        $rootScope.actionPoints--;
+        //$rootScope.actionPoints--;
         domainsLayer.draw();
       });
       domainsGroup.add(scope.konvaobj);
@@ -209,7 +208,7 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
 
         // TESTING
         scope.callbackFnTest(r3Hex.fill(purpleColor));
-        $rootScope.actionPoints--;
+        //$rootScope.actionPoints--;
         domainsLayer.draw();
       });
       domainsGroup.add(scope.konvaobj);

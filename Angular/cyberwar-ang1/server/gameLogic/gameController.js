@@ -3,6 +3,7 @@
  ******************************************************************************/
 var _ = require("underscore");
 var Color = require("../../shared/color.js").Color;
+var ResearchType = require("../../shared/researchType.js").ResearchType;
 
 //------------------------------------------------------------------------------
 // Setup the initial state of the game
@@ -10,7 +11,7 @@ this.initializeNewGame = function(newGame) {
   var firstTurn = { players: [] };
   // Add all players to the game
   _.each(Color, function(color) {
-    firstTurn.players.push({ name: color, color: color });
+    firstTurn.players.push({ name: color, color: color, research: {} });
   });
   newGame.turns.push(firstTurn);
 };

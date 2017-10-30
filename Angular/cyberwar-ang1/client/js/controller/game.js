@@ -2,7 +2,7 @@ angular.module("CyberWar")
   .controller("GameController", ["$scope", "GameSocket", "GameState", "HTTPHandler", function ($scope, GameSocket, GameState, HTTPHandler) {
     // ----------------------------------------------------------------------------
     var gameStateUpdated = function(gameData) {
-      $scope.$apply(GameState.gameStateUpdated(gameData.turn));
+      $scope.$apply(GameState.gameStateUpdated(gameData.turn, gameData.turnNumber));
     }
 
     // ----------------------------------------------------------------------------

@@ -1,21 +1,44 @@
-app.controller('uiCtrl', function($scope){
+app.controller('uiCtrl', ['$scope', 'GameState', function($scope, GameState) {
+  GameState.addListener(onGameStateChanged);
+  $scope.ResearchType = ResearchType;
 
-  $scope.getMeterArray = function (number) {
-    if (number > 0) {
-      return new Array(number);
+  // ----------------------------------------------------------------------------
+  $scope.$on('$destroy', function() {
+    GameState.removeListener(onGameStateChanged);
+  });
+
+  // ----------------------------------------------------------------------------
+  function onGameStateChanged() {
+    $scope.actionPoints = GameState.currentActionPoints;
+    updateMeters();
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.getCurrentInvestment = function(type) {
+    if (GameState.currentPlayerData) {
+      return GameState.currentInvestments[type];
     }
-    return [];
+    return 0;
   }
 
-  $scope.costRemaining = function () {
-    return 8;
+  // ----------------------------------------------------------------------------
+  $scope.invest = function(type, amount) {
+    GameState.invest(type, amount);
+    updateMeters();
   }
 
-  $scope.invest = function (amount) {
-    $scope.currentInvestment += amount;
-    $scope.investmentPoints -= amount;
-    // Fix this
-    console.log("Invest: " + amount);
+  // ----------------------------------------------------------------------------
+  var updateMeters = function() {
+    $scope.researchMeters = {};
+    _.each(ResearchType, function(type) {
+      var researchPaid = GameState.currentPlayerData.research[type];
+      var currentInvestment = $scope.getCurrentInvestment(type);
+      var costRemaining = GameState.getInvestmentRemaining(type) - currentInvestment;
+      $scope.researchMeters[type] = {
+        research: new Array(researchPaid),
+        currentInvestment: new Array(currentInvestment),
+        costRemaining: new Array(costRemaining),
+      };
+    });
   }
-
-});
+}]);

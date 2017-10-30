@@ -198,6 +198,14 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
     margin-bottom: -5px;
 }
 
+.blocks.paid {
+  background: blue;
+}
+
+.blocks.invested {
+  background: yellow;
+}
+
 .wrap{
     width:125px;
 }
