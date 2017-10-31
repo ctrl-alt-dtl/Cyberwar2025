@@ -233,6 +233,17 @@ their total amount of action/research points from server nodes they own to be fr
 Also, attacking players cannot acquire opposing player bases.
 ![ScreenShot](documentation/img/implant.png)
 
+## Game Flow and Adjudication
+In the initial round, players are all given 3 Action/Research Points to either acquire, defend, or invest in research.
+After the initial round, players are given the an amount of Action/Research Points based off their 
+positively linked and controlled server nodes, this includes exlploited server nodes as well.
+
+The game flow is simultaneous turn-based where all orders are adjudicated at the same time. The adjudication process
+is slightly offset based on which cyber effect is used. For the most part Scan, Secure, Implant, and Deny are the only
+cyber effects that need to be adjudicated first because they have a strong effect on other orders being executed in the
+iteration. However, if Implant or Deny fail then any orders that are taking place on the same server node will be
+adjudicated normally and as is.
+![ScreenShot](documentation/img/GameFlow.png)
 
 [angularjs]: https://angularjs.org/
 [bower]: http://bower.io/
