@@ -50,6 +50,9 @@
     <script src="service/httpHandler.js"></script>
     <script src="service/socket.js"></script>
 
+    <!-- Angular Directives -->
+    <script src="directive/submitButton.js"></script>
+
     <!-- Angular Controllers -->
     <script src="controller/game.js"></script>
 </head>
@@ -368,9 +371,7 @@
                     </table>
                 </div>
             </div>
-            <div class="submitBtnArea">
-                <button type="submitButton" class="submitBtn" align="center"> Submit Orders </button>
-            </div>
+            <submit-button></submit-button>
             <div class="adjudication" style="font-weight:bold">Orders Adjudication:
                 <ul class="adjudicationUnorderedList" ui-scroll-viewport>
                     <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">

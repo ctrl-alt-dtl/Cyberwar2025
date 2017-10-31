@@ -13,6 +13,7 @@ var SocketType = require("../shared/socketType.js").SocketType;
 
 var inDebugMode = true;
 var clients = {};
+var updatingGames = {};
 
 module.exports = {
   setDebugMode: setDebugMode,
@@ -21,8 +22,6 @@ module.exports = {
   createGame: createGame,
   deleteGame: deleteGame,
   getGame: getGame,
-  updateGame: updateGame,
-  saveGame: saveGame,
   isValidPlayer: isValidPlayer,
 };
 
@@ -95,54 +94,6 @@ function getGame(gid, callback) {
 }
 
 //------------------------------------------------------------------------------
-// Update the game state until player input is needed
-function updateGame(gid, game, user, turnData, updateFinished, turnFinished) {
-  var success = gameController.updateGameState(game, user, turnData);
-  saveGame(gid, game, function() {
-    getGame(gid, function(err, savedGame) {
-      // If all players are observers, keep taking turns until the game is over
-      var currentTurn = Util.getCurrentTurn(savedGame);
-      if (areAllPlayersObservers(currentTurn) && currentTurn.phase !== GamePhase.END) {
-        if (turnFinished) {
-          turnFinished(savedGame);
-        }
-        updateGame(gid, savedGame, user, currentTurn, updateFinished, turnFinished);
-      }
-      else {
-        updateFinished(success, savedGame);
-      }
-    });
-  });
-}
-
-//------------------------------------------------------------------------------
-// Save the given game object in the db with the given game id
-function saveGame(gid, game, callback) {
-  //save the game model changes to the database
-  log.debug("saving game state for game " + gid);
-  var updateObject = {};
-  var currentTurnNumber = getCurrentTurnNumber(game);
-  updateObject['turns.' + currentTurnNumber] = getTurn(game, currentTurnNumber);
-  if (currentTurnNumber > 1) {
-    var previousTurnNumber = currentTurnNumber - 1;
-    var previousTurn = getTurn(game, previousTurnNumber);
-    updateObject['turns.' + previousTurnNumber + '.attacks'] = previousTurn.attacks;
-    updateObject['turns.' + previousTurnNumber + '.defends'] = previousTurn.defends;
-    updateObject['turns.' + previousTurnNumber + '.investments'] = previousTurn.investments;
-  }
-  db.update({ _id: gid }, { $set: updateObject }, function (err) {
-    if (err) {
-      log.error("failed to save new data: " + err);
-    }
-
-    // Respond to the client when the save is done
-    if (callback !== undefined) {
-      callback();
-    }
-  });
-};
-
-//------------------------------------------------------------------------------
 // Is the given user one of our players?
 function isValidPlayer(game, user) {
 
@@ -165,12 +116,14 @@ function onConnection(connection) {
   });
   connection.on('data', function(data) {
     var message = JSON.parse(data);
+    var gid = message.data.gid;
+    var user = message.data.user;
     switch (message.request) {
       case GameRequest.GET:
-        getCurrentTurnData(message.data.gid, clients[connection.id]);
+        getCurrentTurnData(clients[connection.id], gid, user);
         break;
       case GameRequest.SUBMIT:
-        submitTurn(message.data.gid, message.data.user, message.data.turnData, clients[connection.id]);
+        addLockedAction(gid, { name: 'Submit Action', callback: submitAction, params: { user: user, action: message.data.action }});
         break;
     }
   });
@@ -178,79 +131,121 @@ function onConnection(connection) {
 
 //------------------------------------------------------------------------------
 // Send a given game state turn and its previous turn state back to the client.
-var getCurrentTurnData = function(gid, client) {
+var getCurrentTurnData = function(client, gid, user) {
+  client.gid = gid;
+  client.user = user;
   db.findById(gid).lean().exec(function (err, gameFound) {
     if (err) {
       log.error("Error finding the game: " + err);
     }
     else if (gameFound) {
-      sendMessage({ request: GameRequest.GET, data: getGameData(gameFound, getCurrentTurnNumber(gameFound)) }, client);
+      sendGameToClient(gameFound, client);
     }
   });
 }
 
 //------------------------------------------------------------------------------
 // Handle the player's pushing of data to the server.
-var submitTurn = function(gid, user, turnData, client) {
-  db.findById(gid).lean().exec(function(err, gameFound) {
-    if (err) {
-      log.error("Could not find the requested game: " + gid);
-      return;
-    }
-    else if (gameFound) {
-      if (user !== undefined && turnData !== undefined) {
-        var previousTurnNumber = getCurrentTurnNumber(gameFound);
-        updateGame(gid, gameFound, user, turnData, function(success) {
-          if (success) {
-            // Update EGS authentication if necessary
-            if (!inDebugMode) {
-              // Send an updated game status to the EGS server.
-              database.getRPC(function (rpcIndex) {
-                auth.sendEGSUpdate(rpcIndex, gid, Util.getCurrentTurn(gameFound));
-              });
-            }
-
-            var currentTurnNumber = getCurrentTurnNumber(gameFound);
-            var gameData = getGameData(gameFound, currentTurnNumber);
-            // Update everyone's game state
-            _.each(clients, function(client) {
-              // Don't send any messages to players in a different game
-              if (client.gid === gid) {
-                // If someone is currently in playback, just inform them of new turns
-                if (client.playback && previousTurnNumber !== currentTurnNumber) {
-                  var messageData = {};
-                  messageData[GameRequest.NEW] = getTurn(gameFound, currentTurnNumber).roundNumber;
-                  sendMessage(messageData, client);
-                }
-                else if (!client.playback) {
-                  sendMessage(gameData, client);
-                }
-              }
-            });
-          }
-          else {
-            log.error("Invalid turn submission");
-            // "Reset" the player's turn
-            var gameData = getGameData(gameFound, previousTurnNumber);
-            sendMessage(gameData, client);
-          }
-        });
-      }
-      else {
-        log.error("User and/or Actions not provided");
-      }
+var submitAction = function(gid, game, params) {
+  if (!game.paused) {
+    if (params.user !== undefined && params.action !== undefined) {
+      gameController.performAction(game, params.user, params.action);
     }
     else {
-      log.error("Could not find the requested game: " + gid);
+      log.error("User and/or Actions not provided");
     }
+  }
+}
+
+//------------------------------------------------------------------------------
+var addLockedAction = function(gid, action, failCB) {
+  // If no other locked action is currently being performed, create a queue and start executing it
+  if (!updatingGames.hasOwnProperty(gid)) {
+    updatingGames[gid] = [action];
+    db.findById(gid).lean().exec(function(err, game) {
+      if (!err && game) {
+        delete game.__v;
+        delete game._id;
+        performLockedAction(gid, game);
+      }
+      else {
+        if (err) {
+          log.error(err);
+        }
+        else {
+          log.error('Could not find game: ' + gid);
+        }
+        delete updatingGames[gid];
+        if (failCB) {
+          failCB();
+        }
+      }
+    });
+  }
+  // Otherwise just add the action to the queue
+  else {
+    updatingGames[gid].push(action);
+  }
+}
+
+//------------------------------------------------------------------------------
+var performLockedAction = function(gid, game) {
+  // Take the first action off the list
+  var action = updatingGames[gid].shift();
+  // Perform said action
+  action.callback(gid, game, action.params);
+  // If the queue is not empty, perform the next action in the queue
+  if (updatingGames[gid].length > 0) {
+    performLockedAction(gid, game);
+  }
+  // Otherwise get the differences between the previous game state and the current one
+  else {
+    saveGame(gid, game, function() {
+      sendGameToClients(gid, function() {
+        // If the queue is not empty, perform the next action in the queue
+        if (updatingGames[gid].length > 0) {
+          performLockedAction(gid, game, Util.cloneObject(game));
+        }
+        // Otherwise, delete the update queue
+        else {
+          delete updatingGames[gid];
+        }
+      });
+    });
+  }
+}
+
+//------------------------------------------------------------------------------
+// Save the given game object in the db with the given game id
+var saveGame = function(gid, game, finishedCB) {
+  //save the game model changes to the database
+  db.update({ _id: gid }, { $set: game }, function(err) {
+    if (err) {
+      log.error("failed to save new data: " + err);
+    }
+    finishedCB();
+  });
+};
+
+//------------------------------------------------------------------------------
+var sendGameToClients = function(gid, finishedCB) {
+  // Get the freshest version of the game and send to all clients playing this game
+  db.findById(gid).lean().exec(function(err, game) {
+    if (game) {
+      _.each(clients, function(client) {
+        if (client.gid === gid) {
+          sendGameToClient(game, client);
+        }
+      });
+    }
+    finishedCB();
   });
 }
 
 //------------------------------------------------------------------------------
-// Add the bare bones objects to update on the database for the given turn to the given updateObject
-var addTurnUpdate = function(updateObject, game, turnNumber) {
-  updateObject['turns.' + turnNumber] = getTurn(game, turnNumber);
-};
+var sendGameToClient = function(game, client) {
+  sendMessage({ request: GameRequest.GET, data: getGameData(game, getCurrentTurnNumber(game)) }, client);
+}
 
 //------------------------------------------------------------------------------
 // Get the turn number for the current turn
@@ -284,13 +279,4 @@ var getGameData = function(game, turnNumber) {
 // Send message to client
 var sendMessage = function(message, client) {
   client.connection.write(JSON.stringify({ socketType: SocketType.GAME, message: message }));
-}
-
-//------------------------------------------------------------------------------
-// Do all players have roles assigned?
-var areAllPlayersObservers = function(turn) {
-  // If we can't find a player with an invalid role, then they all have roles
-  return _.find(turn.players, function(player) {
-    return player.role !== Role.OBSERVER;
-  }) === undefined;
 }
