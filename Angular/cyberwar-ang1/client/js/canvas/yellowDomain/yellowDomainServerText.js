@@ -23,7 +23,7 @@ var yellowBaseText = new Konva.Text({
 });
 
 var y1Text = new Konva.Text({
-  text: '1',
+  text: nodeValOne,
   x: pt_y1Hex_X,
   y: pt_y1Hex_Y,
   offset: {
@@ -41,7 +41,7 @@ var y1Text = new Konva.Text({
 });
 
 var y2Text = new Konva.Text({
-  text: '2',
+  text: nodeValOne,
   x: pt_y2Hex_X,
   y: pt_y2Hex_Y,
   offset: {
@@ -59,7 +59,7 @@ var y2Text = new Konva.Text({
 });
 
 var y3Text = new Konva.Text({
-  text: '3',
+  text: nodeValOne,
   x: pt_y3Hex_X,
   y: pt_y3Hex_Y,
   offset: {
@@ -77,7 +77,7 @@ var y3Text = new Konva.Text({
 });
 
 var y4Text = new Konva.Text({
-  text: '4',
+  text: nodeValOne,
   x: pt_y4Hex_X,
   y: pt_y4Hex_Y,
   offset: {
@@ -96,7 +96,7 @@ var y4Text = new Konva.Text({
 
 
 var y5Text = new Konva.Text({
-  text: '5',
+  text: nodeValOne,
   x: pt_y5Hex_X,
   y: pt_y5Hex_Y,
   offset: {
@@ -115,7 +115,7 @@ var y5Text = new Konva.Text({
 
 
 var y6Text = new Konva.Text({
-  text: '6',
+  text: nodeValOne,
   x: pt_y6Hex_X,
   y: pt_y6Hex_Y,
   offset: {
@@ -134,7 +134,7 @@ var y6Text = new Konva.Text({
 
 
 var y7Text = new Konva.Text({
-  text: '7',
+  text: nodeValOne,
   x: pt_y7Hex_X,
   y: pt_y7Hex_Y,
   offset: {
@@ -153,7 +153,7 @@ var y7Text = new Konva.Text({
 
 
 var y8Text = new Konva.Text({
-  text: '8',
+  text: nodeValOne,
   x: pt_y8Hex_X,
   y: pt_y8Hex_Y,
   offset: {
