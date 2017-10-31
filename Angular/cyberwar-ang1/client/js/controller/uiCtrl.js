@@ -9,7 +9,6 @@ app.controller('uiCtrl', ['$scope', 'GameState', function($scope, GameState) {
 
   // ----------------------------------------------------------------------------
   function onGameStateChanged() {
-    $scope.actionPoints = GameState.currentActionPoints;
     updateMeters();
   }
 
@@ -29,6 +28,7 @@ app.controller('uiCtrl', ['$scope', 'GameState', function($scope, GameState) {
 
   // ----------------------------------------------------------------------------
   var updateMeters = function() {
+    $scope.actionPoints = GameState.currentActionPoints;
     $scope.researchMeters = {};
     _.each(ResearchType, function(type) {
       var researchPaid = GameState.currentPlayerData.research[type];

@@ -27,7 +27,10 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.invest = function(type, amount) {
-    this.currentInvestments[type] = Math.max(0, Math.min(Math.min(amount, this.getInvestmentRemaining(type)), this.currentActionPoints));
+    amount = Math.max(0, Math.min(Math.min(amount, this.getInvestmentRemaining(type)), this.currentInvestments[type] + this.currentActionPoints));
+    var pointChange = this.currentInvestments[type] - amount;
+    this.currentInvestments[type] = amount;
+    this.currentActionPoints += pointChange;
     //cbListener.triggerAll();
   }
 
