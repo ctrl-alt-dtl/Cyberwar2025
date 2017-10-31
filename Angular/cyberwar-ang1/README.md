@@ -111,51 +111,54 @@ respectively.
 ![ScreenShot](documentation/img/initialRound.png)
 ## Konva Object Naming Conventions
 Using the Red Domain (a.k.a. "DotEvil") as an example:
-  - Red Base = rBase
-  - Red Server Nodes = r[#]Hex (e.g. r1Hex, r2Hex,..., r8Hex)
+  - Red Base = `rBase`
+  - Red Server Nodes = r[#]Hex (e.g. `r1Hex`, `r2Hex`,..., `r8Hex`)
   - Red Primary/Overt Links:
-    - Red Base = rBaseToR1Hex & rBaseToR2Hex
-    - Red Server Nodes = r1HexToR3Hex, r2HexToR5Hex, etc.
+    - Red Base = `rBaseToR1Hex` & `rBaseToR2Hex`
+    - Red Server Nodes = `r1HexToR3Hex`, `r2HexToR5Hex`, etc.
   - Red Exploit/Covert Links:
-    - Red Base: r1rBaseExploit & r2rBaseExploit
-    - Red Server Nodes = r1r3Exploit, r2r5Exploit, etc.
-
-    PLEASE NOTE:
-    Naming convention order of movement in a player domain goes from Tier 4 (Base, r1Hex, & r2Hex)
-      up to Tier 3 and then inward to the center. From there it goes to Tier 2, then Tier 1.
-    ```  
-                ->[Node8]<-                 #Tier 1
-               |           |
-            ->[Node6]-->[Node7]<-           #Tier 2
-           |       ^     ^       |
-           |        \   /        |
-       ->[Node3]-->[Node4]<--[Node5]<-      #Tier 3
-      |                               |
-    [Node1]<--------[Base]-------->[Node2]  #Tier 4
-    ```
-
-    The order of movement around the board is clockwise (e.g. Red -> Purple -> Blue -> Green -> Yellow -> Orange -> Red).
-    This applies for inter-domain primary and exploit links. The only confusion is in the center of Tier 1
-      where a player has to skip past their near-domain neighbor three other far domains.
-      For example, when "Red8Hex" has to cross to "Blue8Hex", "Green8Hex", and "Yellow8Hex" directly
-      the primary/exploit links do not go through Purple or Orange.
-
+    - Red Base: `r1rBaseExploit` & `r2rBaseExploit`
+    - Red Server Nodes = `r1r3Exploit`, `r2r5Exploit`, etc.
+    
 Inter-Domain Link Naming Conventions:
   Again these are named in a clockwise fashion.
   So with Red ("DotEvil") to Purple ("WMDeez") the Primary/Overt links are:
-  Tier 4: R1HexP2Hex
-  Tier 3: R3HexP5Hex
-  Tier 2: R6HexP7Hex
-  Tier 1: R8HexP8Hex (Note: In this case Red and Purple are near neighbors)
+  Tier 4: `R1HexP2Hex`
+  Tier 3: `R3HexP5Hex`
+  Tier 2: `R6HexP7Hex`
+  Tier 1: `R8HexP8Hex` (Note: In this case Red and Purple are near neighbors)
 
 
   Exploit/Covert links are slightly different:
-  Tier 4: r1p2Exploit
-  Tier 3: r3p5Exploit
-  Tier 2: r6p7Exploit
-  Tier 1: r8p8Exploit
+  Tier 4: `r1p2Exploit`
+  Tier 3: `r3p5Exploit`
+  Tier 2: `r6p7Exploit`
+  Tier 1: `r8p8Exploit`
   (There is reason why lower case was used here, it just is. However, it can be changed fairly easily.)
-## Konva Object Flow
+
+### Konva Object Flow
+The order of movement around the board is clockwise (e.g. `Red -> Purple -> Blue -> Green -> Yellow -> Orange -> Red`).
+This applies for inter-domain primary and exploit links. The only confusion is in the center of Tier 1
+  where a player has to skip past their near-domain neighbor three other far domains.
+  For example, when "Red8Hex" has to cross to "Blue8Hex", "Green8Hex", and "Yellow8Hex" directly
+  the primary/exploit links do not go through Purple or Orange.
+
+Naming convention order of movement in a player domain goes from Tier 4 (`rBase`, `r1Hex`, & `r2Hex`)
+  up to Tier 3 and then inward to the center. From there it goes to Tier 2, then Tier 1.
+```  
+            ->[Node8]<-                 #Tier 1
+           |           |
+        ->[Node6]-->[Node7]<-           #Tier 2
+       |       ^     ^       |
+       |        \   /        |
+   ->[Node3]-->[Node4]<--[Node5]<-      #Tier 3
+  |                               |
+[Node1]<--------[Base]-------->[Node2]  #Tier 4
+```
+
+Tier 8 inter-domain links are a lot more complicated since from `o8Hex`<-`r8Hex`->`p8Hex` are near domain neighbors, but 
+`r8Hex`->`b8Hex`, `r8Hex`->`g8Hex`,`r8Hex`->`y8Hex` are distant domains. 
+
 ## Cyber Effects 
 #### Defensive Cyberspace Operations (DCO)
 ##### Secure
