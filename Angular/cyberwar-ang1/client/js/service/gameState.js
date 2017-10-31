@@ -58,6 +58,6 @@ angular.module('CyberWar')
       return 3;
     }
     // After that it's one for every acquired or exploited node
-    return 0;
+    return 3;
   }
 }]);
