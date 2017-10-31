@@ -25,9 +25,10 @@ var researchSchema = new Schema(research, { _id: false });
 
 // Schema for a player
 var playerSchema = new Schema({
-  name     : { type: String, default: '' },            // The player's name
-  color    : { type: String, default: Color.INVALID }, // What color the player is playing as
-  research : researchSchema,                           // What research this player has done
+  name        : { type: String, default: '' },            // The player's name
+  color       : { type: String, default: Color.INVALID }, // What color the player is playing as
+  research    : researchSchema,                           // What research this player has done
+  investments : researchSchema,                           // How much the player invested in each research type this turn
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

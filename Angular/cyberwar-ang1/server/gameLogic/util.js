@@ -28,6 +28,7 @@ this.addNewTurn = function(game, turnToCopy) {
 
   // Reset player information every round
   newTurn.players.forEach(function(player) {
+    delete player.investments;
   });
 
   return newTurn;

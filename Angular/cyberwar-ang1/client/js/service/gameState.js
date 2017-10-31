@@ -2,7 +2,7 @@ angular.module('CyberWar')
 .service('GameState', ['GameUtil', function(GameUtil) {
   var cbListener = new Gambit.CallbackListener();
 
-  this.maxInvestment = 8;
+  var maxInvestment = 8;
 
   //---------------------------------------------------------------------------
   this.addListener = function(callback) {
@@ -16,13 +16,26 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.gameStateUpdated = function(gameData, turnNumber) {
-    this.currentTurnNumber = turnNumber;
     this.currentGameState = gameData;
     this.currentPlayerData = GameUtil.findPlayerByColor(gameData.players, this.currentPlayer);
-    this.currentActionPoints = getCurrentActionPoints(this.currentTurnNumber, this.currentPlayerData);
-    this.currentInvestments = {};
-    _.each(ResearchType, function(type) { this.currentInvestments[type] = 0 }, this);
-    cbListener.triggerAll();
+    // We only care about when the turn number actually changes, otherwise our local actions may be overwritten
+    if (this.currentTurnNumber != turnNumber) {
+      this.currentTurnNumber = turnNumber;
+      this.currentActionPoints = getCurrentActionPoints(this.currentTurnNumber, this.currentPlayerData);
+      if (this.currentPlayerData.investments) {
+        this.currentInvestments = this.currentPlayerData.investments;
+      }
+      else {
+        this.currentInvestments = {};
+        _.each(ResearchType, function(type) { this.currentInvestments[type] = 0 }, this);
+      }
+      cbListener.triggerAll();
+    }
+  }
+
+  //---------------------------------------------------------------------------
+  this.submittedTurn = function() {
+    return this.currentPlayerData && this.currentPlayerData.investments;
   }
 
   //---------------------------------------------------------------------------
@@ -31,12 +44,11 @@ angular.module('CyberWar')
     var pointChange = this.currentInvestments[type] - amount;
     this.currentInvestments[type] = amount;
     this.currentActionPoints += pointChange;
-    //cbListener.triggerAll();
   }
 
   //---------------------------------------------------------------------------
   this.getInvestmentRemaining = function(type) {
-    return 8 - this.currentPlayerData.research[type];
+    return maxInvestment - this.currentPlayerData.research[type];
   }
 
   //---------------------------------------------------------------------------
