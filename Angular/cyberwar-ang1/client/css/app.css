@@ -105,8 +105,9 @@
 }
 .minusPlusBtn {
     background-color: white;
-    border: 1px solid black;
+    border: .5px solid black;
     width: 50%;
+    float: left;
     color: black;
     text-align: center;
     text-decoration: none;

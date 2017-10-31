@@ -46,13 +46,15 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
       // $rootScope.effectsNumOCO = 4;
       // $rootScope.effectsNumCNE = 3;
 
-      $rootScope.effectsL2DCO = 'white';
+     /*
+     $rootScope.effectsL2DCO = 'white';
       $rootScope.effectsL2OCO = 'white';
       $rootScope.effectsL2CNE = 'white';
 
       $rootScope.effectsL3DCO = 'white';
       $rootScope.effectsL3OCO = 'white';
       $rootScope.effectsL3CNE = 'white';
+      */
       // END HARD CODED TESTING VALUES
 
 
@@ -64,7 +66,7 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
 
         // Modal Callback Function
         // Looking to use this to call the attacker ID as a means for adjudication with the defender point.
-        console.log(rBase.id());
+        // console.log(rBase.id());
         scope.callbackFn();
       });
 
@@ -115,8 +117,8 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
 
         // TESTING
         // Modal Callback Function (ATTEMPT TO FILL A HEX ONCLICK)
-        scope.callbackFnTest(r1Hex.fill(purpleColor));
-        //$rootScope.actionPoints--;
+        // scope.callbackFnTest(r1Hex.fill(purpleColor));
+        // $rootScope.actionPoints--;
         domainsLayer.draw();
       });
       domainsGroup.add(scope.konvaobj);
@@ -207,8 +209,8 @@ app.directive('gameBoardRed3Hex', function ($rootScope, $timeout) {
         });
 
         // TESTING
-        scope.callbackFnTest(r3Hex.fill(purpleColor));
-        //$rootScope.actionPoints--;
+        // scope.callbackFnTest(r3Hex.fill(purpleColor));
+        // $rootScope.actionPoints--;
         domainsLayer.draw();
       });
       domainsGroup.add(scope.konvaobj);
