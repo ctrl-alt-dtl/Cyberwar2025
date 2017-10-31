@@ -1,12 +1,18 @@
 // Blue Domain Links
-app.directive('gameBoardBbaseB1OvertLink', function () {
+app.directive('gameBoardBbaseB1OvertLink', ['GameState', function (GameState)  {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(bBaseToB1Hex);
       bBaseToB1Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+      function onGameStateChanged(){
         if((bBase.fill() === blueColor) && (b1Hex.fill() === blueColor)) {
           bBaseToB1Hex.stroke(blueColor);
           domainsLayer.draw();
@@ -17,19 +23,26 @@ app.directive('gameBoardBbaseB1OvertLink', function () {
           domainsLayer.draw();
         }
         // Positive link building to base is allowed but no one can control/occupy another player's base.
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardBbaseB2OvertLink', function () {
+app.directive('gameBoardBbaseB2OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(bBaseToB2Hex);
       bBaseToB2Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if((bBase.fill() === blueColor) && (b2Hex.fill() === blueColor)) {
           bBaseToB2Hex.stroke(blueColor);
           domainsLayer.draw();
@@ -38,19 +51,26 @@ app.directive('gameBoardBbaseB2OvertLink', function () {
           bBaseToB2Hex.stroke(noColor);
           domainsLayer.batchDraw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB1B3OvertLink', function () {
+app.directive('gameBoardB1B3OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b1HexToB3Hex);
       b1HexToB3Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b1Hex.fill() === redColor) && (b3Hex.fill() === redColor)) {
           b1HexToB3Hex.stroke(redColor);
           domainsLayer.draw();
@@ -111,19 +131,26 @@ app.directive('gameBoardB1B3OvertLink', function () {
           b1HexToB3Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB2B5OvertLink', function () {
+app.directive('gameBoardB2B5OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b2HexToB5Hex);
       b2HexToB5Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b2Hex.fill() === redColor) && (b5Hex.fill() === redColor)) {
           b2HexToB5Hex.stroke(redColor);
           domainsLayer.draw();
@@ -184,19 +211,26 @@ app.directive('gameBoardB2B5OvertLink', function () {
           b2HexToB5Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB3B4OvertLink', function () {
+app.directive('gameBoardB3B4OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b3HexToB4Hex);
       b3HexToB4Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b3Hex.fill() === redColor) && (b4Hex.fill() === redColor)) {
           b3HexToB4Hex.stroke(redColor);
           domainsLayer.draw();
@@ -257,19 +291,26 @@ app.directive('gameBoardB3B4OvertLink', function () {
           b3HexToB4Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB5B4OvertLink', function () {
+app.directive('gameBoardB5B4OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b5HexToB4Hex);
       b5HexToB4Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b5Hex.fill() === redColor) && (b4Hex.fill() === redColor)) {
           b5HexToB4Hex.stroke(redColor);
           domainsLayer.draw();
@@ -330,19 +371,26 @@ app.directive('gameBoardB5B4OvertLink', function () {
           b5HexToB4Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB3B6OvertLink', function () {
+app.directive('gameBoardB3B6OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b3HexToB6Hex);
       b3HexToB6Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b3Hex.fill() === redColor) && (b6Hex.fill() === redColor)) {
           b3HexToB6Hex.stroke(redColor);
           domainsLayer.draw();
@@ -403,19 +451,26 @@ app.directive('gameBoardB3B6OvertLink', function () {
           b3HexToB6Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB5B7OvertLink', function () {
+app.directive('gameBoardB5B7OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b5HexToB7Hex);
       b5HexToB7Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b5Hex.fill() === redColor) && (b7Hex.fill() === redColor)) {
           b5HexToB7Hex.stroke(redColor);
           domainsLayer.draw();
@@ -476,19 +531,26 @@ app.directive('gameBoardB5B7OvertLink', function () {
           b5HexToB7Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB4B6OvertLink', function () {
+app.directive('gameBoardB4B6OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b4HexToB6Hex);
       b4HexToB6Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b4Hex.fill() === redColor) && (b6Hex.fill() === redColor)) {
           b4HexToB6Hex.stroke(redColor);
           domainsLayer.draw();
@@ -549,19 +611,26 @@ app.directive('gameBoardB4B6OvertLink', function () {
           b4HexToB6Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB4B7OvertLink', function () {
+app.directive('gameBoardB4B7OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b4HexToB7Hex);
       b4HexToB7Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b4Hex.fill() === redColor) && (b7Hex.fill() === redColor)) {
           b4HexToB7Hex.stroke(redColor);
           domainsLayer.draw();
@@ -622,19 +691,26 @@ app.directive('gameBoardB4B7OvertLink', function () {
           b4HexToB7Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB6B7OvertLink', function () {
+app.directive('gameBoardB6B7OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b6HexToB7Hex);
       b6HexToB7Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b6Hex.fill() === redColor) && (b7Hex.fill() === redColor)) {
           b6HexToB7Hex.stroke(redColor);
           domainsLayer.draw();
@@ -695,19 +771,26 @@ app.directive('gameBoardB6B7OvertLink', function () {
           b6HexToB7Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB6B8OvertLink', function () {
+app.directive('gameBoardB6B8OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b6HexToB8Hex);
       b6HexToB8Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b6Hex.fill() === redColor) && (b8Hex.fill() === redColor)) {
           b6HexToB8Hex.stroke(redColor);
           domainsLayer.draw();
@@ -768,19 +851,26 @@ app.directive('gameBoardB6B8OvertLink', function () {
           b6HexToB8Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);
 
-app.directive('gameBoardB7B8OvertLink', function () {
+app.directive('gameBoardB7B8OvertLink', ['GameState', function (GameState) {
   return {
     restrict: 'A',
     link: function (scope) {
       linksGroup.add(b7HexToB8Hex);
       b7HexToB8Hex.stroke(noColor);
 
-      scope.$watch(function() {
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
         if ((b7Hex.fill() === redColor) && (b8Hex.fill() === redColor)) {
           b7HexToB8Hex.stroke(redColor);
           domainsLayer.draw();
@@ -841,7 +931,7 @@ app.directive('gameBoardB7B8OvertLink', function () {
           b7HexToB8Hex.stroke(noColor);
           domainsLayer.draw();
         }
-      });
+      };
     }
   }
-});
+}]);

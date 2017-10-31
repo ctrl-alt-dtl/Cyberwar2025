@@ -1,5 +1,5 @@
 // Inter Domain Links
-app.directive('gameBoardR1P2OvertLink', function () {
+app.directive('gameBoardR1P2OvertLink', ['GameState', function (GameState) {
     return {
       restrict: 'A',
       link: function (scope) {
@@ -7,7 +7,14 @@ app.directive('gameBoardR1P2OvertLink', function () {
         linksGroup.add(R1HexP2Hex);
         R1HexP2Hex.stroke(noColor);
 
-        scope.$watch(function() {
+        GameState.addListener(onGameStateChanged);
+
+        // ----------------------------------------------------------------------------
+        scope.$on('$destroy', function() {
+          GameState.removeListener(onGameStateChanged);
+        });
+
+        function onGameStateChanged() {
           if((r1Hex.fill() === redColor) && (p2Hex.fill() === redColor)) {
             R1HexP2Hex.stroke(redColor);
             domainsLayer.draw();
@@ -32,7 +39,7 @@ app.directive('gameBoardR1P2OvertLink', function () {
             R1HexP2Hex.stroke(orangeColor);
             domainsLayer.draw();
           }
-        });
+        };
       }
     }
-  });
+  }]);
