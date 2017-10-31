@@ -7,24 +7,25 @@
 // Blue Base Outline
 var bBase = new Konva.Line({
   points: [
-    pt_bBase1Hex_X,       // X1
-    pt_bBase1Hex_Y,       // Y1
-    point_x / 3.28,       // X2
-    point_y / 4.65,       // Y2
-    point_x / 4.57,       // X3
-    point_y / 2.4,        // Y3
-    pt_bBase2Hex_X,       // X4
-    pt_bBase2Hex_Y,       // Y4
-    point_x / 5.26,       // X5
-    point_y / 2.52,       // Y5
-    point_x / 3.6,        // X6
-    point_y / 5.15        // Y6
+    konvaHexPositions[Color.BLUE][0].x1, // X1
+    konvaHexPositions[Color.BLUE][0].y1, // Y1
+    point_x / 3.28,                      // X2
+    point_y / 4.65,                      // Y2
+    point_x / 4.57,                      // X3
+    point_y / 2.4,                       // Y3
+    konvaHexPositions[Color.BLUE][0].x2, // X4
+    konvaHexPositions[Color.BLUE][0].y2, // Y4
+    point_x / 5.26,                      // X5
+    point_y / 2.52,                      // Y5
+    point_x / 3.6,                       // X6
+    point_y / 5.15                       // Y6
   ],
   fill: blueColor,
   stroke: 'black',
   strokeWidth: 2,
   closed: true
 });
+konvaHexes[Color.BLUE][0] = bBase;
 
 var b1Hex = new Konva.RegularPolygon({
   x: konvaHexPositions[Color.BLUE][1].x,

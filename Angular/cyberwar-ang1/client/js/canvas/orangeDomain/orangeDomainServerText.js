@@ -21,6 +21,7 @@ var orangeBaseText = new Konva.Text({
   fill: '#FFF',
   rotation: 300
 });
+konvaHexTexts[Color.ORANGE][0] = orangeBaseText;
 
 var o1Text = new Konva.Text({
   text: nodeValOne,

@@ -1,10 +1,11 @@
 angular.module('CyberWar')
-.directive('serverNode', ['GameState', 'GameUtil', '$rootScope', '$timeout', function(GameState, GameUtil, $rootScope, $timeout) {
+.directive('serverNode', ['GameState', 'GameUtil', function(GameState, GameUtil) {
   function link($scope, element, attrs) {
     GameState.addListener(onGameStateChanged);
 
     var hex = GameUtil.getHex($scope.color, $scope.index);
     var text = GameUtil.getHexText($scope.color, $scope.index);
+    domainsGroup.add(hex, text);
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
@@ -18,43 +19,19 @@ angular.module('CyberWar')
       domainsGroup.draw();
     }
 
-    // add server point to the domain
-    domainsGroup.add(hex, text);
-
-    var nodePosition = GameUtil.getHexPosition($scope.color, $scope.index);
-    var options = {
-      x: nodePosition.x,
-      y: nodePosition.y,
-      sides: 6,
-      radius: radius,
-      stroke: 'black',
-      strokeWidth: 2,
-      rotation: 90,
-      id: 'r1HexListener'
-    }
-
-    $scope.konvaobj = new Konva.RegularPolygon(options);
-    // add cursor styling
-    $scope.konvaobj.on('mouseover', function () {
+    // add event handling
+    hex.on('mouseover', function () {
       document.body.style.cursor = 'pointer';
     });
-    $scope.konvaobj.on('mouseout', function () {
+    hex.on('mouseout', function () {
       document.body.style.cursor = 'default';
-      $rootScope.$emit("CANVAS-MOUSEOUT");
     });
-
-    $scope.konvaobj.on('click', function () {
-      console.log($scope.color + " Hex " + $scope.index);
-      $timeout(function() {
-        // Implement server point on-click logic here
-      });
-
-      // TESTING
-      // Modal Callback Function (ATTEMPT TO FILL A HEX ONCLICK)
-      // scope.callbackFnTest(r1Hex.fill(purpleColor));
-      domainsLayer.draw();
+    hex.on('click', function () {
+      if ($scope.callbackFn) {
+        $scope.$apply($scope.callbackFn({ color: $scope.color, index: $scope.index }));
+      }
     });
-    domainsGroup.add($scope.konvaobj);
+    text.listening(false);
   }
   return {
     link: link,

@@ -21,6 +21,7 @@ var purpleBaseText = new Konva.Text({
   fill: '#FFF',
   rotation: 60
 });
+konvaHexTexts[Color.PURPLE][0] = purpleBaseText;
 
 var p1Text = new Konva.Text({
   text: nodeValOne,

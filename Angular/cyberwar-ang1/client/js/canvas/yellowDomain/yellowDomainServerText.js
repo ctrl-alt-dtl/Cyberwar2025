@@ -21,6 +21,7 @@ var yellowBaseText = new Konva.Text({
   fill: '#FFF',
   rotation: 240
 });
+konvaHexTexts[Color.YELLOW][0] = yellowBaseText;
 
 var y1Text = new Konva.Text({
   text: nodeValOne,

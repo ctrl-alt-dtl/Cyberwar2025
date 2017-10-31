@@ -10,6 +10,16 @@ app.controller('canvasCtrl', ['$scope', 'GameState', 'GameUtil', '$uibModal', '$
   });
 
   // ----------------------------------------------------------------------------
+  $scope.playerBaseClicked = function(color, index) {
+    console.log(color + " Base Clicked");
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.serverNodeClicked = function(color, index) {
+    console.log(color + " Hex " + index + " Clicked");
+  }
+
+  // ----------------------------------------------------------------------------
   function onGameStateChanged() {
     drawBoard(GameState.currentPlayerData);
   }

@@ -21,6 +21,7 @@ var greenBaseText = new Konva.Text({
   fill: '#FFF',
   rotation: 180
 });
+konvaHexTexts[Color.GREEN][0] = greenBaseText;
 
 var g1Text = new Konva.Text({
   text: nodeValOne,
@@ -37,7 +38,7 @@ var g1Text = new Konva.Text({
   fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
-  rotation: -DOMAIN_LAYER_BOARD_ROTATION
+  rotation: -DOMAIN_LAYER_BOARD_ROTATION,
 });
 konvaHexTexts[Color.GREEN][1] = g1Text;
 
@@ -75,7 +76,7 @@ var g3Text = new Konva.Text({
   fontSize: serverTextSize,
   fill: '#FFF',
   visible: textVisible,
-  rotation: -DOMAIN_LAYER_BOARD_ROTATION
+  rotation: -DOMAIN_LAYER_BOARD_ROTATION,
 });
 konvaHexTexts[Color.GREEN][3] = g3Text;
 
