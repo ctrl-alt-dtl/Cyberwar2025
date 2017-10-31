@@ -51,6 +51,7 @@
     <script src="service/socket.js"></script>
 
     <!-- Angular Directives -->
+    <script src="directive/overtLink.js"></script>
     <script src="directive/playerBase.js"></script>
     <script src="directive/researchTable.js"></script>
     <script src="directive/serverNode.js"></script>
@@ -98,162 +99,30 @@
                 </script>
                 <!--END MODAL TESTING-->
 
-                <!--RED DOMAIN SERVER NODES-->
+                <overt-link ng-repeat="overtLink in overtLinks" node-a="overtLink.nodeA" node-b="overtLink.nodeB"></overt-link>
+
                 <div ng-repeat="(key, color) in Color">
                   <player-base color="color" callback-fn="playerBaseClicked(color)"></player-base>
                   <server-node ng-repeat="item in nodesPerDomain track by $index" color="color" index="$index + 1" callback-fn="serverNodeClicked(color, index)"></server-node>
                 </div>
-
-                <!--RED DOMAIN OVERT LINKS-->
-                <div data-game-board-rbase-r1-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-rbase-r2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r1-r3-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r2-r5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r3-r4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r5-r4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r3-r6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r4-r6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r4-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r5-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r6-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r6-r8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r7-r8-overt-link id="canvasOvertLink"></div>
 
                 <!--RED DOMAIN EXPLOIT LINKS-->
                 <div data-game-board-r1-r3-exploit-link id="canvasExploitLink"></div>
                 <div data-game-board-r3-r4-exploit-link id="canvasExploitLink"></div>
                 <div data-game-board-r3-r6-exploit-link id="canvasExploitLink"></div>
 
-            <!--END RED DOMAIN-->
-
-                <!--PURPLE DOMAIN OVERT LINKS-->
-                <div data-game-board-pbase-p1-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-pbase-p2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p1-p3-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p2-p5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p3-p4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p5-p4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p3-p6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p4-p6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p4-p7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p5-p7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p6-p7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p6-p8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p7-p8-overt-link id="canvasOvertLink"></div>
-
                 <!--PURPLE DOMAIN EXPLOIT LINKS-->
-
-            <!--END PURPLE DOMAIN-->
-
-                <!--BLUE DOMAIN OVERT LINKS-->
-                <div data-game-board-bbase-b1-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-bbase-b2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b1-b3-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b2-b5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b3-b4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b5-b4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b3-b6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b5-b7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b4-b6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b4-b7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b6-b7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b6-b8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b7-b8-overt-link id="canvasOvertLink"></div>
 
                 <!--BLUE DOMAIN EXPLOIT LINKS-->
 
-            <!--END BLUE DOMAIN-->
-
-                <!--GREEN DOMAIN OVERT LINKS-->
-                <div data-game-board-gbase-g1-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-gbase-g2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g1-g3-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g2-g5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g3-g4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g5-g4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g3-g6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g5-g7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g4-g6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g4-g7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g6-g7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g6-g8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g7-g8-overt-link id="canvasOvertLink"></div>
-
                 <!--GREEN DOMAIN EXPLOIT LINKS-->
-
-            <!--END GREEN DOMAIN-->
-
-                <!--YELLOW DOMAIN OVERT LINKS-->
-                <div data-game-board-ybase-y1-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-ybase-y2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y1-y3-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y2-y5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y3-y4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y5-y4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y3-y6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y5-y7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y4-y6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y4-y7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y6-y7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y6-y8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y7-y8-overt-link id="canvasOvertLink"></div>
 
                 <!--YELLOW DOMAIN EXPLOIT LINKS-->
 
-            <!--END YELLOW DOMAIN-->
-
-                <!--ORANGE DOMAIN OVERT LINKS-->
-                <div data-game-board-obase-o1-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-obase-o2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o1-o3-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o2-o5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o3-o4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o5-o4-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o3-o6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o5-o7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o4-o6-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o4-o7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o6-o7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o6-o8-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o7-o8-overt-link id="canvasOvertLink"></div>
-
                 <!--ORANGE DOMAIN EXPLOIT LINKS-->
-
-            <!--END ORANGE DOMAIN-->
 
                 <!--INTER-DOMAIN EXPLOIT LINKS-->
                 <div data-game-board-r1-p2-exploit-link id="canvasExploitLink"></div>
-                <!--INTER-DOMAIN OVERT LINKS-->
-                <!--RED TO PURPLE-->
-                <div data-game-board-r1-p2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r3-p5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r6-p7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-r8-p8-overt-link id="canvasOvertLink"></div>
-                <!--PURPLE TO BLUE-->
-                <div data-game-board-p1-b2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p3-b5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p6-b7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-p8-b8-overt-link id="canvasOvertLink"></div>
-                <!--BLUE TO GREEN-->
-                <div data-game-board-b1-g2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b3-g5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b6-g7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-b8-g8-overt-link id="canvasOvertLink"></div>
-                <!--GREEN TO YELLOW-->
-                <div data-game-board-g1-y2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g3-y5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g6-y7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-g8-y8-overt-link id="canvasOvertLink"></div>
-                <!--YELLOW TO ORANGE-->
-                <div data-game-board-y1-o2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y3-o5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y6-o7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-y8-o8-overt-link id="canvasOvertLink"></div>
-                <!--ORANGE TO RED-->
-                <div data-game-board-o1-r2-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o3-r5-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o6-r7-overt-link id="canvasOvertLink"></div>
-                <div data-game-board-o8-r8-overt-link id="canvasOvertLink"></div>
             </div>
 
         <!-- UI/Cyber Effects Window Area -->
@@ -309,16 +178,7 @@
     <script src="client/js/controller/uiCtrl.js"></script>
     <script src="client/js/controller/modalInstanceCtrl.js"></script>
 
-
     <!--DIRECTIVES-->
-    <script src="client/js/directive/overtLinks/redDomainOvertLinks.js"></script>
-    <script src="client/js/directive/overtLinks/purpleDomainOvertLinks.js"></script>
-    <script src="client/js/directive/overtLinks/blueDomainOvertLinks.js"></script>
-    <script src="client/js/directive/overtLinks/greenDomainOvertLinks.js"></script>
-    <script src="client/js/directive/overtLinks/yellowDomainOvertLinks.js"></script>
-    <script src="client/js/directive/overtLinks/orangeDomainOvertLinks.js"></script>
-    <script src="client/js/directive/overtLinks/interDomainOvertLinks.js"></script>
-
     <script src="client/js/directive/exploitLinks/redDomainExploitLinks.js"></script>
     <script src="client/js/directive/exploitLinks/interDomainExploitLinks.js"></script>
 
@@ -328,37 +188,30 @@
 
     <!--CANVAS DOMAINS-->
     <script src="client/js/canvas/redDomain/redDomainServers.js"></script>
-    <script src="client/js/canvas/redDomain/redDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/redDomain/redDomainExploitLinks.js"></script>
     <script src="client/js/canvas/redDomain/redDomainServerText.js"></script>
 
     <script src="client/js/canvas/purpleDomain/purpleDomainSevers.js"></script>
-    <script src="client/js/canvas/purpleDomain/purpleDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
     <script src="client/js/canvas/purpleDomain/purpleDomainServerText.js"></script>
 
     <script src="client/js/canvas/blueDomain/blueDomainServers.js"></script>
-    <script src="client/js/canvas/blueDomain/blueDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/blueDomain/blueDomainExploitLinks.js"></script>
     <script src="client/js/canvas/blueDomain/blueDomainServerText.js"></script>
 
     <script src="client/js/canvas/greenDomain/greenDomainServers.js"></script>
-    <script src="client/js/canvas/greenDomain/greenDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/greenDomain/greenDomainExploitLinks.js"></script>
     <script src="client/js/canvas/greenDomain/greenDomainServerText.js"></script>
 
     <script src="client/js/canvas/yellowDomain/yellowDomainServers.js"></script>
-    <script src="client/js/canvas/yellowDomain/yellowDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/yellowDomain/yellowDomainServerText.js"></script>
     <script src="client/js/canvas/yellowDomain/yellowDomainExploitLinks.js"></script>
 
     <script src="client/js/canvas/orangeDomain/orangeDomainServers.js"></script>
-    <script src="client/js/canvas/orangeDomain/orangeDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
     <script src="client/js/canvas/orangeDomain/orangeDomainServerText.js"></script>
 
     <!--CANVAS INTER-DOMAIN-->
-    <script src="client/js/canvas/interDomain/interDomainPrimaryLinks.js"></script>
     <script src="client/js/canvas/interDomain/interDomainExploitLinks.js"></script>
 
 </div>

@@ -36,7 +36,7 @@ this.SharedUtil = function(_) {
 
   //------------------------------------------------------------------------------
   // Get the server node from the given domain color and index
-  this.getServerNode = function(serverNodes, domainColor, index) {
-    return _.find(serverNodes, function(serverNode) { return serverNode.domainColor == domainColor && serverNode.index == index; });
+  this.getServerNode = function(serverNodes, color, index) {
+    return _.find(serverNodes, function(serverNode) { return serverNode.location.color == color && serverNode.location.index == index; });
   }
 }

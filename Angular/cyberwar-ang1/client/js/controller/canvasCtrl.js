@@ -22,6 +22,7 @@ app.controller('canvasCtrl', ['$scope', 'GameState', 'GameUtil', '$uibModal', '$
   // ----------------------------------------------------------------------------
   function onGameStateChanged() {
     drawBoard(GameState.currentPlayerData);
+    $scope.overtLinks = GameState.currentGameState.overtLinks;
   }
 
   // MODAL TEST

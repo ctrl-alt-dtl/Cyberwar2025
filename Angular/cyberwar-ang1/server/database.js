@@ -32,18 +32,30 @@ var playerSchema = new Schema({
 }, { _id: false });
 
 // Schema for a server node
-var serverNodeScheme = new Schema({
-  domainColor : { type: String, default: '' }, // The color of the player domain this node is in
-  index       : { type: Number, default: 0 },  // The index of the node
-  ownerColor  : { type: String, default: '' }, // The color of the node's owner
-  strength    : { type: Number, default: 0 },  // The current server node strength
+var nodeLocationSchema = new Schema({
+  color : { type: String, default: '' }, // The color of the player domain this node is in
+  index : { type: Number, default: 0 },  // The index of the node
+}, { _id: false });
+
+// Schema for a server node
+var serverNodeSchema = new Schema({
+  location   : nodeLocationSchema,            // The node's location
+  ownerColor : { type: String, default: '' }, // The color of the node's owner
+  strength   : { type: Number, default: 0 },  // The current server node strength
+}, { _id: false });
+
+// Schema for a server node
+var overtLinkSchema = new Schema({
+  nodeA : nodeLocationSchema, // One of the linked nodes
+  nodeB : nodeLocationSchema, // The other linked node
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn
 var turnSchema = new Schema({
   roundNumber : { type: Number, default: 0 }, // Which round number is it
   players     : [playerSchema],               // The state of all players at the beginning of this turn
-  serverNodes : [serverNodeScheme],           // The list of all server nodes on the board
+  serverNodes : [serverNodeSchema],           // The list of all server nodes on the board
+  overtLinks  : [overtLinkSchema],            // The list of all overt links on the board
 }, { _id: false });
 
 // Schema for our game.
