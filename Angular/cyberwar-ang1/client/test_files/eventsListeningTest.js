@@ -1,4 +1,3 @@
-/*
 var change = 'true'; // false will change it
 
 var yellowServerCount = 8;
@@ -24,11 +23,11 @@ var y3HexListener = new Konva.RegularPolygon({
 });
 
 // onlick change
-/!*y1Hex.on('click', function () {
+/*y1Hex.on('click', function () {
   var fill = this.fill() === yellowColor ? 'red' : yellowColor;
   this.fill(fill);
   domainsLayer.draw();
-});*!/
+});*/
 
 y1HexListener.on('click', function () {
   var fill = y1Hex.fill() === yellowColor ? orangeColor : yellowColor;
@@ -117,7 +116,7 @@ r3r6Exploit.on('mousemove', function() {
     y: mousePos.y + 5,
   });
 
-  /!*
+  /*
     var complexText = new Konva.Text({
       x: 60,
       y: 60,
@@ -145,7 +144,7 @@ r3r6Exploit.on('mousemove', function() {
     cornerRadius: 10
   });
   toolTips.add(rect, complexText);
-  *!/
+  */
 
   toolTipRect.show();
   toolTipText.text("WMDeez\nFrostByte");
@@ -240,7 +239,7 @@ toolTipLayer.add(toolTipRect, toolTipText);
 // this.y5Hex.fill('blue');
 
 
-/!*
+/*
 var tween;
 
 document.getElementById('activate').addEventListener('click', function() {
@@ -254,5 +253,4 @@ document.getElementById('activate').addEventListener('click', function() {
     fill:'red'
   }).play();
 }, false);
-*!/
 */
