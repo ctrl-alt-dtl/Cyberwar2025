@@ -35,7 +35,7 @@ this server is:
 npm start
 ```
 
-Now browse to the app at [`localhost:8080/index.html`][local-app-url].
+Now browse to the app at [`localhost:8080/`][local-app-url].
 
 
 ## Directory Layout
@@ -159,19 +159,79 @@ Inter-Domain Link Naming Conventions:
 ## Cyber Effects 
 #### Defensive Cyberspace Operations (DCO)
 ##### Secure
+The Secure cyber effect is the base action for all defensive operations. 
+Secure hardens the player's server node by increasing its defensive value against attacks. 
+This defensive value is also used as the attack value when launching OCO and CNE cyber effects on other players. 
 ![ScreenShot](documentation/img/secure.png)
 ##### Expel
+Expel is a level-two cyber effect that removes any covertly hidden, or exploiting, 
+players that reside on your overtly controlled server nodes. 
+Expel can also be used by exploiting players to remove other players as well as the player overtly controlling 
+that server node; however, successful adjudication using Expel from a player who is covertly on that server node 
+will reduce defensive level of that server node to the base value of one. 
 ![ScreenShot](documentation/img/expel.png)
 ##### Analyze
+Analyze is the highest level cyber effect in the DCO table. 
+Analyze is a similar but more effective version of the CNE Scan cyber effect because it can scan the player's entire 
+network of linked server nodes to reveal any exploited players residing on the player's network. 
+Analyze also can attribute Manipulate cyber effects to the launching attacker.
 ![ScreenShot](documentation/img/analyze.png)
 
 #### Offensive Cyberspace Operations (OCO)
 ##### Acquire
+The Acquire cyber effect is the base action for all offensive operations. 
+Acquire captures adjacent server nodes on the map. If the nearby server node is unoccupied, 
+acquire automatically captures that server node for the player. However, if the adjacent server node is occupied 
+by another player then the defensive value from the player's launching server node and the defending player's 
+server node are factored together, along with the dice roll (see Niels' Method), 
+to adjudicate who controls the contested server node. Players who lost in defending against an acquire attack 
+in their own local domain can see which player attacked them; however, if a defending player's 
+server node is lost outside their local domain then that server node is displayed as neutral server node. 
+Attacking players cannot acquire opposing player bases.
 ![ScreenShot](documentation/img/acquire.png)
 ##### Manipulate
+Manipulate is a level-two cyber effect that is similar to the level-one Acquire effect. 
+The only difference with Manipulate is that, if successful in adjudication and in the defending player's local domain, 
+the attacking player can misattribute the acquire action launched and deceive the 
+defending player as another player on the board. 
 ![ScreenShot](documentation/img/manipulate.png)
 ##### Deny
-![ScreenShot](documentation/img/deny.png)
+Deny is the highest level cyber effect in the OCO table and is a permanent cyber effect 
+which renders the attacked server node as unusable for all players for the remainder of the game. 
+Deny essentially destroys that server node on the map and further restricts player movement on the board.
+![ScreenShot](documentation/img/deny.png
+
+#### Computer Network Exploitation (CNE)
+##### Scan
+The Scan cyber effect is the base action for all exploitation operations. 
+Scan is a reconnaissance effect that identifies adjacent server nodes' defensive value 
+as well as any overt and covert links that are established to and from that server node. 
+Scan can be used internally of the player's domain to identify localized threats as well as externally 
+of the player's domain when strategizing consecutive moves. 
+![ScreenShot](documentation/img/scan.png)
+##### Exploit
+Exploit is a level-two cyber effect that is similar to the level-one Acquire effect in the OCO table except 
+that Exploit is a covert acquire, therefore the action is not revealed to the defending player. 
+There can be several exploiting players "stacked" on one server node and the identities of these 
+players are not revealed until either a Scan or Analyze effect has been launched by a player. 
+Players on exploited server nodes can also launch overt cyber effects, but the attacking value is 
+either the overt value of that server node or one, if not overtly controlled. 
+Attacking players cannot exploit opposing player bases. 
+![ScreenShot](documentation/img/exploit.png)
+##### Implant
+Implant is the highest level cyber effect in the CNE table. 
+Implant has two separate effects depending on if it is launched on a regular server node or an opposing player's base. 
+If launched on a regular server node, then the defensive value of that server node is reduced to one 
+and then the attacking player can stack, or conjunctively launch, another OCO or CNE effect to gain access 
+to that server node. If Implant is launched on a base, then the effect resembles that of a ransomware attack 
+on the defending player. When is implanted with the ransomware, the defending player is effectively locked out 
+of their network and can only attempt to remove the ransomware by expelling it from their base, 
+if Expel has been researched and if the player has enough action/research points to launch the cyber effects. 
+The ransomware effect only lasts five rounds and after those five rounds have passed, the defending player 
+will be free of the ransomware attack and can continue play. Otherwise the defending player either has to pay out 
+their total amount of action/research points from server nodes they own to be free of the ransomware. 
+Also, attacking players cannot acquire opposing player bases.
+![ScreenShot](documentation/img/implant.png)
 
 
 [angularjs]: https://angularjs.org/
@@ -182,7 +242,7 @@ Inter-Domain Link Naming Conventions:
 [jdk]: https://wikipedia.org/wiki/Java_Development_Kit
 [jdk-download]: http://www.oracle.com/technetwork/java/javase/downloads
 [karma]: https://karma-runner.github.io/
-[local-app-url]: http://localhost:8000/index.html
+[local-app-url]: http://localhost:8000/
 [node]: https://nodejs.org/
 [npm]: https://www.npmjs.org/
 [protractor]: http://www.protractortest.org/
