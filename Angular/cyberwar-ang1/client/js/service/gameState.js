@@ -2,8 +2,6 @@ angular.module('CyberWar')
 .service('GameState', ['GameUtil', function(GameUtil) {
   var cbListener = new Gambit.CallbackListener();
 
-  var maxInvestment = 8;
-
   //---------------------------------------------------------------------------
   this.addListener = function(callback) {
     cbListener.addListener(callback);
@@ -35,7 +33,7 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.submittedTurn = function() {
-    return this.currentPlayerData && this.currentPlayerData.investments;
+    return this.currentPlayerData && GameUtil.hasPlayerTakenTurn(this.currentPlayerData);
   }
 
   //---------------------------------------------------------------------------
@@ -48,7 +46,7 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.getInvestmentRemaining = function(type) {
-    return maxInvestment - this.currentPlayerData.research[type];
+    return GameUtil.Config.MAX_RESEARCH_POINTS - this.currentPlayerData.research[type];
   }
 
   //---------------------------------------------------------------------------

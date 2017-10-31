@@ -27,8 +27,8 @@ var pBase = new Konva.Line({
 });
 
 var p1Hex = new Konva.RegularPolygon({
-  x: pt_p1Hex_X,
-  y: pt_p1Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][1].x,
+  y: konvaHexPositions[Color.PURPLE][1].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -37,10 +37,11 @@ var p1Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p1Hex'
 });
+konvaHexes[Color.PURPLE][1] = p1Hex;
 
 var p2Hex = new Konva.RegularPolygon({
-  x: pt_p2Hex_X,
-  y: pt_p2Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][2].x,
+  y: konvaHexPositions[Color.PURPLE][2].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -49,10 +50,11 @@ var p2Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p2Hex'
 });
+konvaHexes[Color.PURPLE][2] = p2Hex;
 
 var p3Hex = new Konva.RegularPolygon({
-  x: pt_p3Hex_X,
-  y: pt_p3Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][3].x,
+  y: konvaHexPositions[Color.PURPLE][3].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -61,10 +63,11 @@ var p3Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p3Hex'
 });
+konvaHexes[Color.PURPLE][3] = p3Hex;
 
 var p4Hex = new Konva.RegularPolygon({
-  x: pt_p4Hex_X,
-  y: pt_p4Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][4].x,
+  y: konvaHexPositions[Color.PURPLE][4].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -73,10 +76,11 @@ var p4Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p4Hex'
 });
+konvaHexes[Color.PURPLE][4] = p4Hex;
 
 var p5Hex = new Konva.RegularPolygon({
-  x: pt_p5Hex_X,
-  y: pt_p5Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][5].x,
+  y: konvaHexPositions[Color.PURPLE][5].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -85,10 +89,11 @@ var p5Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p5Hex'
 });
+konvaHexes[Color.PURPLE][5] = p5Hex;
 
 var p6Hex = new Konva.RegularPolygon({
-  x: pt_p6Hex_X,
-  y: pt_p6Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][6].x,
+  y: konvaHexPositions[Color.PURPLE][6].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -97,10 +102,11 @@ var p6Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p6Hex'
 });
+konvaHexes[Color.PURPLE][6] = p6Hex;
 
 var p7Hex = new Konva.RegularPolygon({
-  x: pt_p7Hex_X,
-  y: pt_p7Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][7].x,
+  y: konvaHexPositions[Color.PURPLE][7].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -109,10 +115,11 @@ var p7Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p7Hex'
 });
+konvaHexes[Color.PURPLE][7] = p7Hex;
 
 var p8Hex = new Konva.RegularPolygon({
-  x: pt_p8Hex_X,
-  y: pt_p8Hex_Y,
+  x: konvaHexPositions[Color.PURPLE][8].x,
+  y: konvaHexPositions[Color.PURPLE][8].y,
   sides: 6,
   radius: radius,
   fill: 'purple',
@@ -121,4 +128,4 @@ var p8Hex = new Konva.RegularPolygon({
   rotation: 90,
   id: 'p8Hex'
 });
-
+konvaHexes[Color.PURPLE][8] = p8Hex;

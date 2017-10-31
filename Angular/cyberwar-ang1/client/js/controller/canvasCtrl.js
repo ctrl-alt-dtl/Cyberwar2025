@@ -1,6 +1,8 @@
 var app = angular.module('CyberWar');
-app.controller('canvasCtrl', ['$scope', 'GameState', '$uibModal', '$log', '$document', function($scope, GameState, $uibModal, $log, $document){
+app.controller('canvasCtrl', ['$scope', 'GameState', 'GameUtil', '$uibModal', '$log', '$document', function($scope, GameState, GameUtil, $uibModal, $log, $document){
   GameState.addListener(onGameStateChanged);
+  $scope.Color = Color;
+  $scope.nodesPerDomain = new Array(GameUtil.Config.SERVER_NODES_PER_DOMAIN);
 
   // ----------------------------------------------------------------------------
   $scope.$on('$destroy', function() {

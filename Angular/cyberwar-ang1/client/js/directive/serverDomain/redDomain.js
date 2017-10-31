@@ -76,14 +76,24 @@ app.directive('gameBoardRedBase', function ($rootScope, $timeout) {
 });
 
 // Hex1
-app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
+app.directive('gameBoardRed1Hex', ['GameState', 'GameUtil', '$rootScope', '$timeout', function(GameState, GameUtil, $rootScope, $timeout) {
   return {
     restrict: 'AE',
     scope: {
       callbackFnTest: '&callbackFnTest'
     },
     link: function (scope) {
-      // console.log("gameBoardRed1HexLoading");
+      GameState.addListener(onGameStateChanged);
+
+      // ----------------------------------------------------------------------------
+      scope.$on('$destroy', function() {
+        GameState.removeListener(onGameStateChanged);
+      });
+
+      function onGameStateChanged() {
+        var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, Color.RED, 1);
+        r1Hex.fill(GameUtil.getColor(serverNode.ownerColor));
+      }
 
       // add server point to the domain
       domainsGroup.add(r1Hex, r1Text);
@@ -124,7 +134,7 @@ app.directive('gameBoardRed1Hex', function ($rootScope, $timeout) {
       domainsGroup.add(scope.konvaobj);
     }
   }
-});
+}]);
 
 // Hex 2
 app.directive('gameBoardRed2Hex', function ($rootScope, $timeout) {

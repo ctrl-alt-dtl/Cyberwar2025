@@ -24,8 +24,8 @@ var yellowBaseText = new Konva.Text({
 
 var y1Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y1Hex_X,
-  y: pt_y1Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][1].x,
+  y: konvaHexPositions[Color.YELLOW][1].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -39,11 +39,12 @@ var y1Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
+konvaHexTexts[Color.YELLOW][1] = y1Text;
 
 var y2Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y2Hex_X,
-  y: pt_y2Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][2].x,
+  y: konvaHexPositions[Color.YELLOW][2].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -57,11 +58,12 @@ var y2Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
+konvaHexTexts[Color.YELLOW][2] = y2Text;
 
 var y3Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y3Hex_X,
-  y: pt_y3Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][3].x,
+  y: konvaHexPositions[Color.YELLOW][3].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -75,11 +77,12 @@ var y3Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
+konvaHexTexts[Color.YELLOW][3] = y3Text;
 
 var y4Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y4Hex_X,
-  y: pt_y4Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][4].x,
+  y: konvaHexPositions[Color.YELLOW][4].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -93,12 +96,12 @@ var y4Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
-
+konvaHexTexts[Color.YELLOW][4] = y4Text;
 
 var y5Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y5Hex_X,
-  y: pt_y5Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][5].x,
+  y: konvaHexPositions[Color.YELLOW][5].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -112,12 +115,12 @@ var y5Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
-
+konvaHexTexts[Color.YELLOW][5] = y5Text;
 
 var y6Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y6Hex_X,
-  y: pt_y6Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][6].x,
+  y: konvaHexPositions[Color.YELLOW][6].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -131,12 +134,12 @@ var y6Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
-
+konvaHexTexts[Color.YELLOW][6] = y6Text;
 
 var y7Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y7Hex_X,
-  y: pt_y7Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][7].x,
+  y: konvaHexPositions[Color.YELLOW][7].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -150,12 +153,12 @@ var y7Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
-
+konvaHexTexts[Color.YELLOW][7] = y7Text;
 
 var y8Text = new Konva.Text({
   text: nodeValOne,
-  x: pt_y8Hex_X,
-  y: pt_y8Hex_Y,
+  x: konvaHexPositions[Color.YELLOW][8].x,
+  y: konvaHexPositions[Color.YELLOW][8].y,
   offset: {
     x: text_offset_x,
     y: text_offset_y
@@ -169,6 +172,7 @@ var y8Text = new Konva.Text({
   visible: textVisible,
   rotation: -DOMAIN_LAYER_BOARD_ROTATION
 });
+konvaHexTexts[Color.YELLOW][8] = y8Text;
 
 rotationChangedListener.addListener(function() {
   y1Text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);

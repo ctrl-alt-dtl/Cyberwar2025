@@ -18,6 +18,15 @@ var bgLayer = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
 var toolTipLayer = new Konva.Layer();
 
+var konvaHexes = {};
+var konvaHexTexts = {};
+var konvaHexPositions = {};
+_.each(Color, function(color) {
+  konvaHexes[color] = {};
+  konvaHexTexts[color] = {};
+  konvaHexPositions[color] = {};
+});
+
 var bgGroup = new Konva.Group({
   width: BASE_BOARD_HEIGHT,
   height: BASE_BOARD_HEIGHT,
