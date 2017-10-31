@@ -9,7 +9,6 @@ We have two kinds of dependencies in this project: tools and Angular framework c
 us manage and test the application.
 
 * We get the tools we depend upon via `npm`, the [Node package manager][npm].
-* We get the Angular code via `bower`, a [client-side code package manager][bower].
 * In order to run the end-to-end tests, you will also need to have the
   [Java Development Kit (JDK)][jdk] installed on your machine. Check out the section on
   [end-to-end testing](#e2e-testing) for more info.
@@ -19,12 +18,9 @@ We have preconfigured `npm` to automatically run `bower` so we can simply do:
 ```
 npm install
 ```
-
-Behind the scenes this will also call `bower install`. After that, you should find out that you have
-two new folders in your project.
+After that, you should find out that you have one new folder in your project.
 
 * `node_modules` - contains the npm packages for the tools needed
-* `bower_components` - is not used in this project
 
 ### Run the Application
 
@@ -102,9 +98,8 @@ script:
 npm run update-deps
 ```
 
-This will call `npm update` and `bower update`, which in turn will find and install the latest
-versions that match the version ranges specified in the `package.json` and `bower.json` files
-respectively.
+This will call `npm update`, which in turn will find and install the latest
+versions that match the version ranges specified in the `package.json` file respectively.
 
 # CyberWar:2025 Game Specific Development Documentation
 ## Board Layout
