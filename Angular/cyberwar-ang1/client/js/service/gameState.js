@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.service('GameState', ['GameUtil', function(GameUtil) {
+.service('GameState', ['CurrentInvestments', 'CurrentOrders', 'GameUtil', function(CurrentInvestments, CurrentOrders, GameUtil) {
   var cbListener = new Gambit.CallbackListener();
 
   //---------------------------------------------------------------------------
@@ -19,13 +19,17 @@ angular.module('CyberWar')
     // We only care about when the turn number actually changes, otherwise our local actions may be overwritten
     if (this.currentTurnNumber != turnNumber) {
       this.currentTurnNumber = turnNumber;
-      this.currentActionPoints = getCurrentActionPoints(this.currentTurnNumber, this.currentPlayerData);
-      if (this.currentPlayerData.investments) {
-        this.currentInvestments = this.currentPlayerData.investments;
+      if (this.submittedTurn()) {
+        this.currentActionPoints = 0;
+        CurrentInvestments.setInvestments(this.currentPlayerData.investments);
+        CurrentOrders.setOrders(this.currentPlayerData.orders);
       }
       else {
-        this.currentInvestments = {};
-        _.each(ResearchType, function(type) { this.currentInvestments[type] = 0 }, this);
+        this.currentActionPoints = getCurrentActionPoints(this.currentTurnNumber, this.currentPlayerData);
+        var investments = {};
+        _.each(ResearchType, function(type) { investments[type] = 0 }, this);
+        CurrentInvestments.setInvestments(investments);
+        CurrentOrders.setOrders([]);
       }
       cbListener.triggerAll();
     }
@@ -38,10 +42,22 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.invest = function(type, amount) {
-    amount = Math.max(0, Math.min(Math.min(amount, this.getInvestmentRemaining(type)), this.currentInvestments[type] + this.currentActionPoints));
-    var pointChange = this.currentInvestments[type] - amount;
-    this.currentInvestments[type] = amount;
+    amount = Math.max(0, Math.min(Math.min(amount, this.getInvestmentRemaining(type)), CurrentInvestments.getInvestment(type) + this.currentActionPoints));
+    var pointChange = CurrentInvestments.getInvestment(type) - amount;
     this.currentActionPoints += pointChange;
+    CurrentInvestments.setInvestment(type, amount);
+  }
+
+  //---------------------------------------------------------------------------
+  this.addOrder = function(order) {
+    this.currentActionPoints -= order.cost;
+    CurrentOrders.addOrder(order);
+  }
+
+  //---------------------------------------------------------------------------
+  this.removeOrder = function(index) {
+    this.currentActionPoints += CurrentOrders.getOrder(index).cost;
+    CurrentOrders.removeOrder(index);
   }
 
   //---------------------------------------------------------------------------

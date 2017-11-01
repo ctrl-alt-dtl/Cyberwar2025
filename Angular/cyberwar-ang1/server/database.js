@@ -18,10 +18,23 @@ var Schema = mongoose.Schema;
 //------------------------------------------------------------------------------
 // Game Data
 
+// Schema for a server node's location
+var nodeLocationSchema = new Schema({
+  color : { type: String, default: '' }, // The color of the player domain this node is in
+  index : { type: Number, default: 0 },  // The index of the node
+}, { _id: false });
+
 // Schema for research
 var research = {};
 _.each(ResearchType, function(type) { research[type] = { type: Number, default: 0 }});
 var researchSchema = new Schema(research, { _id: false });
+
+// Schema for an action order
+var orderSchema = new Schema({
+  action : { type: String, default: '' }, // The ActionType of the action to perform
+  node   : nodeLocationSchema,            // The node to perform the action on
+  color  : { type: String, default: '' }, // (Manipulate actions only) The color to use for the action
+}, { _id: false });
 
 // Schema for a player
 var playerSchema = new Schema({
@@ -29,12 +42,7 @@ var playerSchema = new Schema({
   color       : { type: String, default: '' }, // What color the player is playing as
   research    : researchSchema,                // What research this player has done
   investments : researchSchema,                // How much the player invested in each research type this turn
-}, { _id: false });
-
-// Schema for a server node
-var nodeLocationSchema = new Schema({
-  color : { type: String, default: '' }, // The color of the player domain this node is in
-  index : { type: Number, default: 0 },  // The index of the node
+  orders      : [orderSchema],                 // The actions the player wants to take this turn
 }, { _id: false });
 
 // Schema for a server node

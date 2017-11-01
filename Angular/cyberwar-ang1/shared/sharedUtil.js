@@ -1,7 +1,7 @@
 /*******************************************************************************
  * A set of helper functions for both server and client-side game logic
  ******************************************************************************/
-this.SharedUtil = function(_) {
+this.SharedUtil = function(_, Color) {
   //------------------------------------------------------------------------------
   this.Config = {
     SERVER_NODES_PER_DOMAIN: 8,
@@ -33,7 +33,7 @@ this.SharedUtil = function(_) {
   //------------------------------------------------------------------------------
   // Has this player taken their turn?
   this.hasPlayerTakenTurn = function(player) {
-    return player.investments;
+    return player.investments || player.orders.length > 0;
   }
 
   //------------------------------------------------------------------------------

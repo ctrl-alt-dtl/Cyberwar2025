@@ -2,7 +2,8 @@
  * The main game logic controller that manages the current game state
  ******************************************************************************/
 var _ = require("underscore");
-this.Shared = new (require("../../shared/sharedUtil.js").SharedUtil)(_);
+var Color = require("../../shared/color.js").Color;
+this.Shared = new (require("../../shared/sharedUtil.js").SharedUtil)(_, Color);
 
 //------------------------------------------------------------------------------
 // Get the most recent turn of the game
@@ -29,6 +30,7 @@ this.addNewTurn = function(game, turnToCopy) {
   // Reset player information every round
   newTurn.players.forEach(function(player) {
     delete player.investments;
+    delete player.orders;
   });
 
   return newTurn;

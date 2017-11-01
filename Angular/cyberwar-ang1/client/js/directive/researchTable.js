@@ -1,25 +1,40 @@
 angular.module('CyberWar')
-.directive('researchTable', ['GameState', function(GameState) {
+.directive('researchTable', ['CurrentInvestments', 'CurrentOrders', 'GameState', function(CurrentInvestments, CurrentOrders, GameState) {
   function link($scope, element, attrs) {
-    GameState.addListener(onGameStateChanged);
+    CurrentInvestments.addListener(onInvestmentsChanged);
+    CurrentOrders.addListener(onActionPointsChanged);
     $scope.ResearchType = ResearchType;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
-      GameState.removeListener(onGameStateChanged);
+      CurrentInvestments.addListener(onInvestmentsChanged);
+      CurrentOrders.addListener(onActionPointsChanged);
     });
 
     // ----------------------------------------------------------------------------
-    function onGameStateChanged() {
-      updateMeters();
+    function onInvestmentsChanged() {
+      onActionPointsChanged();
+      $scope.researchMeters = {};
+      _.each(ResearchType, function(type) {
+        var researchPaid = GameState.currentPlayerData.research[type];
+        var currentInvestment = $scope.getCurrentInvestment(type);
+        var costRemaining = GameState.getInvestmentRemaining(type) - currentInvestment;
+        $scope.researchMeters[type] = {
+          research: new Array(researchPaid),
+          currentInvestment: new Array(currentInvestment),
+          costRemaining: new Array(costRemaining),
+        };
+      });
+    }
+
+    // ----------------------------------------------------------------------------
+    function onActionPointsChanged() {
+      $scope.actionPoints = GameState.currentActionPoints;
     }
 
     // ----------------------------------------------------------------------------
     $scope.getCurrentInvestment = function(type) {
-      if (GameState.currentPlayerData) {
-        return GameState.currentInvestments[type];
-      }
-      return 0;
+      return CurrentInvestments.getInvestment(type);
     }
 
     // ----------------------------------------------------------------------------
@@ -33,22 +48,6 @@ angular.module('CyberWar')
         GameState.invest(type, amount);
         updateMeters();
       }
-    }
-
-    // ----------------------------------------------------------------------------
-    var updateMeters = function() {
-      $scope.actionPoints = GameState.currentActionPoints;
-      $scope.researchMeters = {};
-      _.each(ResearchType, function(type) {
-        var researchPaid = GameState.currentPlayerData.research[type];
-        var currentInvestment = $scope.getCurrentInvestment(type);
-        var costRemaining = GameState.getInvestmentRemaining(type) - currentInvestment;
-        $scope.researchMeters[type] = {
-          research: new Array(researchPaid),
-          currentInvestment: new Array(currentInvestment),
-          costRemaining: new Array(costRemaining),
-        };
-      });
     }
   }
   return {

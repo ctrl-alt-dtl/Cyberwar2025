@@ -80,7 +80,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var selectAction = function(selectedNode, action, color) {
-    console.log("Selected: " + action + (color ? " " + color : "") + " Node " + selectedNode.location.color + " " + selectedNode.location.index);
+    GameState.addOrder({ node: selectedNode.location, action: action, color: color, cost: getActionLevel(action) });
   }
 
   // ----------------------------------------------------------------------------
@@ -96,28 +96,30 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var isActionTypeValidForNode = function(actionType, node) {
-    var researchType = getResearchType(actionType);
-    var actionLevel = getActionLevel(actionType)
-    if (researchType && actionLevel > 0 && isActionUnlocked(researchType, actionLevel) && canPlayerAffordAction(actionLevel)) {
-      switch (actionType) {
-        case ActionType.SECURE:
-          return canSecureNode(node);
-        case ActionType.EXPEL:
-          return canExpelNode(node);
-        case ActionType.ANALYZE:
-          return canAnalyzeNode(node);
-        case ActionType.ACQUIRE:
-          return canAcquireNode(node);
-        case ActionType.MANIPULATE:
-          return canManipulateNode(node);
-        case ActionType.DENY:
-          return canDenyNode(node);
-        case ActionType.SCAN:
-          return canScanNode(node);
-        case ActionType.EXPLOIT:
-          return canExploitNode(node);
-        case ActionType.IMPLANT:
-          return canImplantNode(node);
+    if (!GameState.submittedTurn()) {
+      var researchType = getResearchType(actionType);
+      var actionLevel = getActionLevel(actionType);
+      if (researchType && actionLevel > 0 && isActionUnlocked(researchType, actionLevel) && canPlayerAffordAction(actionLevel)) {
+        switch (actionType) {
+          case ActionType.SECURE:
+            return canSecureNode(node);
+          case ActionType.EXPEL:
+            return canExpelNode(node);
+          case ActionType.ANALYZE:
+            return canAnalyzeNode(node);
+          case ActionType.ACQUIRE:
+            return canAcquireNode(node);
+          case ActionType.MANIPULATE:
+            return canManipulateNode(node);
+          case ActionType.DENY:
+            return canDenyNode(node);
+          case ActionType.SCAN:
+            return canScanNode(node);
+          case ActionType.EXPLOIT:
+            return canExploitNode(node);
+          case ActionType.IMPLANT:
+            return canImplantNode(node);
+        }
       }
     }
     return false;

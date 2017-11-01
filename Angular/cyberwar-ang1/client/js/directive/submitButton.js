@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.directive('submitButton', ['GameSocket', 'GameState', function(GameSocket, GameState) {
+.directive('submitButton', ['CurrentInvestments', 'CurrentOrders', 'GameSocket', 'GameState', function(CurrentInvestments, CurrentOrders, GameSocket, GameState) {
   function link($scope, element, attrs) {
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
@@ -8,7 +8,7 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.submit = function() {
-      GameSocket.performAction({ investments: GameState.currentInvestments });
+      GameSocket.performAction({ investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() });
     }
   }
   return {

@@ -1,6 +1,6 @@
 angular.module("CyberWar")
 .service('GameUtil', function() {
-  var sharedUtil = new SharedUtil(_);
+  var sharedUtil = new SharedUtil(_, Color);
   // Add all shared util properties to the GameUtil service object
   Object.getOwnPropertyNames(sharedUtil).forEach(function(propertyName) {
     this[propertyName] = sharedUtil[propertyName];

@@ -35,6 +35,7 @@ this.performAction = function(game, playerColor, action) {
   var currentTurn = Util.getCurrentTurn(game);
   var actingPlayer = Util.Shared.findPlayerByColor(currentTurn.players, playerColor);
   actingPlayer.investments = action.investments;
+  actingPlayer.orders = action.orders;
   if (allPlayersSubmittedTurns(currentTurn)) {
     var newTurn = Util.addNewTurn(game, currentTurn);
     Adjudicator.adjudicateTurn(currentTurn, newTurn);

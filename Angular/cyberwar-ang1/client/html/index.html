@@ -53,6 +53,8 @@
     <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll'])</script>
 
     <!-- Angular Services -->
+    <script src="service/currentInvestments.js"></script>
+    <script src="service/currentOrders.js"></script>
     <script src="service/gameSocket.js"></script>
     <script src="service/gameState.js"></script>
     <script src="service/gameUtil.js"></script>
@@ -61,7 +63,7 @@
 
     <!-- Angular Directives -->
     <script src="directive/exploitLink.js"></script>
-    <script src="directive/ordersAdjudicationList.js"></script>
+    <script src="directive/ordersList.js"></script>
     <script src="directive/overtLink.js"></script>
     <script src="directive/playerBase.js"></script>
     <script src="directive/researchTable.js"></script>
@@ -96,14 +98,7 @@
         <div class="ui-area">
           <research-table></research-table>
           <submit-button></submit-button>
-          <div class="adjudication" style="font-weight:bold">Orders Adjudication:
-            <ul class="adjudicationUnorderedList" ui-scroll-viewport>
-              <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
-                <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
-                <span>{{order.title}}</span>
-              </li>
-            </ul>
-          </div>
+          <orders-list></orders-list>
         </div>
       </div>
     </div>
