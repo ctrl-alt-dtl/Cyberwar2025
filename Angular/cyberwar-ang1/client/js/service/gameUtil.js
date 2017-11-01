@@ -26,16 +26,6 @@ angular.module("CyberWar")
   }
 
   //------------------------------------------------------------------------------
-  this.getHex = function(color, index) {
-    return konvaHexes[color][index];
-  }
-
-  //------------------------------------------------------------------------------
-  this.getHexText = function(color, index) {
-    return konvaHexTexts[color][index];
-  }
-
-  //------------------------------------------------------------------------------
   this.getHexPosition = function(color, index) {
     return konvaHexPositions[color][index];
   }

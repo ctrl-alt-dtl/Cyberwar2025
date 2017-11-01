@@ -19,11 +19,9 @@ var domainsLayer = new Konva.Layer();
 var toolTipLayer = new Konva.Layer();
 
 var konvaHexes = {};
-var konvaHexTexts = {};
 var konvaHexPositions = {};
 _.each(Color, function(color) {
   konvaHexes[color] = {};
-  konvaHexTexts[color] = {};
   konvaHexPositions[color] = {};
 });
 
