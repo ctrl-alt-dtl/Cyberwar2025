@@ -68,7 +68,7 @@ angular.module('CyberWar')
     function onGameStateChanged() {
       var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
       hex.fill(GameUtil.getColor(serverNode.ownerColor));
-      text.text("" + $scope.index);
+      text.text(serverNode.strength);
       text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
       domainsGroup.draw();
     }

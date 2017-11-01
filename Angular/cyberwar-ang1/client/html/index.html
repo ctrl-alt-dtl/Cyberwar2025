@@ -7,7 +7,7 @@
 <!--suppress ALL -->
 
 <html lang="en" ng-app="CyberWar" class="no-js"> <!--<![endif]-->
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CyberWar:2025</title>
@@ -29,8 +29,17 @@
     <script src="lib/angular.min.js"></script>
     <script src="lib/sockjs.min.js"></script>
     <script src="lib/underscore.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
+    <script src="node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
+    <script src="node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
+    <script src="node_modules/howler/dist/howler.js"></script>
+    <script src="node_modules/konva/konva.js"></script>
 
     <!-- Shared Libraries -->
+    <script src="shared/actionType.js"></script>
     <script src="shared/color.js"></script>
     <script src="shared/gameRequest.js"></script>
     <script src="shared/researchType.js"></script>
@@ -57,112 +66,54 @@
     <script src="directive/playerBase.js"></script>
     <script src="directive/researchTable.js"></script>
     <script src="directive/serverNode.js"></script>
+    <script src="directive/serverStatus.js"></script>
     <script src="directive/submitButton.js"></script>
 
     <!-- Angular Controllers -->
     <script src="controller/canvasCtrl.js"></script>
     <script src="controller/game.js"></script>
-    <script src="controller/modalInstanceCtrl.js"></script>
-    <script src="controller/uiCtrl.js"></script>
-</head>
-<body>
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-<div ng-controller="GameController" id="stage-parent">
-    <div id="main-view">
+    <div ng-controller="GameController" id="stage-parent">
+      <div id="main-view">
         <div id="left_aside"></div>
         <div class="board"></div>
-            <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
-                <!--MODAL TESTING-->
+        <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
+          <overt-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB"></overt-link>
+          <exploit-link ng-repeat="link in exploitLinks" node-a="link.nodeA" node-b="link.nodeB"></exploit-link>
 
-                <script type="text/ng-template" id="myModalContent.html">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="modal-title">Cyber Effects & Server Status</h3>
-                    </div>
-                    <div class="modal-body" id="modal-body">
-                        <ul>
-                            <li ng-repeat="item in $ctrl.items">
-                                <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
-
-                                <!--ATTEMPTING TO BUTTONIZE CYBER EFFECTS IN A TABLE FOR EASY MODIFICATION AND LAUNCHING-->
-                                <!--
-                                <button type="button" ng-class="{{ $ctrl.buttonStyle }}" ng-click="$event.preventDefault(); $ctrl.selected.item = item" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-                                    {{ item }}
-                                </button>
-                                -->
-                            </li>
-                        </ul>
-
-                        Selected: <b>{{ $ctrl.selected.item }}</b>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-                        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-                    </div>
-                </script>
-                <!--END MODAL TESTING-->
-
-                <overt-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB"></overt-link>
-                <exploit-link ng-repeat="link in exploitLinks" node-a="link.nodeA" node-b="link.nodeB"></exploit-link>
-
-                <div ng-repeat="(key, color) in Color">
-                  <player-base color="color" callback-fn="playerBaseClicked(color)"></player-base>
-                  <server-node ng-repeat="item in nodesPerDomain track by $index" color="color" index="$index + 1" callback-fn="serverNodeClicked(color, index)"></server-node>
-                </div>
-            </div>
+          <div ng-repeat="(key, color) in Color">
+            <player-base color="color" callback-fn="playerBaseClicked(color)"></player-base>
+            <server-node ng-repeat="item in nodesPerDomain track by $index" color="color" index="$index + 1" callback-fn="serverNodeClicked(color, index)"></server-node>
+          </div>
+        </div>
 
         <!-- UI/Cyber Effects Window Area -->
-        <div class="ui-area" ng-controller="uiCtrl as $ctrl">
-            <research-table></research-table>
-            <submit-button></submit-button>
-            <div class="adjudication" style="font-weight:bold">Orders Adjudication:
-                <ul class="adjudicationUnorderedList" ui-scroll-viewport>
-                    <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
-                        <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
-                        <span>{{order.title}}</span>
-                    </li>
-                </ul>
-            </div>
+        <div class="ui-area">
+          <research-table></research-table>
+          <submit-button></submit-button>
+          <div class="adjudication" style="font-weight:bold">Orders Adjudication:
+            <ul class="adjudicationUnorderedList" ui-scroll-viewport>
+              <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
+                <span class="fa fa-close" ng-click="deleteOrder($index)"></span>
+                <span>{{order.title}}</span>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <!-- TEMPORARY - List population (for testing)
-        <div data-orders-adjudication-list id="canvasOrdersAdjudicationList">
-            <form name="ordersFrm" ng-submit="addOrder()">
-                <input type="text" placeholder="For Orders Adjudication Test" name="newOrder" ng-model="newOrder" required/>
-                <button ng-disabled="ordersFrm.$invalid" ng-click="addOrder()">Add</button>
-        </form>
-        </div>
-        -->
+      </div>
     </div>
 
-    <!-- In production use:
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-    -->
-    <script src="node_modules/angular-route/angular-route.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-    <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
-    <script src="node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
-    <script src="node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
-    <script src="node_modules/howler/dist/howler.js"></script>
-    <script src="node_modules/underscore/underscore.js"></script>
-    <script src="node_modules/konva/konva.js"></script>
-    <!--<script src="app/components/version/version.js"></script>-->
-    <!--<script src="app/components/version/version-directive.js"></script>-->
-    <!--<script src="app/components/version/interpolate-filter.js"></script>-->
-
-    <!--LIBRARIES-->
+    <!-- Konva Canvas stuff has to be loaded after the document is loaded -->
     <script src="client/js/canvas/mainKonvaStage.js"></script>
     <script src="client/js/canvas/domainLibs/konvaConfigSettings.js"></script>
     <script src="client/js/canvas/domainLibs/serverPointCoordinates.js"></script>
     <script src="client/js/canvas/boardItems/mainBoard.js"></script>
     <script src="client/js/canvas/boardItems/mainBoardLinks.js"></script>
     <script src="client/js/canvas/boardItems/interactiveBoxes.js"></script>
-
-    <!--INTERACTION WINDOWS-->
-    <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
-</div>
-</body>
+  </body>
 </html>
