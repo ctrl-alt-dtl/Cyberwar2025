@@ -6,7 +6,6 @@ var BASE_BOARD_HEIGHT = 768; // Don't change because it will alter the CSS layou
  */
 
 var DOMAIN_LAYER_BOARD_ROTATION = 0;
-var rotationChangedListener = new Gambit.CallbackListener();
 
 var stage = new Konva.Stage({
   container: '.board',
@@ -16,12 +15,11 @@ var stage = new Konva.Stage({
 
 var bgLayer = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
+var linksLayer = new Konva.Layer();
 var toolTipLayer = new Konva.Layer();
 
-var konvaHexes = {};
 var konvaHexPositions = {};
 _.each(Color, function(color) {
-  konvaHexes[color] = {};
   konvaHexPositions[color] = {};
 });
 
@@ -132,9 +130,11 @@ imageObj.onload = function() {
   toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
 
   domainsLayer.hide();
-  domainsLayer.add(linksGroup, domainsGroup, exploitLinksGroup);
+  domainsLayer.add(domainsGroup);
 
-  stage.add(bgLayer, domainsLayer, toolTipLayer);
+  linksLayer.add(exploitLinksGroup, linksGroup);
+
+  stage.add(bgLayer, linksLayer, domainsLayer, toolTipLayer);
 };
 
 //---------------------------------------------------------------------------
@@ -163,7 +163,6 @@ var drawBoard = function(playerData) {
   domainsGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
   linksGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
   exploitLinksGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
-  rotationChangedListener.triggerAll();
   domainsLayer.show();
 }
 

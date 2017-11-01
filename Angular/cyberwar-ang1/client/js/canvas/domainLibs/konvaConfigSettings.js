@@ -71,5 +71,5 @@ var dashSize = BASE_BOARD_HEIGHT / 384;
 var dashStroke = BASE_BOARD_HEIGHT / BASE_BOARD_HEIGHT;
 
 // Board Links Size
-var mainLinksStroke = BASE_BOARD_HEIGHT / 192;
+var mainLinksStroke = BASE_BOARD_HEIGHT / 96;
 var exploitLinksStroke = BASE_BOARD_HEIGHT / 192;

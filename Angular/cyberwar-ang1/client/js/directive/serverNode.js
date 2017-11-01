@@ -8,6 +8,7 @@ angular.module('CyberWar')
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
       GameState.removeListener(onGameStateChanged);
+      hex.remove();
       text.remove();
     });
 

@@ -51,6 +51,8 @@
     <script src="service/socket.js"></script>
 
     <!-- Angular Directives -->
+    <script src="directive/exploitLink.js"></script>
+    <script src="directive/ordersAdjudicationList.js"></script>
     <script src="directive/overtLink.js"></script>
     <script src="directive/playerBase.js"></script>
     <script src="directive/researchTable.js"></script>
@@ -58,7 +60,10 @@
     <script src="directive/submitButton.js"></script>
 
     <!-- Angular Controllers -->
+    <script src="controller/canvasCtrl.js"></script>
     <script src="controller/game.js"></script>
+    <script src="controller/modalInstanceCtrl.js"></script>
+    <script src="controller/uiCtrl.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -99,30 +104,13 @@
                 </script>
                 <!--END MODAL TESTING-->
 
-                <overt-link ng-repeat="overtLink in overtLinks" node-a="overtLink.nodeA" node-b="overtLink.nodeB"></overt-link>
+                <overt-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB"></overt-link>
+                <exploit-link ng-repeat="link in exploitLinks" node-a="link.nodeA" node-b="link.nodeB"></exploit-link>
 
                 <div ng-repeat="(key, color) in Color">
                   <player-base color="color" callback-fn="playerBaseClicked(color)"></player-base>
                   <server-node ng-repeat="item in nodesPerDomain track by $index" color="color" index="$index + 1" callback-fn="serverNodeClicked(color, index)"></server-node>
                 </div>
-
-                <!--RED DOMAIN EXPLOIT LINKS-->
-                <div data-game-board-r1-r3-exploit-link id="canvasExploitLink"></div>
-                <div data-game-board-r3-r4-exploit-link id="canvasExploitLink"></div>
-                <div data-game-board-r3-r6-exploit-link id="canvasExploitLink"></div>
-
-                <!--PURPLE DOMAIN EXPLOIT LINKS-->
-
-                <!--BLUE DOMAIN EXPLOIT LINKS-->
-
-                <!--GREEN DOMAIN EXPLOIT LINKS-->
-
-                <!--YELLOW DOMAIN EXPLOIT LINKS-->
-
-                <!--ORANGE DOMAIN EXPLOIT LINKS-->
-
-                <!--INTER-DOMAIN EXPLOIT LINKS-->
-                <div data-game-board-r1-p2-exploit-link id="canvasExploitLink"></div>
             </div>
 
         <!-- UI/Cyber Effects Window Area -->
@@ -173,35 +161,8 @@
     <script src="client/js/canvas/boardItems/mainBoardLinks.js"></script>
     <script src="client/js/canvas/boardItems/interactiveBoxes.js"></script>
 
-    <!--CONTROLLERS-->
-    <script src="client/js/controller/canvasCtrl.js"></script>
-    <script src="client/js/controller/uiCtrl.js"></script>
-    <script src="client/js/controller/modalInstanceCtrl.js"></script>
-
-    <!--DIRECTIVES-->
-    <script src="client/js/directive/exploitLinks/redDomainExploitLinks.js"></script>
-    <script src="client/js/directive/exploitLinks/interDomainExploitLinks.js"></script>
-
     <!--INTERACTION WINDOWS-->
     <script src="client/js/canvas/boardItems/cyberEffectsWindow.js"></script>
-    <script src="client/js/directive/ordersAdjudicationList.js"></script>
-
-    <!--CANVAS DOMAINS-->
-    <script src="client/js/canvas/redDomain/redDomainExploitLinks.js"></script>
-
-    <script src="client/js/canvas/purpleDomain/purpleDomainExploitLinks.js"></script>
-
-    <script src="client/js/canvas/blueDomain/blueDomainExploitLinks.js"></script>
-
-    <script src="client/js/canvas/greenDomain/greenDomainExploitLinks.js"></script>
-
-    <script src="client/js/canvas/yellowDomain/yellowDomainExploitLinks.js"></script>
-
-    <script src="client/js/canvas/orangeDomain/orangeDomainExploitLinks.js"></script>
-
-    <!--CANVAS INTER-DOMAIN-->
-    <script src="client/js/canvas/interDomain/interDomainExploitLinks.js"></script>
-
 </div>
 </body>
 </html>

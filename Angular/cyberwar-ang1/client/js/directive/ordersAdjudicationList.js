@@ -1,4 +1,5 @@
-app.directive('ordersAdjudicationList', function($rootScope) {
+angular.module('CyberWar')
+.directive('ordersAdjudicationList', function($rootScope) {
   return {
     restrict: 'A',
     link: function (scope) {
