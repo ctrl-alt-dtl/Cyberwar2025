@@ -13,6 +13,14 @@ angular.module('CyberWar')
     });
 
     // ----------------------------------------------------------------------------
+    function onGameStateChanged() {
+      var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
+      hex.fill(GameUtil.getColor(serverNode.ownerColor));
+      text.text(serverNode.strength);
+      text.rotation(-DOMAIN_LAYER_BOARD_ROTATION);
+    }
+
+    // ----------------------------------------------------------------------------
     var createKonvaObjects = function(color, index) {
       var hexPosition = GameUtil.getHexPosition(color, index);
 
@@ -64,14 +72,6 @@ angular.module('CyberWar')
       text.listening(false);
     }
 
-    // ----------------------------------------------------------------------------
-    function onGameStateChanged() {
-      var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
-      hex.fill(GameUtil.getColor(serverNode.ownerColor));
-      text.text(serverNode.strength);
-      text.rotation(-DOMAIN_LAYER_BOARD_ROTATION);
-      domainsGroup.draw();
-    }
     createKonvaObjects($scope.color, $scope.index);
   }
   return {

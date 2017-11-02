@@ -129,7 +129,6 @@ imageObj.onload = function() {
 
   toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
 
-  domainsLayer.hide();
   domainsLayer.add(domainsGroup);
 
   linksLayer.add(exploitLinksGroup, linksGroup);
@@ -163,7 +162,12 @@ var drawBoard = function(playerData) {
   domainsGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
   linksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
   exploitLinksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
-  domainsLayer.show();
+}
+
+//---------------------------------------------------------------------------
+var redrawStage = function() {
+  stage.clearCache();
+  stage.draw();
 }
 
 imageObj.src = 'client/img/empty-transparency-bg-1024x768.png';

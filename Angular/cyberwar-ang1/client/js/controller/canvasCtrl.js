@@ -10,6 +10,16 @@ angular.module('CyberWar')
   });
 
   // ----------------------------------------------------------------------------
+  $scope.$watch('redraw', function(redraw) {
+    if (redraw) {
+      $scope.redraw = false;
+    }
+    else {
+      redrawStage();
+    }
+  });
+
+  // ----------------------------------------------------------------------------
   $scope.playerBaseClicked = function(color) {
     $scope.serverNodeClicked(color, 0);
   }
@@ -54,6 +64,7 @@ angular.module('CyberWar')
     drawBoard(GameState.currentPlayerData);
     $scope.overtLinks = GameState.currentGameState.overtLinks;
     //$scope.exploitLinks = GameState.currentGameState.overtLinks;
+    $scope.redraw = true;
   }
 
   // ----------------------------------------------------------------------------
@@ -280,8 +291,8 @@ angular.module('CyberWar')
   var rejectUsedSourceNodes = function(sourceNodes) {
     // Reject any nodes who are being used as a source node in current orders
     return _.reject(sourceNodes, function(node) {
-      return _.any(CurrentOrders.getOrders(), function(order) {
-        return GameUtil.isSameLocation(order.params.source, node);
+      return node.index != 0 && _.any(CurrentOrders.getOrders(), function(order) {
+        return order.params.source && GameUtil.isSameLocation(order.params.source, node);
       });
     });
   }

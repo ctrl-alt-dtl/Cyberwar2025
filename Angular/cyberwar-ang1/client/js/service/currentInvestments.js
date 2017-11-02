@@ -20,6 +20,11 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
+  this.hasInvestments = function() {
+    return _.any(investments, function(investment) { return investment > 0; });
+  }
+
+  //---------------------------------------------------------------------------
   this.setInvestments = function(newInvestments) {
     investments = newInvestments;
     cbListener.triggerAll();

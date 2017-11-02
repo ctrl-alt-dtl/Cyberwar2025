@@ -1,20 +1,29 @@
 angular.module('CyberWar')
-.directive('playerBase', ['GameUtil', function(GameUtil) {
+.directive('playerBase', ['GameState', 'GameUtil', function(GameState, GameUtil) {
   function link($scope, element, attrs) {
+    GameState.addListener(onGameStateChanged);
+
     var hex, text;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
+      GameState.removeListener(onGameStateChanged);
       hex.remove();
       text.remove();
     });
+
+    // ----------------------------------------------------------------------------
+    function onGameStateChanged() {
+      hex.fill(GameUtil.getColor($scope.color));
+      text.text(getBaseText($scope.color));
+    }
 
     // ----------------------------------------------------------------------------
     var createKonvaObjects = function(color) {
       // Create the hex element
       hex = new Konva.Line({
         points: getHexPoints(color),
-        fill: GameUtil.getColor(color),
+        fill: grayColor,
         stroke: 'black',
         strokeWidth: 2,
         closed: true,
@@ -24,7 +33,6 @@ angular.module('CyberWar')
       // Create the text element
       var textPosition = getTextPosition(color);
       text = new Konva.Text({
-        text: getBaseText(color),
         x: textPosition.x,
         y: textPosition.y,
         offset: {

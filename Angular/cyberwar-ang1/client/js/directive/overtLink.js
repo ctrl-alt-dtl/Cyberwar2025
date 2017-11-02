@@ -60,7 +60,6 @@ angular.module('CyberWar')
       else {
         line.stroke(noColor);
       }
-      linksGroup.draw();
     }
     createKonvaObjects($scope.nodeA, $scope.nodeB);
     onGameStateChanged();

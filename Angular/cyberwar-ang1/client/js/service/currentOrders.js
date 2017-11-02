@@ -26,6 +26,11 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
+  this.hasOrders = function() {
+    return orders.length > 0;
+  }
+
+  //---------------------------------------------------------------------------
   this.addOrder = function(order) {
     orders.push(order);
     cbListener.triggerAll();
