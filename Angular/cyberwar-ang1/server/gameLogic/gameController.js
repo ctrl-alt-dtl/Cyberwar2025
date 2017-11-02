@@ -17,7 +17,7 @@ this.initializeNewGame = function(newGame) {
     firstTurn.players.push({ name: color, color: color, research: {} });
 
     // Setup all server nodes for this domain
-    firstTurn.serverNodes.push({ location: { color: color, index: 0}, ownerColor: color }); // Player base
+    firstTurn.serverNodes.push({ location: { color: color, index: 0}, ownerColor: color, strength: 1 }); // Player base
     _.times(Config.SERVER_NODES_PER_DOMAIN, function(index) {
       firstTurn.serverNodes.push({ location: { color: color, index: index + 1 } });
     });

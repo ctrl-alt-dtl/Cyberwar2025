@@ -14,6 +14,17 @@ angular.module('CyberWar')
     }
 
     //---------------------------------------------------------------------------
+    $scope.paramsToString = function(order) {
+      if (order.action == ActionType.ACQUIRE) {
+        return ' from ' + order.params.source.color + ' ' + order.params.source.index;
+      }
+      if (order.action == ActionType.MANIPULATE) {
+        return ' as ' + order.params.color;
+      }
+      return '';
+    }
+
+    //---------------------------------------------------------------------------
     $scope.canCancel = function() {
       return !GameState.submittedTurn();
     }

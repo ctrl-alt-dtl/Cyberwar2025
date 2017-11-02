@@ -46,7 +46,6 @@ angular.module('CyberWar')
     $scope.invest = function(type, amount) {
       if ($scope.canInvest()) {
         GameState.invest(type, amount);
-        updateMeters();
       }
     }
   }

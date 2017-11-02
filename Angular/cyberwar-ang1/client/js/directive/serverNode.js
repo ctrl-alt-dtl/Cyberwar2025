@@ -69,7 +69,7 @@ angular.module('CyberWar')
       var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
       hex.fill(GameUtil.getColor(serverNode.ownerColor));
       text.text(serverNode.strength);
-      text.rotate(-DOMAIN_LAYER_BOARD_ROTATION);
+      text.rotation(-DOMAIN_LAYER_BOARD_ROTATION);
       domainsGroup.draw();
     }
     createKonvaObjects($scope.color, $scope.index);

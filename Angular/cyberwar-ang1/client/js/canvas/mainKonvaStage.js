@@ -160,9 +160,9 @@ var drawBoard = function(playerData) {
       DOMAIN_LAYER_BOARD_ROTATION = 300;
       break;
   }
-  domainsGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
-  linksGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
-  exploitLinksGroup.rotate(DOMAIN_LAYER_BOARD_ROTATION);
+  domainsGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
+  linksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
+  exploitLinksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
   domainsLayer.show();
 }
 

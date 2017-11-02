@@ -19,6 +19,7 @@ angular.module('CyberWar')
   $scope.serverNodeClicked = function(color, index) {
     var selectedNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, color, index);
     var validActions = getValidActions(selectedNode);
+    var ownedAdjacentNodes = getOwnedAdjacentNodes(selectedNode);
     var validColors = getValidColors(selectedNode);
     modalInstance = $uibModal.open({
       animation: true,
@@ -34,6 +35,9 @@ angular.module('CyberWar')
         validActions: function () {
           return validActions;
         },
+        ownedAdjacentNodes: function () {
+          return ownedAdjacentNodes;
+        },
         validColors: function () {
           return validColors;
         },
@@ -41,7 +45,7 @@ angular.module('CyberWar')
     });
 
     modalInstance.result.then(function (selection) {
-      selectAction(selectedNode, selection.action, selection.color);
+      selectAction(selectedNode, selection.action, JSON.parse(angular.toJson(selection.params)));
     }, function () {
     });
   }
@@ -57,30 +61,34 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var getPositivelyLinkedNodes = function(playerColor) {
     var playerBase = GameUtil.getServerNode(GameState.currentGameState.serverNodes, playerColor, 0);
-    var linkedNodes = [playerBase.location];
+    var linkedNodes = [];
     var processedNodes = [];
-    var nodesToProcess = [playerBase];
+    var nodesToProcess = [playerBase.location];
     while(nodesToProcess.length > 0) {
       var nodeBeingProcessed = nodesToProcess.shift();
       if (!GameUtil.isLocationInList(nodeBeingProcessed, processedNodes)) {
         processedNodes.push(nodeBeingProcessed);
-        var neighbors = GameUtil.getNeighbors(nodeBeingProcessed);
-        _.each(neighbors, function(neighbor) {
-          var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
-          // If this node is owned by the player and hasn't been processed, then process it
-          if (serverNode.ownerColor == playerColor && !GameUtil.isLocationInList(neighbor, processedNodes)) {
-            linkedNodes.push(nodeBeingProcessed);
-            nodesToProcess.push(neighbor);
-          }
-        });
+
+        // If the current player owns this node, add it to the list and process its neighbors
+        var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
+        if (serverNode.ownerColor == playerColor) {
+          linkedNodes.push(nodeBeingProcessed);
+          var neighbors = GameUtil.getNeighbors(nodeBeingProcessed);
+          _.each(neighbors, function(neighbor) {
+            // If this node is owned by the player and hasn't been processed, then process it
+            if (!GameUtil.isLocationInList(neighbor, processedNodes)) {
+              nodesToProcess.push(neighbor);
+            }
+          });
+        }
       }
     }
     return linkedNodes;
   }
 
   // ----------------------------------------------------------------------------
-  var selectAction = function(selectedNode, action, color) {
-    GameState.addOrder({ node: selectedNode.location, action: action, color: color, cost: getActionLevel(action) });
+  var selectAction = function(selectedNode, action, params) {
+    GameState.addOrder({ node: selectedNode.location, action: action, params: params, cost: getActionLevel(action) });
   }
 
   // ----------------------------------------------------------------------------
@@ -246,13 +254,26 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var isPlayerBase = function(node) {
-    return node.index == 0;
+    return node.location.index == 0;
   }
 
   // ----------------------------------------------------------------------------
   var isAdjacentToNetwork = function(node) {
-    var neighbors = GameUtil.getNeighbors(node.location);
-    return _.any(neighbors, function(neighbor) { return GameUtil.isLocationInList(neighbor, positivelyLinkedNodes); });
+    return _.any(GameUtil.getNeighbors(node.location), function(neighbor) { return GameUtil.isLocationInList(neighbor, positivelyLinkedNodes); });
+  }
+
+  // ----------------------------------------------------------------------------
+  var getOwnedAdjacentNodes = function(node) {
+    var adjacentNodes = [];
+
+    _.each(GameUtil.getNeighbors(node.location), function(neighbor) {
+      var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
+      if (serverNode.ownerColor == GameState.currentPlayerData.color) {
+        adjacentNodes.push(neighbor);
+      }
+    });
+
+    return adjacentNodes;
   }
 
   // ----------------------------------------------------------------------------

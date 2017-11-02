@@ -33,7 +33,7 @@ var researchSchema = new Schema(research, { _id: false });
 var orderSchema = new Schema({
   action : { type: String, default: '' }, // The ActionType of the action to perform
   node   : nodeLocationSchema,            // The node to perform the action on
-  color  : { type: String, default: '' }, // (Manipulate actions only) The color to use for the action
+  params : { type: Schema.Types.Mixed },  // Parameters for the action
 }, { _id: false });
 
 // Schema for a player
