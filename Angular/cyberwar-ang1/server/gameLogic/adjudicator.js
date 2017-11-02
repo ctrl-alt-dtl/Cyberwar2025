@@ -2,6 +2,7 @@
  * The main game logic controller that manages the current game state
  ******************************************************************************/
 var Attacks = require("./attacks.js");
+var Expel = require("./expel.js");
 var Exploit = require("./exploit.js");
 var Investments = require("./investments.js");
 var Secure = require("./secure.js");
@@ -11,6 +12,7 @@ var Secure = require("./secure.js");
 this.adjudicateTurn = function(prevTurn, newTurn) {
   Investments.applyInvestments(prevTurn, newTurn);
   Secure.performOrders(prevTurn, newTurn);
+  Expel.performOrders(prevTurn, newTurn);
   Attacks.performAttacks(prevTurn, newTurn);
   Exploit.performOrders(prevTurn, newTurn);
 };
