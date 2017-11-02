@@ -164,7 +164,7 @@ This defensive value is also used as the attack value when launching OCO and CNE
 ##### Expel
 Expel is a level-two cyber effect that removes any covertly hidden, or exploiting, 
 players that reside on your overtly controlled server nodes. 
-Expel can also be used by exploiting players to remove other players as well as the player overtly controlling 
+Expel can also be used by exploiting players to remove other players but not the player overtly controlling 
 that server node; however, successful adjudication using Expel from a player who is covertly on that server node 
 will reduce defensive level of that server node to the base value of one. 
 ![ScreenShot](documentation/img/expel.png)
@@ -197,7 +197,7 @@ defending player as another player on the board.
 Deny is the highest level cyber effect in the OCO table and is a permanent cyber effect 
 which renders the attacked server node as unusable for all players for the remainder of the game. 
 Deny essentially destroys that server node on the map and further restricts player movement on the board.
-![ScreenShot](documentation/img/deny.png
+![ScreenShot](documentation/img/deny.png)
 
 #### Computer Network Exploitation (CNE)
 ##### Scan
