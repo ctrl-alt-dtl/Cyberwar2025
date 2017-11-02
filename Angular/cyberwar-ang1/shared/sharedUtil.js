@@ -43,6 +43,14 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
+  this.getServerNodeDisplayedColor = function(serverNode, playerColor) {
+    if (serverNode.manipulateColor && playerColor != serverNode.ownerColor) {
+      return serverNode.manipulateColor;
+    }
+    return serverNode.ownerColor;
+  }
+
+  //------------------------------------------------------------------------------
   this.isSameLocation = function(locationA, locationB) {
     return locationA.color == locationB.color && locationA.index == locationB.index;
   }

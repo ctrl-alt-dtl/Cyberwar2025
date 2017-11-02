@@ -156,8 +156,14 @@ var performBasicAttack = function(serverNodes, attack) {
 var onAttackSuccess = function(serverNodes, node, ownerColor, attackers) {
   // Change the owner color of the node and reset the strength
   var serverNode = Util.Shared.getServerNode(serverNodes, node.color, node.index);
+  delete serverNode.fakeColor;
   serverNode.ownerColor = ownerColor;
   serverNode.strength = 1;
 
-  // TODO: Check for manipulate actions by new owner and apply manipulate color if there was one
+  // Check for manipulates we need to apply
+  _.each(attackers, function(attacker) {
+    if (attacker.color == ownerColor && attacker.type == ActionType.MANIPULATE) {
+      serverNode.manipulateColor = attacker.manipulateColor;
+    }
+  });
 }

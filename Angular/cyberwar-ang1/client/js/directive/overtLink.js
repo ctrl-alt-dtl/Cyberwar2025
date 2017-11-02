@@ -54,13 +54,19 @@ angular.module('CyberWar')
     function onGameStateChanged() {
       var serverNodeA = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeA.color, $scope.nodeA.index);
       var serverNodeB = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeB.color, $scope.nodeB.index);
-      if (serverNodeA.ownerColor == serverNodeB.ownerColor && serverNodeA.ownerColor != '') {
-        line.stroke(GameUtil.getColor(serverNodeA.ownerColor));
+
+      var serverNodeAColor = GameUtil.getServerNodeDisplayedColor(serverNodeA, GameState.currentPlayerData.color);
+      var serverNodeBColor = GameUtil.getServerNodeDisplayedColor(serverNodeB, GameState.currentPlayerData.color);
+      // If they both have colors and they match, use the matching color
+      if (serverNodeAColor && serverNodeBColor && serverNodeAColor == serverNodeBColor) {
+        line.stroke(GameUtil.getColor(serverNodeAColor));
       }
+      // Otherwise "hide" the overt link
       else {
         line.stroke(noColor);
       }
     }
+
     createKonvaObjects($scope.nodeA, $scope.nodeB);
     onGameStateChanged();
   }

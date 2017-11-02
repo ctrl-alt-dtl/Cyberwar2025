@@ -216,14 +216,12 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canDenyNode = function(node) {
-    // Can acquire or your own server node
     // Players can deny nodes they can acquire or server nodes they own
     return canAcquireNode(node) || (doesPlayerOwnNode(node) && !isPlayerBase(node));
   }
 
   // ----------------------------------------------------------------------------
   var canScanNode = function(node) {
-    // Your own or adjacent
     // Players can scan server nodes they own or adjacent server nodes
     return !isPlayerBase(node) && (doesPlayerOwnNode(node) || isAdjacentToNetwork(node));
   }
@@ -236,7 +234,6 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canImplantNode = function(node) {
-    // Acquire or base
     // Players can implant nodes they can acquire or an opponent base
     return canAcquireNode(node) || (isPlayerBase(node) && !doesPlayerOwnNode(node));
   }

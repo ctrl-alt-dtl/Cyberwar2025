@@ -54,9 +54,10 @@ var playerSchema = new Schema({
 
 // Schema for a server node
 var serverNodeSchema = new Schema({
-  location   : nodeLocationSchema,            // The node's location
-  ownerColor : { type: String, default: '' }, // The color of the node's owner
-  strength   : { type: Number, default: 0 },  // The current server node strength
+  location        : nodeLocationSchema,            // The node's location
+  manipulateColor : { type: String, default: '' }, // The manipulated color of this node
+  ownerColor      : { type: String, default: '' }, // The color of the node's owner
+  strength        : { type: Number, default: 0 },  // The current server node strength
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

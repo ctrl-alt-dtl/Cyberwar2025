@@ -15,13 +15,14 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.paramsToString = function(order) {
+      var params = '';
       if (order.params.source) {
-        return ' from ' + order.params.source.color + ' ' + order.params.source.index;
+        params += ' from ' + order.params.source.color + ' ' + order.params.source.index;
       }
-      if (order.action == ActionType.MANIPULATE) {
-        return ' as ' + order.params.color;
+      if (order.params.color) {
+        params += ' as ' + order.params.color;
       }
-      return '';
+      return params;
     }
 
     //---------------------------------------------------------------------------
