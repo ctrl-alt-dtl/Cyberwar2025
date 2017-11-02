@@ -1,9 +1,9 @@
 angular.module('CyberWar')
-.controller('ServerStatusController', function($scope, $uibModalInstance, selectedNode, validActions, ownedAdjacentNodes, validColors) {
+.controller('ServerStatusController', function($scope, $uibModalInstance, selectedNode, validActions, usableSourceNodes, validColors) {
   $scope.selectedNode = selectedNode;
   $scope.selected = { params : {} };
   $scope.validActions = validActions;
-  $scope.ownedAdjacentNodes = ownedAdjacentNodes;
+  $scope.usableSourceNodes = usableSourceNodes;
   $scope.validColors = validColors;
 
   // ----------------------------------------------------------------------------
@@ -16,8 +16,8 @@ angular.module('CyberWar')
     if (!$scope.needSource) {
       delete $scope.selected.params.source;
     }
-    else if ($scope.ownedAdjacentNodes.length > 0) {
-      $scope.selected.params.source = $scope.ownedAdjacentNodes[0];
+    else if ($scope.usableSourceNodes.length > 0) {
+      $scope.selected.params.source = $scope.usableSourceNodes[0];
     }
 
     // Setup color parameter
@@ -27,6 +27,12 @@ angular.module('CyberWar')
     else if ($scope.validColors.length > 0) {
       $scope.selected.params.color = $scope.validColors[0];
     }
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.canMakeOrder = function() {
+    return (!$scope.needSource || $scope.selected.params.source) &&
+      (!$scope.needColor || $scope.selected.params.color);
   }
 
   // ----------------------------------------------------------------------------

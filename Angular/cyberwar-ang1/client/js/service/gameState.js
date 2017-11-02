@@ -19,13 +19,14 @@ angular.module('CyberWar')
     // We only care about when the turn number actually changes, otherwise our local actions may be overwritten
     if (this.currentTurnNumber != turnNumber) {
       this.currentTurnNumber = turnNumber;
+      this.positivelyLinkedNodes = getPositivelyLinkedNodes(this.currentPlayerData.color, this.currentGameState.serverNodes);
       if (this.submittedTurn()) {
         this.currentActionPoints = 0;
         CurrentInvestments.setInvestments(this.currentPlayerData.investments);
         CurrentOrders.setOrders(this.currentPlayerData.orders);
       }
       else {
-        this.currentActionPoints = getCurrentActionPoints(this.currentTurnNumber, this.currentPlayerData);
+        this.currentActionPoints = getCurrentActionPoints(this.currentTurnNumber, this.currentPlayerData, this.positivelyLinkedNodes);
         var investments = {};
         _.each(ResearchType, function(type) { investments[type] = 0 }, this);
         CurrentInvestments.setInvestments(investments);
@@ -66,12 +67,41 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
-  var getCurrentActionPoints = function(turnNumber, playerData) {
+  var getCurrentActionPoints = function(turnNumber, playerData, positivelyLinkedNodes) {
     // Everyone gets 3 points on the first turn
     if (turnNumber == 0) {
       return 3;
     }
     // After that it's one for every acquired or exploited node
-    return 3;
+    var calculatedAP = positivelyLinkedNodes.length - 1;
+    return Math.max(calculatedAP, 2);
+  }
+
+  // ----------------------------------------------------------------------------
+  var getPositivelyLinkedNodes = function(playerColor, serverNodes) {
+    var playerBase = GameUtil.getServerNode(serverNodes, playerColor, 0);
+    var linkedNodes = [];
+    var processedNodes = [];
+    var nodesToProcess = [playerBase.location];
+    while(nodesToProcess.length > 0) {
+      var nodeBeingProcessed = nodesToProcess.shift();
+      if (!GameUtil.isLocationInList(nodeBeingProcessed, processedNodes)) {
+        processedNodes.push(nodeBeingProcessed);
+
+        // If the current player owns this node, add it to the list and process its neighbors
+        var serverNode = GameUtil.getServerNode(serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
+        if (serverNode.ownerColor == playerColor) {
+          linkedNodes.push(nodeBeingProcessed);
+          var neighbors = GameUtil.getNeighbors(nodeBeingProcessed);
+          _.each(neighbors, function(neighbor) {
+            // If this node is owned by the player and hasn't been processed, then process it
+            if (!GameUtil.isLocationInList(neighbor, processedNodes)) {
+              nodesToProcess.push(neighbor);
+            }
+          });
+        }
+      }
+    }
+    return linkedNodes;
   }
 }]);

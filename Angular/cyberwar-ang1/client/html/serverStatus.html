@@ -5,14 +5,14 @@
   <div ng-if="validActions.length > 0">
     Action To Perform:
     <label ng-repeat="action in validActions">
-      <input type="radio" ng-model="selected.action" ng-value="action">{{action}}
+      <input type="radio" ng-model="selected.action" ng-value="action" ng-change="selectAction(action)">{{action}}
     </label>
   </div>
 
   <!-- Source node picker -->
   <div ng-if="needSource">
     Choose Source Node:
-    <label ng-repeat="node in ownedAdjacentNodes">
+    <label ng-repeat="node in usableSourceNodes">
       <input type="radio" ng-model="selected.params.source" ng-value="node">{{node.color}} {{node.index}}
     </label>
   </div>
@@ -29,6 +29,6 @@
   <div>Owner: {{selectedNode.ownerColor}}</div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+  <button class="btn btn-primary" type="button" ng-disabled="!canMakeOrder()" ng-click="ok()">OK</button>
   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

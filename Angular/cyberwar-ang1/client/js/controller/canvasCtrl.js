@@ -1,9 +1,8 @@
 angular.module('CyberWar')
-.controller('canvasCtrl', ['$scope', '$uibModal', 'GameState', 'GameUtil', function($scope, $uibModal, GameState, GameUtil){
+.controller('canvasCtrl', ['$scope', '$uibModal', 'CurrentOrders', 'GameState', 'GameUtil', function($scope, $uibModal, CurrentOrders, GameState, GameUtil){
   GameState.addListener(onGameStateChanged);
   $scope.Color = Color;
   $scope.nodesPerDomain = new Array(GameUtil.Config.SERVER_NODES_PER_DOMAIN);
-  var positivelyLinkedNodes = [];
 
   // ----------------------------------------------------------------------------
   $scope.$on('$destroy', function() {
@@ -19,7 +18,7 @@ angular.module('CyberWar')
   $scope.serverNodeClicked = function(color, index) {
     var selectedNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, color, index);
     var validActions = getValidActions(selectedNode);
-    var ownedAdjacentNodes = getOwnedAdjacentNodes(selectedNode);
+    var usableSourceNodes = rejectUsedSourceNodes(getOwnedAdjacentNodes(selectedNode));
     var validColors = getValidColors(selectedNode);
     modalInstance = $uibModal.open({
       animation: true,
@@ -35,8 +34,8 @@ angular.module('CyberWar')
         validActions: function () {
           return validActions;
         },
-        ownedAdjacentNodes: function () {
-          return ownedAdjacentNodes;
+        usableSourceNodes: function () {
+          return usableSourceNodes;
         },
         validColors: function () {
           return validColors;
@@ -55,35 +54,6 @@ angular.module('CyberWar')
     drawBoard(GameState.currentPlayerData);
     $scope.overtLinks = GameState.currentGameState.overtLinks;
     //$scope.exploitLinks = GameState.currentGameState.overtLinks;
-    positivelyLinkedNodes = getPositivelyLinkedNodes(GameState.currentPlayerData.color);
-  }
-
-  // ----------------------------------------------------------------------------
-  var getPositivelyLinkedNodes = function(playerColor) {
-    var playerBase = GameUtil.getServerNode(GameState.currentGameState.serverNodes, playerColor, 0);
-    var linkedNodes = [];
-    var processedNodes = [];
-    var nodesToProcess = [playerBase.location];
-    while(nodesToProcess.length > 0) {
-      var nodeBeingProcessed = nodesToProcess.shift();
-      if (!GameUtil.isLocationInList(nodeBeingProcessed, processedNodes)) {
-        processedNodes.push(nodeBeingProcessed);
-
-        // If the current player owns this node, add it to the list and process its neighbors
-        var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
-        if (serverNode.ownerColor == playerColor) {
-          linkedNodes.push(nodeBeingProcessed);
-          var neighbors = GameUtil.getNeighbors(nodeBeingProcessed);
-          _.each(neighbors, function(neighbor) {
-            // If this node is owned by the player and hasn't been processed, then process it
-            if (!GameUtil.isLocationInList(neighbor, processedNodes)) {
-              nodesToProcess.push(neighbor);
-            }
-          });
-        }
-      }
-    }
-    return linkedNodes;
   }
 
   // ----------------------------------------------------------------------------
@@ -259,7 +229,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var isAdjacentToNetwork = function(node) {
-    return _.any(GameUtil.getNeighbors(node.location), function(neighbor) { return GameUtil.isLocationInList(neighbor, positivelyLinkedNodes); });
+    return _.any(GameUtil.getNeighbors(node.location), function(neighbor) { return GameUtil.isLocationInList(neighbor, GameState.positivelyLinkedNodes); });
   }
 
   // ----------------------------------------------------------------------------
@@ -274,6 +244,16 @@ angular.module('CyberWar')
     });
 
     return adjacentNodes;
+  }
+
+  // ----------------------------------------------------------------------------
+  var rejectUsedSourceNodes = function(sourceNodes) {
+    // Reject any nodes who are being used as a source node in current orders
+    return _.reject(sourceNodes, function(node) {
+      return _.any(CurrentOrders.getOrders(), function(order) {
+        return GameUtil.isSameLocation(order.params.source, node);
+      });
+    });
   }
 
   // ----------------------------------------------------------------------------
