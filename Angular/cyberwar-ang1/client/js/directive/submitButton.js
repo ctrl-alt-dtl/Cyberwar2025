@@ -3,7 +3,7 @@ angular.module('CyberWar')
   function link($scope, element, attrs) {
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
-      return !GameState.submittedTurn() && (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders());
+      return !GameState.submittedTurn() && (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;
     }
 
     //---------------------------------------------------------------------------

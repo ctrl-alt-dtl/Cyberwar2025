@@ -24,6 +24,12 @@ var nodeLocationSchema = new Schema({
   index : { type: Number, default: 0 },  // The index of the node
 }, { _id: false });
 
+// Schema for a server node
+var linkSchema = new Schema({
+  nodeA : nodeLocationSchema, // One of the linked nodes
+  nodeB : nodeLocationSchema, // The other linked node
+}, { _id: false });
+
 // Schema for research
 var research = {};
 _.each(ResearchType, function(type) { research[type] = { type: Number, default: 0 }});
@@ -38,11 +44,12 @@ var orderSchema = new Schema({
 
 // Schema for a player
 var playerSchema = new Schema({
-  name        : { type: String, default: '' }, // The player's name
-  color       : { type: String, default: '' }, // What color the player is playing as
-  research    : researchSchema,                // What research this player has done
-  investments : researchSchema,                // How much the player invested in each research type this turn
-  orders      : [orderSchema],                 // The actions the player wants to take this turn
+  name         : { type: String, default: '' }, // The player's name
+  color        : { type: String, default: '' }, // What color the player is playing as
+  research     : researchSchema,                // What research this player has done
+  exploitLinks : [linkSchema],                  // The exploit links this player has
+  investments  : researchSchema,                // How much the player invested in each research type this turn
+  orders       : [orderSchema],                 // The actions the player wants to take this turn
 }, { _id: false });
 
 // Schema for a server node
@@ -52,18 +59,12 @@ var serverNodeSchema = new Schema({
   strength   : { type: Number, default: 0 },  // The current server node strength
 }, { _id: false });
 
-// Schema for a server node
-var overtLinkSchema = new Schema({
-  nodeA : nodeLocationSchema, // One of the linked nodes
-  nodeB : nodeLocationSchema, // The other linked node
-}, { _id: false });
-
 // Schema that defines the state of the game for one turn
 var turnSchema = new Schema({
   roundNumber : { type: Number, default: 0 }, // Which round number is it
   players     : [playerSchema],               // The state of all players at the beginning of this turn
   serverNodes : [serverNodeSchema],           // The list of all server nodes on the board
-  overtLinks  : [overtLinkSchema],            // The list of all overt links on the board
+  overtLinks  : [linkSchema],                 // The list of all overt links on the board
 }, { _id: false });
 
 // Schema for our game.

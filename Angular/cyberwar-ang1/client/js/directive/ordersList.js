@@ -15,7 +15,7 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.paramsToString = function(order) {
-      if (order.action == ActionType.ACQUIRE) {
+      if (order.params.source) {
         return ' from ' + order.params.source.color + ' ' + order.params.source.index;
       }
       if (order.action == ActionType.MANIPULATE) {

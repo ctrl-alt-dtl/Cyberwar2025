@@ -28,7 +28,7 @@ angular.module('CyberWar')
   $scope.serverNodeClicked = function(color, index) {
     var selectedNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, color, index);
     var validActions = getValidActions(selectedNode);
-    var usableSourceNodes = rejectUsedSourceNodes(getOwnedAdjacentNodes(selectedNode));
+    var usableSourceNodes = rejectUsedSourceNodes(getUsableAdjacentNodes(selectedNode));
     var validColors = getValidColors(selectedNode);
     modalInstance = $uibModal.open({
       animation: true,
@@ -63,7 +63,7 @@ angular.module('CyberWar')
   function onGameStateChanged() {
     drawBoard(GameState.currentPlayerData);
     $scope.overtLinks = GameState.currentGameState.overtLinks;
-    //$scope.exploitLinks = GameState.currentGameState.overtLinks;
+    $scope.exploitLinks = GameState.currentPlayerData.exploitLinks;
     $scope.redraw = true;
   }
 
@@ -230,8 +230,8 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canExploitNode = function(node) {
-    // Players can exploit any nodes they can acquire
-    return canAcquireNode(node) && !isPlayerBase(node);
+    // Players can exploit any nodes they can acquire unless they have already exploited it
+    return canAcquireNode(node) && !GameUtil.isLocationInLinkList(node.location, GameState.currentPlayerData.exploitLinks);
   }
 
   // ----------------------------------------------------------------------------
@@ -274,12 +274,12 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
-  var getOwnedAdjacentNodes = function(node) {
+  var getUsableAdjacentNodes = function(node) {
     var adjacentNodes = [];
 
     _.each(GameUtil.getNeighbors(node.location), function(neighbor) {
       var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
-      if (serverNode.ownerColor == GameState.currentPlayerData.color) {
+      if (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks)) {
         adjacentNodes.push(neighbor);
       }
     });

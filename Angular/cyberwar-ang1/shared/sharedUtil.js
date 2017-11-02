@@ -48,6 +48,11 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
+  this.isLocationInLinkList = function(location, linkList) {
+    return _.any(linkList, function(link) { return this.isSameLocation(link.nodeA, location) || this.isSameLocation(link.nodeB, location); }, this);
+  }
+
+  //------------------------------------------------------------------------------
   this.isLocationInList = function(location, list) {
     return _.any(list, function(listLocation) { return this.isSameLocation(listLocation, location); }, this);
   }
