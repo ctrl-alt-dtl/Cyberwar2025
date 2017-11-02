@@ -279,7 +279,7 @@ angular.module('CyberWar')
 
     _.each(GameUtil.getNeighbors(node.location), function(neighbor) {
       var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
-      if (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks)) {
+      if (serverNode && (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks))) {
         adjacentNodes.push(neighbor);
       }
     });

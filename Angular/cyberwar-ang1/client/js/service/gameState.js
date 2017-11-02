@@ -90,7 +90,7 @@ angular.module('CyberWar')
 
         // If the current player owns this node or has an exploit link connected to this node, add it to the list and process its neighbors
         var serverNode = GameUtil.getServerNode(serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
-        if (serverNode.ownerColor == playerColor || GameUtil.isLocationInLinkList(nodeBeingProcessed, exploitLinks)) {
+        if (serverNode && (serverNode.ownerColor == playerColor || GameUtil.isLocationInLinkList(nodeBeingProcessed, exploitLinks))) {
           linkedNodes.push(nodeBeingProcessed);
           var neighbors = GameUtil.getNeighbors(nodeBeingProcessed);
           _.each(neighbors, function(neighbor) {
