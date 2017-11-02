@@ -58,7 +58,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var selectAction = function(selectedNode, action, params) {
-    GameState.addOrder({ node: selectedNode.location, action: action, params: params, cost: getActionLevel(action) });
+    GameState.addOrder({ node: selectedNode.location, action: action, params: params, cost: getActionLevel(action) + getInterDomainCost(selectedNode.location, params) });
   }
 
   // ----------------------------------------------------------------------------
@@ -141,6 +141,36 @@ angular.module('CyberWar')
         return 3;
     }
     return -1;
+  }
+
+  // ----------------------------------------------------------------------------
+  var getInterDomainCost = function(destination, actionParams) {
+    var source = actionParams.source;
+    if (source) {
+      if (source.color != destination.color) {
+        return getNodeTier(source.index);
+      }
+    }
+    return 0;
+  }
+
+  // ----------------------------------------------------------------------------
+  var getNodeTier = function(nodeIndex) {
+    switch (nodeIndex) {
+      case 1:
+      case 2:
+        return 4;
+      case 3:
+      case 4:
+      case 5:
+        return 3;
+      case 6:
+      case 7:
+        return 2;
+      case 8:
+        return 1;
+    }
+    return 0;
   }
 
   // ----------------------------------------------------------------------------
