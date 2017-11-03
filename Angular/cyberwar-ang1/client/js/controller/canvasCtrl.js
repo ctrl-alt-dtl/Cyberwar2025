@@ -41,6 +41,12 @@ angular.module('CyberWar')
         selectedNode: function() {
           return selectedNode;
         },
+        displayedOwner: function () {
+          return GameUtil.getServerNodeDisplayedColor(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+        },
+        displayedStrength: function () {
+          return GameUtil.getServerNodeDisplayedText(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+        },
         validActions: function () {
           return validActions;
         },
@@ -63,7 +69,7 @@ angular.module('CyberWar')
   function onGameStateChanged() {
     drawBoard(GameState.currentPlayerData);
     $scope.overtLinks = GameState.currentGameState.overtLinks;
-    $scope.exploitLinks = GameState.currentPlayerData.exploitLinks;
+    $scope.exploitLinks = GameState.currentPlayerData.exploitLinks.concat(GameState.currentPlayerData.scannedExploitLinks);
     $scope.redraw = true;
   }
 
@@ -198,8 +204,8 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canAnalyzeNode = function(node) {
-    // Every node is valid
-    return true;
+    // Players can only scan their own nodes or exploited nodes
+    return doesPlayerOwnNode(node) || GameUtil.isLocationInLinkList(node.location, GameState.currentPlayerData.exploitLinks);
   }
 
   // ----------------------------------------------------------------------------
@@ -234,8 +240,8 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canImplantNode = function(node) {
-    // Players can implant nodes they can acquire or an opponent base
-    return canAcquireNode(node) || (isPlayerBase(node) && !doesPlayerOwnNode(node));
+    // Players can implant nodes they can acquire or an opponent base adjacent to the network
+    return canAcquireNode(node) || (isPlayerBase(node) && !doesPlayerOwnNode(node) && isAdjacentToNetwork(node));
   }
 
   // ----------------------------------------------------------------------------
@@ -289,7 +295,7 @@ angular.module('CyberWar')
     // Reject any nodes who are being used as a source node in current orders
     return _.reject(sourceNodes, function(node) {
       return node.index != 0 && _.any(CurrentOrders.getOrders(), function(order) {
-        return order.params.source && GameUtil.isSameLocation(order.params.source, node);
+        return order.params && order.params.source && GameUtil.isSameLocation(order.params.source, node);
       });
     });
   }

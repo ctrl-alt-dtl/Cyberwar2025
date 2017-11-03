@@ -59,6 +59,11 @@ this.SharedUtil = function(_, Color) {
         return serverNode.ownerColor;
       }
     }
+    // See if they have scanned the node and if so, display the scanned information
+    var scannedNode = this.getNodeInList(serverNode, player.scannedNodes)
+    if (scannedNode) {
+      return scannedNode.ownerColor;
+    }
     // Otherwise, it's grey
     return '';
   }
@@ -68,6 +73,11 @@ this.SharedUtil = function(_, Color) {
     // If the player owns this node, it is part of the player's network, or in their domain, show the server strength
     if (player.color == serverNode.ownerColor || this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color) {
       return serverNode.strength;
+    }
+    // See if they have scanned the node and if so, display the scanned information
+    var scannedNode = this.getNodeInList(serverNode, player.scannedNodes)
+    if (scannedNode) {
+      return scannedNode.strength;
     }
     // Otherwise, it's grey
     return 0;
@@ -85,12 +95,45 @@ this.SharedUtil = function(_, Color) {
 
   //------------------------------------------------------------------------------
   this.isLocationInLinkList = function(location, linkList) {
-    return _.any(linkList, function(link) { return this.isSameLocation(link.nodeA, location) || this.isSameLocation(link.nodeB, location); }, this);
+    return _.any(linkList, function(link) { return this.isLocationInLink(link, location); }, this);
   }
 
   //------------------------------------------------------------------------------
   this.isLocationInList = function(location, list) {
     return _.any(list, function(listLocation) { return this.isSameLocation(listLocation, location); }, this);
+  }
+
+  //------------------------------------------------------------------------------
+  this.getNodeInList = function(serverNode, serverNodeList) {
+    return _.find(serverNodeList, function(listServerNode) { return this.isSameLocation(listServerNode.location, serverNode.location); }, this);
+  }
+
+  // ----------------------------------------------------------------------------
+  this.getPositivelyLinkedNodes = function(playerColor, serverNodes, exploitLinks) {
+    var playerBase = this.getServerNode(serverNodes, playerColor, 0);
+    var linkedNodes = [];
+    var processedNodes = [];
+    var nodesToProcess = [playerBase.location];
+    while(nodesToProcess.length > 0) {
+      var nodeBeingProcessed = nodesToProcess.shift();
+      if (!this.isLocationInList(nodeBeingProcessed, processedNodes)) {
+        processedNodes.push(nodeBeingProcessed);
+
+        // If the current player owns this node or has an exploit link connected to this node, add it to the list and process its neighbors
+        var serverNode = this.getServerNode(serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
+        if (serverNode && (serverNode.ownerColor == playerColor || this.isLocationInLinkList(nodeBeingProcessed, exploitLinks))) {
+          linkedNodes.push(nodeBeingProcessed);
+          var neighbors = this.getNeighbors(nodeBeingProcessed);
+          _.each(neighbors, function(neighbor) {
+            // If this node is owned by the player and hasn't been processed, then process it
+            if (!this.isLocationInList(neighbor, processedNodes)) {
+              nodesToProcess.push(neighbor);
+            }
+          }, this);
+        }
+      }
+    }
+    return linkedNodes;
   }
 
   //------------------------------------------------------------------------------

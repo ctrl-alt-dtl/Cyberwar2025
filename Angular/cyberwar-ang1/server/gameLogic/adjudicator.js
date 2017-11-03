@@ -7,6 +7,7 @@ var Expel = require("./expel.js");
 var Exploit = require("./exploit.js");
 var Implant = require("./implant.js");
 var Investments = require("./investments.js");
+var Scan = require("./scan.js");
 var Secure = require("./secure.js");
 
 //------------------------------------------------------------------------------
@@ -20,4 +21,5 @@ this.adjudicateTurn = function(prevTurn, newTurn) {
   Exploit.performOrders(prevTurn, newTurn);
   Deny.performOrders(prevTurn, newTurn);
   Implant.cleanup(newTurn);
+  Scan.performOrders(prevTurn, newTurn);
 };

@@ -19,7 +19,7 @@ angular.module('CyberWar')
     // We only care about when the turn number actually changes, otherwise our local actions may be overwritten
     if (this.currentTurnNumber != turnNumber) {
       this.currentTurnNumber = turnNumber;
-      this.positivelyLinkedNodes = getPositivelyLinkedNodes(this.currentPlayerData.color, this.currentGameState.serverNodes, this.currentPlayerData.exploitLinks);
+      this.positivelyLinkedNodes = GameUtil.getPositivelyLinkedNodes(this.currentPlayerData.color, this.currentGameState.serverNodes, this.currentPlayerData.exploitLinks);
       if (this.submittedTurn()) {
         this.currentActionPoints = 0;
         CurrentInvestments.setInvestments(this.currentPlayerData.investments);
@@ -75,33 +75,5 @@ angular.module('CyberWar')
     // After that it's one for every acquired or exploited node
     var calculatedAP = positivelyLinkedNodes.length - 1;
     return Math.max(calculatedAP, 2);
-  }
-
-  // ----------------------------------------------------------------------------
-  var getPositivelyLinkedNodes = function(playerColor, serverNodes, exploitLinks) {
-    var playerBase = GameUtil.getServerNode(serverNodes, playerColor, 0);
-    var linkedNodes = [];
-    var processedNodes = [];
-    var nodesToProcess = [playerBase.location];
-    while(nodesToProcess.length > 0) {
-      var nodeBeingProcessed = nodesToProcess.shift();
-      if (!GameUtil.isLocationInList(nodeBeingProcessed, processedNodes)) {
-        processedNodes.push(nodeBeingProcessed);
-
-        // If the current player owns this node or has an exploit link connected to this node, add it to the list and process its neighbors
-        var serverNode = GameUtil.getServerNode(serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
-        if (serverNode && (serverNode.ownerColor == playerColor || GameUtil.isLocationInLinkList(nodeBeingProcessed, exploitLinks))) {
-          linkedNodes.push(nodeBeingProcessed);
-          var neighbors = GameUtil.getNeighbors(nodeBeingProcessed);
-          _.each(neighbors, function(neighbor) {
-            // If this node is owned by the player and hasn't been processed, then process it
-            if (!GameUtil.isLocationInList(neighbor, processedNodes)) {
-              nodesToProcess.push(neighbor);
-            }
-          });
-        }
-      }
-    }
-    return linkedNodes;
   }
 }]);

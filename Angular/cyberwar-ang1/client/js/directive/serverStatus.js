@@ -1,6 +1,8 @@
 angular.module('CyberWar')
-.controller('ServerStatusController', function($scope, $uibModalInstance, selectedNode, validActions, usableSourceNodes, validColors) {
+.controller('ServerStatusController', function($scope, $uibModalInstance, selectedNode, displayedOwner, displayedStrength, validActions, usableSourceNodes, validColors) {
   $scope.selectedNode = selectedNode;
+  $scope.displayedOwner = displayedOwner;
+  $scope.displayedStrength = displayedStrength;
   $scope.selected = { params : {} };
   $scope.validActions = validActions;
   $scope.usableSourceNodes = usableSourceNodes;
@@ -31,7 +33,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.canMakeOrder = function() {
-    return (!$scope.needSource || $scope.selected.params.source) &&
+    return $scope.selected.action && (!$scope.needSource || $scope.selected.params.source) &&
       (!$scope.needColor || $scope.selected.params.color);
   }
 

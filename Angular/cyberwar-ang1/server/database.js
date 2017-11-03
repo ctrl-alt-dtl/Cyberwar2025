@@ -18,6 +18,11 @@ var Schema = mongoose.Schema;
 //------------------------------------------------------------------------------
 // Game Data
 
+// Schema for research
+var research = {};
+_.each(ResearchType, function(type) { research[type] = { type: Number, default: 0 }});
+var researchSchema = new Schema(research, { _id: false });
+
 // Schema for a server node's location
 var nodeLocationSchema = new Schema({
   color : { type: String, default: '' }, // The color of the player domain this node is in
@@ -30,10 +35,13 @@ var linkSchema = new Schema({
   nodeB : nodeLocationSchema, // The other linked node
 }, { _id: false });
 
-// Schema for research
-var research = {};
-_.each(ResearchType, function(type) { research[type] = { type: Number, default: 0 }});
-var researchSchema = new Schema(research, { _id: false });
+// Schema for a server node
+var serverNodeSchema = new Schema({
+  location        : nodeLocationSchema,            // The node's location
+  manipulateColor : { type: String, default: '' }, // The manipulated color of this node
+  ownerColor      : { type: String, default: '' }, // The color of the node's owner
+  strength        : { type: Number, default: 0 },  // The current server node strength
+}, { _id: false });
 
 // Schema for an action order
 var orderSchema = new Schema({
@@ -44,20 +52,14 @@ var orderSchema = new Schema({
 
 // Schema for a player
 var playerSchema = new Schema({
-  name         : { type: String, default: '' }, // The player's name
-  color        : { type: String, default: '' }, // What color the player is playing as
-  research     : researchSchema,                // What research this player has done
-  exploitLinks : [linkSchema],                  // The exploit links this player has
-  investments  : researchSchema,                // How much the player invested in each research type this turn
-  orders       : [orderSchema],                 // The actions the player wants to take this turn
-}, { _id: false });
-
-// Schema for a server node
-var serverNodeSchema = new Schema({
-  location        : nodeLocationSchema,            // The node's location
-  manipulateColor : { type: String, default: '' }, // The manipulated color of this node
-  ownerColor      : { type: String, default: '' }, // The color of the node's owner
-  strength        : { type: Number, default: 0 },  // The current server node strength
+  name                : { type: String, default: '' }, // The player's name
+  color               : { type: String, default: '' }, // What color the player is playing as
+  research            : researchSchema,                // What research this player has done
+  exploitLinks        : [linkSchema],                  // The exploit links this player has
+  scannedNodes        : [serverNodeSchema],            // The list of node information this player has from scanning
+  scannedExploitLinks : [linkSchema],                  // The list of exploit link information this player has from scanning
+  investments         : researchSchema,                // How much the player invested in each research type this turn
+  orders              : [orderSchema],                 // The actions the player wants to take this turn
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

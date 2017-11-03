@@ -11,7 +11,6 @@ this.performOrders = function(prevTurn, newTurn) {
   _.each(prevTurn.players, function(player) {
     _.each(player.orders, function(order) {
       if (order.action == ActionType.DENY) {
-        var newTurnPlayer = Util.Shared.findPlayerByColor(newTurn.players, player.color);
         var attackerNode = Util.Shared.getServerNode(newTurn.serverNodes, order.params.source.color, order.params.source.index);
         var defenderNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
         performDeny(newTurn, attackerNode, defenderNode);
