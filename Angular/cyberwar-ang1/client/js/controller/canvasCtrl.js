@@ -263,7 +263,13 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var isNodeAtMaxStrength = function(node) {
-    return node.strength == GameUtil.Config.MAX_NODE_STRENGTH;
+    var totalNodeStrength = node.strength;
+    _.each(CurrentOrders.getOrders(), function(order) {
+      if (order.action == ActionType.SECURE && GameUtil.isSameLocation(order.node, node.location)) {
+        ++totalNodeStrength;
+      }
+    });
+    return totalNodeStrength == GameUtil.Config.MAX_NODE_STRENGTH;
   }
 
   // ----------------------------------------------------------------------------
