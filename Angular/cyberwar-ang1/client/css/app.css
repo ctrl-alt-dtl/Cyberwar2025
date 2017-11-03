@@ -192,11 +192,10 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
     display: inline-block;
     border: solid .5px black;
     width: 24.75px;
-    margin: 0;
     height: 20px;
     text-align:center;
-    margin-bottom: -5px;
     background: dimgray;
+    float: left;
 }
 
 .blocks.paid {
