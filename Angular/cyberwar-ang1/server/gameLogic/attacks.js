@@ -159,6 +159,7 @@ var onAttackSuccess = function(serverNodes, node, ownerColor, attackers) {
   delete serverNode.fakeColor;
   serverNode.ownerColor = ownerColor;
   serverNode.strength = 1;
+  delete serverNode.previousStrength;
 
   // Check for manipulates we need to apply
   _.each(attackers, function(attacker) {

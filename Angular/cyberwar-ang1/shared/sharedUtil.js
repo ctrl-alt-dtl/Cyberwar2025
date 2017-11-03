@@ -64,6 +64,16 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
+  this.getServerNodeDisplayedText = function(serverNode, player, positivelyLinkedNodes) {
+    // If the player owns this node, it is part of the player's network, or in their domain, show the server strength
+    if (player.color == serverNode.ownerColor || this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color) {
+      return serverNode.strength;
+    }
+    // Otherwise, it's grey
+    return 0;
+  }
+
+  //------------------------------------------------------------------------------
   this.isSameLocation = function(locationA, locationB) {
     return locationA.color == locationB.color && locationA.index == locationB.index;
   }

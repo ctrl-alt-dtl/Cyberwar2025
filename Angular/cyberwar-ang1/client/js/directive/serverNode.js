@@ -16,9 +16,8 @@ angular.module('CyberWar')
     function onGameStateChanged() {
       var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
       if (serverNode) {
-        var nodeColor = GameUtil.getServerNodeDisplayedColor(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
-        hex.fill(GameUtil.getColor(nodeColor));
-        text.text(serverNode.strength);
+        hex.fill(GameUtil.getColor(GameUtil.getServerNodeDisplayedColor(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes)));
+        text.text(GameUtil.getServerNodeDisplayedText(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes));
       }
       else {
         hex.fill('black');
