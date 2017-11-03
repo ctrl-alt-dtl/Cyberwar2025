@@ -211,3 +211,11 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 .wrap{
     width:125px;
 }
+
+.cyberEffectYellow {
+    color: gold;
+}
+
+.cyberEffectRed {
+    color: crimson;
+}
