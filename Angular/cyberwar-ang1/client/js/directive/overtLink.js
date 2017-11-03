@@ -55,8 +55,8 @@ angular.module('CyberWar')
       var serverNodeA = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeA.color, $scope.nodeA.index);
       var serverNodeB = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeB.color, $scope.nodeB.index);
 
-      var serverNodeAColor = GameUtil.getServerNodeDisplayedColor(serverNodeA, GameState.currentPlayerData.color);
-      var serverNodeBColor = GameUtil.getServerNodeDisplayedColor(serverNodeB, GameState.currentPlayerData.color);
+      var serverNodeAColor = GameUtil.getServerNodeDisplayedColor(serverNodeA, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+      var serverNodeBColor = GameUtil.getServerNodeDisplayedColor(serverNodeB, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
       // If they both have colors and they match, use the matching color
       if (serverNodeAColor && serverNodeBColor && serverNodeAColor == serverNodeBColor) {
         line.stroke(GameUtil.getColor(serverNodeAColor));

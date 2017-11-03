@@ -43,11 +43,24 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
-  this.getServerNodeDisplayedColor = function(serverNode, playerColor) {
-    if (serverNode.manipulateColor && playerColor != serverNode.ownerColor) {
-      return serverNode.manipulateColor;
+  this.getServerNodeDisplayedColor = function(serverNode, player, positivelyLinkedNodes) {
+    // If this is the player's node, they see the real color
+    if (player.color == serverNode.ownerColor) {
+      return serverNode.ownerColor;
     }
-    return serverNode.ownerColor;
+    // Otherwise, if this is part of the player's network or in their domain, show a color
+    else if (this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color) {
+      // If the node has a manipulate color, show that
+      if (serverNode.manipulateColor) {
+        return serverNode.manipulateColor;
+      }
+      // Otherwise, show the owner's color
+      else {
+        return serverNode.ownerColor;
+      }
+    }
+    // Otherwise, it's grey
+    return '';
   }
 
   //------------------------------------------------------------------------------
