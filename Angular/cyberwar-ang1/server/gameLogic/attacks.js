@@ -145,7 +145,7 @@ var performMultipleSourceAttack = function(serverNodes, attack) {
 //------------------------------------------------------------------------------
 var performBasicAttack = function(serverNodes, attack) {
   var attacker = attack.attackers[0];
-  console.log('Basic attack: Defender = ' + attack.defenderStrength + ' Attacker = ' + attacker.strength);
+  console.log('Basic attack: Defender = ' + attack.defenderStrength + ' Attacker (' + attacker.color + ') = '  + attacker.strength + '\n');
   if (AdjudicationMath.captureOddsOneVsOne(attack.defenderStrength, attacker.strength)) {
     // Attacker won
     onAttackSuccess(serverNodes, attack.target, attacker.color, attack.attackers);

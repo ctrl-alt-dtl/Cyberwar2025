@@ -112,11 +112,11 @@ var equalToAny = function(el, gre, blu, pur, red, org, yel) {
     // this.resultOdds = "Dice: " + dice + ' ' + "Odds: " + odds;
 
     if(odds > dice) {
-      console.log('Dice: ' + dice + ' Odds: ' + odds + ': Success to Defender!')
+      console.log('Dice: ' + dice + ' Odds: ' + odds + ': Success to Defender!\n')
       return false;
     }
     else {
-      console.log('Dice: ' + dice + ' Odds: ' + odds + ': Fail to Defender!')
+      console.log('Dice: ' + dice + ' Odds: ' + odds + ': Fail to Defender!\n')
       return true;
     }
   },

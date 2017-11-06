@@ -21,7 +21,7 @@ this.performOrders = function(prevTurn, newTurn) {
 
 //------------------------------------------------------------------------------
 var performDeny = function(turn, attackerNode, defenderNode) {
-  console.log('Deny attack: Defender = ' + defenderNode.strength + ' Attacker = ' + attackerNode.strength);
+  console.log('Deny attack: Defender = ' + defenderNode.strength + ' Attacker ('+ attackerNode.color + ') = ' + attackerNode.strength);
   if (AdjudicationMath.captureOddsOneVsOne(attackerNode.strength, defenderNode.strength)) {
     // Remove all exploit links to the node
     _.each(turn.players, function(player) {
