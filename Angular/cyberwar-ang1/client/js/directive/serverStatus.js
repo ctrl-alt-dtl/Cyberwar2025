@@ -54,7 +54,6 @@ angular.module('CyberWar')
       case ActionType.MANIPULATE:
       case ActionType.DENY:
       case ActionType.EXPLOIT:
-      case ActionType.IMPLANT:
         return true;
     }
     return false;

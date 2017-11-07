@@ -74,6 +74,9 @@ angular.module('CyberWar')
     }
     // After that it's one for every acquired or exploited node
     var calculatedAP = positivelyLinkedNodes.length - 1;
-    return Math.max(calculatedAP, 2);
+    if (positivelyLinkedNodes.length > 1) {
+      return Math.max(calculatedAP, 2);
+    }
+    return 0;
   }
 }]);

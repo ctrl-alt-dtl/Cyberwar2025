@@ -29,8 +29,8 @@ this.addNewTurn = function(game, turnToCopy) {
 
   // Reset player information every round
   newTurn.players.forEach(function(player) {
-    delete player.scannedNodes;
-    delete player.scannedExploitLinks;
+    player.scannedNodes = [];
+    player.scannedExploitLinks = [];
     delete player.investments;
     delete player.orders;
   });

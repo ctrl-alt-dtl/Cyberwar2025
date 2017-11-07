@@ -45,7 +45,8 @@ this.performAction = function(game, playerColor, action) {
 //------------------------------------------------------------------------------
 var allPlayersSubmittedTurns = function(turn) {
   return _.every(turn.players, function(player) {
-    return Util.Shared.hasPlayerTakenTurn(player);
+    // Check to see if this player was eliminated
+    return Util.Shared.isPlayerEliminated(turn.serverNodes, player) || Util.Shared.hasPlayerTakenTurn(player);
   });
 }
 

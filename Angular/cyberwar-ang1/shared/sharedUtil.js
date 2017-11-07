@@ -37,6 +37,14 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
+  // Has this player taken their turn?
+  this.isPlayerEliminated = function(serverNodes, player) {
+    var playerBase = this.getServerNode(serverNodes, player.color, 0);
+    var neighbors = this.getNeighbors(playerBase.location);
+    return !this.getServerNode(serverNodes, neighbors[0].color, neighbors[0].index) && !this.getServerNode(serverNodes, neighbors[1].color, neighbors[1].index);
+  }
+
+  //------------------------------------------------------------------------------
   // Get the server node from the given domain color and index
   this.getServerNode = function(serverNodes, color, index) {
     return _.find(serverNodes, function(serverNode) { return serverNode.location.color == color && serverNode.location.index == index; });

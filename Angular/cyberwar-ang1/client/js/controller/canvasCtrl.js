@@ -222,8 +222,8 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canDenyNode = function(node) {
-    // Players can deny nodes they can acquire or server nodes they own
-    return canAcquireNode(node) || (doesPlayerOwnNode(node) && !isPlayerBase(node));
+    // Players can deny nodes they can acquire
+    return canAcquireNode(node);
   }
 
   // ----------------------------------------------------------------------------
@@ -234,8 +234,8 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var canExploitNode = function(node) {
-    // Players can exploit any nodes they can acquire unless they have already exploited it
-    return canAcquireNode(node) && !GameUtil.isLocationInLinkList(node.location, GameState.currentPlayerData.exploitLinks);
+    // Players can exploit any nodes they can acquire
+    return canAcquireNode(node);
   }
 
   // ----------------------------------------------------------------------------
