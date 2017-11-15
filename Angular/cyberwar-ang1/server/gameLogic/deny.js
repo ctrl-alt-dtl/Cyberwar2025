@@ -13,7 +13,9 @@ this.performOrders = function(prevTurn, newTurn) {
       if (order.action == ActionType.DENY) {
         var attackerNode = Util.Shared.getServerNode(newTurn.serverNodes, order.params.source.color, order.params.source.index);
         var defenderNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
-        performDeny(newTurn, attackerNode, defenderNode);
+        if (attackerNode && defenderNode) {
+          performDeny(newTurn, attackerNode, defenderNode);
+        }
       }
     });
   });
