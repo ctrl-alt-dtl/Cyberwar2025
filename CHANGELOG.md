@@ -8,6 +8,12 @@
 - The ability to rebuild server points (at least in own player's domain).
 - Possibly incorporate effects and their as a support ability with OPE and maneuver elements.
 
+## [1.2.0] - 2017-11-03
+- BETA
+- Client/Server communication works.
+- 17 Rounds tested under a full game.
+- Releasable for playtesting and continued development.
+
 ## [1.1.0] - 2017-10-03
 - ALPHA
 - Still unreleased and in development.
