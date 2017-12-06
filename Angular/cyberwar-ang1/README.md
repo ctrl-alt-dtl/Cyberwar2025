@@ -34,7 +34,7 @@ npm start
 Now browse to the app at [`localhost:8080/`][local-app-url].
 
 
-## Directory Layout
+## Directory Layout (Outdated as of Beta Release)
 
 ```
 client/                 --> all source files for the client view
