@@ -13,14 +13,18 @@ this.performOrders = function(prevTurn, newTurn) {
       if (order.action == ActionType.SCAN) {
         var newTurnPlayer = Util.Shared.findPlayerByColor(newTurn.players, player.color);
         var serverNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
-        performScan(newTurn, newTurnPlayer, serverNode);
+        if (serverNode) {
+          performScan(newTurn, newTurnPlayer, serverNode);
+        }
       }
       else if (order.action == ActionType.ANALYZE) {
         var newTurnPlayer = Util.Shared.findPlayerByColor(newTurn.players, player.color);
         var positivelyLinkedNodes = Util.Shared.getPositivelyLinkedNodes(player.color, newTurn.serverNodes, player.exploitLinks);
         _.each(positivelyLinkedNodes, function(linkedNode) {
           var serverNode = Util.Shared.getServerNode(newTurn.serverNodes, linkedNode.color, linkedNode.index);
-          performScan(newTurn, newTurnPlayer, serverNode);
+          if (serverNode) {
+            performScan(newTurn, newTurnPlayer, serverNode);
+          }
         });
       }
     });

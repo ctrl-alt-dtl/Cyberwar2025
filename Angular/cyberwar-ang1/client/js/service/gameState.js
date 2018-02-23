@@ -77,6 +77,6 @@ angular.module('CyberWar')
     if (positivelyLinkedNodes.length > 1) {
       return Math.max(calculatedAP, 2);
     }
-    return 0;
+    return 2;
   }
 }]);

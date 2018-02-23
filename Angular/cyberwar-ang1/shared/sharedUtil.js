@@ -57,7 +57,7 @@ this.SharedUtil = function(_, Color) {
       return serverNode.ownerColor;
     }
     // Otherwise, if this is part of the player's network or in their domain, show a color
-    else if (this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color) {
+    else if (this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color || this.isLocationInLinkList(serverNode.location, player.exploitLinks)) {
       // If the node has a manipulate color, show that
       if (serverNode.manipulateColor) {
         return serverNode.manipulateColor;
@@ -79,7 +79,7 @@ this.SharedUtil = function(_, Color) {
   //------------------------------------------------------------------------------
   this.getServerNodeDisplayedText = function(serverNode, player, positivelyLinkedNodes) {
     // If the player owns this node, it is part of the player's network, or in their domain, show the server strength
-    if (player.color == serverNode.ownerColor || this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color) {
+    if (player.color == serverNode.ownerColor || this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color || this.isLocationInLinkList(serverNode.location, player.exploitLinks)) {
       return serverNode.strength;
     }
     // See if they have scanned the node and if so, display the scanned information
@@ -107,6 +107,11 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
+  this.areLocationsLinked = function(locationA, locationB, linkList) {
+    return _.any(linkList, function(link) { return (this.isSameLocation(link.nodeA, locationA) && this.isSameLocation(link.nodeB, locationB)) || (this.isSameLocation(link.nodeA, locationB) && this.isSameLocation(link.nodeB, locationA)); }, this);
+  }
+
+  //------------------------------------------------------------------------------
   this.isLocationInList = function(location, list) {
     return _.any(list, function(listLocation) { return this.isSameLocation(listLocation, location); }, this);
   }
@@ -129,12 +134,13 @@ this.SharedUtil = function(_, Color) {
 
         // If the current player owns this node or has an exploit link connected to this node, add it to the list and process its neighbors
         var serverNode = this.getServerNode(serverNodes, nodeBeingProcessed.color, nodeBeingProcessed.index);
-        if (serverNode && (serverNode.ownerColor == playerColor || this.isLocationInLinkList(nodeBeingProcessed, exploitLinks))) {
+        if (serverNode) {
           linkedNodes.push(nodeBeingProcessed);
           var neighbors = this.getNeighbors(nodeBeingProcessed);
           _.each(neighbors, function(neighbor) {
             // If this node is owned by the player and hasn't been processed, then process it
-            if (!this.isLocationInList(neighbor, processedNodes)) {
+            var neighborNode = this.getServerNode(serverNodes, neighbor.color, neighbor.index);
+            if (neighborNode && !this.isLocationInList(neighbor, processedNodes) && (neighborNode.ownerColor == playerColor || this.areLocationsLinked(nodeBeingProcessed, neighbor, exploitLinks))) {
               nodesToProcess.push(neighbor);
             }
           }, this);

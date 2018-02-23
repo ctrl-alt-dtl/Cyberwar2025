@@ -204,7 +204,7 @@ var performLockedAction = function(gid, game) {
       sendGameToClients(gid, function() {
         // If the queue is not empty, perform the next action in the queue
         if (updatingGames[gid].length > 0) {
-          performLockedAction(gid, game, Util.cloneObject(game));
+          performLockedAction(gid, game);
         }
         // Otherwise, delete the update queue
         else {
