@@ -3,6 +3,24 @@
 > A multi-player cyber themed educational interactive wargame. Designed and developed at Naval Postgraduate School.
 > Graduation date: December 2017.
 
+### Install and Setup MongoDB
+
+MongoDB is the NoSQL database that keeps track and records all moves/orders in the game.
+To install MongoDB download it from:
+Or download via package managers such as Homebrew (OSX) or APT (Ubuntu).
+OSX Homembrew:
+```
+brew install mongodb
+```
+OR with Ubuntu Linux:
+```
+apt-get install mongodb
+```
+Once installation is complete then setup the directory for the database (OSX/Linux only):
+```
+mkdir -p /data/db
+```
+
 ### Install Dependencies
 
 We have two kinds of dependencies in this project: tools and Angular framework code. The tools help
@@ -23,6 +41,12 @@ After that, you should find out that you have one new folder in your project.
 * `node_modules` - contains the npm packages for the tools needed
 
 ### Run the Application
+
+Before you run the application MongoDB needs to be started and running in a separate terminal.
+To run Mongo in Linux/OSX type:
+```
+sudo mongod
+```
 
 We have preconfigured the project with a simple development web server. The simplest way to start
 this server is:

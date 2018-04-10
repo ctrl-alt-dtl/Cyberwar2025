@@ -1,42 +1,55 @@
+body {
+    /* The image used */
+    background-image: url("../img/BackgroundGrid-Text.png");
+    width: 98.5%;
+    height: 98vh;
+    border: 1px solid black;
+    padding: 3px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
 .textLink
 {
-  cursor: pointer;
-  text-decoration: underline;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .text
 {
-  display:inline-block;
+    display:inline-block;
 }
 
 .error
 {
-  color: red;
+    color: red;
 }
 
 .gameListItem
 {
-  display: inline-block;
-  border: 1px solid black;
-  padding: 5px;
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 .gameListItem.gid
 {
-  border: none;
+    border: none;
 }
 
 .gameListItem.turn
 {
-  border-color: black;
+    border-color: black;
 }
 
 .gameListItem.activePlayer
 {
-  border-color: black;
+    border-color: black;
 }
 
 .gameListItem.phase
 {
-  border-color: black;
+    border-color: black;
 }

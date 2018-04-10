@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en" ng-app="CyberWar" id="ng-app">
   <head>
-    <title>CyberWar 2025 (maint. page)</title>
+    <title>CyberWar 2025 (Lobby Page)</title>
 
     <!-- CSS stylesheets -->
     <link rel="stylesheet" type="text/css" href="gamelist.css"/>
@@ -20,7 +20,8 @@
     <!-- Angular Controllers -->
     <script src="controller/gamelist.js"></script>
   </head>
-  <body ng-controller="GameListController">
+  <body >
+    <div ng-controller="GameListController">
     <h2>Here are some games:</h2>
     <div id="gamelist" ng-repeat="game in gameList">
       <div class="gameListItem" ng-repeat="player in game.players track by $index">
@@ -36,5 +37,6 @@
     <button id="newGameButton" ng-click="newGame()">New Game</button>
 
     <p class="error">{{error}}</p>
+    </div>
   </body>
 </html>

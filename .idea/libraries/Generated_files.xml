@@ -5,10 +5,6 @@
       <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/src/router/index.js" />
       <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/build/dev-server.js" />
       <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/build/webpack.test.conf.js" />
-      <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/build/check-versions.js" />
-      <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/src/router/index.js" />
-      <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/build/dev-server.js" />
-      <root url="file://$PROJECT_DIR$/dist/cyberwar-webpack/build/webpack.test.conf.js" />
     </CLASSES>
     <SOURCES />
   </library>
