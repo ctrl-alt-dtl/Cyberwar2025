@@ -4,6 +4,9 @@ angular.module('CyberWar')
     CurrentInvestments.addListener(onInvestmentsChanged);
     CurrentOrders.addListener(onActionPointsChanged);
     $scope.ResearchType = ResearchType;
+    $scope.Tier1CyberEffects = Tier1CyberEffects;
+    $scope.Tier2CyberEffects = Tier2CyberEffects;
+    $scope.Tier3CyberEffects = Tier3CyberEffects;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {

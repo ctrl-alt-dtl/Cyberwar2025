@@ -20,18 +20,19 @@
     <!-- Angular Controllers -->
     <script src="controller/gamelist.js"></script>
   </head>
-  <body >
+  <body>
     <div ng-controller="GameListController">
-    <h2>Here are some games:</h2>
-    <div id="gamelist" ng-repeat="game in gameList">
-      <div class="gameListItem" ng-repeat="player in game.players track by $index">
-        <span>Play as </span>
-        <button class="gameLink" ng-click="playGame(game.gid, player.color)">{{player.color}}</button>
+      <h1>CyberWar: 2025</h1>
+      <h2>Here are some games:</h2>
+      <div id="gamelist" ng-repeat="game in gameList">
+        <div class="gameListItem" ng-repeat="player in game.players track by $index">
+          <span>Play as </span>
+          <button class="gameLink" ng-click="playGame(game.gid, player.color)">{{player.color}}</button>
+        </div>
+        <div class="gameListItem turn">Turn: {{game.turnNumber}}</div>
+        <div class="gameListItem gid">Game ID: {{game.gid}}</div>
+        <button class="trashLink" ng-click="deleteGame(game.gid)">Trash</button>
       </div>
-      <div class="gameListItem turn">Turn: {{game.turnNumber}}</div>
-      <div class="gameListItem gid">Game ID: {{game.gid}}</div>
-      <button class="trashLink" ng-click="deleteGame(game.gid)">Trash</button>
-    </div>
 
     <br/>
     <button id="newGameButton" ng-click="newGame()">New Game</button>
