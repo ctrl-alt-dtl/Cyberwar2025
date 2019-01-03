@@ -27,9 +27,6 @@ We have two kinds of dependencies in this project: tools and Angular framework c
 us manage and test the application.
 
 * We get the tools we depend upon via `npm`, the [Node package manager][npm].
-* In order to run the end-to-end tests, you will also need to have the
-  [Java Development Kit (JDK)][jdk] installed on your machine. Check out the section on
-  [end-to-end testing](#e2e-testing) for more info.
 
 We have preconfigured `npm` to automatically run `bower` so we can simply do:
 
@@ -175,7 +172,7 @@ Naming convention order of movement in a player domain goes from Tier 4 (`rBase`
 [Node1]<--------[Base]-------->[Node2]  #Tier 4
 ```
 
-Tier 8 inter-domain links are a lot more complicated since from `o8Hex`<-`r8Hex`->`p8Hex` are near domain neighbors, but 
+Tier 8 inter-domain links are a lot more complicated since from `o8Hex`<-`r8Hex`->`p8Hex` are near domain neighbors, but
 `r8Hex`->`b8Hex`, `r8Hex`->`g8Hex`,`r8Hex`->`y8Hex` are distant domains. 
 
 ## Cyber Effects 
@@ -253,6 +250,7 @@ The ransomware effect only lasts five rounds and after those five rounds have pa
 will be free of the ransomware attack and can continue play. Otherwise the defending player either has to pay out 
 their total amount of action/research points from server nodes they own to be free of the ransomware. 
 Also, attacking players cannot acquire opposing player bases.
+NOTE: Ransomware is being worked on.
 ![ScreenShot](documentation/img/implant.png)
 
 ## Game Flow and Adjudication
