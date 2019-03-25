@@ -30,5 +30,5 @@ this.Tier2CyberEffects = {
 this.Tier3CyberEffects = {
   ANALYZE: "Analyze",
   DENY: "Deny",
-  IMPLANT: "Analyze",
+  IMPLANT: "Implant",
 }

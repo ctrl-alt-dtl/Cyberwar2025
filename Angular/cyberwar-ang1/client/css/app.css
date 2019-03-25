@@ -91,7 +91,7 @@
     border-width: 1.5px;
 }
 .submitBtn {
-    background-color: white;
+    background-color: gray;
     border: 1.5px solid black;
     color: black;
     text-align: center;
@@ -100,8 +100,8 @@
     font-size: 16px;
     cursor: pointer;
 }
-.submitBtn:hover {
-    background-color: #4F4E4E;
+.submitBtn:not([disabled]) {
+    background-color: darkred;
     color: white;
 }
 .minusPlusBtn {
