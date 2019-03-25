@@ -103,6 +103,11 @@
 .submitBtn:not([disabled]) {
     background-color: darkred;
     color: white;
+    animation: blinker .3s linear alternate infinite;
+}
+@keyframes blinker {
+    from {color: gray;}
+    to {color: white;}
 }
 .minusPlusBtn {
     background-color: white;
