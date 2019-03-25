@@ -60,7 +60,7 @@
 .ui-area {
     height: 770px;
     width: 400px;
-    background-color: #000000;
+    background-color: black;
     float: left;
     display: inline-block;
     border-top-style: solid;
