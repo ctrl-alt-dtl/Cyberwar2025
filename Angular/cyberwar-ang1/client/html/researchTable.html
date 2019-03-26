@@ -5,16 +5,19 @@
         <td colspan="4" align="center" width="400px" height="30px" style="font-weight:bold" >&nbsp;Cyber Effects Window&nbsp;</td>
       </tr>
       <tr>
-        <td ng-repeat="(key, researchType) in ResearchType" align="center" width="100px" style="font-weight:bold" ng-style="{'border-right-width': '2px'}">{{researchType}}</td>
+        <td ng-repeat="(key, researchType) in ResearchType" align="center" width="100px" style="font-weight:bold"
+            ng-style="{'border-right-width': '2px'}">{{researchType}}</td>
         <td align="center" style="font-weight:bold">Cost to Use:</td>
       </tr>
       <!-- FIX: Not the right answer for coloring these cells individually -->
       <tr>
-        <td ng-repeat="(key, tier1CyberEffects) in Tier1CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}" >{{tier1CyberEffects}}</td>
+        <td ng-repeat="(key, tier1CyberEffects) in Tier1CyberEffects" align="center" width="100px" height="35px"
+            ng-style="{'border-right-width': '2px'}" >{{tier1CyberEffects}}</td>
         <td align=center>1</td>
       </tr>
       <tr>
-        <td ng-repeat="(key, tier2CyberEffects) in Tier2CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}">{{tier2CyberEffects}}</td>
+        <td ng-repeat="(key, tier2CyberEffects) in Tier2CyberEffects" align="center" width="100px" height="35px"
+            ng-style="{'border-right-width': '2px'}">{{tier2CyberEffects}}</td>
         <td align=center>2</td>
 
         <!-- Need to figure out what how to pull out the value of currentInvestment inside each ResearchType to validate the logic -->
@@ -25,7 +28,8 @@
         -->
       </tr>
       <tr>
-        <td ng-repeat="(key, tier3CyberEffects) in Tier3CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}">{{tier3CyberEffects}}</td>
+        <td ng-repeat="(key, tier3CyberEffects) in Tier3CyberEffects" align="center" width="100px" height="35px"
+            ng-style="{'border-right-width': '2px'}">{{tier3CyberEffects}}</td>
         <td align=center>3</td>
       </tr>
       <tr>
@@ -36,9 +40,12 @@
         <td ng-repeat="(key, researchType) in ResearchType">
           <div class="recharge-meter">
             <div class="meter-bg">
-              <div class="blocks paid" ng-repeat="meter in researchMeters[researchType].research track by $index" ng-disabled="!canInvest()" ng-click="invest(researchType, 0)"></div>
-              <div class="blocks invested" ng-repeat="meter in researchMeters[researchType].currentInvestment track by $index" ng-disabled="!canInvest()" ng-click="invest(researchType, $index + 1)"></div>
-              <div class="blocks" ng-repeat="meter in researchMeters[researchType].costRemaining track by $index" ng-disabled="!canInvest()" ng-click="invest(researchType, getCurrentInvestment(researchType) + $index + 1)"></div>
+              <div class="blocks paid" ng-repeat="meter in researchMeters[researchType].research track by $index"
+                   ng-disabled="!canInvest()" ng-click="invest(researchType, 0)"></div>
+              <div class="blocks invested" ng-repeat="meter in researchMeters[researchType].currentInvestment track by $index"
+                   ng-disabled="!canInvest()" ng-click="invest(researchType, $index + 1)"></div>
+              <div class="blocks" ng-repeat="meter in researchMeters[researchType].costRemaining track by $index"
+                   ng-disabled="!canInvest()" ng-click="invest(researchType, getCurrentInvestment(researchType) + $index + 1)"></div>
             </div>
           </div>
         </td>
@@ -46,8 +53,10 @@
       </tr>
       <tr>
         <td ng-repeat="(key, researchType) in ResearchType" align="center">
-          <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()" ng-click="invest(researchType, getCurrentInvestment(researchType) - 1)"> - </button>
-          <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()" ng-click="invest(researchType, getCurrentInvestment(researchType) + 1)"> + </button>
+          <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()"
+                  ng-click="invest(researchType, getCurrentInvestment(researchType) - 1)"> - </button>
+          <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()"
+                  ng-click="invest(researchType, getCurrentInvestment(researchType) + 1)"> + </button>
         </td>
       </tr>
     </table>
