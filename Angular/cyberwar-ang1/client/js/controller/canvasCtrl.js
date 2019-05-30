@@ -131,7 +131,7 @@ angular.module('CyberWar')
       case ActionType.ACQUIRE:
       case ActionType.MANIPULATE:
       case ActionType.DENY:
-        return ResearchType.CNO;
+        return ResearchType.CNA;
       case ActionType.SCAN:
       case ActionType.EXPLOIT:
       case ActionType.IMPLANT:
