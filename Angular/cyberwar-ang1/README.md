@@ -8,7 +8,7 @@
 MongoDB is the NoSQL database that keeps track and records all moves/orders in the game.
 To install MongoDB download it from:
 Or download via package managers such as Homebrew (OSX) or APT (Ubuntu).
-OSX Homembrew:
+OSX Homebrew:
 ```
 brew install mongodb
 ```
@@ -19,6 +19,16 @@ apt-get install mongodb
 Once installation is complete then setup the directory for the database (OSX/Linux only):
 ```
 mkdir -p /data/db
+```
+For Windows (7 or 10):
+Download and install via (https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#install-mdb-edition).
+Then make a directory exactly like this:
+```
+C:\data\db\
+```
+Then Run via Windows Command Processor as Administrator (IMPORTANT!)
+```
+"C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe"
 ```
 
 ### Install Dependencies
@@ -43,6 +53,11 @@ Before you run the application MongoDB needs to be started and running in a sepa
 To run Mongo in Linux/OSX type:
 ```
 sudo mongod
+```
+
+Or Windows:
+```
+"C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe"
 ```
 
 We have preconfigured the project with a simple development web server. The simplest way to start
