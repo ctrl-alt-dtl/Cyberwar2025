@@ -52,14 +52,15 @@ var orderSchema = new Schema({
 
 // Schema for a player
 var playerSchema = new Schema({
-  name                : { type: String, default: '' }, // The player's name
-  color               : { type: String, default: '' }, // What color the player is playing as
-  research            : researchSchema,                // What research this player has done
-  exploitLinks        : [linkSchema],                  // The exploit links this player has
-  scannedNodes        : [serverNodeSchema],            // The list of node information this player has from scanning
-  scannedExploitLinks : [linkSchema],                  // The list of exploit link information this player has from scanning
-  investments         : researchSchema,                // How much the player invested in each research type this turn
-  orders              : [orderSchema],                 // The actions the player wants to take this turn
+  name                : { type: String, default: '' },    // The player's name
+  color               : { type: String, default: '' },    // What color the player is playing as
+  research            : researchSchema,                   // What research this player has done
+  exploitLinks        : [linkSchema],                     // The exploit links this player has
+  scannedNodes        : [serverNodeSchema],               // The list of node information this player has from scanning
+  scannedExploitLinks : [linkSchema],                     // The list of exploit link information this player has from scanning
+  investments         : researchSchema,                   // How much the player invested in each research type this turn
+  orders              : [orderSchema],                    // The actions the player wants to take this turn
+  isObserver          : { type: Boolean, default: false } // Whether this player is an observer or not
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

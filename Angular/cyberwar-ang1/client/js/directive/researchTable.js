@@ -7,6 +7,7 @@ angular.module('CyberWar')
     $scope.Tier1CyberEffects = Tier1CyberEffects;
     $scope.Tier2CyberEffects = Tier2CyberEffects;
     $scope.Tier3CyberEffects = Tier3CyberEffects;
+    $scope.isObserver = () => GameState.isObserver();
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {

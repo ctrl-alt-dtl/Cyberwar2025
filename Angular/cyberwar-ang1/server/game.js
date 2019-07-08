@@ -101,7 +101,7 @@ function isValidPlayer(game, user) {
   //log.info(JSON.stringify(Util.getCurrentTurn(game)));
 
   var validUser = _.find(Util.getCurrentTurn(game).players, function(player) {
-    return player.color === user;
+    return player.name === user;
   });
 
   return validUser !== undefined;
@@ -125,6 +125,9 @@ function onConnection(connection) {
       case GameRequest.SUBMIT:
         addLockedAction(gid, { name: 'Submit Action', callback: submitAction, params: { user: user, action: message.data.action }});
         break;
+      case GameRequest.CHANGE_OBSERVED_PLAYER:
+        addLockedAction(gid, { name: 'Change Observer Color', callback: setObserverColor, params: { user: user, color: message.data.color }});
+        break;
     }
   });
 }
@@ -147,13 +150,22 @@ var getCurrentTurnData = function(client, gid, user) {
 //------------------------------------------------------------------------------
 // Handle the player's pushing of data to the server.
 var submitAction = function(gid, game, params) {
-  if (!game.paused) {
-    if (params.user !== undefined && params.action !== undefined) {
-      gameController.performAction(game, params.user, params.action);
-    }
-    else {
-      log.error("User and/or Actions not provided");
-    }
+  if (params.user !== undefined && params.action !== undefined) {
+    gameController.performAction(game, params.user, params.action);
+  }
+  else {
+    log.error("User and/or Actions not provided");
+  }
+}
+
+//------------------------------------------------------------------------------
+// Handle an observer player changing colors
+var setObserverColor = function(gid, game, params) {
+  if (params.user !== undefined && params.color !== undefined) {
+    gameController.setObserverColor(game, params.user, params.color);
+  }
+  else {
+    log.error("User and/or Actions not provided");
   }
 }
 
