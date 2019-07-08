@@ -72,11 +72,6 @@ angular.module('CyberWar')
     // Everyone gets 3 points on the first turn
     if (turnNumber === 0) {
       return 3;
-      // If player loses all node links. Reinstate 1 AP to allow for player to recontinue game. HAIL MARY RULE!
-      // This is a temporary rule just to allow play to continue for teaching. I need to address the knock out mechanic
-      // in the server.
-    } else if (turnNumber >= 1 && positivelyLinkedNodes.length < 2) {
-      return 1;
     }
 
     // After that it's one for every acquired or exploited node
@@ -87,6 +82,9 @@ angular.module('CyberWar')
       return Math.max(calculatedAP, 2);
     }
 
-    return 0;
+    // If player loses all node links. Reinstate 1 AP to allow for player to recontinue game. HAIL MARY RULE!
+    // This is a temporary rule just to allow play to continue for teaching. I need to address the knock out mechanic
+    // in the server.
+    return 2;
   }
 }]);
