@@ -3,12 +3,25 @@ angular.module('CyberWar')
   function link($scope, element, attrs) {
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
-      $scope.submitBtnTxt = "Submit Orders"
-      return !GameState.submittedTurn() && (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;
+      return (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;
     }
+
+    //---------------------------------------------------------------------------
+    $scope.getSubmitText = function() {
+      if (!GameState.submittedTurn()) {
+        return "Submit Orders";
+      }
+      return "Edit Orders";
+    }
+
     //---------------------------------------------------------------------------
     $scope.submit = function() {
-      GameSocket.performAction({ investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() });
+      if (!GameState.submittedTurn()) {
+        GameSocket.performAction({ investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() });
+      }
+      else {
+        GameSocket.performAction({ orders: [] });
+      }
     }
   }
   return {
