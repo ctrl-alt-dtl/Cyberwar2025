@@ -53,6 +53,8 @@
     <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll'])</script>
 
     <!-- Angular Services -->
+    <script src="service/chatSocket.js"></script>
+    <script src="service/chatState.js"></script>
     <script src="service/currentInvestments.js"></script>
     <script src="service/currentOrders.js"></script>
     <script src="service/gameSocket.js"></script>
@@ -62,6 +64,7 @@
     <script src="service/socket.js"></script>
 
     <!-- Angular Directives -->
+    <script src="directive/chat.js"></script>
     <script src="directive/exploitLink.js"></script>
     <script src="directive/ordersList.js"></script>
     <script src="directive/overtLink.js"></script>
@@ -102,6 +105,7 @@
           <research-table></research-table>
           <submit-button></submit-button>
           <orders-list></orders-list>
+          <chat></chat>
         </div>
       </div>
     </div>
