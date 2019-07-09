@@ -27,7 +27,7 @@
       <div id="gamelist" ng-repeat="game in gameList">
         <div class="gameListItem" ng-repeat="player in game.players track by $index">
           <span>Play as </span>
-          <button class="gameLink" ng-click="playGame(game.gid, player.color)">{{player.color}}</button>
+          <button class="gameLink" ng-click="playGame(game.gid, player.name)">{{player.name}}</button>
         </div>
         <div class="gameListItem turn">Turn: {{game.turnNumber}}</div>
         <div class="gameListItem gid">Game ID: {{game.gid}}</div>

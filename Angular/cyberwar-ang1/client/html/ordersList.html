@@ -1,7 +1,7 @@
 <div class="adjudication" style="font-weight:bold">Orders Adjudication:
   <ul class="adjudicationUnorderedList" ui-scroll-viewport>
     <li class="adjudicationList" ng-repeat="order in orders" class="{'fadeOut' : order.done}">
-      <span class="fa fa-close" ng-disabled="!canCancel()" ng-click="cancel($index)"></span>
+      <span class="fa fa-close" ng-if="!isObserver()" ng-disabled="!canCancel()" ng-click="cancel($index)"></span>
       <span>{{order.action}} {{order.node.color}} {{order.node.index}} {{paramsToString(order)}} Cost: {{order.cost}}</span>
     </li>
   </ul>

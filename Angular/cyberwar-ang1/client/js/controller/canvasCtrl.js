@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.controller('canvasCtrl', ['$scope', '$uibModal', 'CurrentOrders', 'GameState', 'GameUtil', function($scope, $uibModal, CurrentOrders, GameState, GameUtil){
+.controller('canvasCtrl', ['$scope', '$uibModal', 'CurrentOrders', 'GameSocket', 'GameState', 'GameUtil', function($scope, $uibModal, CurrentOrders, GameSocket, GameState, GameUtil){
   GameState.addListener(onGameStateChanged);
   $scope.Color = Color;
   $scope.nodesPerDomain = new Array(GameUtil.Config.SERVER_NODES_PER_DOMAIN);
@@ -21,7 +21,12 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.playerBaseClicked = function(color) {
-    $scope.serverNodeClicked(color, 0);
+    if (!GameState.currentPlayerData.isObserver) {
+      $scope.serverNodeClicked(color, 0);
+    }
+    else {
+      showObserverSwitchPlayerDialog(color);
+    }
   }
 
   // ----------------------------------------------------------------------------
@@ -41,10 +46,10 @@ angular.module('CyberWar')
         selectedNode: function() {
           return selectedNode;
         },
-        displayedOwner: function () {
+        displayedOwner: function() {
           return GameUtil.getServerNodeDisplayedColor(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
         },
-        displayedStrength: function () {
+        displayedStrength: function() {
           return GameUtil.getServerNodeDisplayedText(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
         },
         usableSourceNodes: function () {
@@ -55,14 +60,19 @@ angular.module('CyberWar')
         },
         validColors: function () {
           return validColors;
-        },
+        }
       }
     });
 
-    modalInstance.result.then(function (selection) {
-      selectAction(selectedNode, selection.action, JSON.parse(angular.toJson(selection.params)));
-    }, function () {
-    });
+    modalInstance.result.then(
+      // Dialog accepted
+      function (selection) {
+        selectAction(selectedNode, selection.action, JSON.parse(angular.toJson(selection.params)));
+      },
+      // Dialog canceled
+      function () {
+      }
+    );
   }
 
   // ----------------------------------------------------------------------------
@@ -71,6 +81,32 @@ angular.module('CyberWar')
     $scope.overtLinks = GameState.currentGameState.overtLinks;
     $scope.exploitLinks = GameState.currentPlayerData.exploitLinks.concat(GameState.currentPlayerData.scannedExploitLinks);
     $scope.redraw = true;
+  }
+
+  // ----------------------------------------------------------------------------
+  var showObserverSwitchPlayerDialog = function(color) {
+    modalInstance = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'observerSwitchPlayerDialog.html',
+      controller: 'ObserverSwitchPlayerDialogController',
+      resolve: {
+        color: function() {
+          return color;
+        }
+      }
+    });
+
+    modalInstance.result.then(
+      // Dialog accepted
+      function () {
+        GameSocket.setObserverColor(color);
+      },
+      // Dialog canceled
+      function () {
+      }
+    );
   }
 
   // ----------------------------------------------------------------------------
@@ -253,7 +289,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var doesPlayerOwnNode = function(node) {
-    return node.ownerColor == GameState.currentPlayerData.color;
+    return GameState.currentPlayerData.isObserver || node.ownerColor == GameState.currentPlayerData.color;
   }
 
   // ----------------------------------------------------------------------------
