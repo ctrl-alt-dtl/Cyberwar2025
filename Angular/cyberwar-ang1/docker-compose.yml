@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo:4.0.10
+    volumes:
+      - ./db_volume:/data
+
+  game:
+    image: node:10.16
+    depends_on:
+      - mongo
+    volumes:
+      - .:/code
+    working_dir: /code
+    ports:
+      - 8080:8080
+      - 5858:5858
+    environment:
+      - MONGO_URL=mongodb://mongo/cyberwar2025
+      - PORT=8080
+    command: /bin/bash -c "npm start"
+
+# Might as well have admin for Mongo
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - 8081:8081

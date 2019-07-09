@@ -1,6 +1,8 @@
 angular.module('CyberWar')
 .directive('ordersList', ['CurrentOrders', 'GameState', function(CurrentOrders, GameState) {
   function link($scope, element, attrs) {
+    $scope.isObserver = () => GameState.isObserver();
+
     CurrentOrders.addListener(onOrdersChanged);
 
     // ----------------------------------------------------------------------------

@@ -2,23 +2,20 @@
   <div id="effects-window">
     <table>
       <tr>
-        <td colspan="4" align="center" width="400px" height="30px" style="font-weight:bold" >&nbsp;Cyber Effects Window&nbsp;</td>
+        <td colspan="4" align="center" width="400px" height="30px" style="font-weight:bold" class="last">&nbsp;Cyber Effects Window&nbsp;</td>
       </tr>
       <tr>
-        <td ng-repeat="(key, researchType) in ResearchType" align="center" width="100px" style="font-weight:bold"
-            ng-style="{'border-right-width': '2px'}">{{researchType}}</td>
-        <td align="center" style="font-weight:bold">Cost to Use:</td>
+        <td ng-repeat="(key, researchType) in ResearchType" align="center" width="100px" style="font-weight:bold" ng-style="{'border-right-width': '2px'}">{{researchType}}</td>
+        <td align="center" style="font-weight:bold" class="last">Cost to Use:</td>
       </tr>
       <!-- FIX: Not the right answer for coloring these cells individually -->
       <tr>
-        <td ng-repeat="(key, tier1CyberEffects) in Tier1CyberEffects" align="center" width="100px" height="35px"
-            ng-style="{'border-right-width': '2px'}" >{{tier1CyberEffects}}</td>
-        <td align=center>1</td>
+        <td ng-repeat="(key, Tier1CyberEffects) in Tier1CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}" >{{Tier1CyberEffects}}</td>
+        <td align=center class="last">1</td>
       </tr>
       <tr>
-        <td ng-repeat="(key, tier2CyberEffects) in Tier2CyberEffects" align="center" width="100px" height="35px"
-            ng-style="{'border-right-width': '2px'}">{{tier2CyberEffects}}</td>
-        <td align=center>2</td>
+        <td ng-repeat="(key, Tier2CyberEffects) in Tier2CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}">{{Tier2CyberEffects}}</td>
+        <td align=center class="last">2</td>
 
         <!-- Need to figure out what how to pull out the value of currentInvestment inside each ResearchType to validate the logic -->
         <!--
@@ -28,13 +25,12 @@
         -->
       </tr>
       <tr>
-        <td ng-repeat="(key, tier3CyberEffects) in Tier3CyberEffects" align="center" width="100px" height="35px"
-            ng-style="{'border-right-width': '2px'}">{{tier3CyberEffects}}</td>
-        <td align=center>3</td>
+        <td ng-repeat="(key, Tier3CyberEffects) in Tier3CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}">{{Tier3CyberEffects}}</td>
+        <td align=center class="last">3</td>
       </tr>
       <tr>
         <td height=10px colspan="3" style="font-weight:bold" ng-style="{'border-right-width': '2px'}">Research Investment Table</td>
-        <td align=center style="font-weight:bold">Action Points</td>
+        <td align=center style="font-weight:bold" class="last">Action Points</td>
       </tr>
       <tr class="ui-row">
         <td ng-repeat="(key, researchType) in ResearchType">
@@ -49,9 +45,9 @@
             </div>
           </div>
         </td>
-        <td class="actionPointsNumber" rowspan="2">{{actionPoints}}</td>
+        <td class="actionPointsNumber" rowspan="2" >{{actionPoints}}</td>
       </tr>
-      <tr>
+      <tr ng-if="!isObserver()">
         <td ng-repeat="(key, researchType) in ResearchType" align="center">
           <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()"
                   ng-click="invest(researchType, getCurrentInvestment(researchType) - 1)"> - </button>

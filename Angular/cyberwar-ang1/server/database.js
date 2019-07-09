@@ -8,9 +8,9 @@ var log = require('./log').log;
 
 module.exports = {
   getGameModel: getGameModel,
+  getChatModel: getChatModel,
 };
 
-var Color = require('../shared/color.js').Color;
 var ResearchType = require('../shared/researchType.js').ResearchType;
 
 var Schema = mongoose.Schema;
@@ -52,14 +52,15 @@ var orderSchema = new Schema({
 
 // Schema for a player
 var playerSchema = new Schema({
-  name                : { type: String, default: '' }, // The player's name
-  color               : { type: String, default: '' }, // What color the player is playing as
-  research            : researchSchema,                // What research this player has done
-  exploitLinks        : [linkSchema],                  // The exploit links this player has
-  scannedNodes        : [serverNodeSchema],            // The list of node information this player has from scanning
-  scannedExploitLinks : [linkSchema],                  // The list of exploit link information this player has from scanning
-  investments         : researchSchema,                // How much the player invested in each research type this turn
-  orders              : [orderSchema],                 // The actions the player wants to take this turn
+  name                : { type: String, default: '' },    // The player's name
+  color               : { type: String, default: '' },    // What color the player is playing as
+  research            : researchSchema,                   // What research this player has done
+  exploitLinks        : [linkSchema],                     // The exploit links this player has
+  scannedNodes        : [serverNodeSchema],               // The list of node information this player has from scanning
+  scannedExploitLinks : [linkSchema],                     // The list of exploit link information this player has from scanning
+  investments         : researchSchema,                   // How much the player invested in each research type this turn
+  orders              : [orderSchema],                    // The actions the player wants to take this turn
+  isObserver          : { type: Boolean, default: false } // Whether this player is an observer or not
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn
@@ -83,4 +84,28 @@ if (!gameModel) {
 
 function getGameModel() {
   return gameModel;
+}
+
+// Schema that defines a chat message
+var messageSchema = new Schema({
+  from       : { type: String, default: '' }, // Who sent the message
+  to         : { type: String, default: '' }, // The intended receiver of the message (undefined if it's a public message)
+  message    : { type: String, default: '' }, // The actual message itself
+  turnNumber : { type: Number, default: 0 },  // The turn number the message was sent at
+}, { _id: false, timestamps: { createdAt: 'timestamp' } });
+
+// Schema for our game chat.
+var chatSchema = new Schema({
+  gid      : { type: String, default: '' }, // The associated game ID
+  messages : [messageSchema], // The list of messages that are in this game
+});
+
+//------------------------------------------------------------------------------
+var chatModel = mongoose.model('ChatModel', chatSchema);
+if (!chatModel) {
+  log.error('Failed to create database chat model');
+}
+
+function getChatModel() {
+  return chatModel;
 }

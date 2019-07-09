@@ -1,5 +1,5 @@
 angular.module("CyberWar")
-.service('GameSocket', ['GameState', 'Socket', function(GameState, Socket) {
+.service('GameSocket', function(GameState, Socket) {
   var gid, user, updateCB;
   var requestSentCBListener = new Gambit.CallbackListener();
 
@@ -10,7 +10,6 @@ angular.module("CyberWar")
     updateCB = gameStateUpdatedCB;
     GameState.currentPlayer = currentUser;
     Socket.addListener(onSocketOpened, onSocketMessage, onSocketClose);
-    socketConnect();
   }
 
   //---------------------------------------------------------------------------
@@ -30,6 +29,12 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  this.setObserverColor = function(color) {
+    requestSentCBListener.triggerAll();
+    socketSend(GameRequest.CHANGE_OBSERVED_PLAYER, { gid: gid, user: user, color: color });
+  }
+
+  // ----------------------------------------------------------------------------
   var onSocketOpened = function() {
     socketSend(GameRequest.GET, { gid: gid, user: user });
   }
@@ -45,26 +50,10 @@ angular.module("CyberWar")
 
   // ----------------------------------------------------------------------------
   var onSocketClose = function() {
-    setTimeout(socketConnect, 1000);
-  }
-
-  // ----------------------------------------------------------------------------
-  var socketConnect = function() {
-    Socket.setSocket(new SockJS('/game', {}, {
-      transports: [
-        "websocket",
-        "iframe-eventsource",
-        "htmlfile",
-        "iframe-htmlfile",
-        "xhr-polling",
-        "iframe-xhr-polling",
-        "jsonp-polling"
-      ]
-    }));
   }
 
   // ----------------------------------------------------------------------------
   var socketSend = function(request, data) {
     Socket.send(JSON.stringify({ socketType: SocketType.GAME, request: request, data: data }));
   }
-}]);
+});
