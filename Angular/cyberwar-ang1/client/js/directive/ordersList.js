@@ -16,10 +16,10 @@ angular.module('CyberWar')
     //---------------------------------------------------------------------------
     $scope.paramsToString = function(order) {
       var params = '';
-      if (order.params.source) {
+      if (order.params && order.params.source) {
         params += ' from ' + order.params.source.color + ' ' + order.params.source.index;
       }
-      if (order.params.color) {
+      if (order.params && order.params.color) {
         params += ' as ' + order.params.color;
       }
       return params;
