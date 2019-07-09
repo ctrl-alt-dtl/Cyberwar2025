@@ -25,8 +25,8 @@ var nodeValThree = '3';
 var nodeValFour = '4';
 
 // Line dash width and gap for exploit links
-var exploitLineDashWidth = 2;
-var exploitLineDashGap = 6;
+var exploitLineDashWidth = 3;
+var exploitLineDashGap = 8;
 
 // Resizing math used for all server and link points
 var point_x = BASE_BOARD_WIDTH;
@@ -71,5 +71,5 @@ var dashSize = BASE_BOARD_HEIGHT / 384;
 var dashStroke = BASE_BOARD_HEIGHT / BASE_BOARD_HEIGHT;
 
 // Board Links Size
-var mainLinksStroke = BASE_BOARD_HEIGHT / 96;
+var mainLinksStroke = BASE_BOARD_HEIGHT / 98;
 var exploitLinksStroke = BASE_BOARD_HEIGHT / 192;
