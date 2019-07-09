@@ -1,5 +1,7 @@
 /* app css stylesheet */
-
+body {
+    background-color: white;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -28,67 +30,74 @@
 }
 #stage-parent {
     text-align: center;
-    width: 1250px;
+    width: 1680px;
+    height: 1025px;
+    resize: both;
+    margin-left: auto;
+    margin-right: auto;
+    /*background: url('../img/titlebackground-hq.png') no-repeat center; */
+    vertical-align: middle;
+    display: block;
 }
 #main-view{
     width: 100%;
-    height: 900px;
-    padding-top: 10px;
-    padding-left: 10px;
-}
-#left_aside {
-    height: 770px;
-    width: 25px;
-    background-color: white;
-    float: left;
-    border-left-style: solid;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-width: 1px;
-}
-.board {
-    height: 770px;
-    width: 770px;
-    float: left;
-    display: inline-block;
-    border-left-style: none;
-    border-bottom-style: solid;
-    border-top-style: solid;
-    border-right-style: none;
-    border-width: 1px;
-}
-.ui-area {
-    height: 770px;
-    width: 400px;
-    background-color: black;
-    float: left;
-    display: inline-block;
-    border-top-style: solid;
+    height: 100%;
+    padding-top: .5%;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    border-style: solid;
+    border-color: orange;
     border-width: 2px;
 }
+#left_aside {
+    height: 98%;
+    width: 20%;
+    background-color: gray;
+    float: left;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#effects-window {
+    width: 100%;
+}
+.board {
+    height: 100%;
+    width: 55%;
+    float: left;
+    display: inline-block;
+}
+.ui-area {
+    height: 98%;
+    width: 24%;
+    background-color: #E1E1E1;
+    float: left;
+    display: inline-block;
+    border: 2px solid;
+}
+.adjudication{
+    height: 70%;
+    width: 100%;
+    background: #E1E1E1;
+    position: relative;
+    padding-top: 1%;
+}
 .effects{
-    height: 260px;
-    width: 400px;
+    height: 25%;
+    width: 100%;
     float:top;
     background: #E1E1E1;
     position: inherit;
-    border-bottom-style: none;
-    border-left-style: solid;
-    border-top-style: none;
-    border-right-style: solid;
-    border-width: 2px;
+
 }
 .submitBtnArea {
-    height: 50px;
-    width: 400px;
+    height: 5%;
+    width: 100%;
     background: #E1E1E1;
     position: inherit;
     justify-content: center;
     display: flex;
-    border-left-style: solid;
-    border-right-style: solid;
-    border-bottom-style: none;
-    border-width: 1.5px;
+    padding-top: 4%;
 }
 .submitBtn {
     background-color: gray;
@@ -111,37 +120,27 @@
 }
 .minusPlusBtn {
     background-color: white;
-    border: .5px solid black;
+    border: 1px solid black;
     width: 50%;
     float: left;
     color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
 }
 .minusPlusBtn:hover {
     background-color: #4F4E4E;
     color: white;
 }
-.adjudication{
-    height: 458px;
-    width: 400px;
-    background: #E1E1E1;
-    position: relative;
-    border-top-style: none;
-    border-left-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-width: 1.5px;
-    padding-top: 10px;
-}
 .actionPointsNumber {
     font-weight: bold;
     font-size: 28px;
     align: center;
     vertical-align: middle !important;
+    border-right: none;
+    border-bottom: 1px solid black;
 }
 .effectRow1 {
     background: green;
@@ -161,28 +160,29 @@ td {
     border: 1px black solid;
     border-top-style: none;
     border-left-style: none;
-
+}
+.last {
+    border-right: none;
 }
 
-#effects-window {
 
+#orders-list {
+    height: 100%;
 }
-
 .adjudicationUnorderedList {
     list-style: none;
     padding-left: 0;
 }
 
 .adjudicationList {
-    border: 1px solid black;
+    border: 1em solid black;
     display: block;
-    padding: 1px 10px;
-    margin-bottom: 1px;
+    padding: .1em 1em;
+    margin-bottom: 1em;
     width: 100%;
     text-align: left;
     text-transform: capitalize;
 }
-
 .fa-close {
     cursor: pointer;
 }
@@ -197,9 +197,11 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 .blocks {
     position: relative;
     display: inline-block;
-    border: solid .3px black;
-    width: 24.75px;
-    height: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    width: 25%;
+    height: 1.5em;
     text-align:center;
     background: dimgray;
     float: left;

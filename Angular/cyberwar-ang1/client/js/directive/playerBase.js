@@ -25,7 +25,7 @@ angular.module('CyberWar')
         points: getHexPoints(color),
         fill: grayColor,
         stroke: 'black',
-        strokeWidth: 2,
+        strokeWidth: 3,
         closed: true,
         id: color + 'Base'
       });
@@ -72,64 +72,64 @@ angular.module('CyberWar')
       var x2, y2, x3, y3, x5, y5, x6, y6;
       switch(color) {
         case Color.RED:
-          x2 = point_x / 2.42;
-          y2 = point_y / 1.154;
-          x3 = point_x / 1.705;
-          y3 = point_y / 1.154;
-          x5 = point_x / 1.705;
-          y5 = point_y / 1.1;
-          x6 = point_x / 2.42;
-          y6 = point_y / 1.1;
+          x2 = point_x / 2.36;
+          y2 = point_y / 1.217;
+          x3 = point_x / 1.74;
+          y3 = point_y / 1.217;
+          x5 = point_x / 1.74;
+          y5 = point_y / 1.15;
+          x6 = point_x / 2.36;
+          y6 = point_y / 1.15;
           break;
         case Color.ORANGE:
-          x2 = point_x / 1.44;
-          y2 = point_y / 1.28;
-          x3 = point_x / 1.28;
-          y3 = point_y / 1.715;
-          x5 = point_x / 1.237;
-          y5 = point_y / 1.652;
-          x6 = point_x / 1.387;
-          y6 = point_y / 1.24;
+          x2 = point_x / 1.225; // lower left
+          y2 = point_y / 1.345; // lower left
+          x3 = point_x / 1.119; // lower right
+          y3 = point_y / 1.599; // lower right
+          x5 = point_x / 1.181; // top right
+          y5 = point_y / 1.659; // top right
+          x6 = point_x / 1.295; // top left
+          y6 = point_y / 1.39; // top left
           break;
         case Color.YELLOW:
-          x2 = point_x / 1.28;
-          y2 = point_y / 2.4;
-          x3 = point_x / 1.44;
-          y3 = point_y / 4.647;
-          x5 = point_x / 1.387;
-          y5 = point_y / 5.15;
-          x6 = point_x / 1.237;
-          y6 = point_y / 2.53;
+          x2 = point_x / 1.119;
+          y2 = point_y / 2.69;
+          x3 = point_x / 1.22;
+          y3 = point_y / 3.9;
+          x5 = point_x / 1.292;
+          y5 = point_y / 3.59;
+          x6 = point_x / 1.178;
+          y6 = point_y / 2.525;
           break;
         case Color.GREEN:
-          x2 = point_x / 1.705;
-          y2 = point_y / 7.5;
-          x3 = point_x / 2.42;
-          y3 = point_y / 7.5;
-          x5 = point_x / 2.42;
-          y5 = point_y / 11;
-          x6 = point_x / 1.705;
-          y6 = point_y / 11;
+          x2 = point_x / 1.735;
+          y2 = point_y / 5.7;
+          x3 = point_x / 2.35;
+          y3 = point_y / 5.7;
+          x5 = point_x / 2.35;
+          y5 = point_y / 7.75;
+          x6 = point_x / 1.735;
+          y6 = point_y / 7.75;
           break;
         case Color.BLUE:
-          x2 = point_x / 3.28;
-          y2 = point_y / 4.65;
-          x3 = point_x / 4.57;
-          y3 = point_y / 2.4;
-          x5 = point_x / 5.26;
+          x2 = point_x / 5.58;
+          y2 = point_y / 3.93;
+          x3 = point_x / 9.6;
+          y3 = point_y / 2.68;
+          x5 = point_x / 6.6;
           y5 = point_y / 2.52;
-          x6 = point_x / 3.6;
-          y6 = point_y / 5.15;
+          x6 = point_x / 4.41;
+          y6 = point_y / 3.59;
           break;
         case Color.PURPLE:
-          x2 = point_x / 4.6;
-          y2 = point_y / 1.715;
-          x3 = point_x / 3.28;
-          y3 = point_y / 1.28;
-          x5 = point_x / 3.595;
-          y5 = point_y / 1.24;
-          x6 = point_x / 5.23;
-          y6 = point_y / 1.652;
+          x2 = point_x / 9.5;
+          y2 = point_y / 1.595;
+          x3 = point_x / 5.5;
+          y3 = point_y / 1.34;
+          x5 = point_x / 4.4;
+          y5 = point_y / 1.39;
+          x6 = point_x / 6.5;
+          y6 = point_y / 1.66;
           break;
       }
       return [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6];
@@ -139,17 +139,17 @@ angular.module('CyberWar')
     var getTextPosition = function(color) {
       switch(color) {
         case Color.RED:
-          return { x: BASE_BOARD_WIDTH / 2.1, y: BASE_BOARD_HEIGHT / 1.135 };
+          return { x: BASE_BOARD_WIDTH / 2.1, y: BASE_BOARD_HEIGHT / 1.185 };
         case Color.ORANGE:
-          return { x: BASE_BOARD_WIDTH / 1.41, y: BASE_BOARD_HEIGHT / 1.29 };
+          return { x: BASE_BOARD_WIDTH / 1.26, y: BASE_BOARD_HEIGHT / 1.375 };
         case Color.YELLOW:
-          return { x: BASE_BOARD_WIDTH / 1.315, y: BASE_BOARD_HEIGHT / 2.91 };
+          return { x: BASE_BOARD_WIDTH / 1.185, y: BASE_BOARD_HEIGHT / 2.89 };
         case Color.GREEN:
-          return { x: BASE_BOARD_WIDTH / 1.8, y: BASE_BOARD_HEIGHT / 8.4 };
+          return { x: BASE_BOARD_WIDTH / 1.83, y: BASE_BOARD_HEIGHT / 6.4 };
         case Color.BLUE:
-          return { x: BASE_BOARD_WIDTH / 3.65, y: BASE_BOARD_HEIGHT / 3.75 };
+          return { x: BASE_BOARD_WIDTH / 5.35, y: BASE_BOARD_HEIGHT / 3.3 };
         case Color.PURPLE:
-          return { x: BASE_BOARD_WIDTH / 4.22, y: BASE_BOARD_HEIGHT / 1.52 };
+          return { x: BASE_BOARD_WIDTH / 6.5, y: BASE_BOARD_HEIGHT / 1.55 };
       }
       return { x: BASE_BOARD_WIDTH * 0.5, y: BASE_BOARD_HEIGHT * 0.5 };
     }
