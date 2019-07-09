@@ -89,7 +89,26 @@
 
     <div ng-controller="GameController" id="stage-parent">
       <div id="main-view">
-        <div id="left_aside"></div>
+        <!-- <history></history> -->
+        <div id="left_aside">
+          <div class="round-indicator">Round # {{ turnNumber }}</div>
+          <div class="pressure-indicator">
+            <table class="ready-indicator">
+              <tr>Player Ready Indicator</tr>
+              <tr>
+                <th>DotEvil</th>
+                <th>WMDeez</th>
+                <th>FrostByte</th>
+              </tr>
+              <tr>
+                <th>CuttlePhish</th>
+                <th>BuzzKill</th>
+                <th>CaffeineCowboy</th>
+              </tr>
+            </table>
+          </div>
+          <div class="chat"><chat></chat></div>
+        </div>
         <div class="board"></div>
         <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
           <overt-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB"></overt-link>
@@ -107,7 +126,7 @@
           <research-table></research-table>
           <submit-button></submit-button>
           <orders-list></orders-list>
-          <chat></chat>
+
         </div>
 
       </div>
