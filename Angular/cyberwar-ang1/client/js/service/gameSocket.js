@@ -30,6 +30,12 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  this.setObserverColor = function(color) {
+    requestSentCBListener.triggerAll();
+    socketSend(GameRequest.CHANGE_OBSERVED_PLAYER, { gid: gid, user: user, color: color });
+  }
+
+  // ----------------------------------------------------------------------------
   var onSocketOpened = function() {
     socketSend(GameRequest.GET, { gid: gid, user: user });
   }

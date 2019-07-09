@@ -51,7 +51,7 @@
         </td>
         <td class="actionPointsNumber" rowspan="2">{{actionPoints}}</td>
       </tr>
-      <tr>
+      <tr ng-if="!isObserver()">
         <td ng-repeat="(key, researchType) in ResearchType" align="center">
           <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()"
                   ng-click="invest(researchType, getCurrentInvestment(researchType) - 1)"> - </button>
