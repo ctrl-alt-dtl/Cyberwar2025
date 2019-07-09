@@ -1,4 +1,4 @@
-###"CyberWar:2025"
+### "CyberWar:2025"
 A Defense Analysis Thesis/Capstone Wargame
 
 ##### Development Start Date: 05 July 2017
@@ -16,4 +16,4 @@ ___
 #### Keywords
 cyber education, cyber training, cyber wargaming, computer-based simulation, virtual simulation, educational courses, multiplayer, serious games, cyberwar, cyber domain, cyberspace operations, cyber doctrine, cyber policy, computer network exploitation
 
-######Unclassified//FOUO
+###### Unclassified//FOUO
