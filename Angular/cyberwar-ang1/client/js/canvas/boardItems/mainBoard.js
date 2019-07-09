@@ -31,7 +31,7 @@ var tier3 = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 2.7,
+  radius: BASE_BOARD_WIDTH / 2.6,
   fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
@@ -42,7 +42,7 @@ var tier2 = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 4,
+  radius: BASE_BOARD_WIDTH / 3.7,
   fill: 'white',
   stroke: 'black',
   strokeWidth: 1,
@@ -54,7 +54,7 @@ var tier1 = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 8,
+  radius: BASE_BOARD_WIDTH / 6.5,
   fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
@@ -73,7 +73,7 @@ var origin = new Konva.RegularPolygon({
 var tier3Text = new Konva.Text({
   text: 'Tier 3',
   x: BASE_BOARD_WIDTH / 2.05,
-  y: BASE_BOARD_HEIGHT / 1.225,
+  y: BASE_BOARD_HEIGHT / 1.265,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
@@ -85,7 +85,7 @@ var tier3Text = new Konva.Text({
 var tier2Text = new Konva.Text({
   text: 'Tier 2',
   x: BASE_BOARD_WIDTH / 2.05,
-  y: BASE_BOARD_HEIGHT / 1.395,
+  y: BASE_BOARD_HEIGHT / 1.425,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
@@ -96,7 +96,80 @@ var tier2Text = new Konva.Text({
 var tier1Text = new Konva.Text({
   text: 'Tier 1',
   x: BASE_BOARD_WIDTH / 2.05,
-  y: BASE_BOARD_HEIGHT / 1.68,
+  y: BASE_BOARD_HEIGHT / 1.638,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+// Server Node Numbering Text
+var node1Text = new Konva.Text({
+  text: '1',
+  x: BASE_BOARD_WIDTH / 3.5,
+  y: BASE_BOARD_HEIGHT / 1.16,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+var node2Text = new Konva.Text({
+  text: '2',
+  x: BASE_BOARD_WIDTH / 1.455,
+  y: BASE_BOARD_HEIGHT / 1.16,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+var node3Text = new Konva.Text({
+  text: '3',
+  x: BASE_BOARD_WIDTH / 2.95,
+  y: BASE_BOARD_HEIGHT / 1.29,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+var node5Text = new Konva.Text({
+  text: '5',
+  x: BASE_BOARD_WIDTH / 1.58,
+  y: BASE_BOARD_HEIGHT / 1.29,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+var node6Text = new Konva.Text({
+  text: '6',
+  x: BASE_BOARD_WIDTH / 2.53,
+  y: BASE_BOARD_HEIGHT / 1.46,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+var node7Text = new Konva.Text({
+  text: '7',
+  x: BASE_BOARD_WIDTH / 1.74,
+  y: BASE_BOARD_HEIGHT / 1.46,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
