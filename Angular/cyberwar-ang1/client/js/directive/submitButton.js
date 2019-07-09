@@ -1,14 +1,29 @@
 angular.module('CyberWar')
 .directive('submitButton', ['CurrentInvestments', 'CurrentOrders', 'GameSocket', 'GameState', function(CurrentInvestments, CurrentOrders, GameSocket, GameState) {
   function link($scope, element, attrs) {
+    $scope.isObserver = () => GameState.isObserver();
+
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
-      return !GameState.submittedTurn() && (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;
+      return (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;
+    }
+
+    //---------------------------------------------------------------------------
+    $scope.getSubmitText = function() {
+      if (!GameState.submittedTurn()) {
+        return "Submit Orders";
+      }
+      return "Edit Orders";
     }
 
     //---------------------------------------------------------------------------
     $scope.submit = function() {
-      GameSocket.performAction({ investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() });
+      if (!GameState.submittedTurn()) {
+        GameSocket.performAction({ investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() });
+      }
+      else {
+        GameSocket.performAction({ orders: [] });
+      }
     }
   }
   return {

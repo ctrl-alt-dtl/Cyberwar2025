@@ -1,12 +1,12 @@
 angular.module('CyberWar')
-.controller('ServerStatusController', function($scope, $uibModalInstance, selectedNode, displayedOwner, displayedStrength, validActions, usableSourceNodes, validColors) {
+.controller('ServerStatusController', function($scope, $uibModalInstance, GameState, GameUtil, selectedNode, displayedOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
   $scope.selectedNode = selectedNode;
   $scope.displayedOwner = displayedOwner;
   $scope.displayedStrength = displayedStrength;
-  $scope.selected = { params : {} };
-  $scope.validActions = validActions;
   $scope.usableSourceNodes = usableSourceNodes;
+  $scope.validActions = validActions;
   $scope.validColors = validColors;
+  $scope.selected = { params : {} };
 
   // ----------------------------------------------------------------------------
   $scope.selectAction = function(action) {
@@ -35,6 +35,16 @@ angular.module('CyberWar')
   $scope.canMakeOrder = function() {
     return $scope.selected.action && (!$scope.needSource || $scope.selected.params.source) &&
       (!$scope.needColor || $scope.selected.params.color);
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.shouldShowChat = function(color) {
+    return $scope.getChatToName(color) != GameState.currentPlayerData.name;
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.getChatToName = function(color) {
+    return GameUtil.findPlayerByColor(GameState.currentGameState.players, color).name;
   }
 
   // ----------------------------------------------------------------------------

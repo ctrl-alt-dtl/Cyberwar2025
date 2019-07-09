@@ -1,14 +1,13 @@
 angular.module("CyberWar")
-.service('GameSocket', function(GameState, Socket) {
-  var gid, user, updateCB;
+.service('ChatSocket', function(Socket) {
+  var gid, user, onChatReceivedCB;
   var requestSentCBListener = new Gambit.CallbackListener();
 
   // ----------------------------------------------------------------------------
-  this.initialize = function(currentGID, currentUser, gameStateUpdatedCB) {
+  this.initialize = function(currentGID, currentUser, chatReceivedCB) {
     gid = currentGID;
     user = currentUser;
-    updateCB = gameStateUpdatedCB;
-    GameState.currentPlayer = currentUser;
+    onChatReceivedCB = chatReceivedCB;
     Socket.addListener(onSocketOpened, onSocketMessage, onSocketClose);
   }
 
@@ -23,28 +22,20 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
-  this.performAction = function(action) {
+  this.sendChatMessage = function(message, to, turnNumber) {
     requestSentCBListener.triggerAll();
-    socketSend(GameRequest.SUBMIT, { gid: gid, user: user, action: action });
-  }
-
-  // ----------------------------------------------------------------------------
-  this.setObserverColor = function(color) {
-    requestSentCBListener.triggerAll();
-    socketSend(GameRequest.CHANGE_OBSERVED_PLAYER, { gid: gid, user: user, color: color });
+    socketSend(GameRequest.SEND_CHAT, { gid: gid, from: user, to: to, message: message, turnNumber: turnNumber });
   }
 
   // ----------------------------------------------------------------------------
   var onSocketOpened = function() {
-    socketSend(GameRequest.GET, { gid: gid, user: user });
+    socketSend(GameRequest.CHAT_HISTORY, { gid: gid, user: user });
   }
 
   // ----------------------------------------------------------------------------
   var onSocketMessage = function(socketData) {
-    if (socketData.socketType === SocketType.GAME) {
-      if (socketData.message.request == GameRequest.GET && updateCB) {
-        updateCB(socketData.message.data);
-      }
+    if (socketData.socketType === SocketType.CHAT && onChatReceivedCB) {
+      onChatReceivedCB(socketData.message);
     }
   }
 
@@ -54,6 +45,6 @@ angular.module("CyberWar")
 
   // ----------------------------------------------------------------------------
   var socketSend = function(request, data) {
-    Socket.send(JSON.stringify({ socketType: SocketType.GAME, request: request, data: data }));
+    Socket.send(JSON.stringify({ socketType: SocketType.CHAT, request: request, data: data }));
   }
 });

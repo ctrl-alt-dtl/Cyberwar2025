@@ -10,7 +10,7 @@ this.performOrders = function(prevTurn, newTurn) {
   _.each(prevTurn.players, function(player) {
     _.each(player.orders, function(order) {
       if (order.action == ActionType.IMPLANT) {
-        var newTurnPlayer = Util.Shared.findPlayerByColor(newTurn.players, player.color);
+        var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
         var serverNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
         serverNode.previousStrength = serverNode.strength;
         serverNode.strength = 1;

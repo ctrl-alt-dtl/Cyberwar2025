@@ -100,7 +100,7 @@ body {
     padding-top: 4%;
 }
 .submitBtn {
-    background-color: white;
+    background-color: gray;
     border: 1.5px solid black;
     color: black;
     text-align: center;
@@ -109,9 +109,14 @@ body {
     font-size: 16px;
     cursor: pointer;
 }
-.submitBtn:hover {
-    background-color: #4F4E4E;
+.submitBtn:not([disabled]) {
+    background-color: darkred;
     color: white;
+    animation: blinker .3s linear alternate infinite;
+}
+@keyframes blinker {
+    from {color: gray;}
+    to {color: white;}
 }
 .minusPlusBtn {
     background-color: white;

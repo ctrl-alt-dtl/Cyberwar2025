@@ -53,6 +53,8 @@
     <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll'])</script>
 
     <!-- Angular Services -->
+    <script src="service/chatSocket.js"></script>
+    <script src="service/chatState.js"></script>
     <script src="service/currentInvestments.js"></script>
     <script src="service/currentOrders.js"></script>
     <script src="service/gameSocket.js"></script>
@@ -62,23 +64,28 @@
     <script src="service/socket.js"></script>
 
     <!-- Angular Directives -->
+    <script src="directive/chat.js"></script>
     <script src="directive/exploitLink.js"></script>
     <script src="directive/ordersList.js"></script>
     <script src="directive/overtLink.js"></script>
     <script src="directive/playerBase.js"></script>
     <script src="directive/researchTable.js"></script>
     <script src="directive/serverNode.js"></script>
-    <script src="directive/serverStatus.js"></script>
     <script src="directive/submitButton.js"></script>
 
     <!-- Angular Controllers -->
     <script src="controller/canvasCtrl.js"></script>
     <script src="controller/game.js"></script>
+    <script src="controller/observerSwitchPlayerDialog.js"></script>
+    <script src="controller/serverStatus.js"></script>
   </head>
   <body>
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <!-- TODO: Please Update With New SVG Board! -->
+    <!-- client/img/newboard-export-[inlineStyle, internalCSS, presentationAttributes].svg convert to render in HTML doc. -->
 
     <div ng-controller="GameController" id="stage-parent">
       <div id="main-view">
@@ -100,6 +107,7 @@
           <research-table></research-table>
           <submit-button></submit-button>
           <orders-list></orders-list>
+          <chat></chat>
         </div>
 
       </div>

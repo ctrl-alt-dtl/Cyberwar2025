@@ -27,13 +27,13 @@ this.SharedUtil = function(_, Color) {
   //------------------------------------------------------------------------------
   // Get the player with the given name from the list of players
   this.findPlayerByColor = function(players, color) {
-    return _.find(players, function(player) { return player.color == color; });
+    return _.find(players, function(player) { return !player.isObserver && player.color == color; });
   };
 
   //------------------------------------------------------------------------------
   // Has this player taken their turn?
   this.hasPlayerTakenTurn = function(player) {
-    return player.investments || player.orders.length > 0;
+    return player.isObserver || player.investments || player.orders.length > 0;
   }
 
   //------------------------------------------------------------------------------
