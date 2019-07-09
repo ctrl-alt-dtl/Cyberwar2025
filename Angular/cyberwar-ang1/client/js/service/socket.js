@@ -9,6 +9,21 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  this.connect = function() {
+    setSocket(this, new SockJS('/game', {}, {
+      transports: [
+        "websocket",
+        "iframe-eventsource",
+        "htmlfile",
+        "iframe-htmlfile",
+        "xhr-polling",
+        "iframe-xhr-polling",
+        "jsonp-polling"
+      ]
+    }));
+  }
+
+  // ----------------------------------------------------------------------------
   this.send = function(message) {
     if (socket != null) {
       socket.send(message);
@@ -19,7 +34,7 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
-  this.setSocket = function(newSocket) {
+  var setSocket = function(Socket, newSocket) {
     socket = newSocket;
     socket.onopen = function() {
       _.each(listeners, function(listener) {
@@ -37,6 +52,7 @@ angular.module("CyberWar")
       _.each(listeners, function(listener) {
         listener.onClose();
       });
+      setTimeout(() => Socket.connect(), 1000);
     }
   }
 }]);

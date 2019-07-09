@@ -26,6 +26,7 @@ this.addNewTurn = function(game, turnToCopy) {
   game.turns.push(this.Shared.cloneObject(turnToCopy));
   var newTurn = this.getCurrentTurn(game);
   ++newTurn.roundNumber;
+  console.log("\n++++++++++++++++ Turn Number: " + newTurn.roundNumber + " ++++++++++++++++\n");
 
   // Reset player information every round
   newTurn.players.forEach(function(player) {
