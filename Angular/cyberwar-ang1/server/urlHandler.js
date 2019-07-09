@@ -3,7 +3,7 @@
  ******************************************************************************/
 var _ = require("underscore");
 var Game = require("./game.js");
-//var Chat = require("./chat.js");
+var Chat = require("./chat.js");
 //var auth = require("./authenticator.js");
 var log = require("./log.js").log;
 var Util = require("./gameLogic/util.js");
@@ -48,7 +48,7 @@ function gameList(request, response) {
 // @returns the game id.
 function newGame(request, response) {
   var newGame = Game.createGame();
-  //Chat.gameCreated(newGame.id);
+  Chat.gameCreated(newGame.id);
   log.info("Created new game with id " + newGame.id);
   response.send(newGame.id);
 }
@@ -100,7 +100,7 @@ function newGame(request, response) {
 function deleteGame(request, response) {
   var gid = request.params.id;
   Game.deleteGame(gid);
-  //Chat.gameDeleted(gid);
+  Chat.gameDeleted(gid);
 
   if (request.session && request.session.gid === gid) {
     request.session.gid = undefined;

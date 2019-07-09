@@ -52,13 +52,13 @@ angular.module('CyberWar')
         displayedStrength: function() {
           return GameUtil.getServerNodeDisplayedText(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
         },
-        validActions: function() {
-          return validActions;
-        },
-        usableSourceNodes: function() {
+        usableSourceNodes: function () {
           return usableSourceNodes;
         },
-        validColors: function() {
+        validActions: function () {
+          return validActions;
+        },
+        validColors: function () {
           return validColors;
         }
       }
