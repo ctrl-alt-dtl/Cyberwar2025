@@ -8,7 +8,7 @@ var centerHex = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 34,
+  radius: BASE_BOARD_WIDTH / 20,
   fill: 'white',
   stroke: 'black',
   strokeWidth: 2,

@@ -72,14 +72,14 @@ angular.module('CyberWar')
       var x2, y2, x3, y3, x5, y5, x6, y6;
       switch(color) {
         case Color.RED:
-          x2 = point_x / 2.42;
-          y2 = point_y / 1.154;
-          x3 = point_x / 1.705;
-          y3 = point_y / 1.154;
-          x5 = point_x / 1.705;
-          y5 = point_y / 1.1;
-          x6 = point_x / 2.42;
-          y6 = point_y / 1.1;
+          x2 = point_x / 2.36;
+          y2 = point_y / 1.217;
+          x3 = point_x / 1.74;
+          y3 = point_y / 1.217;
+          x5 = point_x / 1.74;
+          y5 = point_y / 1.15;
+          x6 = point_x / 2.36;
+          y6 = point_y / 1.15;
           break;
         case Color.ORANGE:
           x2 = point_x / 1.44;
@@ -139,7 +139,7 @@ angular.module('CyberWar')
     var getTextPosition = function(color) {
       switch(color) {
         case Color.RED:
-          return { x: BASE_BOARD_WIDTH / 2.1, y: BASE_BOARD_HEIGHT / 1.135 };
+          return { x: BASE_BOARD_WIDTH / 2.1, y: BASE_BOARD_HEIGHT / 1.185 };
         case Color.ORANGE:
           return { x: BASE_BOARD_WIDTH / 1.41, y: BASE_BOARD_HEIGHT / 1.29 };
         case Color.YELLOW:
