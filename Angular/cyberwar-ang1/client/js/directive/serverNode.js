@@ -41,7 +41,7 @@ angular.module('CyberWar')
         radius: radius,
         fill: grayColor,
         stroke: 'black',
-        strokeWidth: 2,
+        strokeWidth: 4,
         rotation: 90,
         id: color + index + 'Hex'
       });

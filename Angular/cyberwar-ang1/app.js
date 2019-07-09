@@ -102,7 +102,7 @@ waitForMongo(function () {
 
   var URLHandler = require("./server/urlHandler.js");
   var Game = require("./server/game.js");
-  // var Chat = require("./server/chat.js");
+  var Chat = require("./server/chat.js");
 
   var app = express();
   var httpServer = require("http").createServer(app);
@@ -153,7 +153,7 @@ waitForMongo(function () {
   // ----------------------------------------------------------------------------
   socketServer.installHandlers(httpServer, { prefix: '/game' });
   Game.start(socketServer);
-  // Chat.start(socketServer);
+  Chat.start(socketServer);
   httpServer.listen(PORT);
   log.info("Listening on port:" + PORT);
 });

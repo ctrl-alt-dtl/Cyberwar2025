@@ -1,13 +1,20 @@
 angular.module("CyberWar")
-.controller("GameController", ["$scope", "GameSocket", "GameState", "HTTPHandler", function ($scope, GameSocket, GameState, HTTPHandler) {
+.controller("GameController", function ($scope, ChatSocket, ChatState, GameSocket, GameState, HTTPHandler, Socket) {
   // ----------------------------------------------------------------------------
   var gameStateUpdated = function(gameData) {
     $scope.$apply(GameState.gameStateUpdated(gameData.turn, gameData.turnNumber));
   }
 
   // ----------------------------------------------------------------------------
+  var chatMessageReceived = function(message) {
+    $scope.$apply(ChatState.messageReceived(message));
+  }
+
+  // ----------------------------------------------------------------------------
   // Get our session data and load the game for the first time
   HTTPHandler.getSessionData(function (sessionData) {
     GameSocket.initialize(sessionData.gid, sessionData.user, gameStateUpdated);
+    ChatSocket.initialize(sessionData.gid, sessionData.user, chatMessageReceived);
+    Socket.connect();
   });
-}]);
+});

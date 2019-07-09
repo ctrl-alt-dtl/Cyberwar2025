@@ -1,17 +1,35 @@
-var BASE_BOARD_WIDTH = 1024; // Don't change because it will alter the CSS layout.
-var BASE_BOARD_HEIGHT = 768; // Don't change because it will alter the CSS layout.
-
-/**
- * Other Resolutions: 1152x864, 1280x960, 1400x1050, 1440x1080
- */
+var BASE_BOARD_WIDTH = 912; // Don't change because it will alter the CSS layout.
+var BASE_BOARD_HEIGHT = 1012; // Don't change because it will alter the CSS layout.
 
 var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
 var stage = new Konva.Stage({
   container: '.board',
-  width: BASE_BOARD_HEIGHT,
+  width: BASE_BOARD_WIDTH,
   height: BASE_BOARD_HEIGHT
+
 });
+
+// Canvas resize code (need to incorporate)
+/*
+function fitStageIntoParentContainer() {
+  var container = document.querySelector('#stage-parent');
+
+  // now we need to fit stage into parent
+  var containerWidth = container.offsetWidth;
+  // to do this we need to scale the stage
+  var scale = containerWidth / BASE_BOARD_WIDTH;
+
+  stage.width(BASE_BOARD_WIDTH * scale);
+  stage.height(BASE_BOARD_HEIGHT * scale);
+  stage.scale({ x: scale, y: scale });
+  stage.draw();
+}
+
+fitStageIntoParentContainer();
+// adapt the stage on any window resize
+window.addEventListener('resize', fitStageIntoParentContainer);
+*/
 
 var bgLayer = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
@@ -24,20 +42,20 @@ _.each(Color, function(color) {
 });
 
 var bgGroup = new Konva.Group({
-  width: BASE_BOARD_HEIGHT,
+  width: BASE_BOARD_WIDTH,
   height: BASE_BOARD_HEIGHT,
-  x: BASE_BOARD_WIDTH / 2.665,
+  x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   offset: {
     x: BASE_BOARD_WIDTH / 2,
     y: BASE_BOARD_HEIGHT / 2,
-  }
+  },
 });
 
 var domainsGroup = new Konva.Group({
-  width: BASE_BOARD_HEIGHT,
+  width: BASE_BOARD_WIDTH,
   height: BASE_BOARD_HEIGHT,
-  x: BASE_BOARD_WIDTH / 2.665,
+  x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   offset: {
     x: BASE_BOARD_WIDTH / 2,
@@ -47,9 +65,9 @@ var domainsGroup = new Konva.Group({
 });
 
 var linksGroup = new Konva.Group({
-  width: BASE_BOARD_HEIGHT,
+  width: BASE_BOARD_WIDTH,
   height: BASE_BOARD_HEIGHT,
-  x: BASE_BOARD_WIDTH / 2.665,
+  x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   offset: {
     x: BASE_BOARD_WIDTH / 2,
@@ -59,9 +77,9 @@ var linksGroup = new Konva.Group({
 });
 
 var exploitLinksGroup = new Konva.Group({
-  width: BASE_BOARD_HEIGHT,
+  width: BASE_BOARD_WIDTH,
   height: BASE_BOARD_HEIGHT,
-  x: BASE_BOARD_WIDTH / 2.665,
+  x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   offset: {
     x: BASE_BOARD_WIDTH / 2,
@@ -70,50 +88,26 @@ var exploitLinksGroup = new Konva.Group({
   rotation: DOMAIN_LAYER_BOARD_ROTATION
 });
 
-// Tooltip Test Code
-var toolTipRect = new Konva.Rect({
-  width: 75,
-  height: 50,
-  fill: '#4F618F',
-  visible: false
-});
-
-var toolTipText = new Konva.Text({
-  text: "",
-  fontFamily: "Calibri",
-  fontSize: 12,
-  padding: 5,
-  textFill: "black",
-  fill: "white",
-  alpha: 0.75,
-  visible: false
-});
-
-var r3r6ToolTipText = new Konva.Text({
-  text: "",
-  fontFamily: "Calibri",
-  fontSize: 12,
-  padding: 5,
-  textFill: "black",
-  fill: "white",
-  alpha: 0.75,
-  visible: false
-});
-// End Tooltip Test Code
-
 var imageObj = new Image();
 // background board
+//imageObj.src = 'client/img/BoardNew.png';
+imageObj.src = 'client/img/transparency-1000.png';
 imageObj.onload = function() {
+
   var bgBoard = new Konva.Image({
-    width: BASE_BOARD_WIDTH,
-    height: BASE_BOARD_HEIGHT,
+    width: 980,
+    height: 890,
+    x: -35,
+    y: 60,
     image: imageObj
   });
+
 
   // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgGroup.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
   bgGroup.add(mainBoundary3, mainBoundary2, mainBoundary1);
   bgGroup.add(tier3Text, tier2Text, tier1Text);
+  bgGroup.add(node1Text, node2Text, node3Text, node5Text, node6Text, node7Text);
   bgGroup.add(rbr1, rbr2, r1r3, r2r5, r5r4, r3r4, r4r6, r4r7, r3r6, r5r7, r6r7, r6r8, r7r8);
   bgGroup.add(pbp1, pbp2, p1p3, p2p5, p5p4, p3p4, p4p6, p4p7, p3p6, p5p7, p6p7, p6p8, p7p8);
   bgGroup.add(bbb1, bbb2, b1b3, b2b5, b5b4, b3b4, b4b6, b4b7, b3b6, b5b7, b6b7, b6b8, b7b8);
@@ -127,13 +121,13 @@ imageObj.onload = function() {
 
   bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
 
-  toolTipLayer.add(toolTipRect, toolTipText, r3r6ToolTipText);
+  //toolTipLayer.add();
 
   domainsLayer.add(domainsGroup);
 
   linksLayer.add(exploitLinksGroup, linksGroup);
 
-  stage.add(bgLayer, linksLayer, domainsLayer, toolTipLayer);
+  stage.add(bgLayer, linksLayer, domainsLayer);
 };
 
 //---------------------------------------------------------------------------
@@ -170,4 +164,3 @@ var redrawStage = function() {
   stage.draw();
 }
 
-imageObj.src = 'client/img/empty-transparency-bg-1024x768.png';
