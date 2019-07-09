@@ -23,6 +23,9 @@ this.initializeNewGame = function(newGame) {
     });
   });
 
+  // Add an observer player
+  firstTurn.players.push({ name: "Observer", color: Color.RED, research: {}, isObserver: true });
+
   // Setup all the overt links
   firstTurn.overtLinks = getOvertLinks(firstTurn.serverNodes);
 
@@ -31,9 +34,9 @@ this.initializeNewGame = function(newGame) {
 
 //------------------------------------------------------------------------------
 // Update the game state using the given actions
-this.performAction = function(game, playerColor, action) {
+this.performAction = function(game, playerName, action) {
   var currentTurn = Util.getCurrentTurn(game);
-  var actingPlayer = Util.Shared.findPlayerByColor(currentTurn.players, playerColor);
+  var actingPlayer = Util.Shared.findPlayerByName(currentTurn.players, playerName);
   actingPlayer.investments = action.investments;
   actingPlayer.orders = action.orders;
   if (allPlayersSubmittedTurns(currentTurn)) {
@@ -41,6 +44,16 @@ this.performAction = function(game, playerColor, action) {
     Adjudicator.adjudicateTurn(currentTurn, newTurn);
   }
 };
+
+//------------------------------------------------------------------------------
+// Change the given observer player's color
+this.setObserverColor = function(game, playerName, color) {
+  var currentTurn = Util.getCurrentTurn(game);
+  var actingPlayer = Util.Shared.findPlayerByName(currentTurn.players, playerName);
+  if (actingPlayer.isObserver) {
+    actingPlayer.color = color;
+  }
+}
 
 //------------------------------------------------------------------------------
 var allPlayersSubmittedTurns = function(turn) {

@@ -1,6 +1,8 @@
 angular.module('CyberWar')
 .directive('submitButton', ['CurrentInvestments', 'CurrentOrders', 'GameSocket', 'GameState', function(CurrentInvestments, CurrentOrders, GameSocket, GameState) {
   function link($scope, element, attrs) {
+    $scope.isObserver = () => GameState.isObserver();
+
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
       return (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;

@@ -17,7 +17,7 @@ services:
       - 8080:8080
       - 5858:5858
     environment:
-      - MONGO_URL=mongodb://mongo/cyberstrike2
+      - MONGO_URL=mongodb://mongo/cyberwar2025
       - PORT=8080
     command: /bin/bash -c "npm start"
 
