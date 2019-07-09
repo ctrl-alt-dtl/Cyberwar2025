@@ -58,31 +58,31 @@ var pt_p1Hex_X = BASE_BOARD_WIDTH / 12.5;
 var pt_p1Hex_Y = BASE_BOARD_HEIGHT / 1.853;
 konvaHexPositions[Color.PURPLE][1] = { x: pt_p1Hex_X, y: pt_p1Hex_Y };
 
-var pt_p2Hex_X = BASE_BOARD_WIDTH / 3.172;
-var pt_p2Hex_Y = BASE_BOARD_HEIGHT / 1.177;
+var pt_p2Hex_X = BASE_BOARD_WIDTH / 4;
+var pt_p2Hex_Y = BASE_BOARD_HEIGHT / 1.24;
 konvaHexPositions[Color.PURPLE][2] = { x: pt_p2Hex_X, y: pt_p2Hex_Y };
 
-var pt_p3Hex_X = BASE_BOARD_WIDTH / 3.687;
+var pt_p3Hex_X = BASE_BOARD_WIDTH / 5.25;
 var pt_p3Hex_Y = BASE_BOARD_HEIGHT / 1.853;
 konvaHexPositions[Color.PURPLE][3] = { x: pt_p3Hex_X, y: pt_p3Hex_Y };
 
-var pt_p4Hex_X = BASE_BOARD_WIDTH / 3.172;
-var pt_p4Hex_Y = BASE_BOARD_HEIGHT / 1.558;
+var pt_p4Hex_X = BASE_BOARD_WIDTH / 4.05;
+var pt_p4Hex_Y = BASE_BOARD_HEIGHT / 1.59;
 konvaHexPositions[Color.PURPLE][4] = { x: pt_p4Hex_X, y: pt_p4Hex_Y };
 
-var pt_p5Hex_X = BASE_BOARD_WIDTH / 2.77;
-var pt_p5Hex_Y = BASE_BOARD_HEIGHT / 1.345;
+var pt_p5Hex_X = BASE_BOARD_WIDTH / 3.26;
+var pt_p5Hex_Y = BASE_BOARD_HEIGHT / 1.39;
 konvaHexPositions[Color.PURPLE][5] = { x: pt_p5Hex_X, y: pt_p5Hex_Y };
 
-var pt_p6Hex_X = BASE_BOARD_WIDTH / 2.775;
+var pt_p6Hex_X = BASE_BOARD_WIDTH / 3.3;
 var pt_p6Hex_Y = BASE_BOARD_HEIGHT / 1.853;
 konvaHexPositions[Color.PURPLE][6] = { x: pt_p6Hex_X, y: pt_p6Hex_Y };
 
-var pt_p7Hex_X = BASE_BOARD_WIDTH / 2.47;
-var pt_p7Hex_Y = BASE_BOARD_HEIGHT / 1.558;
+var pt_p7Hex_X = BASE_BOARD_WIDTH / 2.75;
+var pt_p7Hex_Y = BASE_BOARD_HEIGHT / 1.585;
 konvaHexPositions[Color.PURPLE][7] = { x: pt_p7Hex_X, y: pt_p7Hex_Y };
 
-var pt_p8Hex_X = BASE_BOARD_WIDTH / 2.221;
+var pt_p8Hex_X = BASE_BOARD_WIDTH / 2.37;
 var pt_p8Hex_Y = BASE_BOARD_HEIGHT / 1.853;
 konvaHexPositions[Color.PURPLE][8] = { x: pt_p8Hex_X, y: pt_p8Hex_Y };
 
