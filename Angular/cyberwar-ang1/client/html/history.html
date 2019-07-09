@@ -1,0 +1,12 @@
+<div class="container">
+  <button class="button" id="first-turn" ng-disabled="isViewingFirstTurn()" ng-click="start()" title="View first turn">|<</button>
+  <button class="button" id="prev-turn" ng-disabled="isViewingFirstTurn()" ng-click="previous()" title="View previous turn"><</button>
+  <span class="textbox" id="turnNumber">
+    <span ng-repeat="turn in turns track by $index">
+      <span ng-if="!isCurrentTurn($index)" ng-click="gotoTurn($index)" style="cursor: pointer">{{turn}}</span>
+      <span><u ng-if="isCurrentTurn($index)">{{turn}}</u></span>
+    </span>
+  </span>
+  <button class="button" id="next-turn" ng-disabled="isViewingLastTurn()" ng-click="next()" title="View next turn">></button>
+  <button class="button" id="last-turn" ng-disabled="isViewingLastTurn()" ng-click="end()" title="View last turn">>|</button>
+</div>

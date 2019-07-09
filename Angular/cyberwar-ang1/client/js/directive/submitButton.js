@@ -1,7 +1,10 @@
 angular.module('CyberWar')
-.directive('submitButton', ['CurrentInvestments', 'CurrentOrders', 'GameSocket', 'GameState', function(CurrentInvestments, CurrentOrders, GameSocket, GameState) {
+.directive('submitButton', function(CurrentInvestments, CurrentOrders, GameSocket, GameState) {
   function link($scope, element, attrs) {
-    $scope.isObserver = () => GameState.isObserver();
+    //---------------------------------------------------------------------------
+    $scope.hasSubmitButton = function() {
+      return !GameState.isObserver() && GameState.currentTurnNumber == GameState.latestTurnNumber;
+    }
 
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
@@ -10,9 +13,11 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.getSubmitText = function() {
+      // If we haven't submitted our turn then tell them to submit orders
       if (!GameState.submittedTurn()) {
         return "Submit Orders";
       }
+      // If we have submitted our turn, we can edit our orders
       return "Edit Orders";
     }
 
@@ -22,6 +27,7 @@ angular.module('CyberWar')
         GameSocket.performAction({ investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() });
       }
       else {
+        GameState.unsubmittedTurn();
         GameSocket.performAction({ orders: [] });
       }
     }
@@ -31,4 +37,4 @@ angular.module('CyberWar')
     restrict: 'E',
     templateUrl: 'submitButton.html',
   }
-}]);
+});
