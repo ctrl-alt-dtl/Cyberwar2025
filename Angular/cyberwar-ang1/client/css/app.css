@@ -222,8 +222,8 @@ td {
 .adjudicationList {
     border: 1px solid black;
     display: block;
-    padding: .1em 1em;
-    margin-bottom: 1em;
+    padding: 1px;
+    margin-bottom: 1px;
     width: 100%;
     text-align: left;
     text-transform: capitalize;
