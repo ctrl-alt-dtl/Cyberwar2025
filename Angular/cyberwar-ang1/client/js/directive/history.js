@@ -77,7 +77,7 @@ angular.module('CyberWar')
       // Make sure our start number doesn't go lower than our leftmostNumber
       startNumber = Math.max(startNumber, leftmostNumber);
       // Return a range of numbers whose length won't go past our rightmostNumber
-      return getRange(startNumber, Math.min(rightmostNumber - startNumber, validNumberCount));
+      return getRange(startNumber, Math.min((rightmostNumber + 1) - startNumber, validNumberCount));
     }
   }
   return {

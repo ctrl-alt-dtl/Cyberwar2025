@@ -8,6 +8,8 @@ this.SharedUtil = function(_, Color) {
     MAX_RESEARCH_POINTS: 8,
     MAX_RESEARCH_LEVELS: 3,
     MAX_NODE_STRENGTH: 4,
+    SECURE_STRENGTH: 1,
+    IMPLANT_STRENGTH: 1
   }
 
   //------------------------------------------------------------------------------
@@ -104,6 +106,11 @@ this.SharedUtil = function(_, Color) {
   //------------------------------------------------------------------------------
   this.isLocationInLinkList = function(location, linkList) {
     return _.any(linkList, function(link) { return this.isLocationInLink(link, location); }, this);
+  }
+
+  //------------------------------------------------------------------------------
+  this.isLocationInNodeList = function(location, nodeList) {
+    return _.any(nodeList, function(node) { return this.isSameLocation(node.location, location); }, this);
   }
 
   //------------------------------------------------------------------------------
