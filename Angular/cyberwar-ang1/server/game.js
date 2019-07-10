@@ -122,6 +122,9 @@ function onConnection(connection) {
       case GameRequest.GET:
         getCurrentTurnData(clients[connection.id], gid, user);
         break;
+      case GameRequest.GET_TURN_NUMBER:
+        getTurnData(clients[connection.id], gid, user, message.data.turnNumber);
+        break;
       case GameRequest.SUBMIT:
         addLockedAction(gid, { name: 'Submit Action', callback: submitAction, params: { user: user, action: message.data.action }});
         break;
@@ -133,7 +136,7 @@ function onConnection(connection) {
 }
 
 //------------------------------------------------------------------------------
-// Send a given game state turn and its previous turn state back to the client.
+// Send the current game state turn back to the client
 var getCurrentTurnData = function(client, gid, user) {
   client.gid = gid;
   client.user = user;
@@ -143,6 +146,21 @@ var getCurrentTurnData = function(client, gid, user) {
     }
     else if (gameFound) {
       sendGameToClient(gameFound, client);
+    }
+  });
+}
+
+//------------------------------------------------------------------------------
+// Send a specific game state turn back to the client
+var getTurnData = function(client, gid, user, turnNumber) {
+  client.gid = gid;
+  client.user = user;
+  db.findById(gid).lean().exec(function (err, gameFound) {
+    if (err) {
+      log.error("Error finding the game: " + err);
+    }
+    else if (gameFound) {
+      sendGameToClient(gameFound, client, turnNumber);
     }
   });
 }
@@ -255,8 +273,8 @@ var sendGameToClients = function(gid, finishedCB) {
 }
 
 //------------------------------------------------------------------------------
-var sendGameToClient = function(game, client) {
-  sendMessage({ request: GameRequest.GET, data: getGameData(game, getCurrentTurnNumber(game)) }, client);
+var sendGameToClient = function(game, client, turnNumber) {
+  sendMessage({ request: GameRequest.GET, data: getGameData(game, turnNumber === undefined ? getCurrentTurnNumber(game) : turnNumber) }, client);
 }
 
 //------------------------------------------------------------------------------

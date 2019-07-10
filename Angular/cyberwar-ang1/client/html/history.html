@@ -1,0 +1,29 @@
+<div class="container">
+  <button class="button" id="prev-turn" ng-disabled="isViewingFirstTurn()" ng-click="previous()" title="View previous turn"><</button>
+  <span class="textbox" id="turnNumber">
+    <!-- If we don't see turn one, make sure it is showing -->
+    <span ng-if="!isVisibleTurnNumber(0)">
+      <span ng-if="!isCurrentTurn(0)" ng-click="gotoTurn(0)" style="cursor: pointer">{{1}}</span>
+      <span><u ng-if="isCurrentTurn(0)">{{1}}</u></span>
+    </span>
+
+    <!-- If we don't see turn two, show an ellipsis to indicate there are more turns between one and our visible range -->
+    <span ng-if="isValidTurn(1) && !isVisibleTurnNumber(1)">...</span>
+
+    <!-- Show our valid number range -->
+    <span ng-repeat="turnNumber in turnNumbers">
+      <span ng-if="!isCurrentTurn(turnNumber)" ng-click="gotoTurn(turnNumber)" style="cursor: pointer">{{turnNumber + 1}}</span>
+      <span><u ng-if="isCurrentTurn(turnNumber)">{{turnNumber + 1}}</u></span>
+    </span>
+
+    <!-- If we don't see the second to last turn, show an ellipsis to indicate there are more turns after our visible range -->
+    <span ng-if="isValidTurn(lastTurnNumber - 1) && !isVisibleTurnNumber(lastTurnNumber - 1)">...</span>
+
+    <!-- If we don't see the last turn, make sure it is showing -->
+    <span ng-if="!isVisibleTurnNumber(lastTurnNumber)">
+      <span ng-if="!isCurrentTurn(lastTurnNumber)" ng-click="gotoTurn(lastTurnNumber)" style="cursor: pointer">{{lastTurnNumber + 1}}</span>
+      <span><u ng-if="isCurrentTurn(lastTurnNumber)">{{lastTurnNumber + 1}}</u></span>
+    </span>
+  </span>
+  <button class="button" id="next-turn" ng-disabled="isViewingLastTurn()" ng-click="next()" title="View next turn">></button>
+</div>
