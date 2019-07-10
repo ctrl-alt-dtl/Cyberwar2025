@@ -20,7 +20,7 @@ var boardEdge = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 2.05,
-  //fill: 'white',
+  fill: 'white',
   stroke: 'black',
   strokeWidth: 4,
   rotation: 90,
@@ -61,6 +61,7 @@ var tier1 = new Konva.RegularPolygon({
   rotation: 90
 });
 
+/*
 var origin = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
@@ -68,6 +69,7 @@ var origin = new Konva.RegularPolygon({
   fill: 'green',
   radius: 2
 });
+*/
 
 // Text labeling for different board tiers.
 var tier3Text = new Konva.Text({
@@ -142,6 +144,18 @@ var node3Text = new Konva.Text({
   align: 'center'
 });
 
+var node4Text = new Konva.Text({
+  text: '4',
+  x: BASE_BOARD_WIDTH / 1.93,
+  y: BASE_BOARD_HEIGHT / 1.29,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
 var node5Text = new Konva.Text({
   text: '5',
   x: BASE_BOARD_WIDTH / 1.58,
@@ -168,8 +182,20 @@ var node6Text = new Konva.Text({
 
 var node7Text = new Konva.Text({
   text: '7',
-  x: BASE_BOARD_WIDTH / 1.74,
+  x: BASE_BOARD_WIDTH / 1.73,
   y: BASE_BOARD_HEIGHT / 1.46,
+  width: BASE_BOARD_WIDTH / 38,
+  fontFamily: 'sans-serif',
+  fontSize: BASE_BOARD_WIDTH / 106.67,
+  fontStyle: 'bold',
+  fill: '#000',
+  align: 'center'
+});
+
+var node8Text = new Konva.Text({
+  text: '8',
+  x: BASE_BOARD_WIDTH / 1.93,
+  y: BASE_BOARD_HEIGHT / 1.68,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
