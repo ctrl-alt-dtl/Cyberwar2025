@@ -48,6 +48,7 @@ var orderSchema = new Schema({
   action : { type: String, default: '' }, // The ActionType of the action to perform
   node   : nodeLocationSchema,            // The node to perform the action on
   params : { type: Schema.Types.Mixed },  // Parameters for the action
+  cost   : { type: Number, default: 0 }   // How much the order cost the player
 }, { _id: false });
 
 // Schema for a player

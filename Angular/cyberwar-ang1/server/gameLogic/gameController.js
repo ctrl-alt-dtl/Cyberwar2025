@@ -46,13 +46,14 @@ this.performAction = function(game, playerName, action) {
 };
 
 //------------------------------------------------------------------------------
-// Change the given observer player's color
+// Change the given observer player's color for every turn in the game (so history works with changing colors)
 this.setObserverColor = function(game, playerName, color) {
-  var currentTurn = Util.getCurrentTurn(game);
-  var actingPlayer = Util.Shared.findPlayerByName(currentTurn.players, playerName);
-  if (actingPlayer.isObserver) {
-    actingPlayer.color = color;
-  }
+  game.turns.forEach(turn => {
+    var actingPlayer = Util.Shared.findPlayerByName(turn.players, playerName);
+    if (actingPlayer.isObserver) {
+      actingPlayer.color = color;
+    }
+  });
 }
 
 //------------------------------------------------------------------------------

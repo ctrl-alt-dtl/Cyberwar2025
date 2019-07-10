@@ -13,15 +13,23 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
-  this.gameStateUpdated = function(gameData, turnNumber) {
-    this.currentGameState = gameData;
-    this.currentPlayerData = GameUtil.findPlayerByName(gameData.players, this.currentPlayer);
-    if (!this.currentPlayerData.isObserver) {
-      updateGameStateForNonObserver(this, turnNumber);
+  this.gameStateUpdated = function(gameData, turnNumber, latestTurnNumber) {
+    var updateGameState = shouldUpdateGameState(this, gameData, turnNumber, latestTurnNumber);
+    // Always update the latest turn number so our history tracker is accurate
+    this.latestTurnNumber = latestTurnNumber;
+    if (updateGameState) {
+      this.currentTurnNumber = turnNumber;
+      this.currentGameState = gameData;
+      this.currentPlayerData = GameUtil.findPlayerByName(gameData.players, this.currentPlayer);
+      if (!this.currentPlayerData.isObserver) {
+        modifyPlayerDataForNonObserver(this);
+      }
+      else {
+        modifyPlayerDataForObserver(this);
+      }
+      console.log("Turn Number: " + turnNumber);
     }
-    else {
-      updateGameStateForObserver(this, turnNumber);
-    }
+    cbListener.triggerAll();
   }
 
   //---------------------------------------------------------------------------
@@ -32,6 +40,18 @@ angular.module('CyberWar')
   //---------------------------------------------------------------------------
   this.isObserver = function() {
     return !this.currentPlayerData || this.currentPlayerData.isObserver;
+  }
+
+  //---------------------------------------------------------------------------
+  this.viewingTurnInHistory = function(turnNumber) {
+    // If we aren't looking at the latest turn, mark the desired turn number to view for future game updates
+    if (turnNumber != this.latestTurnNumber) {
+      this.viewingTurn = turnNumber;
+    }
+    // Otherwise, unmark the desired turn
+    else {
+      delete this.viewingTurn;
+    }
   }
 
   //---------------------------------------------------------------------------
@@ -60,31 +80,93 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
-  var updateGameStateForNonObserver = function(GameState, turnNumber) {
-    // We only care about when the turn number actually changes, otherwise our local actions may be overwritten
-    if (GameState.currentTurnNumber != turnNumber) {
-      GameState.currentTurnNumber = turnNumber;
-      GameState.positivelyLinkedNodes = GameUtil.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
-      if (GameState.submittedTurn()) {
-        GameState.currentActionPoints = 0;
-        CurrentInvestments.setInvestments(GameState.currentPlayerData.investments);
-        CurrentOrders.setOrders(GameState.currentPlayerData.orders);
+  this.unsubmittedTurn = function() {
+    this.previousActions = { investments: this.currentPlayerData.investments, orders: this.currentPlayerData.orders };
+  }
+
+  //---------------------------------------------------------------------------
+  // Do we need to update our current game state or should we ignore it?
+  var shouldUpdateGameState = function(GameState, newGameData, turnNumber, latestTurnNumber) {
+    // If we are an observer and our player color changed, then always update the game state
+    if (GameState.currentPlayerData && GameState.currentPlayerData.isObserver) {
+      var newPlayerData = GameUtil.findPlayerByName(newGameData.players, GameState.currentPlayer);
+      if (GameState.currentPlayerData.color != newPlayerData.color) {
+        return true;
       }
-      else {
-        GameState.currentActionPoints = getCurrentActionPoints(GameState.currentTurnNumber, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
-        var investments = {};
-        _.each(ResearchType, function(type) { investments[type] = 0 }, GameState);
-        CurrentInvestments.setInvestments(investments);
-        CurrentOrders.setOrders([]);
+    }
+    // If we aren't viewing a particular turn in history,
+    // then update the game state if our current turn differs from the new latest turn
+    // or if the current player's investments/orders differ from what we last stored
+    if (GameState.viewingTurn === undefined) {
+      return GameState.currentTurnNumber != latestTurnNumber || didPlayerTurnSubmissionChange(GameState, newGameData);
+    }
+    // Otherwise, update the game state if this is the turn number we are viewing
+    return GameState.viewingTurn == turnNumber;
+  }
+
+  //---------------------------------------------------------------------------
+  // Did the player's investments or orders change between our current game state and the incoming new game data?
+  var didPlayerTurnSubmissionChange = function(GameState, newGameData) {
+    var newPlayerData = GameUtil.findPlayerByName(newGameData.players, GameState.currentPlayer);
+    return !areInvestmentsSame(GameState.currentPlayerData.investments, newPlayerData.investments) ||
+      !areOrdersSame(GameState.currentPlayerData.orders, newPlayerData.orders);
+  }
+
+  //---------------------------------------------------------------------------
+  // Do the two investment objects hold the same data?
+  var areInvestmentsSame = function(currentInvestments, newInvestments) {
+    // Are both investment objects defined?
+    if (currentInvestments && newInvestments) {
+      // Do they have the same contents?
+      return Object.keys(currentInvestments).every(key => newInvestments.hasOwnProperty(key) && currentInvestments[key] == newInvestments[key]);
+    }
+    return currentInvestments == newInvestments;
+  }
+
+  //---------------------------------------------------------------------------
+  // Do the two orders arrays have the same data?
+  var areOrdersSame = function(currentOrders, newOrders) {
+    return currentOrders.length == newOrders.length && currentOrders.every((currentOrder, index) => areSameOrder(currentOrder, newOrders[index]));
+  }
+
+  //---------------------------------------------------------------------------
+  // Are the two order objects the same?
+  var areSameOrder = function(order1, order2) {
+    return order1.action == order2.action &&
+      order1.node.color == order2.node.color &&
+      order1.node.index == order2.node.index;
+  }
+
+  //---------------------------------------------------------------------------
+  var modifyPlayerDataForNonObserver = function(GameState) {
+    GameState.positivelyLinkedNodes = GameUtil.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
+    // If we have submitted our turn, then show the investments and orders we submitted
+    if (GameState.submittedTurn()) {
+      GameState.currentActionPoints = 0;
+      CurrentInvestments.setInvestments(GameState.currentPlayerData.investments);
+      CurrentOrders.setOrders(GameState.currentPlayerData.orders);
+    }
+    else {
+      GameState.currentActionPoints = getCurrentActionPoints(GameState.currentTurnNumber, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+      var investments = {};
+      _.each(ResearchType, function(type) { investments[type] = 0 }, GameState);
+      CurrentInvestments.setInvestments(investments);
+      CurrentOrders.setOrders([]);
+
+      // If we had previously unsubmitted a turn, restore the investments and orders we submitted
+      if (GameState.previousActions) {
+        // Reinvest in our previous investments
+        Object.keys(GameState.previousActions.investments).forEach(investmentType => GameState.invest(investmentType, GameState.previousActions.investments[investmentType]));
+        // Re-add any orders we had
+        GameState.previousActions.orders.forEach(order => GameState.addOrder(order));
+        // Remove the previous actions now that we have re-applied them
+        delete GameState.previousActions;
       }
-      cbListener.triggerAll();
-      console.log("Turn Number: " + turnNumber);
     }
   }
 
   //---------------------------------------------------------------------------
-  var updateGameStateForObserver = function(GameState, turnNumber) {
-    GameState.currentTurnNumber = turnNumber;
+  var modifyPlayerDataForObserver = function(GameState) {
     // Find the observed player and copy his current game state into our current game state
     var observedPlayer = GameUtil.findPlayerByColor(GameState.currentGameState.players, GameState.currentPlayerData.color);
     GameState.currentPlayerData.research = observedPlayer.research;
@@ -102,7 +184,6 @@ angular.module('CyberWar')
       CurrentInvestments.setInvestments({});
       CurrentOrders.setOrders([]);
     }
-    cbListener.triggerAll();
   }
 
   //---------------------------------------------------------------------------
