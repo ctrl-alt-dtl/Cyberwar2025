@@ -220,7 +220,7 @@ td {
 }
 
 .adjudicationList {
-    border: 1em solid black;
+    border: 1px solid black;
     display: block;
     padding: .1em 1em;
     margin-bottom: 1em;
