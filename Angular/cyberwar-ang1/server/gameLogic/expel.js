@@ -17,6 +17,7 @@ this.performOrders = function(prevTurn, newTurn) {
             var newLinks = _.reject(newTurnPlayer.exploitLinks, (link) => Util.Shared.isLocationInLink(link, order.node));
             if (newLinks.length != newTurnPlayer.exploitLinks.length) {
               removedLinkInformation.push({ owner: newTurnPlayer.color, numRemoved: newTurnPlayer.exploitLinks.length - newLinks.length });
+              Util.addReport(newTurnPlayer, ActionType.EXPEL, order.node, { attackedPlayer: newTurnPlayer.name });
             }
             newTurnPlayer.exploitLinks = newLinks;
           }

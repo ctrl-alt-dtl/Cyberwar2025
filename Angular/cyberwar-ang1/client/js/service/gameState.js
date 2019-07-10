@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.service('GameState', ['CurrentInvestments', 'CurrentOrders', 'GameUtil', function(CurrentInvestments, CurrentOrders, GameUtil) {
+.service('GameState', function(CurrentInvestments, CurrentOrders, GameUtil) {
   var cbListener = new Gambit.CallbackListener();
 
   //---------------------------------------------------------------------------
@@ -27,7 +27,6 @@ angular.module('CyberWar')
       else {
         modifyPlayerDataForObserver(this);
       }
-      console.log("Turn Number: " + turnNumber);
     }
     cbListener.triggerAll();
   }
@@ -206,4 +205,4 @@ angular.module('CyberWar')
     // in the server.
     return 2;
   }
-}]);
+});

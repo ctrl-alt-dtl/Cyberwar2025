@@ -203,9 +203,7 @@ var onAttackSuccess = function(serverNodes, attack, newOwnerColor) {
       // Add the attacked player to the report
       attackedPlayer: attack.targetPlayer.name,
       // Add the defense strength since the attacked player would know that
-      defenderStrength: attack.defenderStrength,
-      // Report that the attack was a success
-      success: true,
+      defenderStrength: attack.defenderStrength
     };
       Util.addReport(attack.targetPlayer, ActionType.ACQUIRE, attack.target, reportParams);
   }

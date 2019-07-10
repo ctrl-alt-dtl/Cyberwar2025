@@ -51,9 +51,7 @@ var performDeny = function(player, prevTurn, newTurn, attackerNode, defenderNode
         // Add the attacked player to the report
         attackedPlayer: previousOwner.name,
         // Report the defense strength
-        defenderStrength: defenderNode.strength,
-        // Report whether this was a success or not
-        success: success
+        defenderStrength: defenderNode.strength
       };
       Util.addReport(previousOwner, ActionType.DENY, defenderNode.location, reportParams);
     }
@@ -62,11 +60,15 @@ var performDeny = function(player, prevTurn, newTurn, attackerNode, defenderNode
   // Add a report of this action to the acting player
   var prevTurnPlayer = Util.Shared.findPlayerByName(prevTurn.players, player.name);
   var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
+  var previousOwner = Util.Shared.findPlayerByColor(newTurn.players, defenderNode.ownerColor);
+  var previouslyScannedNode = Util.Shared.isLocationInNodeList(defenderNode.location, prevTurnPlayer.scannedNodes);
   var reportParams = {
+    // If there was a previous owner of this node, add that to the report
+    attackedPlayer: previousOwner ? previousOwner.name : undefined,
     // Report the strength of the attack
     attackStrength: attackerNode.strength,
     // Report the defense strength if this node was scanned previously
-    defenderStrength: Util.Shared.isLocationInNodeList(defenderNode.location, prevTurnPlayer.scannedNodes) ? defenderNode.strength : undefined,
+    defenderStrength: previouslyScannedNode ? defenderNode.strength : undefined,
     // Report whether this was a success or not
     success: success
   };

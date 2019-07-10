@@ -71,7 +71,6 @@
     <script src="directive/overtLink.js"></script>
     <script src="directive/playerBase.js"></script>
     <script src="directive/researchTable.js"></script>
-    <script src="directive/reports.js"></script>
     <script src="directive/serverNode.js"></script>
     <script src="directive/submitButton.js"></script>
 
@@ -79,6 +78,7 @@
     <script src="controller/canvasCtrl.js"></script>
     <script src="controller/game.js"></script>
     <script src="controller/observerSwitchPlayerDialog.js"></script>
+    <script src="controller/reports.js"></script>
     <script src="controller/serverStatus.js"></script>
   </head>
   <body>
@@ -92,6 +92,7 @@
         <reports></reports>
         <div id="left_aside">
           <div class="round-indicator" >Round # {{GameState.currentTurnNumber + 1}}</div>
+          <div><button ng-click="showReport()">View Reports</button></div>
           <div class="pressure-indicator">
             <table class="ready-indicator">
               <tr>Player Ready Indicator</tr>
