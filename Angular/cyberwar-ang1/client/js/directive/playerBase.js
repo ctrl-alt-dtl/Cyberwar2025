@@ -25,7 +25,7 @@ angular.module('CyberWar')
         points: getHexPoints(color),
         fill: grayColor,
         stroke: 'black',
-        strokeWidth: 3,
+        strokeWidth: 4,
         closed: true,
         id: color + 'Base'
       });

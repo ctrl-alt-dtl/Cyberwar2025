@@ -9,32 +9,10 @@ var stage = new Konva.Stage({
   height: BASE_BOARD_HEIGHT
 
 });
-
-// Canvas resize code (need to incorporate)
-/*
-function fitStageIntoParentContainer() {
-  var container = document.querySelector('#stage-parent');
-
-  // now we need to fit stage into parent
-  var containerWidth = container.offsetWidth;
-  // to do this we need to scale the stage
-  var scale = containerWidth / BASE_BOARD_WIDTH;
-
-  stage.width(BASE_BOARD_WIDTH * scale);
-  stage.height(BASE_BOARD_HEIGHT * scale);
-  stage.scale({ x: scale, y: scale });
-  stage.draw();
-}
-
-fitStageIntoParentContainer();
-// adapt the stage on any window resize
-window.addEventListener('resize', fitStageIntoParentContainer);
-*/
-
 var bgLayer = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
 var linksLayer = new Konva.Layer();
-var toolTipLayer = new Konva.Layer();
+// var toolTipLayer = new Konva.Layer();
 
 var konvaHexPositions = {};
 _.each(Color, function(color) {
@@ -107,7 +85,7 @@ imageObj.onload = function() {
   bgGroup.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
   bgGroup.add(mainBoundary3, mainBoundary2, mainBoundary1);
   bgGroup.add(tier3Text, tier2Text, tier1Text);
-  bgGroup.add(node1Text, node2Text, node3Text, node5Text, node6Text, node7Text);
+  bgGroup.add(node1Text, node2Text, node3Text, node4Text, node5Text, node6Text, node7Text, node8Text);
   bgGroup.add(rbr1, rbr2, r1r3, r2r5, r5r4, r3r4, r4r6, r4r7, r3r6, r5r7, r6r7, r6r8, r7r8);
   bgGroup.add(pbp1, pbp2, p1p3, p2p5, p5p4, p3p4, p4p6, p4p7, p3p6, p5p7, p6p7, p6p8, p7p8);
   bgGroup.add(bbb1, bbb2, b1b3, b2b5, b5b4, b3b4, b4b6, b4b7, b3b6, b5b7, b6b7, b6b8, b7b8);
