@@ -3,7 +3,7 @@ angular.module('CyberWar')
   function link($scope, element, attrs) {
     GameState.addListener(onGameStateChanged);
 
-    var hex, text;
+    var hex, text, chatNotify;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
@@ -48,7 +48,25 @@ angular.module('CyberWar')
         fill: '#FFF',
         rotation: getTextRotation(color),
       });
-      domainsGroup.add(hex, text);
+
+      // Chat Notification Toast Position
+      //var chatNotifyPosition =
+      chatNotify = new Konva.Rect({
+        x: textPosition.x,
+        y: textPosition.y,
+        offset: {
+          x: notification_offset_x,
+          y: notification_offset_y
+        },
+        width: 150,
+        height: 50,
+        fill: 'green',
+        stroke: 'black',
+        strokeWidth: 4,
+        rotation: getTextRotation(color)
+      });
+
+      domainsGroup.add(chatNotify, hex, text);
 
       // add event handling
       hex.on('mouseover', function () {
