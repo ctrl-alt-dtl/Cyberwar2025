@@ -1,8 +1,6 @@
 angular.module('CyberWar')
 .directive('ordersList', ['CurrentOrders', 'GameState', function(CurrentOrders, GameState) {
   function link($scope, element, attrs) {
-    $scope.isObserver = () => GameState.isObserver();
-
     CurrentOrders.addListener(onOrdersChanged);
 
     // ----------------------------------------------------------------------------
@@ -18,10 +16,10 @@ angular.module('CyberWar')
     //---------------------------------------------------------------------------
     $scope.paramsToString = function(order) {
       var params = '';
-      if (order.params.source) {
+      if (order.params && order.params.source) {
         params += ' from ' + order.params.source.color + ' ' + order.params.source.index;
       }
-      if (order.params.color) {
+      if (order.params && order.params.color) {
         params += ' as ' + order.params.color;
       }
       return params;
@@ -29,7 +27,7 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.canCancel = function() {
-      return !GameState.submittedTurn();
+      return !GameState.isObserver() && !GameState.submittedTurn();
     }
 
     //---------------------------------------------------------------------------

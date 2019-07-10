@@ -29,6 +29,12 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  this.getTurn = function(turnNumber) {
+    requestSentCBListener.triggerAll();
+    socketSend(GameRequest.GET_TURN_NUMBER, { gid: gid, user: user, turnNumber: turnNumber });
+  }
+
+  // ----------------------------------------------------------------------------
   this.setObserverColor = function(color) {
     requestSentCBListener.triggerAll();
     socketSend(GameRequest.CHANGE_OBSERVED_PLAYER, { gid: gid, user: user, color: color });
