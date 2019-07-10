@@ -1,11 +1,3 @@
-/*
-Parallel Constants Between Server Nodes
- */
-// X Axis Nodes Levels (X1, X2, X3...) Starting from left and going to the right.
-var X1 = 0;
-
-// Y Axis Nodes Levels (Y1, Y2, Y3...) Starting from bottom and going to the top.
-var Y1 = 0;
 /**
  * RED DOMAIN COORDINATE POINTS
  * This is a library for the points on the layered canvas for easy modification
