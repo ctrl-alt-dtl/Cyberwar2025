@@ -14,12 +14,12 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.gameStateUpdated = function(gameData, turnNumber, latestTurnNumber) {
-    var updateGameState = shouldUpdateGameState(this, gameData, turnNumber, latestTurnNumber);
+    var updateCurrentPlayer = shouldUpdateCurrentPlayer(this, gameData, turnNumber, latestTurnNumber);
     // Always update the latest turn number so our history tracker is accurate
     this.latestTurnNumber = latestTurnNumber;
-    if (updateGameState) {
+    this.currentGameState = gameData;
+    if (updateCurrentPlayer) {
       this.currentTurnNumber = turnNumber;
-      this.currentGameState = gameData;
       this.currentPlayerData = GameUtil.findPlayerByName(gameData.players, this.currentPlayer);
       if (!this.currentPlayerData.isObserver) {
         modifyPlayerDataForNonObserver(this);
@@ -84,8 +84,8 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
-  // Do we need to update our current game state or should we ignore it?
-  var shouldUpdateGameState = function(GameState, newGameData, turnNumber, latestTurnNumber) {
+  // Do we need to update our current player's game state or should we ignore it?
+  var shouldUpdateCurrentPlayer = function(GameState, newGameData, turnNumber, latestTurnNumber) {
     // If we are an observer and our player color changed, then always update the game state
     if (GameState.currentPlayerData && GameState.currentPlayerData.isObserver) {
       var newPlayerData = GameUtil.findPlayerByName(newGameData.players, GameState.currentPlayer);
