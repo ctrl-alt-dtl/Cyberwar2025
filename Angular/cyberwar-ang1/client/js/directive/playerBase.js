@@ -51,12 +51,12 @@ angular.module('CyberWar')
 
       // Chat Notification Toast Position
       //var chatNotifyPosition =
-      chatNotify = new Konva.Rect({
+      chatNotifyRect = new Konva.Rect({
         x: getHexMidPointX(color),
         y: getHexMidPointY(color),
         offset: {
-          x: notification_offset_x,
-          y: notification_offset_y
+          x: notification_rect_offset_x,
+          y: notification_rect_offset_y
         },
         width: 130,
         height: 40,
@@ -66,7 +66,22 @@ angular.module('CyberWar')
         rotation: getTextRotation(color)
       });
 
-      domainsGroup.add(chatNotify, hex, text);
+      var chatNotifyText = new Konva.Text({
+        x: getHexMidPointX(color),
+        y: getHexMidPointY(color),
+        offset: {
+          x: notification_text_offset_x,
+          y: notification_text_offset_y
+        },
+        text: "New Message",
+        fontSize: 20,
+        fontFamily: 'Calibri',
+        fill: 'white',
+        width: 120,
+        rotation: getTextRotation(color)
+      });
+
+      domainsGroup.add(chatNotifyRect, chatNotifyText, hex, text);
 
       // add event handling
       hex.on('mouseover', function () {
@@ -96,7 +111,7 @@ angular.module('CyberWar')
       var hexMidPoint = GameUtil.getHexPosition(color, 0);
       var y1 = hexMidPoint.y1
       var y2 = hexMidPoint.y2
-      return midY = (y1 + y2) / 2
+      return midY = (y1 + y2) / 2;
     }
 
     // ----------------------------------------------------------------------------

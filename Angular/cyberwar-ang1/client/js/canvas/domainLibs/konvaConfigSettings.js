@@ -36,9 +36,13 @@ var text_offset_y = BASE_BOARD_HEIGHT / 60;
 var base_text_offset_x = BASE_BOARD_WIDTH / 65;
 var base_text_offset_y = BASE_BOARD_HEIGHT / 200;
 
-// Chat Toast Notification Centering
-var notification_offset_x = 65;
-var notification_offset_y = -20;
+// Chat Toast Notification Window Centering
+var notification_rect_offset_x = 65;
+var notification_rect_offset_y = -20;
+
+// Chat Toast Notification Text Centering
+var notification_text_offset_x = 57;
+var notification_text_offset_y = -33;
 
 // Server Text Sizes
 var serverTextWidth = BASE_BOARD_WIDTH / 4;
