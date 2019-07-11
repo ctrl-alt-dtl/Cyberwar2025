@@ -1,12 +1,14 @@
 angular.module('CyberWar')
-.directive('researchTable', ['CurrentInvestments', 'CurrentOrders', 'GameState', function(CurrentInvestments, CurrentOrders, GameState) {
+.directive('researchTable', function(CurrentInvestments, CurrentOrders, GameState, GameUtil) {
   function link($scope, element, attrs) {
     CurrentInvestments.addListener(onInvestmentsChanged);
     CurrentOrders.addListener(onActionPointsChanged);
     $scope.ResearchType = ResearchType;
-    $scope.Tier1CyberEffects = Tier1CyberEffects;
-    $scope.Tier2CyberEffects = Tier2CyberEffects;
-    $scope.Tier3CyberEffects = Tier3CyberEffects;
+    $scope.cyberEffects = [
+      getCyberEffectsObject(ActionType.SECURE,  ActionType.ACQUIRE,    ActionType.SCAN   ),
+      getCyberEffectsObject(ActionType.EXPEL,   ActionType.MANIPULATE, ActionType.EXPLOIT),
+      getCyberEffectsObject(ActionType.ANALYZE, ActionType.DENY,       ActionType.IMPLANT),
+    ];
     $scope.isObserver = () => GameState.isObserver();
 
     // ----------------------------------------------------------------------------
@@ -37,6 +39,20 @@ angular.module('CyberWar')
     }
 
     // ----------------------------------------------------------------------------
+    $scope.getUnlockStatus = function(researchType, researchLevel) {
+      if (GameState.currentPlayerData) {
+        var totalCurrentInvestment = GameState.currentPlayerData.research[researchType] + $scope.getCurrentInvestment(researchType);
+        if (GameUtil.isActionUnlocked(totalCurrentInvestment, researchLevel)) {
+          return 'unlocked';
+        }
+        else if (GameUtil.isActionPartiallyUnlocked(totalCurrentInvestment, researchLevel)) {
+          return 'partially-unlocked';
+        }
+      }
+      return 'locked';
+    }
+
+    // ----------------------------------------------------------------------------
     $scope.getCurrentInvestment = function(type) {
       return CurrentInvestments.getInvestment(type);
     }
@@ -52,10 +68,19 @@ angular.module('CyberWar')
         GameState.invest(type, amount);
       }
     }
+
+    // ----------------------------------------------------------------------------
+    function getCyberEffectsObject(cndAction, cnaAction, cneAction) {
+      var object = {};
+      object[ResearchType.CND] = cndAction;
+      object[ResearchType.CNA] = cnaAction;
+      object[ResearchType.CNE] = cneAction;
+      return object;
+    }
   }
   return {
     link: link,
     restrict: 'E',
     templateUrl: 'researchTable.html',
   }
-}]);
+});

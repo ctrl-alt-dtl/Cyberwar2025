@@ -2,27 +2,19 @@
   <div id="effects-window">
     <table>
       <tr>
-        <td colspan="4" align="center" width="400px" height="30px" style="font-weight:bold" class="last">&nbsp;Cyber Effects Window&nbsp;</td>
+        <td colspan="4" class="title header last">&nbsp;Cyber Effects Window&nbsp;</td>
       </tr>
       <tr>
-        <td ng-repeat="(key, researchType) in ResearchType" align="center" width="100px" style="font-weight:bold" ng-style="{'border-right-width': '2px'}">{{researchType}}</td>
-        <td align="center" style="font-weight:bold" class="last">Cost to Use:</td>
+        <td ng-repeat="(key, researchType) in ResearchType" class="header inner">{{researchType}}</td>
+        <td class="header cost last">Cost to Use:</td>
+      </tr>
+      <tr ng-repeat="cyberEffect in cyberEffects track by $index">
+        <td ng-repeat="(key, researchType) in ResearchType" class="inner effect" ng-class="getUnlockStatus(researchType, $parent.$index + 1)">{{cyberEffect[researchType]}}</td>
+        <td class="effect cost last">{{$index + 1}}</td>
       </tr>
       <tr>
-        <td ng-repeat="(key, Tier1CyberEffects) in Tier1CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}" >{{Tier1CyberEffects}}</td>
-        <td align=center class="last">1</td>
-      </tr>
-      <tr>
-        <td ng-repeat="(key, Tier2CyberEffects) in Tier2CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}">{{Tier2CyberEffects}}</td>
-        <td align=center class="last">2</td>
-      </tr>
-      <tr>
-        <td ng-repeat="(key, Tier3CyberEffects) in Tier3CyberEffects" align="center" width="100px" height="35px" ng-style="{'border-right-width': '2px'}">{{Tier3CyberEffects}}</td>
-        <td align=center class="last">3</td>
-      </tr>
-      <tr>
-        <td height=10px colspan="3" style="font-weight:bold" ng-style="{'border-right-width': '2px'}">Research Investment Table</td>
-        <td align=center style="font-weight:bold" class="last">Action Points</td>
+        <td colspan="3" class="header inner">Research Investment Table</td>
+        <td class="header last">Action Points</td>
       </tr>
       <tr class="ui-row">
         <td ng-repeat="(key, researchType) in ResearchType">
@@ -40,7 +32,7 @@
         <td class="actionPointsNumber" rowspan="2" >{{actionPoints}}</td>
       </tr>
       <tr ng-if="!isObserver()">
-        <td ng-repeat="(key, researchType) in ResearchType" align="center">
+        <td ng-repeat="(key, researchType) in ResearchType">
           <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()"
                   ng-click="invest(researchType, getCurrentInvestment(researchType) - 1)"> - </button>
           <button type="button" class="minusPlusBtn" ng-disabled="!canInvest()"
