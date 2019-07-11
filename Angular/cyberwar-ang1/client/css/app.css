@@ -81,31 +81,25 @@ body {
     color: black;
     background-color: #E1E1E1;
 }
-table.ready-indicator {
-    width: 100%;
-    height: 80%;
-    font-size: 12px;
-    color: black;
+
+.pressure-indicator .ready-indicator {
+    display: inline-block;
     border-width: 2px;
-    border-color: #666666;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-table.ready-indicator th {
-    border-width: 2px;
-    padding: 11px;
+    width: 33%;
+    padding: 10px;
     border-style: solid;
     border-color: black;
-    background-color: #dedede;
+    background-color: #2abe3d;
     text-align: center;
 }
-table.ready-indicator td {
-    border-width: 2px;
-    padding: 5px;
-    border-style: solid;
-    border-color: #666666;
-    background-color: #ffffff;
+.pressure-indicator .ready-indicator.not-ready {
+    animation: not-ready .3s linear alternate infinite;
 }
+@keyframes not-ready {
+    from { background-color: #d4d426; }
+    to { background-color: #dedede; }
+}
+
 .chat {
     width: 100%;
     height: 77%;
@@ -114,7 +108,32 @@ table.ready-indicator td {
 
 #effects-window {
     width: 100%;
+    text-align: center;
 }
+#effects-window td.title {
+    width: 400px;
+    height: 30px;
+}
+#effects-window td.header {
+    font-weight: bold;
+    width: 100px;
+}
+#effects-window td.inner {
+    border-right-width: 2px;
+}
+#effects-window td.effect {
+    height: 35px;
+}
+#effects-window td.effect.unlocked {
+    background-color: #39d139;
+}
+#effects-window td.effect.partially-unlocked {
+    background-color: #e2e23d;
+}
+#effects-window td.effect.locked {
+    background-color: #ec4545;
+}
+
 .board {
     height: 100%;
     width: 55%;
@@ -217,7 +236,6 @@ td {
     border-right: none;
 }
 
-
 #orders-list {
     height: 100%;
 }
@@ -281,3 +299,4 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 .cyberEffectRed {
     color: crimson;
 }
+

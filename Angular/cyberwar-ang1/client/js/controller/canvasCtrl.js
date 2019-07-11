@@ -132,7 +132,7 @@ angular.module('CyberWar')
     if (!GameState.submittedTurn()) {
       var researchType = getResearchType(actionType);
       var actionLevel = getActionLevel(actionType);
-      if (researchType && actionLevel > 0 && isActionUnlocked(researchType, actionLevel) && canPlayerAffordAction(actionLevel)) {
+      if (researchType && actionLevel > 0 && GameUtil.isActionUnlocked(GameState.currentPlayerData.research[researchType], actionLevel) && canPlayerAffordAction(actionLevel)) {
         switch (actionType) {
           case ActionType.SECURE:
             return canSecureNode(node);
@@ -280,13 +280,6 @@ angular.module('CyberWar')
   var canImplantNode = function(node) {
     // Players can implant nodes they can acquire or an opponent base adjacent to the network
     return canAcquireNode(node) || (isPlayerBase(node) && !doesPlayerOwnNode(node) && isAdjacentToNetwork(node));
-  }
-
-  // ----------------------------------------------------------------------------
-  var isActionUnlocked = function(researchType, level) {
-    var researchPerLevel = GameUtil.Config.MAX_RESEARCH_POINTS / (GameUtil.Config.MAX_RESEARCH_LEVELS - 1);
-    var levelUnlocked = (GameState.currentPlayerData.research[researchType] / researchPerLevel) + 1;
-    return level <= levelUnlocked;
   }
 
   // ----------------------------------------------------------------------------
