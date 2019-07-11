@@ -3,7 +3,7 @@ angular.module('CyberWar')
   function link($scope, element, attrs) {
     GameState.addListener(onGameStateChanged);
 
-    var hex, text, chatNotify;
+    var hex, text, chatNotify, midX, midY;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
@@ -52,15 +52,15 @@ angular.module('CyberWar')
       // Chat Notification Toast Position
       //var chatNotifyPosition =
       chatNotify = new Konva.Rect({
-        x: textPosition.x,
-        y: textPosition.y,
+        x: getHexMidPointX(color),
+        y: getHexMidPointY(color),
         offset: {
           x: notification_offset_x,
           y: notification_offset_y
         },
-        width: 150,
-        height: 50,
-        fill: 'green',
+        width: 130,
+        height: 40,
+        fill: grayColor,
         stroke: 'black',
         strokeWidth: 4,
         rotation: getTextRotation(color)
@@ -81,6 +81,21 @@ angular.module('CyberWar')
         }
       });
       text.listening(false);
+    }
+
+    // ----------------------------------------------------------------------------
+    var getHexMidPointX = function (color){
+      var hexMidPoint = GameUtil.getHexPosition(color, 0);
+      var x1 = hexMidPoint.x1
+      var x2 = hexMidPoint.x2
+      return midX = (x1 + x2) / 2;
+    }
+    // ----------------------------------------------------------------------------
+    var getHexMidPointY = function (color){
+      var hexMidPoint = GameUtil.getHexPosition(color, 0);
+      var y1 = hexMidPoint.y1
+      var y2 = hexMidPoint.y2
+      return midY = (y1 + y2) / 2
     }
 
     // ----------------------------------------------------------------------------

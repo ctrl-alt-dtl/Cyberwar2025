@@ -136,6 +136,8 @@ var drawBoard = function(playerData) {
   exploitLinksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
 }
 
+
+
 //---------------------------------------------------------------------------
 var redrawStage = function() {
   stage.clearCache();
