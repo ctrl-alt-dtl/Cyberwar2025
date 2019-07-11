@@ -29,4 +29,9 @@ angular.module("CyberWar")
   this.getHexPosition = function(color, index) {
     return konvaHexPositions[color][index];
   }
+
+  //------------------------------------------------------------------------------
+  this.getHexMidPoint = function(color, index) {
+    return konvaHexMidPoint[color][index];
+  }
 });

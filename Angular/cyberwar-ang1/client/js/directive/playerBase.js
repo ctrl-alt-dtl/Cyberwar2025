@@ -3,7 +3,7 @@ angular.module('CyberWar')
   function link($scope, element, attrs) {
     GameState.addListener(onGameStateChanged);
 
-    var hex, text;
+    var hex, text, chatNotify, midX, midY;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
@@ -48,7 +48,41 @@ angular.module('CyberWar')
         fill: '#FFF',
         rotation: getTextRotation(color),
       });
-      domainsGroup.add(hex, text);
+
+      // Chat Notification Toast Position
+      //var chatNotifyPosition =
+      chatNotifyRect = new Konva.Rect({
+        x: getHexMidPointX(color),
+        y: getHexMidPointY(color),
+        offset: {
+          x: notification_rect_offset_x,
+          y: notification_rect_offset_y
+        },
+        width: 130,
+        height: 35,
+        fill: '#434343',
+        stroke: 'black',
+        strokeWidth: 2,
+        rotation: getTextRotation(color)
+      });
+
+      var chatNotifyText = new Konva.Text({
+        x: getHexMidPointX(color),
+        y: getHexMidPointY(color),
+        offset: {
+          x: notification_text_offset_x,
+          y: notification_text_offset_y
+        },
+        text: "New Message",
+        fontSize: 20,
+        fontFamily: 'Calibri',
+        fill: 'white',
+        width: 120,
+        rotation: getTextRotation(color)
+      });
+
+      domainsGroup.add(chatNotifyRect, chatNotifyText, hex, text);
+
 
       // add event handling
       hex.on('mouseover', function () {
@@ -63,6 +97,22 @@ angular.module('CyberWar')
         }
       });
       text.listening(false);
+    }
+
+    // ----------------------------------------------------------------------------
+    // Don't make fun of my redundant midX/midY code... this was a WIP in a pinch. This could be done more efficiently.
+    var getHexMidPointX = function (color){
+      var hexMidPoint = GameUtil.getHexPosition(color, 0);
+      var x1 = hexMidPoint.x1
+      var x2 = hexMidPoint.x2
+      return midX = (x1 + x2) / 2;
+    }
+    // ----------------------------------------------------------------------------
+    var getHexMidPointY = function (color){
+      var hexMidPoint = GameUtil.getHexPosition(color, 0);
+      var y1 = hexMidPoint.y1
+      var y2 = hexMidPoint.y2
+      return midY = (y1 + y2) / 2;
     }
 
     // ----------------------------------------------------------------------------
