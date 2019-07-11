@@ -100,7 +100,6 @@ imageObj.onload = function() {
   bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
 
   //toolTipLayer.add();
-
   domainsLayer.add(domainsGroup);
 
   linksLayer.add(exploitLinksGroup, linksGroup);
