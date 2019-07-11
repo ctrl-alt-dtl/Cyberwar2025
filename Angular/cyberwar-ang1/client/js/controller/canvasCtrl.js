@@ -49,6 +49,9 @@ angular.module('CyberWar')
         displayedOwner: function() {
           return GameUtil.getServerNodeDisplayedColor(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
         },
+        manipulateOwner: function() {
+          return GameUtil.getServerNodeManipulatedColor(selectedNode, GameState.currentPlayerData);
+        },
         displayedStrength: function() {
           return GameUtil.getServerNodeDisplayedText(selectedNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
         },

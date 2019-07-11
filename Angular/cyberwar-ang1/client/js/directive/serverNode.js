@@ -17,6 +17,16 @@ angular.module('CyberWar')
       var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
       if (serverNode) {
         hex.fill(GameUtil.getColor(GameUtil.getServerNodeDisplayedColor(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes)));
+
+        // The hex's border should be black unless it's owned by the current player and they manipulated it to look like another color
+        var manipulatedColor = GameUtil.getServerNodeManipulatedColor(serverNode, GameState.currentPlayerData);
+        if (manipulatedColor) {
+          hex.stroke(GameUtil.getColor(manipulatedColor));
+        }
+        else {
+          hex.stroke('black');
+        }
+
         text.text(GameUtil.getServerNodeDisplayedText(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes));
       }
       else {
