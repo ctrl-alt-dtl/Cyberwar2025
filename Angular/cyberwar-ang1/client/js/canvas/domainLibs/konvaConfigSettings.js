@@ -19,8 +19,8 @@ var grayColor = 'gray';
 var noColor = '';
 
 // Line dash width and gap for exploit links
-var exploitLineDashWidth = 3;
-var exploitLineDashGap = 10;
+var exploitLineDashWidth = 2;
+var exploitLineDashGap = 11;
 
 // Resizing math used for all server and link points
 var point_x = BASE_BOARD_WIDTH;
