@@ -84,6 +84,7 @@ angular.module('CyberWar')
     }
 
     // ----------------------------------------------------------------------------
+    // Don't make fun of my redundant midX/midY code... this was a WIP in a pinch. This could be done more efficiently.
     var getHexMidPointX = function (color){
       var hexMidPoint = GameUtil.getHexPosition(color, 0);
       var x1 = hexMidPoint.x1
