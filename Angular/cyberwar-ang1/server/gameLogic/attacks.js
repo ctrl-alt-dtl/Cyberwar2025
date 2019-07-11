@@ -185,7 +185,7 @@ var performBasicAttack = function(serverNodes, attack) {
 var onAttackSuccess = function(serverNodes, attack, newOwnerColor) {
   // Change the owner color of the node and reset the strength
   var serverNode = Util.Shared.getServerNode(serverNodes, attack.target.color, attack.target.index);
-  delete serverNode.fakeColor;
+  delete serverNode.manipulateColor;
   serverNode.ownerColor = newOwnerColor;
   serverNode.strength = 1;
   delete serverNode.previousStrength;
