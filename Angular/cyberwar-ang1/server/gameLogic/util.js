@@ -32,12 +32,18 @@ this.addNewTurn = function(game, turnToCopy) {
   newTurn.players.forEach(function(player) {
     player.scannedNodes = [];
     player.scannedExploitLinks = [];
+    player.reports = [];
     delete player.investments;
     delete player.orders;
   });
 
   return newTurn;
 };
+
+//------------------------------------------------------------------------------
+this.addReport = function(player, actionType, location, params) {
+  player.reports.push({ action: actionType, location: location, params: params });
+}
 
 //------------------------------------------------------------------------------
 // Convert a string to boolean somewhat reliably.  Handy for parsing ENV

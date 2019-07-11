@@ -14,7 +14,7 @@ this.performOrders = function(prevTurn, newTurn) {
         var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
         var serverNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
         if (serverNode) {
-          performScan(newTurn, newTurnPlayer, serverNode);
+          performScan(newTurn, newTurnPlayer, serverNode, ActionType.SCAN);
         }
       }
       else if (order.action == ActionType.ANALYZE) {
@@ -23,7 +23,7 @@ this.performOrders = function(prevTurn, newTurn) {
         _.each(positivelyLinkedNodes, function(linkedNode) {
           var serverNode = Util.Shared.getServerNode(newTurn.serverNodes, linkedNode.color, linkedNode.index);
           if (serverNode) {
-            performScan(newTurn, newTurnPlayer, serverNode);
+            performScan(newTurn, newTurnPlayer, serverNode, ActionType.ANALYZE);
           }
         });
       }
@@ -32,16 +32,28 @@ this.performOrders = function(prevTurn, newTurn) {
 }
 
 //------------------------------------------------------------------------------
-var performScan = function(turn, actingPlayer, serverNode) {
+var performScan = function(turn, actingPlayer, serverNode, actionType) {
   console.log('Scanning node: ' + serverNode.location.color + ' ' + serverNode.location.index);
+  var foundExploitLinks = [];
+
   actingPlayer.scannedNodes.push(serverNode);
   _.each(turn.players, function(player) {
     if (player.color != actingPlayer.color) {
       _.each(player.exploitLinks, function(exploitLink) {
         if (Util.Shared.isLocationInLink(exploitLink, serverNode.location)) {
           actingPlayer.scannedExploitLinks.push(exploitLink);
+          foundExploitLinks.push({ owner: player.color, link: exploitLink })
         }
       });
     }
   });
+
+  // Add a report of this action to the acting player
+  var reportParams = {
+    owner: serverNode.ownerColor,
+    manipulatedOwner: serverNode.manipulateColor,
+    strength: serverNode.strength,
+    exploitLinksFound: foundExploitLinks
+  };
+  Util.addReport(actingPlayer, actionType, serverNode.location, reportParams);
 }

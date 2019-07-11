@@ -20,6 +20,7 @@ this.adjudicateTurn = function(prevTurn, newTurn) {
   Attacks.performAttacks(prevTurn, newTurn);
   Exploit.performOrders(prevTurn, newTurn);
   Deny.performOrders(prevTurn, newTurn);
-  Implant.cleanup(newTurn);
   Scan.performOrders(prevTurn, newTurn);
+  Implant.cleanup(newTurn);
+  Deny.cleanup(newTurn);
 };

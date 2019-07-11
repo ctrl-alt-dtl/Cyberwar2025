@@ -79,6 +79,7 @@
     <script src="controller/canvasCtrl.js"></script>
     <script src="controller/game.js"></script>
     <script src="controller/observerSwitchPlayerDialog.js"></script>
+    <script src="controller/reports.js"></script>
     <script src="controller/serverStatus.js"></script>
   </head>
   <body>
@@ -88,9 +89,11 @@
 
     <div ng-controller="GameController" id="stage-parent">
       <div id="main-view">
-        <!-- <history></history> -->
+        <history></history>
+        <reports></reports>
         <div id="left_aside">
-          <div class="round-indicator" >Round # {{game.turnNumber}}</div> <!-- TODO: Game round/turn number -->
+          <div class="round-indicator" >Round # {{GameState.currentTurnNumber + 1}}</div>
+          <div><button ng-click="showReport()">View Reports</button></div>
           <ready-indicator></ready-indicator>
           <div class="chat"><chat></chat></div>
         </div>
