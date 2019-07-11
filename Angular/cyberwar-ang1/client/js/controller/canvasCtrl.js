@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.controller('canvasCtrl', ['$scope', '$uibModal', 'CurrentOrders', 'GameSocket', 'GameState', 'GameUtil', function($scope, $uibModal, CurrentOrders, GameSocket, GameState, GameUtil){
+.controller('canvasCtrl', function($scope, $uibModal, ChatState, CurrentOrders, GameSocket, GameState, GameUtil){
   GameState.addListener(onGameStateChanged);
   $scope.Color = Color;
   $scope.nodesPerDomain = new Array(GameUtil.Config.SERVER_NODES_PER_DOMAIN);
@@ -23,6 +23,11 @@ angular.module('CyberWar')
   $scope.playerBaseClicked = function(color) {
     if (!GameState.currentPlayerData.isObserver) {
       $scope.serverNodeClicked(color, 0);
+
+      // Notify the chat service that we have private chat showing for this player
+      ChatState.setViewingPrivateChat(color);
+      // When the modal dialog is closed, clear the private chat setting
+      modalInstance.closed.then(() => ChatState.setViewingPrivateChat());
     }
     else {
       showObserverSwitchPlayerDialog(color);
@@ -348,4 +353,4 @@ angular.module('CyberWar')
     });
     return validColors;
   }
-}]);
+});
