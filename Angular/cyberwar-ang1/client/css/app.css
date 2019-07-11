@@ -114,7 +114,32 @@ table.ready-indicator td {
 
 #effects-window {
     width: 100%;
+    text-align: center;
 }
+#effects-window td.title {
+    width: 400px;
+    height: 30px;
+}
+#effects-window td.header {
+    font-weight: bold;
+    width: 100px;
+}
+#effects-window td.inner {
+    border-right-width: 2px;
+}
+#effects-window td.effect {
+    height: 35px;
+}
+#effects-window td.effect.unlocked {
+    background-color: #39d139;
+}
+#effects-window td.effect.partially-unlocked {
+    background-color: #e2e23d;
+}
+#effects-window td.effect.locked {
+    background-color: #ec4545;
+}
+
 .board {
     height: 100%;
     width: 55%;
@@ -217,7 +242,6 @@ td {
     border-right: none;
 }
 
-
 #orders-list {
     height: 100%;
 }
@@ -281,3 +305,4 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 .cyberEffectRed {
     color: crimson;
 }
+

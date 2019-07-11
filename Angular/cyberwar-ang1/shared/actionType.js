@@ -12,23 +12,3 @@ this.ActionType = {
   EXPLOIT: "Exploit", // Insert a hidden connection to a node
   IMPLANT: "Implant", // Lower server strength to 1 for a turn
 }
-
-// List for Cyber Effects Window
-this.Tier1CyberEffects = {
-  SECURE: "Secure",
-  ACQUIRE: "Acquire",
-  SCAN: "Scan",
-
-}
-
-this.Tier2CyberEffects = {
-  EXPEL: "Expel",
-  MANIPULATE: "Manipulate",
-  EXPLOIT: "Exploit",
-}
-
-this.Tier3CyberEffects = {
-  ANALYZE: "Analyze",
-  DENY: "Deny",
-  IMPLANT: "Implant",
-}
