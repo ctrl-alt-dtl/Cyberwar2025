@@ -23,7 +23,10 @@ angular.module('CyberWar')
   $scope.playerBaseClicked = function(color) {
     if (!GameState.currentPlayerData.isObserver) {
       $scope.serverNodeClicked(color, 0);
+
+      // Notify the chat service that we have private chat showing for this player
       ChatState.setViewingPrivateChat(color);
+      // When the modal dialog is closed, clear the private chat setting
       modalInstance.closed.then(() => ChatState.setViewingPrivateChat());
     }
     else {
