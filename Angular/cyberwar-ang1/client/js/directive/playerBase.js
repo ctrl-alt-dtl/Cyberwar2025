@@ -1,16 +1,33 @@
 angular.module('CyberWar')
-.directive('playerBase', ['GameState', 'GameUtil', function(GameState, GameUtil) {
+.directive('playerBase', function(ChatState, GameState, GameUtil) {
   function link($scope, element, attrs) {
+    ChatState.addListener(onChatMessageReceived);
     GameState.addListener(onGameStateChanged);
 
     var hex, text, chatNotify, midX, midY;
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
+      ChatState.removeListener(onChatMessageReceived);
       GameState.removeListener(onGameStateChanged);
       hex.remove();
       text.remove();
     });
+
+    // ----------------------------------------------------------------------------
+    function onChatMessageReceived(message) {
+      if (GameState.currentGameState && GameState.currentPlayerData) {
+        // If we have a new message that is to the current player and from this base,
+        // show our chat notification, unless we are currently looking at the chat for this base
+        var basePlayerName = GameUtil.findPlayerByColor(GameState.currentGameState.players, $scope.color).name;
+        if (message.isNew &&
+          message.to == GameState.currentPlayerData.name &&
+          message.from == basePlayerName &&
+          !ChatState.isViewingPrivateChat($scope.color)) {
+          toggleChatNotification(true);
+        }
+      }
+    }
 
     // ----------------------------------------------------------------------------
     function onGameStateChanged() {
@@ -50,8 +67,11 @@ angular.module('CyberWar')
       });
 
       // Chat Notification Toast Position
-      //var chatNotifyPosition =
-      chatNotifyRect = new Konva.Rect({
+      chatNotify = new Konva.Group({
+        visible: false
+      });
+
+      var chatNotifyRect = new Konva.Rect({
         x: getHexMidPointX(color),
         y: getHexMidPointY(color),
         offset: {
@@ -81,8 +101,9 @@ angular.module('CyberWar')
         rotation: getTextRotation(color)
       });
 
-      domainsGroup.add(chatNotifyRect, chatNotifyText, hex, text);
+      chatNotify.add(chatNotifyRect, chatNotifyText);
 
+      domainsGroup.add(chatNotify, hex, text);
 
       // add event handling
       hex.on('mouseover', function () {
@@ -95,20 +116,28 @@ angular.module('CyberWar')
         if ($scope.callbackFn) {
           $scope.$apply($scope.callbackFn({ color: color }));
         }
+        // Always hide the chat notification when we click on this node
+        toggleChatNotification(false);
       });
       text.listening(false);
     }
 
     // ----------------------------------------------------------------------------
+    var toggleChatNotification = function(showNotification) {
+      chatNotify.visible(showNotification);
+      redrawStage();
+    }
+
+    // ----------------------------------------------------------------------------
     // Don't make fun of my redundant midX/midY code... this was a WIP in a pinch. This could be done more efficiently.
-    var getHexMidPointX = function (color){
+    var getHexMidPointX = function (color) {
       var hexMidPoint = GameUtil.getHexPosition(color, 0);
       var x1 = hexMidPoint.x1
       var x2 = hexMidPoint.x2
       return midX = (x1 + x2) / 2;
     }
     // ----------------------------------------------------------------------------
-    var getHexMidPointY = function (color){
+    var getHexMidPointY = function (color) {
       var hexMidPoint = GameUtil.getHexPosition(color, 0);
       var y1 = hexMidPoint.y1
       var y2 = hexMidPoint.y2
@@ -252,4 +281,4 @@ angular.module('CyberWar')
       color: '=',
     },
   }
-}]);
+});
