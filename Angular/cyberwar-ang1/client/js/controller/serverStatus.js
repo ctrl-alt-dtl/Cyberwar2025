@@ -1,7 +1,8 @@
 angular.module('CyberWar')
-.controller('ServerStatusController', function($scope, GameState, GameUtil, selectedNode, displayedOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
+.controller('ServerStatusController', function($scope, GameState, GameUtil, selectedNode, displayedOwner, manipulateOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
   $scope.selectedNode = selectedNode;
   $scope.displayedOwner = displayedOwner;
+  $scope.manipulateOwner = manipulateOwner;
   $scope.displayedStrength = displayedStrength;
   $scope.usableSourceNodes = usableSourceNodes;
   $scope.validActions = validActions;

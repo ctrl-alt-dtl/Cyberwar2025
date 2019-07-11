@@ -27,7 +27,11 @@
 
   <div ng-if="selectedNode.location.index">
     <div>Selected Node: {{selectedNode.location.color}} {{selectedNode.location.index}}</div>
-    <div>Owner: {{displayedOwner || 'Unknown'}} Strength: {{displayedStrength}}</div>
+    <div>
+      <span>Owner: {{displayedOwner || 'Unknown'}}</span>
+      <span ng-if="manipulateOwner">Manipulated Owner: {{manipulateOwner}}</span>
+      <span>Strength: {{displayedStrength}}</span>
+    </div>
   </div>
   <div ng-if="selectedNode.location.index == 0">
     <div>Selected Base: {{selectedNode.location.color}}</div>

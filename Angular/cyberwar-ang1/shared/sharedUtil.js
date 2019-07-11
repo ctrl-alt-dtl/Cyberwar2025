@@ -58,23 +58,45 @@ this.SharedUtil = function(_, Color) {
     if (player.color == serverNode.ownerColor) {
       return serverNode.ownerColor;
     }
-    // Otherwise, if this is part of the player's network or in their domain, show a color
-    else if (this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color || this.isLocationInLinkList(serverNode.location, player.exploitLinks)) {
-      // If the node has a manipulate color, show that
-      if (serverNode.manipulateColor) {
-        return serverNode.manipulateColor;
+    else {
+      // See if they have scanned the node and if so, display the scanned information
+      var scannedNode = this.getNodeInList(serverNode, player.scannedNodes)
+      if (scannedNode) {
+        return scannedNode.ownerColor;
       }
-      // Otherwise, show the owner's color
-      else {
-        return serverNode.ownerColor;
+      // Otherwise, if this is part of the player's network or in their domain, show a color
+      else if (this.isLocationInList(serverNode.location, positivelyLinkedNodes) || serverNode.location.color == player.color || this.isLocationInLinkList(serverNode.location, player.exploitLinks)) {
+        // If the node has a manipulate color, show that
+        if (serverNode.manipulateColor) {
+          return serverNode.manipulateColor;
+        }
+        // Otherwise, show the owner's color
+        else {
+          return serverNode.ownerColor;
+        }
       }
-    }
-    // See if they have scanned the node and if so, display the scanned information
-    var scannedNode = this.getNodeInList(serverNode, player.scannedNodes)
-    if (scannedNode) {
-      return scannedNode.ownerColor;
     }
     // Otherwise, it's grey
+    return '';
+  }
+
+  //------------------------------------------------------------------------------
+  this.getServerNodeManipulatedColor = function(serverNode, player, positivelyLinkedNodes) {
+    // If this node is manipulated
+    if (serverNode.manipulateColor) {
+      // If the current player owns it, then return the manipulated color
+      if (player.color == serverNode.ownerColor) {
+        return serverNode.manipulateColor;
+      }
+
+      // If the player has scanned the node, then display the scanned information
+      var scannedNode = this.getNodeInList(serverNode, player.scannedNodes)
+      if (scannedNode) {
+        return scannedNode.manipulateColor;
+      }
+    }
+
+    // Otherwise, it's default
     return '';
   }
 
