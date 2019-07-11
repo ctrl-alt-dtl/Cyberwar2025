@@ -100,7 +100,7 @@
         <div class="board"></div>
         <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
           <overt-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB"></overt-link>
-          <exploit-link ng-repeat="link in exploitLinks" node-a="link.nodeA" node-b="link.nodeB"></exploit-link>
+          <exploit-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB" callback-fn="exploitLinkClicked(nodeA, nodeB)"></exploit-link>
 
           <div ng-repeat="(key, color) in Color">
             <player-base color="color" callback-fn="playerBaseClicked(color)"></player-base>

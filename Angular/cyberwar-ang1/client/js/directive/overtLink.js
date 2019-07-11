@@ -1,15 +1,34 @@
 angular.module('CyberWar')
 .directive('overtLink', ['GameState', 'GameUtil', function(GameState, GameUtil) {
   function link($scope, element, attrs) {
-    GameState.addListener(onGameStateChanged);
-
     var line;
+
+    GameState.addListener(onGameStateChanged);
 
     // ----------------------------------------------------------------------------
     $scope.$on('$destroy', function() {
       GameState.removeListener(onGameStateChanged);
       line.remove();
     });
+
+    // ----------------------------------------------------------------------------
+    function onGameStateChanged() {
+      var serverNodeA = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeA.color, $scope.nodeA.index);
+      var serverNodeB = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeB.color, $scope.nodeB.index);
+
+      // The line is "hidden" by default
+      var lineColor = noColor;
+      if (serverNodeA && serverNodeB) {
+        var serverNodeAColor = GameUtil.getServerNodeDisplayedColor(serverNodeA, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+        var serverNodeBColor = GameUtil.getServerNodeDisplayedColor(serverNodeB, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+        // If they both have colors and they match, use the matching color
+        if (serverNodeAColor && serverNodeBColor && serverNodeAColor == serverNodeBColor) {
+          lineColor = GameUtil.getColor(serverNodeAColor);
+        }
+      }
+      // Update the line's stroke color
+      line.stroke(lineColor);
+    }
 
     // ----------------------------------------------------------------------------
     var createKonvaObjects = function(nodeA, nodeB) {
@@ -48,25 +67,6 @@ angular.module('CyberWar')
         listening: false,
       });
       linksGroup.add(line);
-    }
-
-    // ----------------------------------------------------------------------------
-    function onGameStateChanged() {
-      var serverNodeA = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeA.color, $scope.nodeA.index);
-      var serverNodeB = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeB.color, $scope.nodeB.index);
-
-      // The line is "hidden" by default
-      var lineColor = noColor;
-      if (serverNodeA && serverNodeB) {
-        var serverNodeAColor = GameUtil.getServerNodeDisplayedColor(serverNodeA, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
-        var serverNodeBColor = GameUtil.getServerNodeDisplayedColor(serverNodeB, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
-        // If they both have colors and they match, use the matching color
-        if (serverNodeAColor && serverNodeBColor && serverNodeAColor == serverNodeBColor) {
-          lineColor = GameUtil.getColor(serverNodeAColor);
-        }
-      }
-      // Update the line's stroke color
-      line.stroke(lineColor);
     }
 
     createKonvaObjects($scope.nodeA, $scope.nodeB);

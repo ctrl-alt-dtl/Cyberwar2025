@@ -84,10 +84,13 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
+  $scope.exploitLinkClicked = function(nodeA, nodeB) {
+  }
+
+  // ----------------------------------------------------------------------------
   function onGameStateChanged() {
     drawBoard(GameState.currentPlayerData);
     $scope.overtLinks = GameState.currentGameState.overtLinks;
-    $scope.exploitLinks = GameState.currentPlayerData.exploitLinks.concat(GameState.currentPlayerData.scannedExploitLinks);
     $scope.redraw = true;
   }
 
