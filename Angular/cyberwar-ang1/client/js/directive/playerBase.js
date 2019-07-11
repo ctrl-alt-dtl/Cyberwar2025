@@ -59,10 +59,10 @@ angular.module('CyberWar')
           y: notification_rect_offset_y
         },
         width: 130,
-        height: 40,
-        fill: grayColor,
+        height: 35,
+        fill: '#434343',
         stroke: 'black',
-        strokeWidth: 4,
+        strokeWidth: 2,
         rotation: getTextRotation(color)
       });
 
@@ -82,6 +82,7 @@ angular.module('CyberWar')
       });
 
       domainsGroup.add(chatNotifyRect, chatNotifyText, hex, text);
+
 
       // add event handling
       hex.on('mouseover', function () {
