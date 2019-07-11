@@ -249,7 +249,7 @@ var performLockedAction = function(gid, game) {
 // Save the given game object in the db with the given game id
 var saveGame = function(gid, game, finishedCB) {
   //save the game model changes to the database
-  db.update({ _id: gid }, { $set: game }, function(err) {
+  db.updateOne({ _id: gid }, { $set: game }, function(err) {
     if (err) {
       log.error("failed to save new data: " + err);
     }
@@ -261,6 +261,9 @@ var saveGame = function(gid, game, finishedCB) {
 var sendGameToClients = function(gid, finishedCB) {
   // Get the freshest version of the game and send to all clients playing this game
   db.findById(gid).lean().exec(function(err, game) {
+    if (err) {
+      log.error("failed to send game to clients: " + err);
+    }
     if (game) {
       _.each(clients, function(client) {
         if (client.gid === gid) {
