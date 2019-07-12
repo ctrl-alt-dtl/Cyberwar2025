@@ -6,63 +6,77 @@
     <!-- List all reports about SECURE actions -->
     <div class="secure" ng-if="secureReports.length > 0">
       <h3>Secure Results</h3>
+      <hr>
       <div ng-repeat="report in secureReports">
-        <span>Location: {{report.location}}</span>
-        <span>Amount: {{report.amount}}</span>
+        <node label="'Location'" node="report.location"></node>
+        <span><b>Amount</b>: {{report.amount}}</span>
+        <hr>
       </div>
     </div>
 
     <!-- List all reports about IMPLANT actions -->
     <div class="implant" ng-if="implantReports.length > 0">
       <h3>Implant Results</h3>
+      <hr>
       <div ng-repeat="report in implantReports">
-        <span>Location: {{report.location}}</span>
+        <node label="'Location'" node="report.location"></node>
+        <hr>
       </div>
     </div>
 
     <!-- List all reports about attacks on the player -->
     <div class="defend" ng-if="defendReports.length > 0">
       <h3>Failed Defenses Results</h3>
+      <hr>
       <div ng-repeat="report in defendReports">
-        <span>Type: {{report.type}}</span>
-        <span>Location: {{report.location}}</span>
-        <span>Defense Strength: {{report.defenderStrength}}</span>
+        <action label="'Type'" type="report.type"></action>
+        <node label="'Location'" node="report.location"></node>
+        <span><b>Defense Strength</b>: {{report.defenderStrength}}</span>
+        <hr>
       </div>
     </div>
 
     <!-- List all reports about expels done against the player -->
     <div class="defend" ng-if="expelledReports.length > 0">
         <h3>Exploit Links Expelled</h3>
+        <hr>
         <div ng-repeat="report in expelledReports">
-          <span>Type: {{report.type}}</span>
-          <span>Location: {{report.location}}</span>
+          <action label="'Type'" type="report.type"></action>
+          <node label="'Location'" node="report.location"></node>
+          <hr>
         </div>
       </div>
   
       <!-- List all reports about ACQUIRE/MANIPULATE/DENY/EXPLOIT actions -->
     <div class="attack" ng-if="attackReports.length > 0">
       <h3>Attack Results</h3>
+      <hr>
       <div ng-repeat="report in attackReports">
-        <span>Type: {{report.type}}</span>
-        <span>Location: {{report.location}}</span>
-        <span>Attack Strength: {{report.attackStrength}}</span>
-        <span ng-if="report.defenderStrength">Defense Strength: {{report.defenderStrength}}</span>
+        <action label="'Type'" type="report.type"></action>
+        <node label="'Location'" node="report.location"></node>
+        <span><b>Attack Strength</b>: {{report.attackStrength}}</span>
+        <span ng-if="report.defenderStrength"><b>Defense Strength</b>: {{report.defenderStrength}}</span>
         <span ng-if="report.success">Successful!</span>
         <span ng-if="!report.success">Failed...</span>
+        <hr>
       </div>
     </div>
 
     <!-- List all reports about EXPEL actions -->
     <div class="expel" ng-if="expelReports.length > 0">
       <h3>Expel Results</h3>
+      <hr>
       <div ng-repeat="report in expelReports">
-        <span>Location: {{report.location}}</span>
+        <node label="'Location'" node="report.location"></node>
         <div ng-if="report.removedLinks && report.removedLinks.length > 0">
           <h4>Removed Exploit Links:</h4>
           <span ng-repeat="removedLink in report.removedLinks">
-            <span>Owner: {{removedLink.owner}}</span>
-            <span>Number Of Exploits Removed: {{removedLink.numRemoved}}</span>
+            <div>
+              <player label="'Owner'" player="removedLink.owner"></player>
+              <span><b>Number Of Exploits Removed</b>: {{removedLink.numRemoved}}</span>
+            </div>
           </span>
+          <hr>
         </div>
       </div>
     </div>
@@ -70,19 +84,23 @@
     <!-- List all reports about SCAN/ANALYZE actions -->
     <div class="scan" ng-if="scanReports.length > 0">
       <h3>Scan Results</h3>
-      <div ng-repeat="report in scanReports">
-        <span>Location: {{report.location}}</span>
-        <span>Owner: {{report.owner}}</span>
-        <span ng-if="report.manipulatedOwner">False Owner: {{report.manipulatedOwner}}</span>
-        <span>Strength: {{report.strength}}</span>
+      <hr>
+      <div class="scan-report" ng-repeat="report in scanReports">
+        <node label="'Location'" node="report.location"></node>
+        <player label="'Owner'" player="report.owner"></player>
+        <player ng-if="report.manipulatedOwner" label="'False Owner'" player="report.manipulatedOwner"></player>
+        <span><b>Strength</b>: {{report.strength}}</span>
         <div ng-if="report.exploitLinks && report.exploitLinks.length > 0">
           <h4>Found Exploit Links:</h4>
-          <span ng-repeat="exploitLink in report.exploitLinks">
-            <span>Owner: {{exploitLink.owner}}</span>
-            <span>Link: {{exploitLink.link}}</span>
+          <span ng-repeat="exploitLink in report.exploitLinks" class="exploit-link">
+            <node-link link="exploitLink.link"></node-link>
           </span>
         </div>
-      </div>      
+        <div ng-if="!report.exploitLinks || report.exploitLinks.length == 0">
+          <h4>No Exploit Links Found</h4>
+        </div>
+        <hr>
+      </div>
     </div>
   </div>
 </div>

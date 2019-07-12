@@ -289,9 +289,12 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 /*
 Reports Dialog styling
  */
- .report-container {
+.report-container {
     height: 500px;
     overflow-y: auto;
+}
+.report-container .exploit-link node-link {
+    display: block;
 }
 
 /*

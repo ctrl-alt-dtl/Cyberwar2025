@@ -6,7 +6,7 @@
     <div ng-if="validActions.length > 0">
       Action To Perform:
       <label ng-repeat="action in validActions">
-        <input type="radio" ng-model="selected.action" ng-value="action" ng-change="selectAction(action)">{{action}}
+        <input type="radio" ng-model="selected.action" ng-value="action" ng-change="selectAction(action)"><action type="action"></action>
       </label>
     </div>
 
@@ -14,7 +14,7 @@
     <div ng-if="needSource">
       Choose Source Node:
       <label ng-repeat="node in usableSourceNodes">
-        <input type="radio" ng-model="selected.params.source" ng-value="node">{{node.color}} {{node.index}}
+        <input type="radio" ng-model="selected.params.source" ng-value="node"><node node="node"></node>
       </label>
     </div>
 
@@ -27,15 +27,15 @@
     </div>
 
     <div ng-if="selectedNode.location.index">
-      <div>Selected Node: {{selectedNode.location.color}} {{selectedNode.location.index}}</div>
+      <div><node label="'Selected Node'" node="selectedNode.location"></node></div>
       <div>
-        <span>Owner: {{displayedOwner || 'Unknown'}}</span>
-        <span ng-if="manipulateOwner">Manipulated Owner: {{manipulateOwner}}</span>
-        <span>Strength: {{displayedStrength}}</span>
+        <span><player label="'Owner'" player="displayedOwner || 'Unknown'"></player></span>
+        <span ng-if="manipulateOwner"><player label="'False Owner'" player="manipulateOwner"></player></span>
+        <span><b>Strength:</b> {{displayedStrength}}</span>
       </div>
     </div>
     <div ng-if="selectedNode.location.index == 0">
-      <div>Selected Base: {{selectedNode.location.color}}</div>
+      <div><node label="'Selected Base'" node="selectedNode.location"></node></div>
       <chat ng-if="shouldShowChat(selectedNode.location.color)" to="getChatToName(selectedNode.location.color)"></chat>
     </div>
   </span>
