@@ -45,6 +45,10 @@ angular.module('CyberWar')
   this.viewingTurnInHistory = function(turnNumber) {
     // If we aren't looking at the latest turn, mark the desired turn number to view for future game updates
     if (turnNumber != this.latestTurnNumber) {
+      // If we weren't previously looking at history, and we haven't submitted our turn, store our previous actions
+      if (!this.viewingTurn && !this.submittedTurn()) {
+        this.previousActions = { investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() };
+      }
       this.viewingTurn = turnNumber;
     }
     // Otherwise, unmark the desired turn
