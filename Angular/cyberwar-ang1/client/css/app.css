@@ -93,7 +93,7 @@ body {
     text-align: center;
 }
 .pressure-indicator .ready-indicator.not-ready {
-    animation: not-ready .3s linear alternate infinite;
+    animation: not-ready .5s linear alternate infinite;
 }
 @keyframes not-ready {
     from { background-color: #d4d426; }
