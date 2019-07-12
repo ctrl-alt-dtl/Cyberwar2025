@@ -85,6 +85,30 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.exploitLinkClicked = function(nodeA, nodeB) {
+    modalInstance = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'exploitLinkDialog.html',
+      controller: 'ExploitLinkDialogController',
+      resolve: {
+        nodeA: function() {
+          return nodeA;
+        },
+        nodeB: function() {
+          return nodeB;
+        }
+      }
+    });
+
+    modalInstance.result.then(
+      // Dialog accepted
+      function () {
+      },
+      // Dialog canceled
+      function () {
+      }
+    );
   }
 
   // ----------------------------------------------------------------------------
