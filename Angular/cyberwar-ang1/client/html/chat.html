@@ -1,11 +1,9 @@
 <div class="chat-container">
-  <div class="chat-messages">
+  <div class="chat-messages" scroll-glue>
     <div ng-repeat="chat in chats" ng-if="shouldDisplaymessage(chat)">{{chat.from}}: {{chat.message}}</div>
   </div>
   <form class="input" ng-click="onStopEventPropagation($event)" ng-submit="sendMessage()">
-    <div>
-      <input type="text" ng-model="newMessage">
-    </div>
+    <input type="text" ng-model="newMessage">
     <button ng-disabled="!newMessage" ng-click="sendMessage()">Send</button>
   </form>
 </div>
