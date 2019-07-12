@@ -51,6 +51,9 @@ var serverTextSize =  BASE_BOARD_WIDTH / 25;
 var baseTextWidth = BASE_BOARD_WIDTH / 4.8;
 var baseTextSize = BASE_BOARD_WIDTH / 46.5;
 
+var exploitLinkTextWidth = BASE_BOARD_WIDTH / 8;
+var exploitLinkTextSize =  BASE_BOARD_WIDTH / 50;
+
 // Main Board Dashed Line Settings
 var dashLength = BASE_BOARD_HEIGHT / 153.6;
 var dashSize = BASE_BOARD_HEIGHT / 384;

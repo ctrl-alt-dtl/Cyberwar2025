@@ -84,10 +84,37 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
+  $scope.exploitLinkClicked = function(nodeA, nodeB) {
+    modalInstance = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'exploitLinkDialog.html',
+      controller: 'ExploitLinkDialogController',
+      resolve: {
+        nodeA: function() {
+          return nodeA;
+        },
+        nodeB: function() {
+          return nodeB;
+        }
+      }
+    });
+
+    modalInstance.result.then(
+      // Dialog accepted
+      function () {
+      },
+      // Dialog canceled
+      function () {
+      }
+    );
+  }
+
+  // ----------------------------------------------------------------------------
   function onGameStateChanged() {
     drawBoard(GameState.currentPlayerData);
     $scope.overtLinks = GameState.currentGameState.overtLinks;
-    $scope.exploitLinks = GameState.currentPlayerData.exploitLinks.concat(GameState.currentPlayerData.scannedExploitLinks);
     $scope.redraw = true;
   }
 
