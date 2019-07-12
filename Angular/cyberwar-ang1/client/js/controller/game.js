@@ -9,11 +9,11 @@ angular.module("CyberWar")
 
   // ----------------------------------------------------------------------------
   var gameStateUpdated = function(gameData) {
-    var previousShownTurn = GameState.currentTurnNumber;
+    var autoShowReport = shouldShowReport(GameState, gameData);
     $scope.$apply(GameState.gameStateUpdated(gameData.turn, gameData.turnNumber, gameData.latestTurnNumber));
 
     // If we are showing a different turn, show the report
-    if (previousShownTurn != GameState.currentTurnNumber) {
+    if (autoShowReport) {
       showReport();
     }
   }
@@ -21,6 +21,20 @@ angular.module("CyberWar")
   // ----------------------------------------------------------------------------
   var chatMessageReceived = function(message) {
     $scope.$apply(ChatState.messageReceived(message));
+  }
+
+  // ----------------------------------------------------------------------------
+  var shouldShowReport = function(prevGameState, newGameState) {
+    // We should only show the report if this isn't our first game state update,
+    if (prevGameState.currentGameState &&
+    // we aren't viewing history,
+      prevGameState.viewingTurn == undefined &&
+    // and the latest turn number changed
+      prevGameState.latestTurnNumber != newGameState.latestTurnNumber
+    ) {
+      return true;
+    }
+    return false;
   }
 
   //---------------------------------------------------------------------------
