@@ -1,5 +1,7 @@
-var BASE_BOARD_WIDTH = 912; // Don't change because it will alter the CSS layout.
-var BASE_BOARD_HEIGHT = 1012; // Don't change because it will alter the CSS layout.
+var BASE_BOARD_WIDTH = 945; // Don't change because it will alter the CSS layout.
+var BASE_BOARD_HEIGHT = 945; // Don't change because it will alter the CSS layout.
+
+// TODO: Change the board size to 945x945
 
 var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
