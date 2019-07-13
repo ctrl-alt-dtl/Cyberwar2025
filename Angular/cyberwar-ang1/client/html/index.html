@@ -27,6 +27,7 @@
 
     <!-- 3rd Party Libraries -->
     <script src="lib/angular.min.js"></script>
+    <script src="lib/scrollglue.js"></script>
     <script src="lib/sockjs.min.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
@@ -50,7 +51,7 @@
     <script src="module/callbackListener.js"></script>
 
     <!-- Create Custom Angular Module -->
-    <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll'])</script>
+    <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll', 'luegg.directives'])</script>
 
     <!-- Angular Services -->
     <script src="service/chatSocket.js"></script>
@@ -64,11 +65,15 @@
     <script src="service/socket.js"></script>
 
     <!-- Angular Directives -->
+    <script src="directive/action.js"></script>
     <script src="directive/chat.js"></script>
     <script src="directive/exploitLink.js"></script>
     <script src="directive/history.js"></script>
+    <script src="directive/node.js"></script>
+    <script src="directive/node-link.js"></script>
     <script src="directive/ordersList.js"></script>
     <script src="directive/overtLink.js"></script>
+    <script src="directive/player.js"></script>
     <script src="directive/playerBase.js"></script>
     <script src="directive/readyIndicator.js"></script>
     <script src="directive/researchTable.js"></script>
@@ -94,9 +99,9 @@
         <reports></reports>
         <div id="left_aside">
           <div class="round-indicator" >Round # {{GameState.currentTurnNumber + 1}}</div>
-          <div><button ng-click="showReport()">View Reports</button></div>
+          <div class="reports"><button ng-click="showReport()">View Reports</button></div>
           <ready-indicator></ready-indicator>
-          <div class="chat"><chat></chat></div>
+          <chat></chat>
         </div>
         <div class="board"></div>
         <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
