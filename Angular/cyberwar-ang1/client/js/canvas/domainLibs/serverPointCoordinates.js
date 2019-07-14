@@ -179,14 +179,14 @@ konvaHexPositions[Color.GREEN][8] = { x: pt_g8Hex_X, y: pt_g8Hex_Y };
  * This is a library for the points on the layered canvas for easy modification
  */
 // Base left and right edges
-var pt_yBase1Hex_X = BASE_BOARD_WIDTH / 1.14;
-var pt_yBase1Hex_Y = BASE_BOARD_HEIGHT / 2.52;
+var pt_yBase1Hex_X = BASE_BOARD_WIDTH / 1.139;
+var pt_yBase1Hex_Y = BASE_BOARD_HEIGHT / 2.585;
 var pt_yBase2Hex_X = BASE_BOARD_WIDTH / 1.271;
-var pt_yBase2Hex_Y = BASE_BOARD_HEIGHT / 3.9;
+var pt_yBase2Hex_Y = BASE_BOARD_HEIGHT / 4.365;
 konvaHexPositions[Color.YELLOW][0] = { x1: pt_yBase1Hex_X, y1: pt_yBase1Hex_Y, x2: pt_yBase2Hex_X, y2: pt_yBase2Hex_Y };
 
 // Center point of each server
-var pt_y1Hex_X = BASE_BOARD_WIDTH / 1.089;
+var pt_y1Hex_X = BASE_BOARD_WIDTH / 1.09;
 var pt_y1Hex_Y = BASE_BOARD_HEIGHT / 2.197;
 konvaHexPositions[Color.YELLOW][1] = { x: pt_y1Hex_X, y: pt_y1Hex_Y };
 
@@ -194,7 +194,7 @@ var pt_y2Hex_X = BASE_BOARD_WIDTH / 1.338;
 var pt_y2Hex_Y = BASE_BOARD_HEIGHT / 6.22;
 konvaHexPositions[Color.YELLOW][2] = { x: pt_y2Hex_X, y: pt_y2Hex_Y };
 
-var pt_y3Hex_X = BASE_BOARD_WIDTH / 1.236;
+var pt_y3Hex_X = BASE_BOARD_WIDTH / 1.237;
 var pt_y3Hex_Y = BASE_BOARD_HEIGHT / 2.197;
 konvaHexPositions[Color.YELLOW][3] = { x: pt_y3Hex_X, y: pt_y3Hex_Y };
 
@@ -224,9 +224,9 @@ konvaHexPositions[Color.YELLOW][8] = { x: pt_y8Hex_X, y: pt_y8Hex_Y };
  */
 // Base left and right edges
 var pt_oBase1Hex_X = BASE_BOARD_WIDTH / 1.27; // left
-var pt_oBase1Hex_Y = BASE_BOARD_HEIGHT / 1.34; // left
+var pt_oBase1Hex_Y = BASE_BOARD_HEIGHT / 1.297; // left
 var pt_oBase2Hex_X = BASE_BOARD_WIDTH / 1.135; // right
-var pt_oBase2Hex_Y = BASE_BOARD_HEIGHT / 1.675; // right
+var pt_oBase2Hex_Y = BASE_BOARD_HEIGHT / 1.63; // right
 konvaHexPositions[Color.ORANGE][0] = { x1: pt_oBase1Hex_X, y1: pt_oBase1Hex_Y, x2: pt_oBase2Hex_X, y2: pt_oBase2Hex_Y };
 
 // Center point of each server
