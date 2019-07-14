@@ -152,44 +152,44 @@ angular.module('CyberWar')
       var x2, y2, x3, y3, x5, y5, x6, y6;
       switch(color) {
         case Color.RED:
-          x2 = point_x / 2.34;    // lower left
-          y2 = point_y / 1.102;   // lower left
-          x3 = point_x / 1.745;   // lower right
-          y3 = point_y / 1.102;   // lower right
-          x5 = point_x / 1.745;   // top right
-          y5 = point_y / 1.163;   // top right
-          x6 = point_x / 2.34;    // top left
-          y6 = point_y / 1.163;   // top left
+          x2 = point_x / 2.35;    // lower left
+          y2 = point_y / 1.098;   // lower left
+          x3 = point_x / 1.7395;   // lower right
+          y3 = point_y / 1.098;   // lower right
+          x5 = point_x / 1.74;   // top right
+          y5 = point_y / 1.167;   // top right
+          x6 = point_x / 2.353;    // top left
+          y6 = point_y / 1.167;   // top left
           break;
         case Color.PURPLE:
-          x2 = point_x / 8.94;     // lower left
-          y2 = point_y / 1.561;   // lower left
-          x3 = point_x / 5.39;     // lower right
-          y3 = point_y / 1.305;    // lower right
-          x5 = point_x / 4.479;     // top right
+          x2 = point_x / 9.3;     // lower left
+          y2 = point_y / 1.563;   // lower left
+          x3 = point_x / 5.49;     // lower right
+          y3 = point_y / 1.299;    // lower right
+          x5 = point_x / 4.38;     // top right
           y5 = point_y / 1.346;    // top right
-          x6 = point_x / 6.63;     // top left
-          y6 = point_y / 1.62;    // top left
+          x6 = point_x / 6.48;     // top left
+          y6 = point_y / 1.635;    // top left
           break;
         case Color.BLUE:
-          x2 = point_x / 5.58;
-          y2 = point_y / 3.93;
-          x3 = point_x / 9.6;
-          y3 = point_y / 2.68;
-          x5 = point_x / 6.6;
-          y5 = point_y / 2.52;
-          x6 = point_x / 4.41;
-          y6 = point_y / 3.59;
+          x2 = point_x / 5.5;    // lower left
+          y2 = point_y / 4.36;    // lower left
+          x3 = point_x / 9.4;     // lower right
+          y3 = point_y / 2.78;    // lower right
+          x5 = point_x / 6.54;     // top right
+          y5 = point_y / 2.59;    // top right
+          x6 = point_x / 4.38;    // top left
+          y6 = point_y / 3.91;    // top left
           break;
         case Color.GREEN:
-          x2 = point_x / 1.74;   // lower left
-          y2 = point_y / 10.8;     // lower left
-          x3 = point_x / 2.33;    // lower right
-          y3 = point_y / 10.8;     // lower right
-          x5 = point_x / 2.33;    // top right
-          y5 = point_y / 7.25;    // top right
-          x6 = point_x / 1.743;   // top left
-          y6 = point_y / 7.25;    // top left
+          x2 = point_x / 1.735;   // lower left
+          y2 = point_y / 11.35;     // lower left
+          x3 = point_x / 2.35;    // lower right
+          y3 = point_y / 11.35;     // lower right
+          x5 = point_x / 2.35;    // top right
+          y5 = point_y / 7;    // top right
+          x6 = point_x / 1.735;   // top left
+          y6 = point_y / 7;    // top left
           break;
         case Color.YELLOW:
           x2 = point_x / 1.119;
@@ -227,7 +227,7 @@ angular.module('CyberWar')
         case Color.GREEN:
           return { x: BASE_BOARD_WIDTH / 1.83, y: BASE_BOARD_HEIGHT / 8.68 };
         case Color.BLUE:
-          return { x: BASE_BOARD_WIDTH / 5.35, y: BASE_BOARD_HEIGHT / 3.3 };
+          return { x: BASE_BOARD_WIDTH / 5.35, y: BASE_BOARD_HEIGHT / 3.65 };
         case Color.PURPLE:
           return { x: BASE_BOARD_WIDTH / 6.5, y: BASE_BOARD_HEIGHT / 1.5 };
       }
