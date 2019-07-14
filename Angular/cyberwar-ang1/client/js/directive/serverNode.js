@@ -21,12 +21,10 @@ angular.module('CyberWar')
         // The hex's border should be black unless it's owned by the current player and they manipulated it to look like another color
         var manipulatedColor = GameUtil.getServerNodeManipulatedColor(serverNode, GameState.currentPlayerData);
         if (manipulatedColor) {
-          //TODO: Uncomment
-          //hex.stroke(GameUtil.getColor(manipulatedColor));
+          hex.stroke(GameUtil.getColor(manipulatedColor));
         }
         else {
-          //TODO: Uncomment
-          //hex.stroke('black');
+          hex.stroke('black');
         }
 
         text.text(GameUtil.getServerNodeDisplayedText(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes));
@@ -52,8 +50,7 @@ angular.module('CyberWar')
         sides: 6,
         radius: radius,
         fill: grayColor,
-        //TODO: Uncomment
-        //stroke: 'black',
+        stroke: 'black',
         strokeWidth: 5,
         rotation: 90,
         id: color + index + 'Hex'
@@ -61,8 +58,6 @@ angular.module('CyberWar')
 
       // Create the text element
       text = new Konva.Text({
-        //TODO: Uncomment
-        //text: nodeValOne,
         x: hexPosition.x,
         y: hexPosition.y,
         offset: {

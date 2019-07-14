@@ -41,8 +41,7 @@ angular.module('CyberWar')
       hex = new Konva.Line({
         points: getHexPoints(color),
         fill: grayColor,
-        //TODO: Uncomment
-        //stroke: 'black',
+        stroke: 'black',
         strokeWidth: 4,
         closed: true,
         id: color + 'Base'

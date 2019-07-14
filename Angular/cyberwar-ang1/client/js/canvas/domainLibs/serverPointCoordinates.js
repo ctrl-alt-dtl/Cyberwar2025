@@ -186,7 +186,7 @@ var pt_yBase2Hex_Y = BASE_BOARD_HEIGHT / 4.365;
 konvaHexPositions[Color.YELLOW][0] = { x1: pt_yBase1Hex_X, y1: pt_yBase1Hex_Y, x2: pt_yBase2Hex_X, y2: pt_yBase2Hex_Y };
 
 // Center point of each server
-var pt_y1Hex_X = BASE_BOARD_WIDTH / 1.09;
+var pt_y1Hex_X = BASE_BOARD_WIDTH / 1.088;
 var pt_y1Hex_Y = BASE_BOARD_HEIGHT / 2.197;
 konvaHexPositions[Color.YELLOW][1] = { x: pt_y1Hex_X, y: pt_y1Hex_Y };
 
@@ -234,7 +234,7 @@ var pt_o1Hex_X = BASE_BOARD_WIDTH / 1.338;
 var pt_o1Hex_Y = BASE_BOARD_HEIGHT / 1.193;
 konvaHexPositions[Color.ORANGE][1] = { x: pt_o1Hex_X, y: pt_o1Hex_Y };
 
-var pt_o2Hex_X = BASE_BOARD_WIDTH / 1.09;
+var pt_o2Hex_X = BASE_BOARD_WIDTH / 1.088;
 var pt_o2Hex_Y = BASE_BOARD_HEIGHT / 1.839;
 konvaHexPositions[Color.ORANGE][2] = { x: pt_o2Hex_X, y: pt_o2Hex_Y };
 
