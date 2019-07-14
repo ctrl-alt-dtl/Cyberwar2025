@@ -20,9 +20,9 @@ var boardEdge = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 2.05,
-  fill: 'white',
-  stroke: 'black',
-  strokeWidth: 4,
+  //fill: 'white',
+  stroke: 'orange',
+  strokeWidth: 5,
   rotation: 90,
   centeredScaling: true
 });
@@ -32,7 +32,7 @@ var tier3 = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 2.6,
-  fill: '#E3E3E3',
+  //fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
   rotation: 90
@@ -43,7 +43,7 @@ var tier2 = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 3.7,
-  fill: 'white',
+  //fill: 'white',
   stroke: 'black',
   strokeWidth: 1,
   rotation: 90,
@@ -208,10 +208,10 @@ var node8Text = new Konva.Text({
 
 var mainBoundary1 = new Konva.Line({
   points: [
-    BASE_BOARD_WIDTH / 3.9,
-    BASE_BOARD_HEIGHT / 1.135,
+    BASE_BOARD_WIDTH / 3.875,
+    BASE_BOARD_HEIGHT / 1.085,
     BASE_BOARD_WIDTH / 1.345,
-    BASE_BOARD_HEIGHT / 8.45
+    BASE_BOARD_HEIGHT / 12.8
   ],
   stroke: 'black',
   strokeWidth: 3,
@@ -222,9 +222,9 @@ var mainBoundary1 = new Konva.Line({
 var mainBoundary2 = new Konva.Line({
   points: [
     BASE_BOARD_WIDTH / 1.345,
-    BASE_BOARD_HEIGHT / 1.135,
+    BASE_BOARD_HEIGHT / 1.085,
     BASE_BOARD_WIDTH / 3.9,
-    BASE_BOARD_HEIGHT / 8.45
+    BASE_BOARD_HEIGHT / 12.8
   ],
   stroke: 'black',
   strokeWidth: 3,
@@ -247,12 +247,12 @@ var mainBoundary3 = new Konva.Line({
 
 var minorBounds1 = new Konva.Line({
   points: [
-    BASE_BOARD_WIDTH / 3.65,
-    BASE_BOARD_HEIGHT / 1.135,
+    BASE_BOARD_WIDTH / 3.6,
+    BASE_BOARD_HEIGHT / 1.085,
     BASE_BOARD_WIDTH / 1.325,
-    BASE_BOARD_HEIGHT / 7.5
+    BASE_BOARD_HEIGHT / 10
   ],
-  stroke: 'black',
+  stroke: "black",
   strokeWidth: 1,
   lineCap: 'round',
   lineJoin: 'round'
