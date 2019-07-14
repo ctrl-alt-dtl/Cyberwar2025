@@ -338,6 +338,9 @@ Chat directive styling
     height: 90%;
     overflow-y: auto;
     text-align: left;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 .chat-container form {
     height: 10%;
