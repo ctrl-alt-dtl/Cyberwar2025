@@ -20,6 +20,7 @@ var boardEdge = new Konva.RegularPolygon({
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
   radius: BASE_BOARD_WIDTH / 2.05,
+  //TODO: Uncomment
   //fill: 'white',
   stroke: 'orange',
   strokeWidth: 5,
@@ -31,7 +32,8 @@ var tier3 = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 2.6,
+  radius: BASE_BOARD_WIDTH / 2.53,
+  //TODO: Uncomment
   //fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
@@ -42,7 +44,8 @@ var tier2 = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 3.7,
+  radius: BASE_BOARD_WIDTH / 3.6,
+  //TODO: Uncomment
   //fill: 'white',
   stroke: 'black',
   strokeWidth: 1,
@@ -54,8 +57,9 @@ var tier1 = new Konva.RegularPolygon({
   x: BASE_BOARD_WIDTH / 2,
   y: BASE_BOARD_HEIGHT / 2,
   sides: 6,
-  radius: BASE_BOARD_WIDTH / 6.5,
-  fill: '#E3E3E3',
+  radius: BASE_BOARD_WIDTH / 6,
+  //TODO: Uncomment
+  // fill: '#E3E3E3',
   stroke: 'black',
   strokeWidth: 1,
   rotation: 90
@@ -75,7 +79,7 @@ var origin = new Konva.RegularPolygon({
 var tier3Text = new Konva.Text({
   text: 'Tier 3',
   x: BASE_BOARD_WIDTH / 2.05,
-  y: BASE_BOARD_HEIGHT / 1.265,
+  y: BASE_BOARD_HEIGHT / 1.199,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
@@ -87,7 +91,7 @@ var tier3Text = new Konva.Text({
 var tier2Text = new Konva.Text({
   text: 'Tier 2',
   x: BASE_BOARD_WIDTH / 2.05,
-  y: BASE_BOARD_HEIGHT / 1.425,
+  y: BASE_BOARD_HEIGHT / 1.365,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
@@ -98,7 +102,7 @@ var tier2Text = new Konva.Text({
 var tier1Text = new Konva.Text({
   text: 'Tier 1',
   x: BASE_BOARD_WIDTH / 2.05,
-  y: BASE_BOARD_HEIGHT / 1.638,
+  y: BASE_BOARD_HEIGHT / 1.573,
   width: BASE_BOARD_WIDTH / 38,
   fontFamily: 'sans-serif',
   fontSize: BASE_BOARD_WIDTH / 106.67,
@@ -208,7 +212,7 @@ var node8Text = new Konva.Text({
 
 var mainBoundary1 = new Konva.Line({
   points: [
-    BASE_BOARD_WIDTH / 3.875,
+    BASE_BOARD_WIDTH / 3.9,
     BASE_BOARD_HEIGHT / 1.085,
     BASE_BOARD_WIDTH / 1.345,
     BASE_BOARD_HEIGHT / 12.8
@@ -247,10 +251,10 @@ var mainBoundary3 = new Konva.Line({
 
 var minorBounds1 = new Konva.Line({
   points: [
-    BASE_BOARD_WIDTH / 3.6,
-    BASE_BOARD_HEIGHT / 1.085,
-    BASE_BOARD_WIDTH / 1.325,
-    BASE_BOARD_HEIGHT / 10
+    BASE_BOARD_WIDTH / 3.63,
+    BASE_BOARD_HEIGHT / 1.084,
+    BASE_BOARD_WIDTH / 1.327,
+    BASE_BOARD_HEIGHT / 10.5
   ],
   stroke: "black",
   strokeWidth: 1,
@@ -261,9 +265,9 @@ var minorBounds1 = new Konva.Line({
 var minorBounds2 = new Konva.Line({
   points: [
     BASE_BOARD_WIDTH / 4.05,
-    BASE_BOARD_HEIGHT / 1.16,
+    BASE_BOARD_HEIGHT / 1.105,
     BASE_BOARD_WIDTH / 1.38,
-    BASE_BOARD_HEIGHT / 8.5
+    BASE_BOARD_HEIGHT / 13
   ],
   stroke: 'black',
   strokeWidth: 1,
@@ -274,9 +278,9 @@ var minorBounds2 = new Konva.Line({
 var minorBounds3 = new Konva.Line({
   points: [
     BASE_BOARD_WIDTH / 4.05,
-    BASE_BOARD_HEIGHT / 7.4,
+    BASE_BOARD_HEIGHT / 10.6,
     BASE_BOARD_WIDTH / 1.38,
-    BASE_BOARD_HEIGHT / 1.135
+    BASE_BOARD_HEIGHT / 1.083
   ],
   stroke: 'black',
   strokeWidth: 1,
@@ -286,10 +290,10 @@ var minorBounds3 = new Konva.Line({
 
 var minorBounds4 = new Konva.Line({
   points: [
-    BASE_BOARD_WIDTH / 1.33,
-    BASE_BOARD_HEIGHT / 1.16,
-    BASE_BOARD_WIDTH / 3.6,
-    BASE_BOARD_HEIGHT / 8.2
+    BASE_BOARD_WIDTH / 1.325,
+    BASE_BOARD_HEIGHT / 1.105,
+    BASE_BOARD_WIDTH / 3.63,
+    BASE_BOARD_HEIGHT / 13
   ],
   stroke: 'black',
   strokeWidth: 1,
@@ -313,9 +317,9 @@ var minorBounds5 = new Konva.Line({
 var minorBounds6 = new Konva.Line({
   points: [
     BASE_BOARD_WIDTH / 40,
-    BASE_BOARD_HEIGHT / 1.943,
+    BASE_BOARD_HEIGHT / 1.94,
     BASE_BOARD_WIDTH / 1.025,
-    BASE_BOARD_HEIGHT / 1.943
+    BASE_BOARD_HEIGHT / 1.94
   ],
   stroke: 'black',
   strokeWidth: 1,

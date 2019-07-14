@@ -41,7 +41,8 @@ angular.module('CyberWar')
       hex = new Konva.Line({
         points: getHexPoints(color),
         fill: grayColor,
-        stroke: 'black',
+        //TODO: Uncomment
+        //stroke: 'black',
         strokeWidth: 4,
         closed: true,
         id: color + 'Base'
@@ -151,14 +152,14 @@ angular.module('CyberWar')
       var x2, y2, x3, y3, x5, y5, x6, y6;
       switch(color) {
         case Color.RED:
-          x2 = point_x / 2.36;
-          y2 = point_y / 1.217;
-          x3 = point_x / 1.74;
-          y3 = point_y / 1.217;
-          x5 = point_x / 1.74;
-          y5 = point_y / 1.15;
-          x6 = point_x / 2.36;
-          y6 = point_y / 1.15;
+          x2 = point_x / 2.34;  // lower left
+          y2 = point_y / 1.103; // lower left
+          x3 = point_x / 1.745;  // lower right
+          y3 = point_y / 1.103; // lower right
+          x5 = point_x / 1.745;  // top right
+          y5 = point_y / 1.163;  // top right
+          x6 = point_x / 2.34;  // top left
+          y6 = point_y / 1.163;  // top left
           break;
         case Color.ORANGE:
           x2 = point_x / 1.225; // lower left

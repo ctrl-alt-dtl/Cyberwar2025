@@ -1,10 +1,13 @@
 /* app css stylesheet */
 body {
 
-    background-color: black;
+    background-color: white;
     /*background-image: url("../img/titlebackground-hq.png");
     background-repeat: no-repeat;
     background-size: cover;*/
+    scroll-behavior: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu {
