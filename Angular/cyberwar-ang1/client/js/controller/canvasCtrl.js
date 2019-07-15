@@ -312,7 +312,7 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canImplantNode = function(node) {
     // Players can implant nodes they can acquire or an opponent base adjacent to the network
-    return canAcquireNode(node) || (isPlayerBase(node) && !doesPlayerOwnNode(node) && isAdjacentToNetwork(node));
+    return canAcquireNode(node) || (isPlayerBase(node) && !isPlayerImplanted(node) && !doesPlayerOwnNode(node) && isAdjacentToNetwork(node));
   }
 
   // ----------------------------------------------------------------------------
@@ -339,6 +339,11 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var isPlayerBase = function(node) {
     return node.location.index == 0;
+  }
+
+  // ----------------------------------------------------------------------------
+  var isPlayerImplanted = function(node) {
+    return GameUtil.findPlayerByColor(GameState.currentGameState.players, node.location.color).implanted;
   }
 
   // ----------------------------------------------------------------------------

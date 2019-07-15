@@ -37,10 +37,10 @@ var linkSchema = new Schema({
 
 // Schema for a server node
 var serverNodeSchema = new Schema({
-  location        : nodeLocationSchema,            // The node's location
-  manipulateColor : { type: String, default: '' }, // The manipulated color of this node
-  ownerColor      : { type: String, default: '' }, // The color of the node's owner
-  strength        : { type: Number, default: 0 },  // The current server node strength
+  location        : nodeLocationSchema,                // The node's location
+  manipulateColor : { type: String, default: '' },     // The manipulated color of this node
+  ownerColor      : { type: String, default: '' },     // The color of the node's owner
+  strength        : { type: Number, default: 0 },      // The current server node strength
 }, { _id: false });
 
 // Schema for an action order
@@ -70,6 +70,7 @@ var playerSchema = new Schema({
   orders              : [orderSchema],                     // The actions the player wants to take this turn
   isObserver          : { type: Boolean, default: false }, // Whether this player is an observer or not
   reports             : [reportSchema],                    // The list of reports a player gets each turn
+  implanted           : { type: Boolean, default: false }, // Was the player's base node implanted this turn?
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

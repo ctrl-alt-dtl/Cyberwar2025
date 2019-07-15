@@ -3,11 +3,13 @@ angular.module("CyberWar")
   $scope.GameState = GameState;
   $scope.isObserver = () => GameState.isObserver();
   GameSocket.addRequestSentListener(onGameSocketRequestSent);
+  GameSocket.addSocketOpenedListener(onGameSocketOpened);
   var loadingDialog, reportDialog;
 
   // ----------------------------------------------------------------------------
   $scope.$on('$destroy', function() {
     GameSocket.removeRequestSentListener(onGameSocketRequestSent);
+    GameSocket.removeSocketOpenedListener(onGameSocketOpened);
   });
 
   // ----------------------------------------------------------------------------
@@ -34,6 +36,11 @@ angular.module("CyberWar")
   // ----------------------------------------------------------------------------
   function onGameSocketRequestSent() {
     toggleLoading(true);
+  }
+
+  // ----------------------------------------------------------------------------
+  function onGameSocketOpened() {
+    toggleLoading(false);
   }
 
   // ----------------------------------------------------------------------------
@@ -116,6 +123,8 @@ angular.module("CyberWar")
           },
         }
       });
+
+      reportDialog.result.then(() => {}, () => {});
     }
   }    
 

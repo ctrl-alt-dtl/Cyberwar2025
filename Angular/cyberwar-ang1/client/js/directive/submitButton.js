@@ -8,7 +8,7 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.canSubmit = function() {
-      return (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0;
+      return (CurrentInvestments.hasInvestments() || CurrentOrders.hasOrders()) && GameState.currentActionPoints >= 0 && !GameState.isImplanted();
     }
 
     //---------------------------------------------------------------------------
@@ -17,8 +17,12 @@ angular.module('CyberWar')
       if (!GameState.submittedTurn()) {
         return "Submit Orders";
       }
-      // If we have submitted our turn, we can edit our orders
-      return "Edit Orders";
+      // If we have submitted our turn and weren't implanted, we can edit our orders
+      if (!GameState.isImplanted()) {
+        return "Edit Orders";
+      }
+      // We have nothing to do but wait for other players to take their turns
+      return "Wait";
     }
 
     //---------------------------------------------------------------------------

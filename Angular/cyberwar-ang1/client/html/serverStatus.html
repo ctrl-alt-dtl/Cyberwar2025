@@ -29,13 +29,13 @@
     <div ng-if="selectedNode.location.index">
       <div><node label="'Selected Node'" node="selectedNode.location"></node></div>
       <div>
-        <span><player label="'Owner'" player="displayedOwner || 'Unknown'"></player></span>
-        <span ng-if="manipulateOwner"><player label="'False Owner'" player="manipulateOwner"></player></span>
+        <span><player label="'Owner'" color="displayedOwner || 'Unknown'"></player></span>
+        <span ng-if="manipulateOwner"><player label="'False Owner'" color="manipulateOwner"></player></span>
         <span><b>Strength:</b> {{displayedStrength}}</span>
       </div>
     </div>
     <div ng-if="selectedNode.location.index == 0">
-      <div><node label="'Selected Base'" node="selectedNode.location"></node></div>
+      <div><player label="'Selected Base'" color="selectedNode.location.color"></player></div>
       <chat ng-if="shouldShowChat(selectedNode.location.color)" to="getChatToName(selectedNode.location.color)"></chat>
     </div>
   </span>

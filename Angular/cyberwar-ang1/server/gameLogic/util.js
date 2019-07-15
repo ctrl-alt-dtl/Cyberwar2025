@@ -35,6 +35,7 @@ this.addNewTurn = function(game, turnToCopy) {
     player.reports = [];
     delete player.investments;
     delete player.orders;
+    delete player.implanted;
   });
 
   return newTurn;

@@ -2,6 +2,7 @@ angular.module("CyberWar")
 .service('GameSocket', function(GameState, Socket) {
   var gid, user, updateCB;
   var requestSentCBListener = new Gambit.CallbackListener();
+  var socketOpenedCBListener = new Gambit.CallbackListener();
 
   // ----------------------------------------------------------------------------
   this.initialize = function(currentGID, currentUser, gameStateUpdatedCB) {
@@ -20,6 +21,16 @@ angular.module("CyberWar")
   //---------------------------------------------------------------------------
   this.removeRequestSentListener = function(callback) {
     requestSentCBListener.removeListener(callback);
+  }
+
+  //---------------------------------------------------------------------------
+  this.addSocketOpenedListener = function(callback) {
+    socketOpenedCBListener.addListener(callback);
+  }
+
+  //---------------------------------------------------------------------------
+  this.removeSocketOpenedListener = function(callback) {
+    socketOpenedCBListener.removeListener(callback);
   }
 
   // ----------------------------------------------------------------------------
@@ -48,6 +59,7 @@ angular.module("CyberWar")
 
   // ----------------------------------------------------------------------------
   var onSocketOpened = function() {
+    socketOpenedCBListener.triggerAll();
     socketSend(GameRequest.GET, { gid: gid, user: user });
   }
 
