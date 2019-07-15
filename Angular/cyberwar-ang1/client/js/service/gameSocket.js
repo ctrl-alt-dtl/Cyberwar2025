@@ -41,6 +41,12 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  this.toggleObserverBoardView = function(showFullBoard) {
+    requestSentCBListener.triggerAll();
+    socketSend(GameRequest.TOGGLE_OBSERVER_BOARD_VIEW, { gid: gid, user: user, showFullBoard: showFullBoard });
+  }
+
+  // ----------------------------------------------------------------------------
   var onSocketOpened = function() {
     socketSend(GameRequest.GET, { gid: gid, user: user });
   }

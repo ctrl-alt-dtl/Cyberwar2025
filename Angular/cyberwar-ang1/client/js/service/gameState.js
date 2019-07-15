@@ -38,7 +38,7 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.isObserver = function() {
-    return !this.currentPlayerData || this.currentPlayerData.isObserver;
+    return this.currentPlayerData && this.currentPlayerData.isObserver;
   }
 
   //---------------------------------------------------------------------------
@@ -90,12 +90,9 @@ angular.module('CyberWar')
   //---------------------------------------------------------------------------
   // Do we need to update our current player's game state or should we ignore it?
   var shouldUpdateCurrentPlayer = function(GameState, newGameData, turnNumber, latestTurnNumber) {
-    // If we are an observer and our player color changed, then always update the game state
+    // If we are an observer, then always update the game state
     if (GameState.currentPlayerData && GameState.currentPlayerData.isObserver) {
-      var newPlayerData = GameUtil.findPlayerByName(newGameData.players, GameState.currentPlayer);
-      if (GameState.currentPlayerData.color != newPlayerData.color) {
-        return true;
-      }
+      return true;
     }
     // If we aren't viewing a particular turn in history,
     // then update the game state if our current turn differs from the new latest turn
@@ -174,8 +171,9 @@ angular.module('CyberWar')
     var observedPlayer = GameUtil.findPlayerByColor(GameState.currentGameState.players, GameState.currentPlayerData.color);
     GameState.currentPlayerData.research = observedPlayer.research;
     GameState.currentPlayerData.exploitLinks = observedPlayer.exploitLinks;
-    GameState.currentPlayerData.scannedNodes = observedPlayer.scannedNodes;
-    GameState.currentPlayerData.scannedExploitLinks = observedPlayer.scannedExploitLinks;
+    GameState.currentPlayerData.isViewingFullBoard = GameState.currentPlayerData.scannedNodes.length > 0 || GameState.currentPlayerData.scannedExploitLinks > 0;
+    GameState.currentPlayerData.scannedNodes = GameState.currentPlayerData.scannedNodes.concat(observedPlayer.scannedNodes);
+    GameState.currentPlayerData.scannedExploitLinks = GameState.currentPlayerData.scannedExploitLinks.concat(observedPlayer.scannedExploitLinks);
     if (observedPlayer.investments) {
       GameState.currentActionPoints = 0;
       CurrentInvestments.setInvestments(observedPlayer.investments);
