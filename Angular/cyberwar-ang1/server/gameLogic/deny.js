@@ -63,6 +63,8 @@ var performDeny = function(player, prevTurn, newTurn, attackerNode, defenderNode
   var previousOwner = Util.Shared.findPlayerByColor(newTurn.players, defenderNode.ownerColor);
   var previouslyScannedNode = Util.Shared.isLocationInNodeList(defenderNode.location, prevTurnPlayer.scannedNodes);
   var reportParams = {
+    // The node the deny attack came from
+    attackerNode: attackerNode.location,
     // If there was a previous owner of this node, add that to the report
     attackedPlayer: previousOwner ? previousOwner.name : undefined,
     // Report the strength of the attack

@@ -43,6 +43,7 @@ var getAttacks = function(prevTurn, newTurn) {
         attack.attackers.push({
           prevTurnPlayer: player,
           newTurnPlayer: Util.Shared.findPlayerByName(newTurn.players, player.name),
+          attackerNode: order.params.source,
           type: order.action,
           strength: attackStrength,
           color: player.color,
@@ -163,7 +164,8 @@ var performMultipleSourceAttack = function(serverNodes, attack) {
   }
 
   // File a report for this attack
-  attacker.strength = serverStrengths.reduce((total, strength) => total + strength, 0);
+  attacker.strength = serverStrengths.reduce((total, strength) => total + strength, 0); // Combine strength for report
+  attacker.attackerNode = attack.attackers.map(attacker => attacker.attackerNode); // Combine attacker nodes for report
   reportAttack(attack, attacker);
 }
 
@@ -205,7 +207,7 @@ var onAttackSuccess = function(serverNodes, attack, newOwnerColor) {
       // Add the defense strength since the attacked player would know that
       defenderStrength: attack.defenderStrength
     };
-      Util.addReport(attack.targetPlayer, ActionType.ACQUIRE, attack.target, reportParams);
+    Util.addReport(attack.targetPlayer, ActionType.ACQUIRE, attack.target, reportParams);
   }
 }
 
@@ -215,6 +217,8 @@ var reportAttack = function(attack, attacker) {
 
   // Add a report of this action to the acting player
   var reportParams = {
+    // The node(s) the attack came from
+    attackerNode: attacker.attackerNode,
     // If there was a previous owner of this node, add that to the report
     attackedPlayer: attack.targetPlayer ? attack.targetPlayer.name : undefined,
     // Add the attack's strength to the report

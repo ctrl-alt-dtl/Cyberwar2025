@@ -38,14 +38,14 @@
 
     <!-- List all reports about expels done against the player -->
     <div class="defend" ng-if="expelledReports.length > 0">
-        <h3>Exploit Links Expelled</h3>
+      <h3>Exploit Links Expelled</h3>
+      <hr>
+      <div ng-repeat="report in expelledReports">
+        <action label="'Type'" type="report.type"></action>
+        <node label="'Location'" node="report.location"></node>
         <hr>
-        <div ng-repeat="report in expelledReports">
-          <action label="'Type'" type="report.type"></action>
-          <node label="'Location'" node="report.location"></node>
-          <hr>
-        </div>
       </div>
+    </div>
   
       <!-- List all reports about ACQUIRE/MANIPULATE/DENY/EXPLOIT actions -->
     <div class="attack" ng-if="attackReports.length > 0">
@@ -54,6 +54,13 @@
       <div ng-repeat="report in attackReports">
         <action label="'Type'" type="report.type"></action>
         <node label="'Location'" node="report.location"></node>
+        <span ng-if="isArray(report.attackerNode)">
+          <span><b>Attacking Nodes: </b></span>
+          <span ng-repeat="node in report.attackerNode"><node node="node"></node>&nbsp;</span>
+        </span>
+        <span ng-if="!isArray(report.attackerNode)">
+          <node label="'Attacking Node'" node="report.attackerNode"></node>
+        </span>
         <span><b>Attack Strength</b>: {{report.attackStrength}}</span>
         <span ng-if="report.defenderStrength"><b>Defense Strength</b>: {{report.defenderStrength}}</span>
         <span ng-if="report.success">Successful!</span>
