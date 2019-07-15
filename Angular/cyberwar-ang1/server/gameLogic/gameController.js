@@ -57,6 +57,25 @@ this.setObserverColor = function(game, playerName, color) {
 }
 
 //------------------------------------------------------------------------------
+// Change what the observer is viewing of the board
+this.toggleObserverBoardView = function(game, playerName, showFullBoard) {
+  game.turns.forEach(turn => {
+    var actingPlayer = Util.Shared.findPlayerByName(turn.players, playerName);
+    if (actingPlayer.isObserver) {
+      // Clear out the player's scanned information
+      actingPlayer.scannedNodes = [];
+      actingPlayer.scannedExploitLinks = [];
+
+      // If we are showing the full board, put every node and exploit link in the player's scanned lists
+      if (showFullBoard) {
+        actingPlayer.scannedNodes = turn.serverNodes.map(serverNode => serverNode);
+        turn.players.forEach(player => player.exploitLinks.forEach(exploitLink => actingPlayer.scannedExploitLinks.push(exploitLink)));
+      }
+    }
+  });
+}
+
+//------------------------------------------------------------------------------
 var allPlayersSubmittedTurns = function(turn) {
   return _.every(turn.players, function(player) {
     // Check to see if this player was eliminated

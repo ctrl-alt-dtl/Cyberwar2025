@@ -1,6 +1,30 @@
 angular.module("CyberWar")
 .controller("GameController", function ($scope, $uibModal, ChatSocket, ChatState, GameSocket, GameState, GameUtil, HTTPHandler, Socket) {
   $scope.GameState = GameState;
+  $scope.isObserver = () => GameState.isObserver();
+  GameSocket.addRequestSentListener(onGameSocketRequestSent);
+  var loadingDialog, reportDialog;
+
+  // ----------------------------------------------------------------------------
+  $scope.$on('$destroy', function() {
+    GameSocket.removeRequestSentListener(onGameSocketRequestSent);
+  });
+
+  // ----------------------------------------------------------------------------
+  $scope.toggleBoardView = function() {
+    GameSocket.toggleObserverBoardView(!GameState.currentPlayerData.isViewingFullBoard);
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.getBoardViewButtonText = function() {
+    // If the observer is viewing the full board display text for viewing the board from their current color's point of view
+    if (GameState.currentPlayerData.isViewingFullBoard) {
+      return 'View ' + GameState.currentPlayerData.color + '\'s Point of View';
+    }
+    // Otherwise, they are viewing from a player's point of view, so let them know they
+    // can view the fully revealed board
+    return 'View Fully Revealed Board';
+  }
 
   // ----------------------------------------------------------------------------
   $scope.showReport = function() {
@@ -8,9 +32,15 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  function onGameSocketRequestSent() {
+    toggleLoading(true);
+  }
+
+  // ----------------------------------------------------------------------------
   var gameStateUpdated = function(gameData) {
     var autoShowReport = shouldShowReport(GameState, gameData);
     $scope.$apply(GameState.gameStateUpdated(gameData.turn, gameData.turnNumber, gameData.latestTurnNumber));
+    toggleLoading(false);
 
     // If we are showing a different turn, show the report
     if (autoShowReport) {
@@ -38,6 +68,26 @@ angular.module("CyberWar")
   }
 
   //---------------------------------------------------------------------------
+  // Toggle the loading screen on or off
+  var toggleLoading = function(isLoading) {
+    if (isLoading) {
+      loadingDialog = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'loading.html',
+        controller: 'LoadingController',
+        backdrop: 'static', // User can't click away the dialog
+        keyboard: false // User can't use keyboard to dismiss dialog
+      });
+    }
+    else if (loadingDialog) {
+      loadingDialog.close();
+    }
+  }
+
+  //---------------------------------------------------------------------------
+  // Show the report of the previous turn's actions
   var showReport = function() {
     var reports = GameState.currentPlayerData.reports;
 
@@ -47,9 +97,14 @@ angular.module("CyberWar")
       reports = observedPlayer.reports;
     }
 
+    // Close previously report dialogs
+    if (reportDialog) {
+      reportDialog.close();
+    }
+
     // If there are reports to show, then show them
     if (reports && reports.length > 0) {
-      modalInstance = $uibModal.open({
+      reportDialog = $uibModal.open({
         animation: true,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
@@ -61,21 +116,13 @@ angular.module("CyberWar")
           },
         }
       });
-  
-      modalInstance.result.then(
-        // Dialog accepted
-        function () {
-        },
-        // Dialog canceled
-        function () {
-        }
-      );
     }
   }    
 
   // ----------------------------------------------------------------------------
   // Get our session data and load the game for the first time
   HTTPHandler.getSessionData(function (sessionData) {
+    toggleLoading(true);
     GameSocket.initialize(sessionData.gid, sessionData.user, gameStateUpdated);
     ChatSocket.initialize(sessionData.gid, sessionData.user, chatMessageReceived);
     Socket.connect();

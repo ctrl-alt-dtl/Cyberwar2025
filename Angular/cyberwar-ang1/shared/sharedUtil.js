@@ -81,7 +81,7 @@ this.SharedUtil = function(_, Color) {
   }
 
   //------------------------------------------------------------------------------
-  this.getServerNodeManipulatedColor = function(serverNode, player, positivelyLinkedNodes) {
+  this.getServerNodeManipulatedColor = function(serverNode, player) {
     // If this node is manipulated
     if (serverNode.manipulateColor) {
       // If the current player owns it, then return the manipulated color
