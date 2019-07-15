@@ -59,7 +59,7 @@ body {
     padding-bottom: 1%;
     border-style: solid;
     border-color: orange;
-    border-width: 2px;
+    border-width: 3px;
 }
 
 #text {
@@ -117,13 +117,13 @@ Left Area UI styling
     height: 35px;
 }
 #effects-window td.effect.unlocked {
-    background-color: #39d139;
+    background-color: #36A332;
 }
 #effects-window td.effect.partially-unlocked {
-    background-color: #e2e23d;
+    background-color: #DBA81D;
 }
 #effects-window td.effect.locked {
-    background-color: #ec4545;
+    background-color: #B10C00;
 }
 
 .board {
@@ -259,12 +259,12 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 }
 
 .blocks.paid {
-    background: blue;
+    background: #0735A8;
     float: left;
 }
 
 .blocks.invested {
-    background: yellow;
+    background: #E6DC25;
     float: left;
 }
 
@@ -322,8 +322,8 @@ Ready Indicator Directive styling
     animation: not-ready .6s linear alternate infinite;
 }
 @keyframes not-ready {
-    from { background-color: #d4d426; }
-    to { background-color: #dedede; }
+    from { background-color: #DBA81D; }
+    to { background-color: #E6DC25; }
 }
 
 /*
