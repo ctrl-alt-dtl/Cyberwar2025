@@ -3,6 +3,11 @@ angular.module('CyberWar')
   sortReports();
 
   // ----------------------------------------------------------------------------
+  $scope.isArray = function(obj) {
+    return Array.isArray(obj);
+  }
+
+  // ----------------------------------------------------------------------------
   $scope.ok = function () {
     modalInstance.close();
   };
@@ -23,7 +28,7 @@ angular.module('CyberWar')
         case ActionType.ACQUIRE:
         case ActionType.MANIPULATE:
           if (!isAttackTarget(report)) {
-            addStackableReport($scope.attackReports, report, getAttackReportObject, 'attackStrength');
+            addStackableReport($scope.attackReports, report, getAttackReportObject, combineAttackReportObject);
           }
           else {
             $scope.defendReports.push(getDefendReportObject(report));
@@ -55,7 +60,7 @@ angular.module('CyberWar')
           $scope.scanReports.push(getScanReportObject(report));
           break;
         case ActionType.SECURE:
-          addStackableReport($scope.secureReports, report, getSecureReportObject, 'amount');
+          addStackableReport($scope.secureReports, report, getSecureReportObject, combineSecureReportObject);
           break;
       }
     });
@@ -67,13 +72,14 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
-  function addStackableReport(reportList, report, getReportObjectCB, stackableProperty) {
+  function addStackableReport(reportList, report, getReportObjectCB, modifyReportObjectCB) {
     // If we already have a similar report, then just modify it, otherwise add a new one
     var previousReport = getPreviousReport(reportList, report);
     if (!previousReport) {
       reportList.push(getReportObjectCB(report));
     }
     else {
+      modifyReportObjectCB(previousReport, report);
       previousReport[stackableProperty] += report.params[stackableProperty];
     }
   }
@@ -89,10 +95,33 @@ angular.module('CyberWar')
     return {
       type: report.action,
       location: report.location,
+      attackerNode: report.params.attackerNode,
       attackStrength: report.params.attackStrength,
       defenderStrength: report.params.defenderStrength,
       success: report.params.success
     };
+  }
+
+  // ----------------------------------------------------------------------------
+  // Combine a previous attack report with a new one
+  function combineAttackReportObject(previousReport, currentReport) {
+    previousReport.attackStrength += currentReport.params.attackStrength;
+    // If we have two lists of attackers, concat the lists
+    if (Array.isArray(previousReport.attackerNode) && Array.isArray(currentReport.params.attackerNode)) {
+      previousReport.attackerNode = previousReport.attackerNode.concat(currentReport.params.attackerNode);
+    }
+    // If we previously had one attacker and are adding a list, make the first a list and concat the two lists
+    if (!Array.isArray(previousReport.attackerNode) && Array.isArray(currentReport.params.attackerNode)) {
+      previousReport.attackerNode = [previousReport.attackerNode].concat(currentReport.params.attackerNode);
+    }
+    // If we previously had a list of attackers and are adding one, then just push the new one
+    if (Array.isArray(previousReport.attackerNode) && !Array.isArray(currentReport.params.attackerNode)) {
+      previousReport.attackerNode.push(currentReport.params.attackerNode);
+    }
+    // If we previously had one attacker and have another attacker, make a list out of them
+    if (!Array.isArray(previousReport.attackerNode) && !Array.isArray(currentReport.params.attackerNode)) {
+      previousReport.attackerNode = [previousReport.attackerNode, currentReport.params.attackerNode];
+    }
   }
 
   // ----------------------------------------------------------------------------
@@ -157,6 +186,12 @@ angular.module('CyberWar')
       location: report.location,
       amount: report.params.amount
     };
+  }
+
+  // ----------------------------------------------------------------------------
+  // Combine a previous secure report with a new one
+  function combineSecureReportObject(previousReport, currentReport) {
+    previousReport.amount += currentReport.params.amount;
   }
 
   // ----------------------------------------------------------------------------
