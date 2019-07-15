@@ -37,6 +37,11 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
+  this.isImplanted = function() {
+    return this.currentPlayerData && this.currentPlayerData.implanted;
+  }
+
+  //---------------------------------------------------------------------------
   this.isObserver = function() {
     return this.currentPlayerData && this.currentPlayerData.isObserver;
   }
@@ -143,7 +148,7 @@ angular.module('CyberWar')
     // If we have submitted our turn, then show the investments and orders we submitted
     if (GameState.submittedTurn()) {
       GameState.currentActionPoints = 0;
-      CurrentInvestments.setInvestments(GameState.currentPlayerData.investments);
+      CurrentInvestments.setInvestments(GameState.currentPlayerData.investments || {});
       CurrentOrders.setOrders(GameState.currentPlayerData.orders);
     }
     else {

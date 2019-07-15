@@ -157,6 +157,7 @@ angular.module('CyberWar')
   function getImplantReportObject(report) {
     return {
       location: report.location,
+      success: report.params && report.params.success
     };
   }
 

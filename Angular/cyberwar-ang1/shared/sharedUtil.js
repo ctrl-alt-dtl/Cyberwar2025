@@ -9,7 +9,9 @@ this.SharedUtil = function(_, Color) {
     MAX_RESEARCH_LEVELS: 3,
     MAX_NODE_STRENGTH: 4,
     SECURE_STRENGTH: 1,
-    IMPLANT_STRENGTH: 1
+    IMPLANT_STRENGTH: 1,
+    IMPLANT_BASE_STRENGTH: 1,
+    IMPLANT_BASE_DEFENSE: 4
   }
 
   //------------------------------------------------------------------------------
@@ -35,7 +37,7 @@ this.SharedUtil = function(_, Color) {
   //------------------------------------------------------------------------------
   // Has this player taken their turn?
   this.hasPlayerTakenTurn = function(player) {
-    return player.isObserver || player.investments || player.orders.length > 0;
+    return player.isObserver || player.implanted || player.investments || player.orders.length > 0;
   }
 
   //------------------------------------------------------------------------------

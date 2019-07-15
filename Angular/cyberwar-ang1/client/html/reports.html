@@ -20,6 +20,8 @@
       <hr>
       <div ng-repeat="report in implantReports">
         <node label="'Location'" node="report.location"></node>
+        <span ng-if="report.success">Successful!</span>
+        <span ng-if="report.success === false">Failed...</span>
         <hr>
       </div>
     </div>
@@ -79,7 +81,7 @@
           <h4>Removed Exploit Links:</h4>
           <span ng-repeat="removedLink in report.removedLinks">
             <div>
-              <player label="'Owner'" player="removedLink.owner"></player>
+              <player label="'Owner'" color="removedLink.owner"></player>
               <span><b>Number Of Exploits Removed</b>: {{removedLink.numRemoved}}</span>
             </div>
           </span>
@@ -94,8 +96,8 @@
       <hr>
       <div class="scan-report" ng-repeat="report in scanReports">
         <node label="'Location'" node="report.location"></node>
-        <player label="'Owner'" player="report.owner"></player>
-        <player ng-if="report.manipulatedOwner" label="'False Owner'" player="report.manipulatedOwner"></player>
+        <player label="'Owner'" color="report.owner"></player>
+        <player ng-if="report.manipulatedOwner" label="'False Owner'" color="report.manipulatedOwner"></player>
         <span><b>Strength</b>: {{report.strength}}</span>
         <div ng-if="report.exploitLinks && report.exploitLinks.length > 0">
           <h4>Found Exploit Links:</h4>
