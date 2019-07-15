@@ -8,13 +8,13 @@ var lineVisible = true;
 var textVisible = true;
 
 // Used for the Domain Servers and Links
-var yellowColor = '#F7E500';
-var darkYellowColor = '#CCBE00'
-var blueColor = 'blue';
-var redColor = 'red';
-var purpleColor = 'purple';
-var greenColor = 'green';
-var orangeColor = 'orange';
+//var yellowColor = '#F7E500';
+var yellowColor = '#E5CE01'
+var blueColor = '#1543C2';
+var redColor = '#8F130D';
+var purpleColor = '#7904C2';
+var greenColor = '#1F914A';
+var orangeColor = '#E06609';
 var grayColor = 'gray';
 var noColor = '';
 
@@ -34,7 +34,7 @@ var text_offset_y = BASE_BOARD_HEIGHT / 60;
 
 // For Base text centering
 var base_text_offset_x = BASE_BOARD_WIDTH / 65;
-var base_text_offset_y = BASE_BOARD_HEIGHT / 200;
+var base_text_offset_y = BASE_BOARD_HEIGHT / 100;
 
 // Chat Toast Notification Window Centering
 var notification_rect_offset_x = 65;

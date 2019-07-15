@@ -1,5 +1,5 @@
-var BASE_BOARD_WIDTH = 912; // Don't change because it will alter the CSS layout.
-var BASE_BOARD_HEIGHT = 1012; // Don't change because it will alter the CSS layout.
+var BASE_BOARD_WIDTH = 945; // Don't change because it will alter the entire layout.
+var BASE_BOARD_HEIGHT = 945; // Don't change because it will alter the entire layout.
 
 var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
@@ -68,19 +68,19 @@ var exploitLinksGroup = new Konva.Group({
 
 var imageObj = new Image();
 // background board
-//imageObj.src = 'client/img/BoardNew.png';
-imageObj.src = 'client/img/transparency-1000.png';
+imageObj.src = 'client/img/BoardNew.png';
+//imageObj.src = 'client/img/transparency-1000.png';
 imageObj.onload = function() {
-
+// This is only to offset the background board to align all the game items.
   var bgBoard = new Konva.Image({
-    width: 980,
-    height: 890,
-    x: -35,
-    y: 60,
+    width: 1012,
+    height: 920,
+    x: -34,
+    y: 12,
     image: imageObj
   });
 
-
+//TODO: Uncomment
   // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgGroup.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
   bgGroup.add(mainBoundary3, mainBoundary2, mainBoundary1);
@@ -97,10 +97,11 @@ imageObj.onload = function() {
   bgGroup.add(b1g2, b2p1, b3g5, b5p3, b6g7, b7p6, b8g8, b8p8);
   bgGroup.add(y1o2, y2g1, y3o5, y5g3, y6o7, y7g6, y8o8, y8g8);
 
-  bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
+  //bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
+  bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex, boardEdgeTop);
 
   //toolTipLayer.add();
-  domainsLayer.add(domainsGroup);
+ domainsLayer.add(domainsGroup);
 
   linksLayer.add(exploitLinksGroup, linksGroup);
 

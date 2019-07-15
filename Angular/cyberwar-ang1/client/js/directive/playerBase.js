@@ -151,64 +151,64 @@ angular.module('CyberWar')
       var x2, y2, x3, y3, x5, y5, x6, y6;
       switch(color) {
         case Color.RED:
-          x2 = point_x / 2.36;
-          y2 = point_y / 1.217;
-          x3 = point_x / 1.74;
-          y3 = point_y / 1.217;
-          x5 = point_x / 1.74;
-          y5 = point_y / 1.15;
-          x6 = point_x / 2.36;
-          y6 = point_y / 1.15;
-          break;
-        case Color.ORANGE:
-          x2 = point_x / 1.225; // lower left
-          y2 = point_y / 1.345; // lower left
-          x3 = point_x / 1.119; // lower right
-          y3 = point_y / 1.599; // lower right
-          x5 = point_x / 1.181; // top right
-          y5 = point_y / 1.659; // top right
-          x6 = point_x / 1.295; // top left
-          y6 = point_y / 1.39; // top left
-          break;
-        case Color.YELLOW:
-          x2 = point_x / 1.119;
-          y2 = point_y / 2.69;
-          x3 = point_x / 1.22;
-          y3 = point_y / 3.9;
-          x5 = point_x / 1.292;
-          y5 = point_y / 3.59;
-          x6 = point_x / 1.178;
-          y6 = point_y / 2.525;
-          break;
-        case Color.GREEN:
-          x2 = point_x / 1.735;
-          y2 = point_y / 5.7;
-          x3 = point_x / 2.35;
-          y3 = point_y / 5.7;
-          x5 = point_x / 2.35;
-          y5 = point_y / 7.75;
-          x6 = point_x / 1.735;
-          y6 = point_y / 7.75;
-          break;
-        case Color.BLUE:
-          x2 = point_x / 5.58;
-          y2 = point_y / 3.93;
-          x3 = point_x / 9.6;
-          y3 = point_y / 2.68;
-          x5 = point_x / 6.6;
-          y5 = point_y / 2.52;
-          x6 = point_x / 4.41;
-          y6 = point_y / 3.59;
+          x2 = point_x / 2.35;    // lower left
+          y2 = point_y / 1.098;   // lower left
+          x3 = point_x / 1.7395;   // lower right
+          y3 = point_y / 1.098;   // lower right
+          x5 = point_x / 1.74;   // top right
+          y5 = point_y / 1.167;   // top right
+          x6 = point_x / 2.353;    // top left
+          y6 = point_y / 1.167;   // top left
           break;
         case Color.PURPLE:
-          x2 = point_x / 9.5;
-          y2 = point_y / 1.595;
-          x3 = point_x / 5.5;
-          y3 = point_y / 1.34;
-          x5 = point_x / 4.4;
-          y5 = point_y / 1.39;
-          x6 = point_x / 6.5;
-          y6 = point_y / 1.66;
+          x2 = point_x / 9.3;     // lower left
+          y2 = point_y / 1.563;   // lower left
+          x3 = point_x / 5.49;     // lower right
+          y3 = point_y / 1.299;    // lower right
+          x5 = point_x / 4.38;     // top right
+          y5 = point_y / 1.346;    // top right
+          x6 = point_x / 6.48;     // top left
+          y6 = point_y / 1.635;    // top left
+          break;
+        case Color.BLUE:
+          x2 = point_x / 5.5;    // lower left
+          y2 = point_y / 4.36;    // lower left
+          x3 = point_x / 9.4;     // lower right
+          y3 = point_y / 2.78;    // lower right
+          x5 = point_x / 6.54;     // top right
+          y5 = point_y / 2.59;    // top right
+          x6 = point_x / 4.38;    // top left
+          y6 = point_y / 3.91;    // top left
+          break;
+        case Color.GREEN:
+          x2 = point_x / 1.735;   // lower left
+          y2 = point_y / 11.35;     // lower left
+          x3 = point_x / 2.35;    // lower right
+          y3 = point_y / 11.35;     // lower right
+          x5 = point_x / 2.35;    // top right
+          y5 = point_y / 7;    // top right
+          x6 = point_x / 1.735;   // top left
+          y6 = point_y / 7;    // top left
+          break;
+        case Color.YELLOW:
+          x2 = point_x / 1.1188;   // lower left
+          y2 = point_y / 2.788;    // lower left
+          x3 = point_x / 1.221;    // lower right
+          y3 = point_y / 4.366;     // lower right
+          x5 = point_x / 1.296;   // top right
+          y5 = point_y / 3.9;    // top right
+          x6 = point_x / 1.181;   // top left
+          y6 = point_y / 2.585;   // top left
+          break;
+        case Color.ORANGE:
+          x2 = point_x / 1.221; // lower left
+          y2 = point_y / 1.295; // lower left
+          x3 = point_x / 1.118; // lower right
+          y3 = point_y / 1.562; // lower right
+          x5 = point_x / 1.181; // top right
+          y5 = point_y / 1.635; // top right
+          x6 = point_x / 1.295; // top left
+          y6 = point_y / 1.345; // top left
           break;
       }
       return [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6];
@@ -218,17 +218,17 @@ angular.module('CyberWar')
     var getTextPosition = function(color) {
       switch(color) {
         case Color.RED:
-          return { x: BASE_BOARD_WIDTH / 2.1, y: BASE_BOARD_HEIGHT / 1.185 };
+          return { x: BASE_BOARD_WIDTH / 2.1, y: BASE_BOARD_HEIGHT / 1.132 };
         case Color.ORANGE:
-          return { x: BASE_BOARD_WIDTH / 1.26, y: BASE_BOARD_HEIGHT / 1.375 };
+          return { x: BASE_BOARD_WIDTH / 1.25, y: BASE_BOARD_HEIGHT / 1.33 };
         case Color.YELLOW:
-          return { x: BASE_BOARD_WIDTH / 1.185, y: BASE_BOARD_HEIGHT / 2.89 };
+          return { x: BASE_BOARD_WIDTH / 1.18, y: BASE_BOARD_HEIGHT / 3};
         case Color.GREEN:
-          return { x: BASE_BOARD_WIDTH / 1.83, y: BASE_BOARD_HEIGHT / 6.4 };
+          return { x: BASE_BOARD_WIDTH / 1.83, y: BASE_BOARD_HEIGHT / 8.68 };
         case Color.BLUE:
-          return { x: BASE_BOARD_WIDTH / 5.35, y: BASE_BOARD_HEIGHT / 3.3 };
+          return { x: BASE_BOARD_WIDTH / 5.35, y: BASE_BOARD_HEIGHT / 3.65 };
         case Color.PURPLE:
-          return { x: BASE_BOARD_WIDTH / 6.5, y: BASE_BOARD_HEIGHT / 1.55 };
+          return { x: BASE_BOARD_WIDTH / 6.5, y: BASE_BOARD_HEIGHT / 1.5 };
       }
       return { x: BASE_BOARD_WIDTH * 0.5, y: BASE_BOARD_HEIGHT * 0.5 };
     }

@@ -6,7 +6,7 @@
       </tr>
       <tr>
         <td ng-repeat="(key, researchType) in ResearchType" class="header inner">{{researchType}}</td>
-        <td class="header cost last">Cost to Use:</td>
+        <td class="header cost last"> Cost to Use: </td>
       </tr>
       <tr ng-repeat="cyberEffect in cyberEffects track by $index">
         <td ng-repeat="(key, researchType) in ResearchType" class="inner effect" ng-class="getUnlockStatus(researchType, $parent.$index + 1)">{{cyberEffect[researchType]}}</td>
@@ -14,7 +14,7 @@
       </tr>
       <tr>
         <td colspan="3" class="header inner">Research Investment Table</td>
-        <td class="header last">Action Points</td>
+        <td class="header last"> Action Points </td>
       </tr>
       <tr class="ui-row">
         <td ng-repeat="(key, researchType) in ResearchType">
