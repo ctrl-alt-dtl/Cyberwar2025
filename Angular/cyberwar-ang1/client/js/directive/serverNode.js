@@ -58,7 +58,6 @@ angular.module('CyberWar')
 
       // Create the text element
       text = new Konva.Text({
-        //text: nodeValOne,
         x: hexPosition.x,
         y: hexPosition.y,
         offset: {
