@@ -10,10 +10,10 @@ var textVisible = true;
 // Used for the Domain Servers and Links
 //var yellowColor = '#F7E500';
 var yellowColor = '#E5CE01'
-var blueColor = '#1E4AA8';
-var redColor = '#D91C35';
-var purpleColor = '#79368F';
-var greenColor = '#008C1D';
+var blueColor = '#1543C2';
+var redColor = '#8F130D';
+var purpleColor = '#883CA8';
+var greenColor = '#1F914A';
 var orangeColor = '#E06609';
 var grayColor = 'gray';
 var noColor = '';

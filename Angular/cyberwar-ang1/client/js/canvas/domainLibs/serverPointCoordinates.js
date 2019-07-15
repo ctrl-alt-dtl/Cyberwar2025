@@ -225,8 +225,8 @@ konvaHexPositions[Color.YELLOW][8] = { x: pt_y8Hex_X, y: pt_y8Hex_Y };
 // Base left and right edges
 var pt_oBase1Hex_X = BASE_BOARD_WIDTH / 1.27; // left
 var pt_oBase1Hex_Y = BASE_BOARD_HEIGHT / 1.297; // left
-var pt_oBase2Hex_X = BASE_BOARD_WIDTH / 1.135; // right
-var pt_oBase2Hex_Y = BASE_BOARD_HEIGHT / 1.63; // right
+var pt_oBase2Hex_X = BASE_BOARD_WIDTH / 1.1355; // right
+var pt_oBase2Hex_Y = BASE_BOARD_HEIGHT / 1.635; // right
 konvaHexPositions[Color.ORANGE][0] = { x1: pt_oBase1Hex_X, y1: pt_oBase1Hex_Y, x2: pt_oBase2Hex_X, y2: pt_oBase2Hex_Y };
 
 // Center point of each server

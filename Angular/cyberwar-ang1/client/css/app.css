@@ -2,9 +2,9 @@
 body {
 
     background-color: #242323;
-    /*background-image: url("../img/titlebackground-hq.png");
+    background-image: url("../img/newBackground-01.svg");
     background-repeat: no-repeat;
-    background-size: cover;*/
+    background-size: cover;
     scroll-behavior: auto;
     align-items: center;
     justify-content: center;
@@ -319,7 +319,7 @@ Ready Indicator Directive styling
     text-align: center;
 }
 .pressure-indicator .ready-indicator.not-ready {
-    animation: not-ready .5s linear alternate infinite;
+    animation: not-ready .6s linear alternate infinite;
 }
 @keyframes not-ready {
     from { background-color: #d4d426; }
