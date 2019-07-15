@@ -3,7 +3,7 @@ angular.module("CyberWar")
   $scope.GameState = GameState;
   $scope.isObserver = () => GameState.isObserver();
   GameSocket.addRequestSentListener(onGameSocketRequestSent);
-  var loadingDialog;
+  var loadingDialog, reportDialog;
 
   // ----------------------------------------------------------------------------
   $scope.$on('$destroy', function() {
@@ -38,10 +38,9 @@ angular.module("CyberWar")
 
   // ----------------------------------------------------------------------------
   var gameStateUpdated = function(gameData) {
-    toggleLoading(false);
-
     var autoShowReport = shouldShowReport(GameState, gameData);
     $scope.$apply(GameState.gameStateUpdated(gameData.turn, gameData.turnNumber, gameData.latestTurnNumber));
+    toggleLoading(false);
 
     // If we are showing a different turn, show the report
     if (autoShowReport) {
@@ -77,7 +76,9 @@ angular.module("CyberWar")
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'loading.html',
-        controller: 'LoadingController'
+        controller: 'LoadingController',
+        backdrop: 'static', // User can't click away the dialog
+        keyboard: false // User can't use keyboard to dismiss dialog
       });
     }
     else if (loadingDialog) {
@@ -96,9 +97,14 @@ angular.module("CyberWar")
       reports = observedPlayer.reports;
     }
 
+    // Close previously report dialogs
+    if (reportDialog) {
+      reportDialog.close();
+    }
+
     // If there are reports to show, then show them
     if (reports && reports.length > 0) {
-      modalInstance = $uibModal.open({
+      reportDialog = $uibModal.open({
         animation: true,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
