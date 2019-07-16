@@ -72,10 +72,10 @@ Left Area UI styling
 #left_aside {
     height: 950px;
     width: 375px;
-    background-color: #E1E1E1;
+    background-color: #4F4E4E;
     float: left;
-    border-style: solid;
-    border-width: 2px;
+    border: 2px solid black;
+    color: black;
 }
 #left_aside .round-indicator {
     height: 5%;
@@ -84,6 +84,7 @@ Left Area UI styling
 #left_aside .reports {
     height: 5%;
     width: 100%;
+    color: black;
 }
 #left_aside ready-indicator {
     height: 120px;
@@ -96,6 +97,7 @@ Left Area UI styling
     padding: 10px;
     border-top: 1px solid black;
     display: block;
+    color: lightgray;
 }
 
 #effects-window {
@@ -134,29 +136,28 @@ Left Area UI styling
 #ui-area {
     height: 950px;
     width: 375px;
-    background-color: #E1E1E1;
+    background-color: #4F4E4E;
     float: left;
     display: inline-block;
-    border: 2px solid;
+    border: 2px solid black;
+    color: black;
 }
 .adjudication{
    /* height: 70%; */
     width: 100%;
-    background: #E1E1E1;
     position: relative;
     padding-top: 1%;
 }
 .effects{
     color: black;
     width: 100%;
-    background: #E1E1E1;
     position: inherit;
+    background-color: #4F4E4E;
 
 }
 .submitBtnArea {
     height: 6%;
     width: 100%;
-    background: #E1E1E1;
     position: inherit;
     padding-top: 3%;
     border-top: 1px black solid;
@@ -183,7 +184,7 @@ Left Area UI styling
     to {color: white;}
 }
 .minusPlusBtn {
-    background-color: white;
+    background-color: lightgray;
     width: 50%;
     float: left;
     color: black;
@@ -228,8 +229,8 @@ td {
     border: 1px solid black;
     display: block;
     padding: 1px;
-    color: black;
-    background: white;
+    color: lightgray;
+    background: #2e3131;
     margin-bottom: 1px;
     width: 100%;
     text-align: left;
@@ -300,6 +301,7 @@ Server Status Dialog styling
     padding: 10px;
     background-color: dimgray;
     display: block;
+    color: white;
 }
 
 /*
@@ -317,6 +319,7 @@ Ready Indicator Directive styling
     border-color: black;
     background-color: #2abe3d;
     text-align: center;
+    color: black;
 }
 .pressure-indicator .ready-indicator.not-ready {
     animation: not-ready .6s linear alternate infinite;
@@ -331,7 +334,7 @@ Chat directive styling
  */
 .chat-container {
     height: 100%;
-    background-color: #E1E1E1;
+    background-color: #2e3131;
     padding: 10px;
 }
 .chat-messages {
@@ -344,6 +347,7 @@ Chat directive styling
 }
 .chat-container form {
     height: 10%;
+    color: black;
     position: relative;
 }
 .chat-container form input {
@@ -356,4 +360,7 @@ Chat directive styling
     position: absolute;
     top: 50%;
     right: 0px;
+    padding-top: 5px;
+    display: block;
+    color: black;
 }
