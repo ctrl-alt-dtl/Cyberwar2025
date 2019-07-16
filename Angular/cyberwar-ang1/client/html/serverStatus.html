@@ -11,7 +11,7 @@
     </div>
 
     <!-- Source node picker -->
-    <div ng-if="needSource">
+    <div ng-if="usableSourceNodes.length > 0">
       Choose Source Node:
       <label ng-repeat="node in usableSourceNodes">
         <input type="radio" ng-model="selected.params.source" ng-value="node"><node node="node"></node>

@@ -18,8 +18,8 @@ this.performOrders = function(prevTurn, newTurn) {
       }
       else if (order.action == ActionType.ANALYZE) {
         var newTurnPlayer = Util.Shared.List.findPlayerByName(newTurn.players, player.name);
-        var positivelyLinkedNodes = Util.Shared.Network.getPositivelyLinkedNodes(player.color, newTurn.serverNodes, player.exploitLinks);
-        var networkAdjacentNodes = Util.Shared.Network.getNeighborsToNetwork(newTurn.serverNodes, positivelyLinkedNodes, player.color, player.exploitLinks);
+        var positivelyLinkedNodes = Util.Shared.Network.getPositivelyLinkedNodes(player.color, newTurn.serverNodes, newTurnPlayer.exploitLinks);
+        var networkAdjacentNodes = Util.Shared.Network.getNeighborsToNetwork(newTurn.serverNodes, positivelyLinkedNodes, player.color, newTurnPlayer.exploitLinks);
         positivelyLinkedNodes.concat(networkAdjacentNodes).forEach(nodeLocation => {
           var serverNode = Util.Shared.List.getServerNode(newTurn.serverNodes, nodeLocation.color, nodeLocation.index);
           if (serverNode) {
