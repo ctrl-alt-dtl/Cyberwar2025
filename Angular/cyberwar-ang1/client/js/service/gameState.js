@@ -197,8 +197,8 @@ angular.module('CyberWar')
     GameState.currentPlayerData.research = observedPlayer.research;
     GameState.currentPlayerData.exploitLinks = observedPlayer.exploitLinks;
     GameState.currentPlayerData.isViewingFullBoard = GameState.currentPlayerData.scannedNodes.length > 0 || GameState.currentPlayerData.scannedExploitLinks > 0;
-    GameState.currentPlayerData.scannedNodes = GameState.currentPlayerData.scannedNodes.concat(observedPlayer.scannedNodes);
-    GameState.currentPlayerData.scannedExploitLinks = GameState.currentPlayerData.scannedExploitLinks.concat(observedPlayer.scannedExploitLinks);
+    GameState.currentPlayerData.scannedNodes = GameState.currentPlayerData.isViewingFullBoard ? GameState.currentPlayerData.scannedNodes : observedPlayer.scannedNodes;
+    GameState.currentPlayerData.scannedExploitLinks = GameState.currentPlayerData.isViewingFullBoard ? GameState.currentPlayerData.scannedExploitLinks : observedPlayer.scannedExploitLinks;
     GameState.positivelyLinkedNodes = GameUtil.Network.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
     if (observedPlayer.investments) {
       GameState.currentActionPoints = 0;
