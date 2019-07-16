@@ -36,7 +36,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.serverNodeClicked = function(color, index) {
-    var selectedNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, color, index);
+    var selectedNode = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, color, index);
     var validActions = getValidActions(selectedNode);
     var usableSourceNodes = rejectUsedSourceNodes(getUsableAdjacentNodes(selectedNode));
     var validColors = getValidColors(selectedNode);
@@ -146,7 +146,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var selectAction = function(selectedNode, action, params) {
-    GameState.addOrder({ node: selectedNode.location, action: action, params: params, cost: getActionLevel(action) + getInterDomainCost(selectedNode.location, params) });
+    GameState.addOrder({ node: selectedNode.location, action: action, params: params, cost: GameUtil.Action.getCost(action, params.source, selectedNode.location) });
   }
 
   // ----------------------------------------------------------------------------
@@ -162,9 +162,9 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var isActionTypeValidForNode = function(actionType, node) {
-    if (!GameState.submittedTurn()) {
+    if (!GameState.hasSubmittedTurn()) {
       var researchType = getResearchType(actionType);
-      var actionLevel = getActionLevel(actionType);
+      var actionLevel = GameUtil.Action.getActionLevel(actionType);
       if (researchType && actionLevel > 0 && GameUtil.isActionUnlocked(GameState.currentPlayerData.research[researchType], actionLevel) && canPlayerAffordAction(actionLevel)) {
         switch (actionType) {
           case ActionType.SECURE:
@@ -212,56 +212,6 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
-  // Get the action level of this action
-  var getActionLevel = function(actionType) {
-    switch(actionType) {
-      case ActionType.SECURE:
-      case ActionType.ACQUIRE:
-      case ActionType.SCAN:
-        return 1;
-      case ActionType.EXPEL:
-      case ActionType.MANIPULATE:
-      case ActionType.EXPLOIT:
-        return 2;
-      case ActionType.ANALYZE:
-      case ActionType.DENY:
-      case ActionType.IMPLANT:
-        return 3;
-    }
-    return -1;
-  }
-
-  // ----------------------------------------------------------------------------
-  var getInterDomainCost = function(destination, actionParams) {
-    var source = actionParams.source;
-    if (source) {
-      if (source.color != destination.color) {
-        return getNodeTier(source.index);
-      }
-    }
-    return 0;
-  }
-
-  // ----------------------------------------------------------------------------
-  var getNodeTier = function(nodeIndex) {
-    switch (nodeIndex) {
-      case 1:
-      case 2:
-        return 4;
-      case 3:
-      case 4:
-      case 5:
-        return 3;
-      case 6:
-      case 7:
-        return 2;
-      case 8:
-        return 1;
-    }
-    return 0;
-  }
-
-  // ----------------------------------------------------------------------------
   var canSecureNode = function(node) {
     // Players can only secure server nodes they own that aren't at max strength yet
     return doesPlayerOwnNode(node) && !isPlayerBase(node) && !isNodeAtMaxStrength(node);
@@ -276,7 +226,7 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canAnalyzeNode = function(node) {
     // Players can only scan their own nodes or exploited nodes
-    return doesPlayerOwnNode(node) || GameUtil.isLocationInLinkList(node.location, GameState.currentPlayerData.exploitLinks);
+    return doesPlayerOwnNode(node) || GameUtil.List.isLocationInLinkList(node.location, GameState.currentPlayerData.exploitLinks);
   }
 
   // ----------------------------------------------------------------------------
@@ -329,7 +279,7 @@ angular.module('CyberWar')
   var isNodeAtMaxStrength = function(node) {
     var totalNodeStrength = node.strength;
     _.each(CurrentOrders.getOrders(), function(order) {
-      if (order.action == ActionType.SECURE && GameUtil.isSameLocation(order.node, node.location)) {
+      if (order.action == ActionType.SECURE && GameUtil.Equality.isSameLocation(order.node, node.location)) {
         ++totalNodeStrength;
       }
     });
@@ -343,21 +293,21 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var isPlayerImplanted = function(node) {
-    return GameUtil.findPlayerByColor(GameState.currentGameState.players, node.location.color).implanted;
+    return GameUtil.List.findPlayerByColor(GameState.currentGameState.players, node.location.color).implanted;
   }
 
   // ----------------------------------------------------------------------------
   var isAdjacentToNetwork = function(node) {
-    return _.any(GameUtil.getNeighbors(node.location), function(neighbor) { return GameUtil.isLocationInList(neighbor, GameState.positivelyLinkedNodes); });
+    return _.any(GameUtil.Network.getNeighbors(node.location), function(neighbor) { return GameUtil.List.isLocationInList(neighbor, GameState.positivelyLinkedNodes); });
   }
 
   // ----------------------------------------------------------------------------
   var getUsableAdjacentNodes = function(node) {
     var adjacentNodes = [];
 
-    _.each(GameUtil.getNeighbors(node.location), function(neighbor) {
-      var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
-      if (serverNode && (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks))) {
+    _.each(GameUtil.Network.getNeighbors(node.location), function(neighbor) {
+      var serverNode = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
+      if (serverNode && (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.List.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks))) {
         adjacentNodes.push(neighbor);
       }
     });
@@ -370,7 +320,7 @@ angular.module('CyberWar')
     // Reject any nodes who are being used as a source node in current orders
     return _.reject(sourceNodes, function(node) {
       return node.index != 0 && _.any(CurrentOrders.getOrders(), function(order) {
-        return order.params && order.params.source && GameUtil.isSameLocation(order.params.source, node);
+        return order.params && order.params.source && GameUtil.Equality.isSameLocation(order.params.source, node);
       });
     });
   }

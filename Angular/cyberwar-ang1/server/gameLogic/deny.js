@@ -11,8 +11,8 @@ this.performOrders = function(prevTurn, newTurn) {
   _.each(prevTurn.players, function(player) {
     _.each(player.orders, function(order) {
       if (order.action == ActionType.DENY) {
-        var attackerNode = Util.Shared.getServerNode(newTurn.serverNodes, order.params.source.color, order.params.source.index);
-        var defenderNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
+        var attackerNode = Util.Shared.List.getServerNode(newTurn.serverNodes, order.params.source.color, order.params.source.index);
+        var defenderNode = Util.Shared.List.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
         if (attackerNode && defenderNode) {
           performDeny(player, prevTurn, newTurn, attackerNode, defenderNode);
         }
@@ -32,20 +32,20 @@ var performDeny = function(player, prevTurn, newTurn, attackerNode, defenderNode
     // Remove all exploit links to the node
     _.each(newTurn.players, function(player) {
       player.exploitLinks = _.reject(player.exploitLinks, function(link) {
-        return Util.Shared.isLocationInLink(link, defenderNode.location);
+        return Util.Shared.Equality.isLocationInLink(link, defenderNode.location);
       });
     });
 
     // Remove all overt links to the node
     newTurn.overtLinks = _.reject(newTurn.overtLinks, function(link) {
-      return Util.Shared.isLocationInLink(link, defenderNode.location);
+      return Util.Shared.Equality.isLocationInLink(link, defenderNode.location);
     });
 
     // Mark the node for deletion after all actions have been processed
     defenderNode.denied = true;
 
     // Add a report for whoever owned this node that their node was denied
-    var previousOwner = Util.Shared.findPlayerByColor(newTurn.players, defenderNode.ownerColor);
+    var previousOwner = Util.Shared.List.findPlayerByColor(newTurn.players, defenderNode.ownerColor);
     if (previousOwner) {
       var reportParams = {
         // Add the attacked player to the report
@@ -58,10 +58,10 @@ var performDeny = function(player, prevTurn, newTurn, attackerNode, defenderNode
   }
 
   // Add a report of this action to the acting player
-  var prevTurnPlayer = Util.Shared.findPlayerByName(prevTurn.players, player.name);
-  var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
-  var previousOwner = Util.Shared.findPlayerByColor(newTurn.players, defenderNode.ownerColor);
-  var previouslyScannedNode = Util.Shared.isLocationInNodeList(defenderNode.location, prevTurnPlayer.scannedNodes);
+  var prevTurnPlayer = Util.Shared.List.findPlayerByName(prevTurn.players, player.name);
+  var newTurnPlayer = Util.Shared.List.findPlayerByName(newTurn.players, player.name);
+  var previousOwner = Util.Shared.List.findPlayerByColor(newTurn.players, defenderNode.ownerColor);
+  var previouslyScannedNode = Util.Shared.List.isLocationInNodeList(defenderNode.location, prevTurnPlayer.scannedNodes);
   var reportParams = {
     // The node the deny attack came from
     attackerNode: attackerNode.location,

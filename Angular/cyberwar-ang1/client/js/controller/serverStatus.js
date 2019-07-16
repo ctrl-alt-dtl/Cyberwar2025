@@ -45,7 +45,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.getChatToName = function(color) {
-    return GameUtil.findPlayerByColor(GameState.currentGameState.players, color).name;
+    return GameUtil.List.findPlayerByColor(GameState.currentGameState.players, color).name;
   }
 
   // ----------------------------------------------------------------------------

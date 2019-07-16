@@ -1,7 +1,7 @@
 angular.module('CyberWar')
 .directive('player', function(GameState, GameUtil) {
   function link($scope, element, attrs) {
-    $scope.player = GameUtil.findPlayerByColor(GameState.currentGameState.players, $scope.color);
+    $scope.player = GameUtil.List.findPlayerByColor(GameState.currentGameState.players, $scope.color);
   }
   return {
     link: link,

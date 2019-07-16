@@ -4,7 +4,7 @@ angular.module("CyberWar")
   $scope.isObserver = () => GameState.isObserver();
   GameSocket.addRequestSentListener(onGameSocketRequestSent);
   GameSocket.addSocketOpenedListener(onGameSocketOpened);
-  var loadingDialog, reportDialog;
+  var loadingDialog, gameOverDialog, reportDialog;
 
   // ----------------------------------------------------------------------------
   $scope.$on('$destroy', function() {
@@ -29,6 +29,12 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  $scope.hasReports = function() {
+    var reports = getReports();
+    return reports && reports.length > 0;
+  }
+
+  // ----------------------------------------------------------------------------
   $scope.showReport = function() {
     showReport();
   }
@@ -49,8 +55,12 @@ angular.module("CyberWar")
     $scope.$apply(GameState.gameStateUpdated(gameData.turn, gameData.turnNumber, gameData.latestTurnNumber));
     toggleLoading(false);
 
-    // If we are showing a different turn, show the report
-    if (autoShowReport) {
+    // If the game is over, show the game over dialog
+    if (GameState.isGameOver()) {
+      showGameOverDialog();
+    }
+    // Otherwise, if we are showing a different turn, show the report
+    else if (autoShowReport) {
       showReport();
     }
   }
@@ -94,15 +104,22 @@ angular.module("CyberWar")
   }
 
   //---------------------------------------------------------------------------
+  // Show the game over dialog
+  var showGameOverDialog = function() {
+    gameOverDialog = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'gameOver.html',
+      controller: 'GameOverController',
+    });
+    gameOverDialog.result.then(() => {}, () => {});
+  }
+
+  //---------------------------------------------------------------------------
   // Show the report of the previous turn's actions
   var showReport = function() {
-    var reports = GameState.currentPlayerData.reports;
-
-    // If the current player is an observer, get the reports of the player being watched
-    if (GameState.currentPlayerData.isObserver) {
-      var observedPlayer = GameUtil.findPlayerByColor(GameState.currentGameState.players, GameState.currentPlayerData.color);
-      reports = observedPlayer.reports;
-    }
+    var reports = getReports();
 
     // Close previously report dialogs
     if (reportDialog) {
@@ -127,6 +144,21 @@ angular.module("CyberWar")
       reportDialog.result.then(() => {}, () => {});
     }
   }    
+
+  // ----------------------------------------------------------------------------
+  var getReports = function() {
+    if (GameState.currentPlayerData) {
+      var reports = GameState.currentPlayerData.reports;
+
+      // If the current player is an observer, get the reports of the player being watched
+      if (GameState.currentPlayerData.isObserver) {
+        var observedPlayer = GameUtil.List.findPlayerByColor(GameState.currentGameState.players, GameState.currentPlayerData.color);
+        reports = observedPlayer.reports;
+      }
+      return reports;
+    }
+    return undefined;
+  }
 
   // ----------------------------------------------------------------------------
   // Get our session data and load the game for the first time

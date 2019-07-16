@@ -13,8 +13,8 @@ angular.module('CyberWar')
 
     // ----------------------------------------------------------------------------
     function onGameStateChanged() {
-      var serverNodeA = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeA.color, $scope.nodeA.index);
-      var serverNodeB = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeB.color, $scope.nodeB.index);
+      var serverNodeA = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeA.color, $scope.nodeA.index);
+      var serverNodeB = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, $scope.nodeB.color, $scope.nodeB.index);
 
       // The line is "hidden" by default
       var lineColor = noColor;

@@ -32,7 +32,7 @@ var getAttacks = function(prevTurn, newTurn) {
         var attack = getAttackAgainstTarget(attacks, order.node);
         if (!attack) {
           attack = {
-            targetPlayer: Util.Shared.findPlayerByColor(newTurn.players, Util.Shared.getServerNode(prevTurn.serverNodes, order.node.color, order.node.index).ownerColor),
+            targetPlayer: Util.Shared.List.findPlayerByColor(newTurn.players, Util.Shared.List.getServerNode(prevTurn.serverNodes, order.node.color, order.node.index).ownerColor),
             target: order.node,
             defenderStrength: getNodeStrength(newTurn.serverNodes, order.node),
             attackers: []
@@ -42,7 +42,7 @@ var getAttacks = function(prevTurn, newTurn) {
         var attackStrength = getNodeStrength(newTurn.serverNodes, order.params.source);
         attack.attackers.push({
           prevTurnPlayer: player,
-          newTurnPlayer: Util.Shared.findPlayerByName(newTurn.players, player.name),
+          newTurnPlayer: Util.Shared.List.findPlayerByName(newTurn.players, player.name),
           attackerNode: order.params.source,
           type: order.action,
           strength: attackStrength,
@@ -58,12 +58,12 @@ var getAttacks = function(prevTurn, newTurn) {
 
 //------------------------------------------------------------------------------
 var getAttackAgainstTarget = function(attacks, target) {
-  return _.find(attacks, function(attack) { return Util.Shared.isSameLocation(attack.target, target); });
+  return _.find(attacks, function(attack) { return Util.Shared.Equality.isSameLocation(attack.target, target); });
 }
 
 //------------------------------------------------------------------------------
 var getNodeStrength = function(serverNodes, node) {
-  return Util.Shared.getServerNode(serverNodes, node.color, node.index).strength;
+  return Util.Shared.List.getServerNode(serverNodes, node.color, node.index).strength;
 }
 
 //------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ var performBasicAttack = function(serverNodes, attack) {
 //------------------------------------------------------------------------------
 var onAttackSuccess = function(serverNodes, attack, newOwnerColor) {
   // Change the owner color of the node and reset the strength
-  var serverNode = Util.Shared.getServerNode(serverNodes, attack.target.color, attack.target.index);
+  var serverNode = Util.Shared.List.getServerNode(serverNodes, attack.target.color, attack.target.index);
   delete serverNode.manipulateColor;
   serverNode.ownerColor = newOwnerColor;
   serverNode.strength = 1;
@@ -213,7 +213,7 @@ var onAttackSuccess = function(serverNodes, attack, newOwnerColor) {
 
 //------------------------------------------------------------------------------
 var reportAttack = function(attack, attacker) {
-  var previouslyScannedNode = Util.Shared.isLocationInNodeList(attack.target, attacker.prevTurnPlayer.scannedNodes);
+  var previouslyScannedNode = Util.Shared.List.isLocationInNodeList(attack.target, attacker.prevTurnPlayer.scannedNodes);
 
   // Add a report of this action to the acting player
   var reportParams = {

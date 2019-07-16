@@ -59,7 +59,7 @@ angular.module('CyberWar')
 
     // ----------------------------------------------------------------------------
     $scope.canInvest = function() {
-      return !GameState.submittedTurn();
+      return !GameState.hasSubmittedTurn();
     }
 
     // ----------------------------------------------------------------------------
