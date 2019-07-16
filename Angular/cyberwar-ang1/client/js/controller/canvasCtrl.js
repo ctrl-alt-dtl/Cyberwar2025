@@ -39,7 +39,7 @@ angular.module('CyberWar')
     var selectedNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, color, index);
     var validActions = getValidActions(selectedNode);
     var usableSourceNodes = rejectUsedSourceNodes(getUsableAdjacentNodes(selectedNode));
-    var validColors = getValidColors(selectedNode);
+    var validColors = getValidColors();
     modalInstance = $uibModal.open({
       animation: true,
       ariaLabelledBy: 'modal-title',
@@ -376,10 +376,10 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
-  var getValidColors = function(node) {
+  var getValidColors = function() {
     var validColors = [];
     _.each(Color, function(color) {
-      if (color != GameState.currentPlayerData.color && color != node.ownerColor) {
+      if (color != GameState.currentPlayerData.color) {
         validColors.push(color);
       }
     });
