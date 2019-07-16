@@ -80,6 +80,7 @@ Left Area UI styling
 #left_aside .round-indicator {
     height: 5%;
     width: 100%;
+    font-size: large;
 }
 #left_aside .reports {
     height: 5%;
