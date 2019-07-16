@@ -2,7 +2,7 @@
 body {
 
     background-color: #242323;
-    background-image: url("../img/newBackground-01.svg");
+    background-image: url("/client/img/newBackground-01.png");
     background-repeat: no-repeat;
     background-size: cover;
     scroll-behavior: auto;
