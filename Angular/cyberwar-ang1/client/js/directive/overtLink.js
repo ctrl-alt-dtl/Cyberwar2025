@@ -30,8 +30,9 @@ angular.module('CyberWar')
               lineColor = GameUtil.getColor(serverNodeAColor);
             }
           }
-          // If they don't match, check to see if we own one and are exploiting the other
-          else {
+          // If they don't match, check if both nodes are in our network
+          else if (GameUtil.List.isLocationInList(serverNodeA.location, GameState.positivelyLinkedNodes) &&
+                   GameUtil.List.isLocationInList(serverNodeB.location, GameState.positivelyLinkedNodes)) {
             // If the first node is our color, check if we are exploiting our way to the second color
             if (serverNodeAColor == GameState.currentPlayerData.color &&
               // If we reached this node through an exploit link
