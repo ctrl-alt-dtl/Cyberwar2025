@@ -9,15 +9,20 @@ angular.module('CyberWar')
     });
 
     // ----------------------------------------------------------------------------
-    $scope.hasTakenTurn = function(player) {
-      return GameUtil.hasPlayerTakenTurn(player);
+    function onGameStateChanged() {
+      $scope.players = GameState.currentGameState.players.filter(player => !player.isObserver)
+        .map(player => ({ name: player.name, hasTakenTurn: hasTakenTurn(player), isEliminated: isEliminated(player) }));
     }
 
     // ----------------------------------------------------------------------------
-    function onGameStateChanged() {
-      $scope.players = GameState.currentGameState.players.filter(player => !player.isObserver);
+    var hasTakenTurn = function(player) {
+      return GameUtil.Player.hasPlayerTakenTurn(player);
     }
 
+    // ----------------------------------------------------------------------------
+    var isEliminated = function(player) {
+      return GameUtil.Player.isPlayerEliminated(GameState.currentGameState, player);
+    }
   }
   return {
     link: link,

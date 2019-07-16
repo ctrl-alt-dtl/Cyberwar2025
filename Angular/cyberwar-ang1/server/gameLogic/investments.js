@@ -8,7 +8,7 @@ var ResearchType = require("../../shared/researchType.js").ResearchType;
 //------------------------------------------------------------------------------
 this.applyInvestments = function(prevTurn, newTurn) {
   _.each(prevTurn.players, function(prevPlayer) {
-    var currentPlayer = Util.Shared.findPlayerByName(newTurn.players, prevPlayer.name);
+    var currentPlayer = Util.Shared.List.findPlayerByName(newTurn.players, prevPlayer.name);
     if (prevPlayer.investments && currentPlayer.research) {
       _.each(ResearchType, function(researchType) {
         currentPlayer.research[researchType] = prevPlayer.research[researchType] + prevPlayer.investments[researchType];

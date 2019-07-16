@@ -45,8 +45,13 @@
     <script src="shared/color.js"></script>
     <script src="shared/gameRequest.js"></script>
     <script src="shared/researchType.js"></script>
-    <script src="shared/sharedUtil.js"></script>
     <script src="shared/socketType.js"></script>
+    <script src="shared/util/actionUtil.js"></script>
+    <script src="shared/util/equalityUtil.js"></script>
+    <script src="shared/util/listUtil.js"></script>
+    <script src="shared/util/networkUtil.js"></script>
+    <script src="shared/util/playerUtil.js"></script>
+    <script src="shared/util/sharedUtil.js"></script>
 
     <!-- Non-Angular Classes/Modules -->
     <script src="module/callbackListener.js"></script>
@@ -85,6 +90,7 @@
     <script src="controller/canvasCtrl.js"></script>
     <script src="controller/exploitLinkDialog.js"></script>
     <script src="controller/game.js"></script>
+    <script src="controller/gameOver.js"></script>
     <script src="controller/loading.js"></script>
     <script src="controller/observerSwitchPlayerDialog.js"></script>
     <script src="controller/reports.js"></script>
@@ -103,7 +109,7 @@
           <div class="round-indicator" >Round # {{GameState.currentTurnNumber + 1}}</div>
           <div class="reports">
             <button ng-if="isObserver()" ng-click="toggleBoardView()">{{getBoardViewButtonText()}}</button>
-            <button ng-click="showReport()">View Reports</button>
+            <button ng-if="hasReports()" ng-click="showReport()">View Reports</button>
           </div>
           <ready-indicator></ready-indicator>
           <chat></chat>
