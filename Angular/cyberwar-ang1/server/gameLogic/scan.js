@@ -4,7 +4,6 @@
 var _ = require("underscore");
 var Util = require("./util.js");
 var ActionType = require("../../shared/actionType.js").ActionType;
-var AdjudicationMath = require("../../shared/adjudicationMath.js").AdjudicationMath;
 
 //------------------------------------------------------------------------------
 this.performOrders = function(prevTurn, newTurn) {
@@ -20,8 +19,9 @@ this.performOrders = function(prevTurn, newTurn) {
       else if (order.action == ActionType.ANALYZE) {
         var newTurnPlayer = Util.Shared.List.findPlayerByName(newTurn.players, player.name);
         var positivelyLinkedNodes = Util.Shared.Network.getPositivelyLinkedNodes(player.color, newTurn.serverNodes, player.exploitLinks);
-        _.each(positivelyLinkedNodes, function(linkedNode) {
-          var serverNode = Util.Shared.List.getServerNode(newTurn.serverNodes, linkedNode.color, linkedNode.index);
+        var networkAdjacentNodes = Util.Shared.Network.getNeighborsToNetwork(newTurn.serverNodes, positivelyLinkedNodes, player.color, player.exploitLinks);
+        positivelyLinkedNodes.concat(networkAdjacentNodes).forEach(nodeLocation => {
+          var serverNode = Util.Shared.List.getServerNode(newTurn.serverNodes, nodeLocation.color, nodeLocation.index);
           if (serverNode) {
             performScan(newTurn, newTurnPlayer, serverNode, ActionType.ANALYZE);
           }
@@ -41,7 +41,10 @@ var performScan = function(turn, actingPlayer, serverNode, actionType) {
     if (player.color != actingPlayer.color) {
       _.each(player.exploitLinks, function(exploitLink) {
         if (Util.Shared.Equality.isLocationInLink(exploitLink, serverNode.location)) {
-          actingPlayer.scannedExploitLinks.push(exploitLink);
+          // Don't add the exploit link to our scanned list if we already scanned it from another node
+          if (!Util.Shared.List.isLinkInLinkList(exploitLink, actingPlayer.scannedExploitLinks)) {
+            actingPlayer.scannedExploitLinks.push(exploitLink);
+          }
           foundExploitLinks.push({ owner: player.color, link: exploitLink })
         }
       });
