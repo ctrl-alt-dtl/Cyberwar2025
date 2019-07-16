@@ -38,8 +38,8 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   $scope.serverNodeClicked = function(color, index) {
     var selectedNode = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, color, index);
-    var validActions = getValidActions(selectedNode);
-    var usableSourceNodes = rejectUsedSourceNodes(getUsableAdjacentNodes(selectedNode));
+    var usableSourceNodes = getUsableAdjacentNodes(selectedNode);
+    var validActions = getValidActions(selectedNode, usableSourceNodes);
     var validColors = getValidColors();
     modalInstance = $uibModal.open({
       animation: true,
@@ -151,10 +151,10 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
-  var getValidActions = function(node) {
+  var getValidActions = function(node, usableSourceNodes) {
     var validActions = [];
     _.each(ActionType, function(actionType) {
-      if (isActionTypeValidForNode(actionType, node)) {
+      if (isActionTypeValidForNode(actionType, node, usableSourceNodes)) {
         validActions.push(actionType);
       }
     });
@@ -162,11 +162,11 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
-  var isActionTypeValidForNode = function(actionType, node) {
+  var isActionTypeValidForNode = function(actionType, node, usableSourceNodes) {
     if (!GameState.hasSubmittedTurn()) {
       var researchType = getResearchType(actionType);
-      var actionLevel = GameUtil.Action.getActionLevel(actionType);
-      if (researchType && actionLevel > 0 && GameUtil.isActionUnlocked(GameState.currentPlayerData.research[researchType], actionLevel) && canPlayerAffordAction(actionLevel)) {
+      if (researchType && GameUtil.Action.isActionUnlocked(GameState.currentPlayerData.research[researchType], actionType) &&
+        hasValidUsableSourceNodes(actionType, usableSourceNodes) && canPlayerAffordAction(actionType)) {
         switch (actionType) {
           case ActionType.SECURE:
             return canSecureNode(node);
@@ -215,19 +215,19 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canSecureNode = function(node) {
     // Players can only secure server nodes they own that aren't at max strength yet
-    return doesPlayerOwnNode(node) && !isPlayerBase(node) && !isNodeAtMaxStrength(node);
+    return doesPlayerOwnNode(node) && isInPlayersNetwork(node) && !isPlayerBase(node) && !isNodeAtMaxStrength(node);
   }
 
   // ----------------------------------------------------------------------------
   var canExpelNode = function(node) {
     // Players can only expel server nodes they own
-    return doesPlayerOwnNode(node) && !isPlayerBase(node);
+    return doesPlayerOwnNode(node) && isInPlayersNetwork(node) && !isPlayerBase(node);
   }
 
   // ----------------------------------------------------------------------------
   var canAnalyzeNode = function(node) {
     // Players can only scan their own nodes or exploited nodes
-    return doesPlayerOwnNode(node) || GameUtil.List.isLocationInLinkList(node.location, GameState.currentPlayerData.exploitLinks);
+    return isInPlayersNetwork(node);
   }
 
   // ----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canScanNode = function(node) {
     // Players can scan server nodes they own or adjacent server nodes
-    return !isPlayerBase(node) && (doesPlayerOwnNode(node) || isAdjacentToNetwork(node));
+    return !isPlayerBase(node) && (isInPlayersNetwork(node) || isAdjacentToNetwork(node));
   }
 
   // ----------------------------------------------------------------------------
@@ -263,17 +263,43 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canImplantNode = function(node) {
     // Players can implant nodes they can acquire or an opponent base adjacent to the network
-    return canAcquireNode(node) || (isPlayerBase(node) && !isPlayerImplanted(node) && !doesPlayerOwnNode(node) && isAdjacentToNetwork(node));
+    return canAcquireNode(node) || (isPlayerBase(node) && !isPlayerImplanted(node) && !isInPlayersNetwork(node) && isAdjacentToNetwork(node));
   }
 
   // ----------------------------------------------------------------------------
   var doesPlayerOwnNode = function(node) {
-    return GameState.currentPlayerData.isObserver || node.ownerColor == GameState.currentPlayerData.color;
+    // return node.ownerColor == GameState.currentPlayerData.color;
+    return node.ownerColor == GameState.currentPlayerData.color;
   }
 
   // ----------------------------------------------------------------------------
-  var canPlayerAffordAction = function(level) {
-    return level <= GameState.currentActionPoints;
+  var isInPlayersNetwork = function(node) {
+    // return node.ownerColor == GameState.currentPlayerData.color;
+    return GameUtil.List.isLocationInList(node.location, GameState.positivelyLinkedNodes);
+  }
+
+  // ----------------------------------------------------------------------------
+  var hasValidUsableSourceNodes = function(actionType, usableSourceNodes) {
+    switch (actionType) {
+      case ActionType.ACQUIRE:
+      case ActionType.MANIPULATE:
+      case ActionType.DENY:
+      case ActionType.EXPLOIT:
+        // These actions require at least one valid source node
+        return usableSourceNodes[actionType].length > 0;
+    }
+    // All other actions require no source nodes
+    return usableSourceNodes[actionType].length == 0;
+  }
+
+  // ----------------------------------------------------------------------------
+  var canPlayerAffordAction = function(actionType) {
+    return GameUtil.Action.getCost(actionType) <= GameState.currentActionPoints;
+  }
+
+  // ----------------------------------------------------------------------------
+  var canPlayerAffordActionFromSource = function(actionType, sourceLocation, destinationLocation) {
+    return GameUtil.Action.getCost(actionType, sourceLocation, destinationLocation) <= GameState.currentActionPoints;
   }
 
   // ----------------------------------------------------------------------------
@@ -304,26 +330,62 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   var getUsableAdjacentNodes = function(node) {
-    var adjacentNodes = [];
-
-    _.each(GameUtil.Network.getNeighbors(node.location), function(neighbor) {
-      var serverNode = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
-      if (serverNode && (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.List.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks))) {
-        adjacentNodes.push(neighbor);
-      }
+    var adjacentNodes = {};
+    Object.values(ActionType).forEach(actionType => {
+      // Get all the possible adjacent nodes we could use for the node
+      var usableAdjacentLocations = getUsableAdjacentNodesForAction(node, actionType);
+      usableAdjacentLocations = usableAdjacentLocations.filter(usableAdjacentLocation => {
+        // Only allow nodes in our network
+        return isInPlayersNetwork({ location: usableAdjacentLocation }) &&
+        // Only allow nodes we can afford that action from
+        canPlayerAffordActionFromSource(actionType, usableAdjacentLocation, node.location) &&
+        // Only allow nodes we aren't already using
+        !isUsingSourceNode(usableAdjacentLocation);
+      });
+      adjacentNodes[actionType] = usableAdjacentLocations;
     });
-
     return adjacentNodes;
   }
 
   // ----------------------------------------------------------------------------
-  var rejectUsedSourceNodes = function(sourceNodes) {
-    // Reject any nodes who are being used as a source node in current orders
-    return _.reject(sourceNodes, function(node) {
-      return node.index != 0 && _.any(CurrentOrders.getOrders(), function(order) {
-        return order.params && order.params.source && GameUtil.Equality.isSameLocation(order.params.source, node);
-      });
+  var isUsingSourceNode = function(sourceLocation) {
+    return CurrentOrders.getOrders().some(order => order.params && order.params.source && GameUtil.Equality.isSameLocation(order.params.source, sourceLocation));
+  }
+
+  // ----------------------------------------------------------------------------
+  var getUsableAdjacentNodesForAction = function(destinationNode, actionType) {
+    switch(actionType) {
+      // You can acquire/manipulate from any owned neighbor or from the node itself if the player has exploited it
+      case ActionType.ACQUIRE:
+      case ActionType.MANIPULATE:
+        var nodes = getOwnedNeighborNodes(destinationNode);
+        if (destinationNode.ownerColor != GameState.currentPlayerData.color &&
+          GameUtil.List.isDestinationInLinkList(destinationNode.location, GameState.currentPlayerData.exploitLinks)) {
+          nodes.unshift(destinationNode.location);
+        }
+        return nodes;
+      // You can deny a node from any owned neighbor node
+      case ActionType.DENY:
+        return getOwnedNeighborNodes(destinationNode);
+      // You can exploit it from any owned neighbor node where you don't already have that exploit link
+      case ActionType.EXPLOIT:
+        var nodes = getOwnedNeighborNodes(destinationNode);
+        return nodes.filter(sourceLocation => !GameUtil.List.isLinkInLinkList({ nodeA: sourceLocation, nodeB: destinationNode.location }, GameState.currentPlayerData.exploitLinks));
+    }
+    // Other actions don't need source nodes
+    return [];
+  }
+
+  // ----------------------------------------------------------------------------
+  var getOwnedNeighborNodes = function(node) {
+    var ownedNeighbors = [];
+    _.each(GameUtil.Network.getNeighbors(node.location), function(neighbor) {
+      var serverNode = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, neighbor.color, neighbor.index);
+      if (serverNode && (serverNode.ownerColor == GameState.currentPlayerData.color || GameUtil.List.isLocationInLinkList(neighbor, GameState.currentPlayerData.exploitLinks))) {
+        ownedNeighbors.push(neighbor);
+      }
     });
+    return ownedNeighbors;
   }
 
   // ----------------------------------------------------------------------------

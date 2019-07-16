@@ -14,7 +14,7 @@ this.SharedUtil = function(ActionType, Color, ActionUtil, EqualityUtil, ListUtil
     IMPLANT_BASE_DEFENSE: 4
   }
 
-  this.Action = new ActionUtil(ActionType);
+  this.Action = new ActionUtil(ActionType, this.Config);
   this.Equality = new EqualityUtil();
   this.List = new ListUtil(this.Equality);
   this.Network = new NetworkUtil(Color, this.Equality, this.List);

@@ -4,7 +4,6 @@ angular.module('CyberWar')
   $scope.displayedOwner = displayedOwner;
   $scope.manipulateOwner = manipulateOwner;
   $scope.displayedStrength = displayedStrength;
-  $scope.usableSourceNodes = usableSourceNodes;
   $scope.validActions = validActions;
   $scope.validColors = validColors;
   $scope.selected = { params : {} };
@@ -12,11 +11,11 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   $scope.selectAction = function(action) {
     $scope.selected.action = action;
-    $scope.needSource = doesActionNeedSource(action);
+    $scope.usableSourceNodes = usableSourceNodes[action];
     $scope.needColor = action == ActionType.MANIPULATE;
 
     // Setup source parameter
-    if (!$scope.needSource) {
+    if ($scope.usableSourceNodes.length == 0) {
       delete $scope.selected.params.source;
     }
     else if ($scope.usableSourceNodes.length > 0) {
@@ -57,18 +56,6 @@ angular.module('CyberWar')
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-
-  // ----------------------------------------------------------------------------
-  var doesActionNeedSource = function(action) {
-    switch (action) {
-      case ActionType.ACQUIRE:
-      case ActionType.MANIPULATE:
-      case ActionType.DENY:
-      case ActionType.EXPLOIT:
-        return true;
-    }
-    return false;
-  }
 
   if ($scope.validActions.length > 0) {
     $scope.selectAction($scope.validActions[0]);

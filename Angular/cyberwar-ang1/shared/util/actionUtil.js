@@ -1,7 +1,7 @@
 /*******************************************************************************
  * A set of helper functions for both server and client-side action logic
  ******************************************************************************/
-this.ActionUtil = function(ActionType) {
+this.ActionUtil = function(ActionType, Config) {
   //---------------------------------------------------------------------------
   this.getCurrentActionPoints = function(turnNumber, positivelyLinkedNodes) {
     // Everyone gets 3 points on the first turn
@@ -24,13 +24,24 @@ this.ActionUtil = function(ActionType) {
   }
 
   //---------------------------------------------------------------------------
+  this.isActionUnlocked = function(currentResearchInvestment, actionType) {
+    return getActionLevel(actionType) <= this.getResearchLevelUnlocked(currentResearchInvestment);
+  }
+
+  //---------------------------------------------------------------------------
   this.getCost = function(actionType, source, destination) {
-    return this.getActionLevel(actionType) + getInterDomainCost(source, destination)
+    return getActionLevel(actionType) + getInterDomainCost(source, destination)
+  }
+
+  //---------------------------------------------------------------------------
+  this.getResearchLevelUnlocked = function(currentResearchInvestment) {
+    var researchPerLevel = Config.MAX_RESEARCH_POINTS / (Config.MAX_RESEARCH_LEVELS - 1);
+    return (currentResearchInvestment / researchPerLevel) + 1;
   }
 
   // ----------------------------------------------------------------------------
   // Get the action level of this action
-  this.getActionLevel = function(actionType) {
+  var getActionLevel = function(actionType) {
     switch(actionType) {
       case ActionType.SECURE:
       case ActionType.ACQUIRE:
