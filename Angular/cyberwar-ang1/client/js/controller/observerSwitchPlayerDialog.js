@@ -4,11 +4,11 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.ok = function () {
-    modalInstance.close();
+    $uibModalInstance.close();
   };
 
   // ----------------------------------------------------------------------------
   $scope.cancel = function () {
-    modalInstance.dismiss();
+    $uibModalInstance.dismiss();
   };
 });
