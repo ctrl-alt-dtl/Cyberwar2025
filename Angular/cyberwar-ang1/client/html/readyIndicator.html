@@ -1,6 +1,6 @@
 <div class="pressure-indicator">
   <h3>Player Ready</h3>
-  <div class="ready-indicator" ng-repeat="player in players" player="player" ng-class="{ 'not-ready': !hasTakenTurn(player) }">
+  <div class="ready-indicator" ng-repeat="player in players" player="player" ng-class="{ 'not-ready': !player.hasTakenTurn && !player.isEliminated, 'eliminated': player.isEliminated }">
     {{player.name}}
   </div>
 </div>

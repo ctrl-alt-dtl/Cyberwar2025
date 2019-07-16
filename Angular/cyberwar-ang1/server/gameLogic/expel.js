@@ -14,7 +14,7 @@ this.performOrders = function(prevTurn, newTurn) {
         var removedLinkInformation = [];
         _.each(newTurn.players, function(newTurnPlayer) {
           if (newTurnPlayer.color != player.color) {
-            var newLinks = _.reject(newTurnPlayer.exploitLinks, (link) => Util.Shared.isLocationInLink(link, order.node));
+            var newLinks = _.reject(newTurnPlayer.exploitLinks, (link) => Util.Shared.Equality.isLocationInLink(link, order.node));
             if (newLinks.length != newTurnPlayer.exploitLinks.length) {
               removedLinkInformation.push({ owner: newTurnPlayer.color, numRemoved: newTurnPlayer.exploitLinks.length - newLinks.length });
               Util.addReport(newTurnPlayer, ActionType.EXPEL, order.node, { attackedPlayer: newTurnPlayer.name });
@@ -24,8 +24,8 @@ this.performOrders = function(prevTurn, newTurn) {
         });
 
         // Add a report of this action to the acting player
-        var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
-        Util.addReport(newTurnPlayer, ActionType.EXPEL, order.node, Util.Shared.isLocationInNodeList(order.node, player.scannedNodes) ? { removedLinks: removedLinkInformation } : undefined);
+        var newTurnPlayer = Util.Shared.List.findPlayerByName(newTurn.players, player.name);
+        Util.addReport(newTurnPlayer, ActionType.EXPEL, order.node, Util.Shared.List.isLocationInNodeList(order.node, player.scannedNodes) ? { removedLinks: removedLinkInformation } : undefined);
       }
     });
   });

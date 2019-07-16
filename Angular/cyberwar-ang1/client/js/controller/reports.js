@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.controller('ReportsController', function($scope, GameState, GameUtil, reports) {
+.controller('ReportsController', function($scope, $uibModalInstance, GameState, GameUtil, reports) {
   sortReports();
 
   // ----------------------------------------------------------------------------
@@ -9,7 +9,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.ok = function () {
-    modalInstance.close();
+    $uibModalInstance.close();
   };
 
   // ----------------------------------------------------------------------------
@@ -200,7 +200,7 @@ angular.module('CyberWar')
     // Are these reports the same type?
     return reports.find(report => report.type == otherReport.type &&
       // Are these reports at the same location?
-      GameUtil.isSameLocation(report.location, otherReport.location) &&
+      GameUtil.Equality.isSameLocation(report.location, otherReport.location) &&
       // Attacked player must either both not exist or both be the same
       report.attackedPlayer == otherReport.attackedPlayer);
   }

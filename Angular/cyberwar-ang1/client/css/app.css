@@ -139,7 +139,6 @@ Left Area UI styling
     width: 375px;
     background-color: #4F4E4E;
     float: left;
-    display: inline-block;
     border: 2px solid black;
     color: black;
 }
@@ -328,6 +327,9 @@ Ready Indicator Directive styling
 @keyframes not-ready {
     from { background-color: #DBA81D; }
     to { background-color: #E6DC25; }
+}
+.pressure-indicator .ready-indicator.eliminated {
+    background-color: dimgray;
 }
 
 /*

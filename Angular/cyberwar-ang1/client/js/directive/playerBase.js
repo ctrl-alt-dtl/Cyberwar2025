@@ -19,7 +19,7 @@ angular.module('CyberWar')
       if (GameState.currentGameState && GameState.currentPlayerData) {
         // If we have a new message that is to the current player and from this base,
         // show our chat notification, unless we are currently looking at the chat for this base
-        var basePlayerName = GameUtil.findPlayerByColor(GameState.currentGameState.players, $scope.color).name;
+        var basePlayerName = GameUtil.List.findPlayerByColor(GameState.currentGameState.players, $scope.color).name;
         if (message.isNew &&
           message.to == GameState.currentPlayerData.name &&
           message.from == basePlayerName &&

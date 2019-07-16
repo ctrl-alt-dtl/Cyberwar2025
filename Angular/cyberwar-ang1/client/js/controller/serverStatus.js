@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.controller('ServerStatusController', function($scope, GameState, GameUtil, selectedNode, displayedOwner, manipulateOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
+.controller('ServerStatusController', function($scope, $uibModalInstance, GameState, GameUtil, selectedNode, displayedOwner, manipulateOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
   $scope.selectedNode = selectedNode;
   $scope.displayedOwner = displayedOwner;
   $scope.manipulateOwner = manipulateOwner;
@@ -45,17 +45,17 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.getChatToName = function(color) {
-    return GameUtil.findPlayerByColor(GameState.currentGameState.players, color).name;
+    return GameUtil.List.findPlayerByColor(GameState.currentGameState.players, color).name;
   }
 
   // ----------------------------------------------------------------------------
   $scope.ok = function () {
-    modalInstance.close($scope.selected, $scope.selected);
+    $uibModalInstance.close($scope.selected, $scope.selected);
   };
 
   // ----------------------------------------------------------------------------
   $scope.cancel = function () {
-    modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
 
   // ----------------------------------------------------------------------------

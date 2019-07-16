@@ -12,7 +12,7 @@ this.performOrders = function(prevTurn, newTurn) {
     _.each(player.orders, function(order) {
       if (order.action == ActionType.IMPLANT) {
         // Find the node and drop its strength down to the right amount
-        var serverNode = Util.Shared.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
+        var serverNode = Util.Shared.List.getServerNode(newTurn.serverNodes, order.node.color, order.node.index);
         // Implants work differently for non-base server nodes vs base nodes
         if (order.node.index > 0) {
           implantServerNode(newTurn, player, serverNode);
@@ -53,7 +53,7 @@ var implantServerNode = function(newTurn, player, serverNode) {
   serverNode.strength = Util.Shared.Config.IMPLANT_STRENGTH;
 
   // Add a report of this action to the acting player
-  var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
+  var newTurnPlayer = Util.Shared.List.findPlayerByName(newTurn.players, player.name);
   Util.addReport(newTurnPlayer, ActionType.IMPLANT, serverNode.location);
 }
 
@@ -67,7 +67,7 @@ var implantBaseNode = function(newTurn, player, serverNode) {
   if (AdjudicationMath.captureOddsOneVsOne(Util.Shared.Config.IMPLANT_BASE_DEFENSE, Util.Shared.Config.IMPLANT_BASE_STRENGTH)) {
     success = true;
 
-    var serverNodeOwner = Util.Shared.findPlayerByColor(newTurn.players, serverNode.ownerColor);
+    var serverNodeOwner = Util.Shared.List.findPlayerByColor(newTurn.players, serverNode.ownerColor);
     serverNodeOwner.implanted = true;
 
     // Add a report of this action to the acting player and the attacked player
@@ -75,7 +75,7 @@ var implantBaseNode = function(newTurn, player, serverNode) {
   }
 
   // Add a report of this action to the acting player and the attacked player
-  var newTurnPlayer = Util.Shared.findPlayerByName(newTurn.players, player.name);
+  var newTurnPlayer = Util.Shared.List.findPlayerByName(newTurn.players, player.name);
   Util.addReport(newTurnPlayer, ActionType.IMPLANT, serverNode.location, { success: success });
 }
 
