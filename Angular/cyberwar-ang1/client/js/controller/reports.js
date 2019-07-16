@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.controller('ReportsController', function($scope, GameState, GameUtil, reports) {
+.controller('ReportsController', function($scope, $uibModalInstance, GameState, GameUtil, reports) {
   sortReports();
 
   // ----------------------------------------------------------------------------
@@ -9,7 +9,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.ok = function () {
-    modalInstance.close();
+    $uibModalInstance.close();
   };
 
   // ----------------------------------------------------------------------------

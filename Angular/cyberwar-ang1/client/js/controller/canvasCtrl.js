@@ -3,6 +3,7 @@ angular.module('CyberWar')
   GameState.addListener(onGameStateChanged);
   $scope.Color = Color;
   $scope.nodesPerDomain = new Array(GameUtil.Config.SERVER_NODES_PER_DOMAIN);
+  var modalInstance;
 
   // ----------------------------------------------------------------------------
   $scope.$on('$destroy', function() {
