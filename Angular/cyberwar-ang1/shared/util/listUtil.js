@@ -44,4 +44,9 @@ this.ListUtil = function(Equality) {
   this.isLocationInList = function(location, list) {
     return list.some(listLocation => Equality.isSameLocation(listLocation, location));
   }
+
+  //------------------------------------------------------------------------------
+  this.isLinkInLinkList = function(link, linkList) {
+    return linkList.some(listLink => Equality.isSameLink(link, listLink));
+  }
 }

@@ -8,6 +8,11 @@ this.EqualityUtil = function() {
   }
 
   //------------------------------------------------------------------------------
+  this.isSameLink = function(linkA, linkB) {
+    return this.isSameLocation(linkA.nodeA, linkB.nodeA) && this.isSameLocation(linkA.nodeB, linkB.nodeB);
+  }
+
+  //------------------------------------------------------------------------------
   this.isSourceInLink = function(link, location) {
     return this.isSameLocation(link.nodeA, location);
   }
