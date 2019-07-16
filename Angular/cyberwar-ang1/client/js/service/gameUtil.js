@@ -28,6 +28,11 @@ angular.module("CyberWar")
 
   //------------------------------------------------------------------------------
   this.getServerNodeDisplayedColor = function(serverNode, player, positivelyLinkedNodes) {
+    // If it's a base, return its location's color
+    if (serverNode.location.index == 0) {
+      return serverNode.location.color;
+    }
+
     // If this is the player's node, they see the real color
     if (player.color == serverNode.ownerColor) {
       return serverNode.ownerColor;

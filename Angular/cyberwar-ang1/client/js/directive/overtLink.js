@@ -21,9 +21,34 @@ angular.module('CyberWar')
       if (serverNodeA && serverNodeB) {
         var serverNodeAColor = GameUtil.getServerNodeDisplayedColor(serverNodeA, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
         var serverNodeBColor = GameUtil.getServerNodeDisplayedColor(serverNodeB, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
-        // If they both have colors and they match, use the matching color
-        if (serverNodeAColor && serverNodeBColor && serverNodeAColor == serverNodeBColor) {
-          lineColor = GameUtil.getColor(serverNodeAColor);
+        // If they both have colors, check if they match
+        if (serverNodeAColor && serverNodeBColor) {
+          // If both colors match, check if the color is either not our color or is not manipulated to look like our color
+          if (serverNodeAColor == serverNodeBColor) {
+            // If the color is another player's color or we actually own both nodes, then color it the matching color
+            if (serverNodeAColor != GameState.currentPlayerData.color || (serverNodeA.manipulateColor != GameState.currentPlayerData.color && serverNodeB.manipulateColor != GameState.currentPlayerData.color)) {
+              lineColor = GameUtil.getColor(serverNodeAColor);
+            }
+          }
+          // If they don't match, check to see if we own one and are exploiting the other
+          else {
+            // If the first node is our color, check if we are exploiting our way to the second color
+            if (serverNodeAColor == GameState.currentPlayerData.color &&
+              // If we reached this node through an exploit link
+              GameUtil.List.isDestinationInLinkList(serverNodeB.location, GameState.currentPlayerData.exploitLinks) &&
+              // But this isn't the same link AS that exploit link
+              !GameUtil.List.isLinkInLinkList({ nodeA: serverNodeA.location, nodeB: serverNodeB.location }, GameState.currentPlayerData.exploitLinks)) {
+              lineColor = GameUtil.getColor(serverNodeAColor);
+            }
+            // If the second node is our color, check if we are exploiting our way to the second color
+            else if (serverNodeBColor == GameState.currentPlayerData.color &&
+              // If we reached this node through an exploit link
+              GameUtil.List.isDestinationInLinkList(serverNodeA.location, GameState.currentPlayerData.exploitLinks) &&
+              // But this isn't the same link AS that exploit link
+              !GameUtil.List.isLinkInLinkList({ nodeA: serverNodeB.location, nodeB: serverNodeA.location }, GameState.currentPlayerData.exploitLinks)) {
+              lineColor = GameUtil.getColor(serverNodeBColor);
+            }
+          }
         }
       }
       // Update the line's stroke color
