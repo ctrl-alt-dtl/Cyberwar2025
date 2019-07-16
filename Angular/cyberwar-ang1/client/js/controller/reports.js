@@ -74,13 +74,13 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   function addStackableReport(reportList, report, getReportObjectCB, modifyReportObjectCB) {
     // If we already have a similar report, then just modify it, otherwise add a new one
-    var previousReport = getPreviousReport(reportList, report);
+    var newReport = getReportObjectCB(report);
+    var previousReport = getPreviousReport(reportList, newReport);
     if (!previousReport) {
-      reportList.push(getReportObjectCB(report));
+      reportList.push(newReport);
     }
     else {
       modifyReportObjectCB(previousReport, report);
-      previousReport[stackableProperty] += report.params[stackableProperty];
     }
   }
 

@@ -298,7 +298,7 @@ var equalToAny = function(el, gre, blu, pur, red, org, yel) {
         if (equalToAny(greenMargin, blueMargin, purpleMargin, redMargin, orangeMargin, yellowMargin)) {
           // alert("Two or more values are equal!");
           console.log("Notice: Same Winning Value Error! Re-rolling!!");
-          winner = captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow);
+          winner = this.captureMultiCombat(defender, plGreen, plBlue, plPurple, plRed, plOrange, plYellow);
         }
       }
     }
