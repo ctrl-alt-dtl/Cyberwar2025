@@ -221,13 +221,13 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canExpelNode = function(node) {
     // Players can only expel server nodes they own
-    return doesPlayerOwnNode(node) && isInPlayersNetwork(node) && !isPlayerBase(node);
+    return doesPlayerOwnNode(node) && isInPlayersNetwork(node) && !isPlayerBase(node) && !isUsingActionAtDestinationNode(ActionType.EXPEL, node.location);
   }
 
   // ----------------------------------------------------------------------------
   var canAnalyzeNode = function(node) {
     // Players can only scan their own nodes or exploited nodes
-    return isInPlayersNetwork(node);
+    return isInPlayersNetwork(node) && !isUsingAction(ActionType.ANALYZE);
   }
 
   // ----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canScanNode = function(node) {
     // Players can scan server nodes they own or adjacent server nodes
-    return !isPlayerBase(node) && (isInPlayersNetwork(node) || isAdjacentToNetwork(node));
+    return !isPlayerBase(node) && (isInPlayersNetwork(node) || isAdjacentToNetwork(node)) && !isUsingActionAtDestinationNode(ActionType.SCAN, node.location);
   }
 
   // ----------------------------------------------------------------------------
@@ -263,7 +263,7 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   var canImplantNode = function(node) {
     // Players can implant nodes they can acquire or an opponent base adjacent to the network
-    return canAcquireNode(node) || (isPlayerBase(node) && !isPlayerImplanted(node) && !isInPlayersNetwork(node) && isAdjacentToNetwork(node));
+    return (canAcquireNode(node) && !isUsingActionAtDestinationNode(ActionType.IMPLANT, node.location)) || (isPlayerBase(node) && !isPlayerImplanted(node) && !isInPlayersNetwork(node) && isAdjacentToNetwork(node));
   }
 
   // ----------------------------------------------------------------------------
@@ -348,8 +348,18 @@ angular.module('CyberWar')
   }
 
   // ----------------------------------------------------------------------------
+  var isUsingAction = function(actionType) {
+    return CurrentOrders.getOrders().some(order => order.action == actionType);
+  }
+
+  // ----------------------------------------------------------------------------
   var isUsingSourceNode = function(sourceLocation) {
-    return CurrentOrders.getOrders().some(order => order.params && order.params.source && GameUtil.Equality.isSameLocation(order.params.source, sourceLocation));
+    return !sourceLocation.index == 0 && CurrentOrders.getOrders().some(order => order.params && order.params.source && GameUtil.Equality.isSameLocation(order.params.source, sourceLocation));
+  }
+
+  // ----------------------------------------------------------------------------
+  var isUsingActionAtDestinationNode = function(actionType, destinationLocation) {
+    return CurrentOrders.getOrders().some(order => order.action == actionType && GameUtil.Equality.isSameLocation(order.node, destinationLocation));
   }
 
   // ----------------------------------------------------------------------------
