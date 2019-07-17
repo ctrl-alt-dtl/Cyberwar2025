@@ -21,7 +21,7 @@ this.NetworkUtil = function(Color, Equality, List) {
           neighbors.forEach(neighbor => {
             // If this node is owned by the player and hasn't been processed, then process it
             var neighborNode = List.getServerNode(serverNodes, neighbor.color, neighbor.index);
-            if (neighborNode && !List.isLocationInList(neighbor, processedNodes) && (neighborNode.ownerColor == playerColor || Equality.areLocationsLinked(nodeBeingProcessed, neighbor, exploitLinks))) {
+            if (neighborNode && !List.isLocationInList(neighbor, processedNodes) && (neighborNode.ownerColor == playerColor || List.areLocationsLinked(nodeBeingProcessed, neighbor, exploitLinks))) {
               nodesToProcess.push(neighbor);
             }
           });
