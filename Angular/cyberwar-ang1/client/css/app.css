@@ -1,13 +1,16 @@
 /* app css stylesheet */
 body {
 
-    background-color: #242323;
-    background-image: url("/client/img/newBackground-01.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    scroll-behavior: auto;
-    align-items: center;
-    justify-content: center;
+    background: #242323 url("/client/img/newBackground-01.png") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .menu {
@@ -41,13 +44,11 @@ body {
     text-align: center;
     width: 1740px;
     height: 1025px;
-    resize: both;
     position: fixed;
     top: 50%;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
-    /*background: url('../img/titlebackground-hq.png') no-repeat center; */
     vertical-align: middle;
 }
 
@@ -98,7 +99,7 @@ Left Area UI styling
     padding: 10px;
     border-top: 1px solid black;
     display: block;
-    color: #dadada;
+    color: #e1e1e1;
 }
 
 #effects-window {
@@ -229,7 +230,7 @@ td {
     border: 1px solid black;
     display: block;
     padding: 1px;
-    color: #DADADA;
+    color: #e1e1e1;
     background: #2e3131;
     margin-bottom: 1px;
     width: 100%;
