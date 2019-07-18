@@ -39,15 +39,17 @@ this.PlayerUtil = function(ActionType, Action, List, Network) {
             // We have acquired all we can in our domain and can't get out, we are finished
             return true;
           }
-          // Otherwise, we can still get to someone else's domain and can still play
         }
-        // Otherwise there are more nodes for us to acquire, so we're still playing
       }
-      // Otherwise we can still compete with other players for nodes
+      // Otherwise check if there are more nodes for us to acquire
+      else if (!hasUnownedNodes(gameState.serverNodes, accessibleNetwork, player.color)) {
+        // We have nothing left to acquire that we can reach
+        return true;
+      }
     }
-    // If we can't reach another base, check if we've acquired all the nodes in our accessible network
-    else if (!hasUnownedNodes(gameState.serverNodes, accessibleNetwork, player.color)) {
-      // We have acquired all we can, we are done
+    // If we can't reach another base, then we're out
+    else {
+      // We have been cut off from everyone else, we are done
       return true;
     }
 
@@ -99,8 +101,12 @@ this.PlayerUtil = function(ActionType, Action, List, Network) {
   // Look through the list of nodes and see if any are not owned by the given player color
   var hasUnownedNodes = function(serverNodes, locations, playerColor) {
     return locations.some(location => {
-      var serverNode = List.getServerNode(serverNodes, location.color, location.index);
-      return serverNode && serverNode.ownerColor != playerColor;
+      // Ignore player bases since you can't own them
+      if (location.index != 0) {
+        var serverNode = List.getServerNode(serverNodes, location.color, location.index);
+        return serverNode && serverNode.ownerColor != playerColor;
+      }
+      return false;
     });
   }
 }

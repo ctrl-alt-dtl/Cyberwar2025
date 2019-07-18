@@ -15,15 +15,18 @@ this.NetworkUtil = function(Color, List) {
         processedNodes.push(nodeBeingProcessed);
         linkedNodes.push(nodeBeingProcessed);
 
-        // Get all the neighbors of the node being processed
-        var neighbors = this.getNeighbors(nodeBeingProcessed);
-        neighbors.forEach(neighbor => {
-          // If the neighbor node still exists and we haven't processed it already, then process it
-          var neighborNode = List.getServerNode(serverNodes, neighbor.color, neighbor.index);
-          if (neighborNode && !List.isLocationInList(neighbor, processedNodes)) {
-            nodesToProcess.push(neighbor);
-          }
-        });
+        // Don't process neighbors for enemy bases since you can't go through them
+        if (nodeBeingProcessed.index != 0 || nodeBeingProcessed.color == playerColor) {
+          // Get all the neighbors of the node being processed
+          var neighbors = this.getNeighbors(nodeBeingProcessed);
+          neighbors.forEach(neighbor => {
+            // If the neighbor node still exists and we haven't processed it already, then process it
+            var neighborNode = List.getServerNode(serverNodes, neighbor.color, neighbor.index);
+            if (neighborNode && !List.isLocationInList(neighbor, processedNodes)) {
+              nodesToProcess.push(neighbor);
+            }
+          });
+        }
       }
     }
     return linkedNodes;
