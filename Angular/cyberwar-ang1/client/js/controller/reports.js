@@ -68,7 +68,7 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   function isAttackTarget(report) {
-    return GameState.currentPlayerData.name == report.params.attackedPlayer;
+    return report.params && GameState.currentPlayerData.name == report.params.attackedPlayer;
   }
 
   // ----------------------------------------------------------------------------
