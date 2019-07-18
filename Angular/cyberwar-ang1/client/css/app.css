@@ -120,6 +120,9 @@ Left Area UI styling
 #effects-window td.effect {
     height: 35px;
 }
+#effects-window td.inner.effect {
+    cursor: pointer;
+}
 #effects-window td.effect.unlocked {
     background-color: #36A332;
 }
