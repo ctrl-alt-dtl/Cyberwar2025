@@ -4,7 +4,7 @@
 <div class="modal-body" id="modal-body">
   <span class="server-status">
     <div ng-if="validActions.length > 0">
-      Action To Perform:
+      <b>Action To Perform:</b>
       <label ng-repeat="action in validActions">
         <input type="radio" ng-model="selected.action" ng-value="action" ng-change="selectAction(action)"><action type="action"></action>
       </label>
@@ -12,24 +12,28 @@
 
     <!-- Source node picker -->
     <div ng-if="usableSourceNodes.length > 0">
-      Choose Source Node:
+      <b>Choose Source Node:</b>
       <label ng-repeat="node in usableSourceNodes">
-        <input type="radio" ng-model="selected.params.source" ng-value="node"><node node="node"></node>
+        <input type="radio" ng-model="selected.params.source" ng-value="node" ng-change="updateActionCost()"><node node="node"></node>
       </label>
     </div>
 
     <!-- Color picker -->
     <div ng-if="needColor">
-      Choose Opponent Color:
+      <b>Choose Opponent Color:</b>
       <label ng-repeat="(key, color) in validColors">
-        <input type="radio" ng-model="selected.params.color" ng-value="color">{{color}}
+        <input type="radio" ng-model="selected.params.color" ng-value="color" ng-change="updateActionCost()">{{color}}
       </label>
+    </div>
+
+    <div ng-if="selected.action">
+      <b>Action Cost:</b> {{actionCost}}
     </div>
 
     <div ng-if="selectedNode.location.index">
       <div><node label="'Selected Node'" node="selectedNode.location"></node></div>
       <div>
-        <span><player label="'Owner'" color="displayedOwner || 'Unknown'"></player></span>
+        <span><player label="'Owner'" color="displayedOwner"></player></span>
         <span ng-if="manipulateOwner"><player label="'False Owner'" color="manipulateOwner"></player></span>
         <span><b>Strength:</b> {{displayedStrength}}</span>
       </div>

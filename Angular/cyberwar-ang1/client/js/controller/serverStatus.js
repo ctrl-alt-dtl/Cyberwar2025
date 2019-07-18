@@ -29,6 +29,13 @@ angular.module('CyberWar')
     else if ($scope.validColors.length > 0) {
       $scope.selected.params.color = $scope.validColors[0];
     }
+
+    $scope.updateActionCost();
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.updateActionCost = function() {
+    $scope.actionCost = GameUtil.Action.getCost($scope.selected.action, $scope.selected.params ? $scope.selected.params.source : undefined, $scope.selectedNode.location);
   }
 
   // ----------------------------------------------------------------------------
