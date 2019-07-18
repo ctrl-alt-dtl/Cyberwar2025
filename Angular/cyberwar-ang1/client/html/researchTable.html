@@ -9,7 +9,12 @@
         <td class="header cost last"> Cost to Use: </td>
       </tr>
       <tr ng-repeat="cyberEffect in cyberEffects track by $index">
-        <td ng-repeat="(key, researchType) in ResearchType" class="inner effect" ng-class="getUnlockStatus(researchType, $parent.$index + 1)">{{cyberEffect[researchType]}}</td>
+        <td ng-repeat="(key, researchType) in ResearchType"
+            class="inner effect"
+            ng-class="getUnlockStatus(researchType, $parent.$index + 1)"
+            title="{{getTooltip(cyberEffect[researchType])}}"
+            ng-click="getDetails(cyberEffect[researchType])"
+          >{{cyberEffect[researchType]}}</td>
         <td class="effect cost last">{{$index + 1}}</td>
       </tr>
       <tr>
