@@ -71,7 +71,7 @@ function createGame(callback) {
 // A game was deleted, so remove it from the database
 function deleteGame(gid, callback) {
   if (gid !== undefined) {
-    db.remove({ _id: gid }, function(err) {
+    db.deleteOne({ _id: gid }, function(err) {
       if (err) {
         response.send("Error: Could not find game to remove:" + gid);
         return;

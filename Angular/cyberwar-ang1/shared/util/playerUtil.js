@@ -10,33 +10,77 @@ this.PlayerUtil = function(ActionType, Action, List, Network) {
   }
 
   //------------------------------------------------------------------------------
-  // A player is "eliminated" when there are no more nodes they can acquire
+  // A player is "eliminated" when they have been effectively cut off from the main network
   this.isPlayerEliminated = function(gameState, player) {
-    // Get the player's network
-    var positivelyLinkedNodes = Network.getPositivelyLinkedNodes(player.color, gameState.serverNodes, player.exploitLinks);
-
-    // If not, then see if we can acquire any neighboring nodes
-    var neighboringNodes = Network.getNeighborsToNetwork(gameState.serverNodes, positivelyLinkedNodes, player.color, player.exploitLinks);
-    // If there are neighboring nodes, we might still have things to do
-    if (neighboringNodes.length > 0) {
-      // If we don't have any nodes on our network we could acquire, then check to see if we can afford to acquire another node
-      if (!hasUnownedNodes(gameState.serverNodes, positivelyLinkedNodes, player.color)) {
-        var currentActionPoints = Action.getCurrentActionPoints(gameState.roundNumber, positivelyLinkedNodes);
-        var cheapestAcquireCost = getCheapestAcquireCost(positivelyLinkedNodes, neighboringNodes);
-
-        // If we can't afford our cheapest option, then we are finished
-        if (currentActionPoints < cheapestAcquireCost) {
-          return true;
-        }
-      }
+    // If the player was previously eliminated, they are still eliminated
+    if (player.wasEliminated) {
+      return true;
     }
-    // There is nothing left for us to acquire, we are finished
-    else {
+
+    // Get our currently accessible network
+    var accessibleNetwork = Network.getAccessibleNetwork(gameState.serverNodes, player.color);
+    // Check if we can reach any other base
+    if (canReachOtherBase(accessibleNetwork, player.color)) {
+      // Check if our current network is completely in our own domain
+      var positivelyLinkedNodes = Network.getPositivelyLinkedNodes(player.color, gameState.serverNodes, player.exploitLinks);
+      if (isNetworkCompletelyInDomain(positivelyLinkedNodes, player.color)) {
+        // Check if we have acquired all the nodes in our domain that we can reach
+        var networkNeighbors = Network.getNeighborsToNetwork(gameState.serverNodes, positivelyLinkedNodes);
+        if (!hasUnownedNodes(gameState.serverNodes, positivelyLinkedNodes, player.color) &&
+            !isNetworkPartiallyInDomain(networkNeighbors, player.color)) {
+          // Check if we can afford to leave our domain
+          if (!canAffordToLeaveDomain(gameState.roundNumber, networkNeighbors, positivelyLinkedNodes, player.color)) {
+            // We have acquired all we can in our domain and can't get out, we are finished
+            return true;
+          }
+          // Otherwise, we can still get to someone else's domain and can still play
+        }
+        // Otherwise there are more nodes for us to acquire, so we're still playing
+      }
+      // Otherwise we can still compete with other players for nodes
+    }
+    // If we can't reach another base, check if we've acquired all the nodes in our accessible network
+    else if (!hasUnownedNodes(gameState.serverNodes, accessibleNetwork, player.color)) {
+      // We have acquired all we can, we are done
       return true;
     }
 
     // The player is not eliminated
     return false;
+  }
+
+  //------------------------------------------------------------------------------
+  // Is there a player base of a different color in the given network?
+  var canReachOtherBase = function(network, playerColor) {
+    return network.some(location => location.index == 0 && location.color != playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Is the given network completely in the given player color?
+  var isNetworkCompletelyInDomain = function(network, playerColor) {
+    return network.every(location => location.color == playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Is the given network completely in the given player color?
+  var isNetworkPartiallyInDomain = function(network, playerColor) {
+    return network.some(location => location.color == playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Can we afford to acquire a node outside of our domain?
+  var canAffordToLeaveDomain = function(turnNumber, networkNeighbors, positivelyLinkedNodes, playerColor) {
+    // Get all the nodes directly adjacent our domain
+    var domainAdjacentLocations = Network.getDomainAdjacentNodes(playerColor);
+    // Filter out the ones not in our accessible network
+    domainAdjacentLocations = domainAdjacentLocations.filter(location => List.isLocationInList(location, networkNeighbors));
+    // Is there one of the remaining nodes we can afford to acquire?
+    var currentActionPoints = Action.getCurrentActionPoints(turnNumber, positivelyLinkedNodes);
+    return domainAdjacentLocations.some(adjacentLocation => {
+      // Find the node in our domain that could acquire this node
+      var acquiringLocations = Network.getNeighbors(adjacentLocation).filter(neighbor => neighbor.color == playerColor);
+      return acquiringLocations.every(acquiringLocation => Action.getCost(ActionType.ACQUIRE, acquiringLocation, adjacentLocation) <= currentActionPoints);
+    });
   }
 
   //------------------------------------------------------------------------------
@@ -46,30 +90,5 @@ this.PlayerUtil = function(ActionType, Action, List, Network) {
       var serverNode = List.getServerNode(serverNodes, location.color, location.index);
       return serverNode && serverNode.ownerColor != playerColor;
     });
-  }
-
-  //------------------------------------------------------------------------------
-  // Go through the list of neighboring nodes and see which one would be the cheapest for us to acquire
-  var getCheapestAcquireCost = function(positivelyLinkedNodes, neighboringNodes) {
-    return neighboringNodes.reduce((cheapestOverallCost, nodeToAcquire) => {
-      var currentCheapestCost = positivelyLinkedNodes.reduce((cheapestCost, acquiringNode) => {
-        // If this node can acquire the node we want, then get the cost
-        var neighbors = Network.getNeighbors(nodeToAcquire);
-        if (List.isLocationInList(acquiringNode, neighbors)) {
-          // If the cost is less than the cheapest so far, then return the new cheapest
-          var costToAcquire = Action.getCost(ActionType.ACQUIRE, acquiringNode, nodeToAcquire);
-          if (costToAcquire < cheapestCost) {
-            return costToAcquire;
-          }
-        }
-
-        // This is still the cheapest cost so far
-        return cheapestCost;
-      }, Number.MAX_SAFE_INTEGER);
-      if (currentCheapestCost < cheapestOverallCost) {
-        return currentCheapestCost;
-      }
-      return cheapestOverallCost;
-    }, Number.MAX_SAFE_INTEGER);
   }
 }
