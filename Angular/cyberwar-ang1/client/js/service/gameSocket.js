@@ -52,6 +52,12 @@ angular.module("CyberWar")
   }
 
   // ----------------------------------------------------------------------------
+  this.forceForfeit = function(color) {
+    requestSentCBListener.triggerAll();
+    socketSend(GameRequest.FORCE_PLAYER_FORFEIT, { gid: gid, user: user, color: color });
+  }
+
+  // ----------------------------------------------------------------------------
   this.toggleObserverBoardView = function(showFullBoard) {
     requestSentCBListener.triggerAll();
     socketSend(GameRequest.TOGGLE_OBSERVER_BOARD_VIEW, { gid: gid, user: user, showFullBoard: showFullBoard });

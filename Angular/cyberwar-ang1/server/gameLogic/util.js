@@ -42,13 +42,14 @@ this.addNewTurn = function(game, turnToCopy) {
   console.log("\n++++++++++++++++ Turn Number: " + newTurn.roundNumber + " ++++++++++++++++\n");
 
   // Reset player information every round
-  newTurn.players.forEach(function(player) {
+  newTurn.players.forEach((player) => {
     player.scannedNodes = [];
     player.scannedExploitLinks = [];
     player.reports = [];
     delete player.investments;
     delete player.orders;
     delete player.implanted;
+    player.wasEliminated = this.Shared.Player.isPlayerEliminated(newTurn, player);
   });
 
   return newTurn;

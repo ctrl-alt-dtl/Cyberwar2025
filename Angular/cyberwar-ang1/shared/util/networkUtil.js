@@ -1,7 +1,37 @@
 /*******************************************************************************
  * A set of helper functions for both server and client-side network logic
  ******************************************************************************/
-this.NetworkUtil = function(Color, Equality, List) {
+this.NetworkUtil = function(Color, List) {
+  // ----------------------------------------------------------------------------
+  this.getAccessibleNetwork = function(serverNodes, playerColor) {
+    var playerBase = List.getServerNode(serverNodes, playerColor, 0);
+    var linkedNodes = [];
+    var processedNodes = [];
+    var nodesToProcess = [playerBase.location];
+    while(nodesToProcess.length > 0) {
+      var nodeBeingProcessed = nodesToProcess.shift();
+      // If we haven't processed this node before, add it to the list
+      if (!List.isLocationInList(nodeBeingProcessed, processedNodes)) {
+        processedNodes.push(nodeBeingProcessed);
+        linkedNodes.push(nodeBeingProcessed);
+
+        // Don't process neighbors for enemy bases since you can't go through them
+        if (nodeBeingProcessed.index != 0 || nodeBeingProcessed.color == playerColor) {
+          // Get all the neighbors of the node being processed
+          var neighbors = this.getNeighbors(nodeBeingProcessed);
+          neighbors.forEach(neighbor => {
+            // If the neighbor node still exists and we haven't processed it already, then process it
+            var neighborNode = List.getServerNode(serverNodes, neighbor.color, neighbor.index);
+            if (neighborNode && !List.isLocationInList(neighbor, processedNodes)) {
+              nodesToProcess.push(neighbor);
+            }
+          });
+        }
+      }
+    }
+    return linkedNodes;
+  }
+
   // ----------------------------------------------------------------------------
   this.getPositivelyLinkedNodes = function(playerColor, serverNodes, exploitLinks) {
     var playerBase = List.getServerNode(serverNodes, playerColor, 0);
@@ -32,7 +62,7 @@ this.NetworkUtil = function(Color, Equality, List) {
   }
 
   //------------------------------------------------------------------------------
-  this.getNeighborsToNetwork = function(serverNodes, networkNodes, playerColor, exploitLinks) {
+  this.getNeighborsToNetwork = function(serverNodes, networkNodes) {
     var networkNeighbors = [];
     var processedNodes = [];
 
@@ -43,17 +73,45 @@ this.NetworkUtil = function(Color, Equality, List) {
         // Ignore neighbors we have already processed and base nodes
         if (!List.isLocationInList(neighbor, processedNodes) && neighbor.index > 0) {
           processedNodes.push(neighbor);
-          // Get the server node and see if its owner is different than playerColor and if we're not already exploiting it
-          var serverNode = List.getServerNode(serverNodes, neighbor.color, neighbor.index);
-          if (serverNode && serverNode.ownerColor != playerColor && !List.isDestinationInLinkList(neighbor, exploitLinks)) {
-            // It's one of our network neighbors!
-            networkNeighbors.push(neighbor);
+          // Ignore neighbors in our network
+          if (!List.isLocationInList(neighbor, networkNodes)) {
+            // Get the server node to see if the node still exists
+            var serverNode = List.getServerNode(serverNodes, neighbor.color, neighbor.index);
+            if (serverNode) {
+              // It's one of our network neighbors!
+              networkNeighbors.push(neighbor);
+            }
           }
         }
       });
     });
 
     return networkNeighbors;
+  }
+
+  //------------------------------------------------------------------------------
+  this.getDomainAdjacentNodes = function(playerColor) {
+    var neighbors = [];
+    // Add our clockwise neighbor nodes
+    var clockwiseNeighborColor = getClockwiseNeighbor(playerColor);
+    neighbors.push({ color: clockwiseNeighborColor, index: 2 });
+    neighbors.push({ color: clockwiseNeighborColor, index: 5 });
+    neighbors.push({ color: clockwiseNeighborColor, index: 7 });
+
+    // Add the tier one nodes
+    Object.values(Color).forEach(color => {
+      if (color != playerColor) {
+        neighbors.push({ color: color, index: 8 });
+      }
+    });
+
+    // Add our counterclockwise neighbor nodes
+    var counterwiseNeighborColor = getCounterClockwiseNeighbor(playerColor);
+    neighbors.push({ color: counterwiseNeighborColor, index: 1 });
+    neighbors.push({ color: counterwiseNeighborColor, index: 3 });
+    neighbors.push({ color: counterwiseNeighborColor, index: 6 });
+
+    return neighbors;
   }
 
   //------------------------------------------------------------------------------

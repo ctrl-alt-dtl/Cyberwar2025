@@ -71,6 +71,7 @@ var playerSchema = new Schema({
   isObserver          : { type: Boolean, default: false }, // Whether this player is an observer or not
   reports             : [reportSchema],                    // The list of reports a player gets each turn
   implanted           : { type: Boolean, default: false }, // Was the player's base node implanted this turn?
+  wasEliminated       : { type: Boolean, default: false }, // Was this player eliminated on a previous turn
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

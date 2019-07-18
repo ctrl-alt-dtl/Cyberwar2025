@@ -58,6 +58,9 @@ var log = require("./server/log.js").log;
 
 function checkForMongo(succ, fail) {
   var mongoose = require("mongoose");
+  mongoose.set('useNewUrlParser', true);
+  mongoose.set('useFindAndModify', false);
+  mongoose.set('useCreateIndex', true);
 
   log.info("checking for mongo");
   var mongoURL = process.env.MONGO_URL || "mongodb://localhost/cyberwar2025";

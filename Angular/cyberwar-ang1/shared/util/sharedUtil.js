@@ -17,6 +17,6 @@ this.SharedUtil = function(ActionType, Color, ActionUtil, EqualityUtil, ListUtil
   this.Action = new ActionUtil(ActionType, this.Config);
   this.Equality = new EqualityUtil();
   this.List = new ListUtil(this.Equality);
-  this.Network = new NetworkUtil(Color, this.Equality, this.List);
+  this.Network = new NetworkUtil(Color, this.List);
   this.Player = new PlayerUtil(ActionType, this.Action, this.List, this.Network);
 }
