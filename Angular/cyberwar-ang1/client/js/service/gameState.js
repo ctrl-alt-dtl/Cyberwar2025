@@ -121,7 +121,7 @@ angular.module('CyberWar')
     }
     // If we aren't viewing a particular turn in history,
     // then update the game state if our current turn differs from the new latest turn
-    // or if the current player's investments/orders differ from what we last stored
+    // or if the current player's eliminated state/investments/orders differ from what we last stored
     if (GameState.viewingTurn === undefined) {
       return GameState.currentTurnNumber != latestTurnNumber || didPlayerTurnSubmissionChange(GameState, newGameData);
     }
@@ -133,7 +133,8 @@ angular.module('CyberWar')
   // Did the player's investments or orders change between our current game state and the incoming new game data?
   var didPlayerTurnSubmissionChange = function(GameState, newGameData) {
     var newPlayerData = GameUtil.List.findPlayerByName(newGameData.players, GameState.currentPlayer);
-    return !areInvestmentsSame(GameState.currentPlayerData.investments, newPlayerData.investments) ||
+    return GameState.currentPlayerData.wasEliminated != newPlayerData.wasEliminated ||
+      !areInvestmentsSame(GameState.currentPlayerData.investments, newPlayerData.investments) ||
       !areOrdersSame(GameState.currentPlayerData.orders, newPlayerData.orders);
   }
 
@@ -200,10 +201,15 @@ angular.module('CyberWar')
     GameState.currentPlayerData.scannedNodes = GameState.currentPlayerData.isViewingFullBoard ? GameState.currentPlayerData.scannedNodes : observedPlayer.scannedNodes;
     GameState.currentPlayerData.scannedExploitLinks = GameState.currentPlayerData.isViewingFullBoard ? GameState.currentPlayerData.scannedExploitLinks : observedPlayer.scannedExploitLinks;
     GameState.positivelyLinkedNodes = GameUtil.Network.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
-    if (observedPlayer.investments) {
+    if (GameUtil.Player.hasPlayerTakenTurn(observedPlayer)) {
       GameState.currentActionPoints = 0;
       CurrentInvestments.setInvestments(observedPlayer.investments);
       CurrentOrders.setOrders(observedPlayer.orders);
+    }
+    else if (GameUtil.Player.isPlayerEliminated(GameState.currentGameState, observedPlayer)) {
+      GameState.currentActionPoints = 0;
+      CurrentInvestments.setInvestments({});
+      CurrentOrders.setOrders([]);
     }
     else {
       var positivelyLinkedNodes = GameUtil.Network.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);

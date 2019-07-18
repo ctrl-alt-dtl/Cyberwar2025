@@ -31,7 +31,14 @@ angular.module('CyberWar')
       modalInstance.closed.then(() => ChatState.setViewingPrivateChat());
     }
     else {
-      showObserverSwitchPlayerDialog(color);
+      // If this is a player not currently being observed, ask if we want to observe it
+      if (color != GameState.currentPlayerData.color) {
+        showObserverSwitchPlayerDialog(color);
+      }
+      // Otherwise, ask if we want to force this player to forfeit
+      else {
+        showObserverForfeitPlayerDialog(color);
+      }
     }
   }
 
@@ -138,6 +145,32 @@ angular.module('CyberWar')
       // Dialog accepted
       function () {
         GameSocket.setObserverColor(color);
+      },
+      // Dialog canceled
+      function () {
+      }
+    );
+  }
+
+  // ----------------------------------------------------------------------------
+  var showObserverForfeitPlayerDialog = function(color) {
+    modalInstance = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'observerForceForfeitDialog.html',
+      controller: 'ObserverForceForfeitDialogController',
+      resolve: {
+        color: function() {
+          return color;
+        }
+      }
+    });
+
+    modalInstance.result.then(
+      // Dialog accepted
+      function () {
+        GameSocket.forceForfeit(color);
       },
       // Dialog canceled
       function () {

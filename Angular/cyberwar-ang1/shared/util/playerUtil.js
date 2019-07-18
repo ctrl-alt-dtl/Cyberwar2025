@@ -24,6 +24,12 @@ this.PlayerUtil = function(ActionType, Action, List, Network) {
       // Check if our current network is completely in our own domain
       var positivelyLinkedNodes = Network.getPositivelyLinkedNodes(player.color, gameState.serverNodes, player.exploitLinks);
       if (isNetworkCompletelyInDomain(positivelyLinkedNodes, player.color)) {
+        // If a player can't access either the third or fifth node in their domain, they are out
+        if (!canReachNode(accessibleNetwork, player.color, 3) && !canReachNode(accessibleNetwork, player.color, 5)) {
+          // You are cut off in a way that you can't come back
+          return true;
+        }
+
         // Check if we have acquired all the nodes in our domain that we can reach
         var networkNeighbors = Network.getNeighborsToNetwork(gameState.serverNodes, positivelyLinkedNodes);
         if (!hasUnownedNodes(gameState.serverNodes, positivelyLinkedNodes, player.color) &&
@@ -53,6 +59,12 @@ this.PlayerUtil = function(ActionType, Action, List, Network) {
   // Is there a player base of a different color in the given network?
   var canReachOtherBase = function(network, playerColor) {
     return network.some(location => location.index == 0 && location.color != playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Is the give location in the network?
+  var canReachNode = function(network, color, nodeIndex) {
+    return List.isLocationInList({ color: color, index: nodeIndex }, network);
   }
 
   //------------------------------------------------------------------------------

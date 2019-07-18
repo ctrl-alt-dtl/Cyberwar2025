@@ -9,4 +9,5 @@ this.GameRequest = {
   SEND_CHAT: "Send", // Request to send a chat message
   CHANGE_OBSERVED_PLAYER: "Change Observed Player", // Request to change an observer's observed player
   TOGGLE_OBSERVER_BOARD_VIEW: "Toggle Observer Board View", // Request to toggle observer player's board view from full view to player view
+  FORCE_PLAYER_FORFEIT: "Force Player Forfeit", // Request to force a player to forfeit
 }

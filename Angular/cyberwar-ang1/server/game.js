@@ -134,6 +134,9 @@ function onConnection(connection) {
       case GameRequest.TOGGLE_OBSERVER_BOARD_VIEW:
         addLockedAction(gid, { name: 'Toggle Observer Board View', callback: toggleObserverBoardView, params: { user: user, showFullBoard: message.data.showFullBoard }});
         break;
+      case GameRequest.FORCE_PLAYER_FORFEIT:
+        addLockedAction(gid, { name: 'Force Forfeit', callback: forcePlayerForfeit, params: { user: user, color: message.data.color }});
+        break;
     }
   });
 }
@@ -195,6 +198,17 @@ var setObserverColor = function(gid, game, params) {
 var toggleObserverBoardView = function(gid, game, params) {
   if (params.user !== undefined && params.showFullBoard !== undefined) {
     gameController.toggleObserverBoardView(game, params.user, params.showFullBoard);
+  }
+  else {
+    log.error("User and/or Params not provided");
+  }
+}
+
+//------------------------------------------------------------------------------
+// Handle an observer player changing colors
+var forcePlayerForfeit = function(gid, game, params) {
+  if (params.user !== undefined && params.color !== undefined) {
+    gameController.forcePlayerForfeit(game, params.color);
   }
   else {
     log.error("User and/or Params not provided");

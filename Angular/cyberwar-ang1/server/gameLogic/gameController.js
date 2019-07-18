@@ -39,10 +39,7 @@ this.performAction = function(game, playerName, action) {
   var actingPlayer = Util.Shared.List.findPlayerByName(currentTurn.players, playerName);
   actingPlayer.investments = action.investments;
   actingPlayer.orders = action.orders;
-  if (allPlayersSubmittedTurns(currentTurn)) {
-    var newTurn = Util.addNewTurn(game, currentTurn);
-    Adjudicator.adjudicateTurn(currentTurn, newTurn);
-  }
+  finishTurn(game, currentTurn);
 };
 
 //------------------------------------------------------------------------------
@@ -73,6 +70,28 @@ this.toggleObserverBoardView = function(game, playerName, showFullBoard) {
       }
     }
   });
+}
+
+//------------------------------------------------------------------------------
+// Force a player to forfeit the game
+this.forcePlayerForfeit = function(game, color) {
+  var currentTurn = Util.getCurrentTurn(game);
+  var losingPlayer = Util.Shared.List.findPlayerByColor(currentTurn.players, color);
+  // Eliminate the player and remove any orders/investments they were trying to make this turn
+  losingPlayer.wasEliminated = true;
+  delete losingPlayer.investments;
+  delete losingPlayer.orders;
+  // That player might have been the last player taking a turn, so try to take a turn
+  finishTurn(game, currentTurn);
+}
+
+//------------------------------------------------------------------------------
+// If everyone has submitted their turn or been eliminated, then finish the turn
+var finishTurn = function(game, currentTurn) {
+  if (allPlayersSubmittedTurns(currentTurn)) {
+    var newTurn = Util.addNewTurn(game, currentTurn);
+    Adjudicator.adjudicateTurn(currentTurn, newTurn);
+  }
 }
 
 //------------------------------------------------------------------------------
