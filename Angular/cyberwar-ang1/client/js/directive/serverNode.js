@@ -14,9 +14,19 @@ angular.module('CyberWar')
 
     // ----------------------------------------------------------------------------
     function onGameStateChanged() {
-      var serverNode = GameUtil.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
+      var serverNode = GameUtil.List.getServerNode(GameState.currentGameState.serverNodes, $scope.color, $scope.index);
       if (serverNode) {
         hex.fill(GameUtil.getColor(GameUtil.getServerNodeDisplayedColor(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes)));
+
+        // The hex's border should be black unless it's owned by the current player and they manipulated it to look like another color
+        var manipulatedColor = GameUtil.getServerNodeManipulatedColor(serverNode, GameState.currentPlayerData);
+        if (manipulatedColor) {
+          hex.stroke(GameUtil.getColor(manipulatedColor));
+        }
+        else {
+          hex.stroke('black');
+        }
+
         text.text(GameUtil.getServerNodeDisplayedText(serverNode, GameState.currentPlayerData, GameState.positivelyLinkedNodes));
       }
       else {
@@ -41,14 +51,13 @@ angular.module('CyberWar')
         radius: radius,
         fill: grayColor,
         stroke: 'black',
-        strokeWidth: 4,
+        strokeWidth: 5,
         rotation: 90,
         id: color + index + 'Hex'
       });
 
       // Create the text element
       text = new Konva.Text({
-        //text: nodeValOne,
         x: hexPosition.x,
         y: hexPosition.y,
         offset: {

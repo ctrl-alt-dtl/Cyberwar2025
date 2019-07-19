@@ -58,6 +58,9 @@ var log = require("./server/log.js").log;
 
 function checkForMongo(succ, fail) {
   var mongoose = require("mongoose");
+  mongoose.set('useNewUrlParser', true);
+  mongoose.set('useFindAndModify', false);
+  mongoose.set('useCreateIndex', true);
 
   log.info("checking for mongo");
   var mongoURL = process.env.MONGO_URL || "mongodb://localhost/cyberwar2025";
@@ -66,7 +69,7 @@ function checkForMongo(succ, fail) {
 
   mongoose.connect(mongoURL, function (err) {
     if (err != null) {
-      fail();
+      fail(err);
     } else {
       log.info("no mongo error");
       succ();
@@ -77,17 +80,18 @@ function checkForMongo(succ, fail) {
 function waitForMongo(callback) {
   log.info("Waiting for mongo");
 
-  var io = setInterval(checkForMongo, 2000,
-      function () {
-        log.info("MongoDB seems up. ");
-        clearInterval(io);
-        callback();
-      },
-      function () {
-        log.info("MongoDB seems down. ");
-      }
-  );
+  var mongoConnected = function () {
+    log.info("MongoDB seems up. ");
+    callback();
+  };
 
+  var mongoError = function (err) {
+    console.error(err);
+    log.info("MongoDB seems down. ");
+    setTimeout(() => waitForMongo(callback), 2000);
+  };
+
+  checkForMongo(mongoConnected, mongoError);
 }
 
 waitForMongo(function () {

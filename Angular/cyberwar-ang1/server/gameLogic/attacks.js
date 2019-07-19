@@ -31,11 +31,25 @@ var getAttacks = function(prevTurn, newTurn) {
       if (order.action == ActionType.ACQUIRE || order.action == ActionType.MANIPULATE) {
         var attack = getAttackAgainstTarget(attacks, order.node);
         if (!attack) {
-          attack = { target: order.node, defenderStrength: getNodeStrength(newTurn.serverNodes, order.node), attackers: [] };
+          attack = {
+            targetPlayer: Util.Shared.List.findPlayerByColor(newTurn.players, Util.Shared.List.getServerNode(prevTurn.serverNodes, order.node.color, order.node.index).ownerColor),
+            target: order.node,
+            defenderStrength: getNodeStrength(newTurn.serverNodes, order.node),
+            attackers: []
+          };
           attacks.push(attack);
         }
         var attackStrength = getNodeStrength(newTurn.serverNodes, order.params.source);
-        attack.attackers.push({ type: order.action, strength: attackStrength, color: player.color, manipulateColor: order.params.color });
+        attack.attackers.push({
+          prevTurnPlayer: player,
+          newTurnPlayer: Util.Shared.List.findPlayerByName(newTurn.players, player.name),
+          attackerNode: order.params.source,
+          type: order.action,
+          strength: attackStrength,
+          color: player.color,
+          manipulateColor: order.params.color,
+          success: false
+        });
       }
     });
   });
@@ -44,12 +58,12 @@ var getAttacks = function(prevTurn, newTurn) {
 
 //------------------------------------------------------------------------------
 var getAttackAgainstTarget = function(attacks, target) {
-  return _.find(attacks, function(attack) { return Util.Shared.isSameLocation(attack.target, target); });
+  return _.find(attacks, function(attack) { return Util.Shared.Equality.isSameLocation(attack.target, target); });
 }
 
 //------------------------------------------------------------------------------
 var getNodeStrength = function(serverNodes, node) {
-  return Util.Shared.getServerNode(serverNodes, node.color, node.index).strength;
+  return Util.Shared.List.getServerNode(serverNodes, node.color, node.index).strength;
 }
 
 //------------------------------------------------------------------------------
@@ -127,19 +141,32 @@ var performMultipleAttackerAttack = function(serverNodes, attack) {
 
   // If we have a winner, perform winning logic
   if (winningColor) {
-    onAttackSuccess(serverNodes, attack.target, winningColor, attack.attackers);
+    attack.attackers.find(attacker => attacker.color == winningColor).success = true;
+    onAttackSuccess(serverNodes, attack, winningColor);
   }
+
+  // File a report for each player in this attack
+  attack.attackers.forEach(attacker => {
+    reportAttack(attack, attacker);
+  });
 }
 
 //------------------------------------------------------------------------------
 var performMultipleSourceAttack = function(serverNodes, attack) {
+  var attacker = attack.attackers[0];
   var serverStrengths = _.map(attack.attackers, function(attacker) { return attacker.strength; });
   var attackerStrength = _.reduce(serverStrengths, function(tally, strength) { return tally + strength + ' '; }, '');
   console.log('Multi server attack: Defender = ' + attack.defenderStrength + ' Attacker = ' + attackerStrength);
   if (AdjudicationMath.captureOddsOneVsMany(attack.defenderStrength, serverStrengths)) {
     // Attacker won
-    onAttackSuccess(serverNodes, attack.target, attack.attackers[0].color, attack.attackers);
+    attacker.success = true;
+    onAttackSuccess(serverNodes, attack, attacker.color);
   }
+
+  // File a report for this attack
+  attacker.strength = serverStrengths.reduce((total, strength) => total + strength, 0); // Combine strength for report
+  attacker.attackerNode = attack.attackers.map(attacker => attacker.attackerNode); // Combine attacker nodes for report
+  reportAttack(attack, attacker);
 }
 
 //------------------------------------------------------------------------------
@@ -148,23 +175,58 @@ var performBasicAttack = function(serverNodes, attack) {
   console.log('Basic attack: Defender = ' + attack.defenderStrength + ' Attacker (' + attacker.color + ') = '  + attacker.strength + '\n');
   if (AdjudicationMath.captureOddsOneVsOne(attack.defenderStrength, attacker.strength)) {
     // Attacker won
-    onAttackSuccess(serverNodes, attack.target, attacker.color, attack.attackers);
+    attacker.success = true;
+    onAttackSuccess(serverNodes, attack, attacker.color);
   }
+
+  // File a report for this attack
+  reportAttack(attack, attacker);
 }
 
 //------------------------------------------------------------------------------
-var onAttackSuccess = function(serverNodes, node, ownerColor, attackers) {
+var onAttackSuccess = function(serverNodes, attack, newOwnerColor) {
   // Change the owner color of the node and reset the strength
-  var serverNode = Util.Shared.getServerNode(serverNodes, node.color, node.index);
-  delete serverNode.fakeColor;
-  serverNode.ownerColor = ownerColor;
+  var serverNode = Util.Shared.List.getServerNode(serverNodes, attack.target.color, attack.target.index);
+  delete serverNode.manipulateColor;
+  serverNode.ownerColor = newOwnerColor;
   serverNode.strength = 1;
   delete serverNode.previousStrength;
 
   // Check for manipulates we need to apply
-  _.each(attackers, function(attacker) {
-    if (attacker.color == ownerColor && attacker.type == ActionType.MANIPULATE) {
+  _.each(attack.attackers, function(attacker) {
+    if (attacker.color == newOwnerColor && attacker.type == ActionType.MANIPULATE) {
       serverNode.manipulateColor = attacker.manipulateColor;
     }
   });
+
+  // If there was a previous owner, let them know they lost a node
+  if (attack.targetPlayer) {
+    var reportParams = {
+      // Add the attacked player to the report
+      attackedPlayer: attack.targetPlayer.name,
+      // Add the defense strength since the attacked player would know that
+      defenderStrength: attack.defenderStrength
+    };
+    Util.addReport(attack.targetPlayer, ActionType.ACQUIRE, attack.target, reportParams);
+  }
+}
+
+//------------------------------------------------------------------------------
+var reportAttack = function(attack, attacker) {
+  var previouslyScannedNode = Util.Shared.List.isLocationInNodeList(attack.target, attacker.prevTurnPlayer.scannedNodes);
+
+  // Add a report of this action to the acting player
+  var reportParams = {
+    // The node(s) the attack came from
+    attackerNode: attacker.attackerNode,
+    // If there was a previous owner of this node, add that to the report
+    attackedPlayer: attack.targetPlayer ? attack.targetPlayer.name : undefined,
+    // Add the attack's strength to the report
+    attackStrength: attacker.strength,
+    // If the attacker had previously scanned this node, report the node's defense strength
+    defenderStrength: previouslyScannedNode ? attack.defenderStrength : undefined,
+    // Report whether the attack was a success or not
+    success: attacker.success,
+  };
+  Util.addReport(attacker.newTurnPlayer, attacker.type, attack.target, reportParams);
 }

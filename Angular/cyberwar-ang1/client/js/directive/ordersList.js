@@ -27,7 +27,7 @@ angular.module('CyberWar')
 
     //---------------------------------------------------------------------------
     $scope.canCancel = function() {
-      return !GameState.isObserver() && !GameState.submittedTurn();
+      return !GameState.isObserver() && !GameState.hasSubmittedTurn();
     }
 
     //---------------------------------------------------------------------------

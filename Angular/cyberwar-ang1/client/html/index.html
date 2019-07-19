@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="client/css/app.css">
+    <link rel="stylesheet" href="client/css/boarditems.css">
     <!-- Not sure if these are needed -->
     <link rel="stylesheet" href="node_modules/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="node_modules/html5-boilerplate/dist/css/main.css">
@@ -27,6 +28,7 @@
 
     <!-- 3rd Party Libraries -->
     <script src="lib/angular.min.js"></script>
+    <script src="lib/scrollglue.js"></script>
     <script src="lib/sockjs.min.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
@@ -43,14 +45,19 @@
     <script src="shared/color.js"></script>
     <script src="shared/gameRequest.js"></script>
     <script src="shared/researchType.js"></script>
-    <script src="shared/sharedUtil.js"></script>
     <script src="shared/socketType.js"></script>
+    <script src="shared/util/actionUtil.js"></script>
+    <script src="shared/util/equalityUtil.js"></script>
+    <script src="shared/util/listUtil.js"></script>
+    <script src="shared/util/networkUtil.js"></script>
+    <script src="shared/util/playerUtil.js"></script>
+    <script src="shared/util/sharedUtil.js"></script>
 
     <!-- Non-Angular Classes/Modules -->
     <script src="module/callbackListener.js"></script>
 
     <!-- Create Custom Angular Module -->
-    <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll'])</script>
+    <script>angular.module("CyberWar", ['ui.bootstrap', 'ui.grid', 'ui.scroll', 'luegg.directives'])</script>
 
     <!-- Angular Services -->
     <script src="service/chatSocket.js"></script>
@@ -64,20 +71,31 @@
     <script src="service/socket.js"></script>
 
     <!-- Angular Directives -->
+    <script src="directive/action.js"></script>
     <script src="directive/chat.js"></script>
     <script src="directive/exploitLink.js"></script>
     <script src="directive/history.js"></script>
+    <script src="directive/node.js"></script>
+    <script src="directive/node-link.js"></script>
     <script src="directive/ordersList.js"></script>
     <script src="directive/overtLink.js"></script>
+    <script src="directive/player.js"></script>
     <script src="directive/playerBase.js"></script>
+    <script src="directive/readyIndicator.js"></script>
     <script src="directive/researchTable.js"></script>
     <script src="directive/serverNode.js"></script>
     <script src="directive/submitButton.js"></script>
 
     <!-- Angular Controllers -->
+    <script src="controller/actionDetails.js"></script>
     <script src="controller/canvasCtrl.js"></script>
+    <script src="controller/exploitLinkDialog.js"></script>
     <script src="controller/game.js"></script>
+    <script src="controller/gameOver.js"></script>
+    <script src="controller/loading.js"></script>
+    <script src="controller/observerForceForfeitDialog.js"></script>
     <script src="controller/observerSwitchPlayerDialog.js"></script>
+    <script src="controller/reports.js"></script>
     <script src="controller/serverStatus.js"></script>
   </head>
   <body>
@@ -85,51 +103,35 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- TODO: Please Update With New SVG Board! -->
-    <!-- client/img/newboard-export-[inlineStyle, internalCSS, presentationAttributes].svg convert to render in HTML doc. -->
-
     <div ng-controller="GameController" id="stage-parent">
       <div id="main-view">
-        <!-- <history></history> -->
+        <history></history>
+        <reports></reports>
         <div id="left_aside">
-          <div class="round-indicator">Round # {{ turnNumber }}</div>
-          <div class="pressure-indicator">
-            <table class="ready-indicator">
-              <tr>Player Ready Indicator</tr>
-              <tr>
-                <th>DotEvil</th>
-                <th>WMDeez</th>
-                <th>FrostByte</th>
-              </tr>
-              <tr>
-                <th>CuttlePhish</th>
-                <th>BuzzKill</th>
-                <th>CaffeineCowboy</th>
-              </tr>
-            </table>
+          <div class="round-indicator" >Round # {{GameState.currentTurnNumber + 1}}</div>
+          <div class="reports">
+            <button ng-if="isObserver()" ng-click="toggleBoardView()">{{getBoardViewButtonText()}}</button>
+            <button ng-if="hasReports()" ng-click="showReport()">View Reports</button>
           </div>
-          <div class="chat"><chat></chat></div>
+          <ready-indicator></ready-indicator>
+          <chat></chat>
         </div>
         <div class="board"></div>
         <div ng-controller="canvasCtrl as $ctrl" class="modal-demo">
           <overt-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB"></overt-link>
-          <exploit-link ng-repeat="link in exploitLinks" node-a="link.nodeA" node-b="link.nodeB"></exploit-link>
+          <exploit-link ng-repeat="link in overtLinks" node-a="link.nodeA" node-b="link.nodeB" callback-fn="exploitLinkClicked(nodeA, nodeB)"></exploit-link>
 
           <div ng-repeat="(key, color) in Color">
             <player-base color="color" callback-fn="playerBaseClicked(color)"></player-base>
             <server-node ng-repeat="item in nodesPerDomain track by $index" color="color" index="$index + 1" callback-fn="serverNodeClicked(color, index)"></server-node>
           </div>
         </div>
-
         <!-- UI/Cyber Effects Window Area -->
-
-        <div class="ui-area">
+        <div id="ui-area">
           <research-table></research-table>
           <submit-button></submit-button>
           <orders-list></orders-list>
-
         </div>
-
       </div>
     </div>
 

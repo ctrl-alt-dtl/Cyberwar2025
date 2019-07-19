@@ -1,9 +1,9 @@
 angular.module('CyberWar')
-.controller('ServerStatusController', function($scope, $uibModalInstance, GameState, GameUtil, selectedNode, displayedOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
+.controller('ServerStatusController', function($scope, $uibModalInstance, GameState, GameUtil, selectedNode, displayedOwner, manipulateOwner, displayedStrength, usableSourceNodes, validActions, validColors) {
   $scope.selectedNode = selectedNode;
   $scope.displayedOwner = displayedOwner;
+  $scope.manipulateOwner = manipulateOwner;
   $scope.displayedStrength = displayedStrength;
-  $scope.usableSourceNodes = usableSourceNodes;
   $scope.validActions = validActions;
   $scope.validColors = validColors;
   $scope.selected = { params : {} };
@@ -11,11 +11,11 @@ angular.module('CyberWar')
   // ----------------------------------------------------------------------------
   $scope.selectAction = function(action) {
     $scope.selected.action = action;
-    $scope.needSource = doesActionNeedSource(action);
+    $scope.usableSourceNodes = usableSourceNodes[action];
     $scope.needColor = action == ActionType.MANIPULATE;
 
     // Setup source parameter
-    if (!$scope.needSource) {
+    if ($scope.usableSourceNodes.length == 0) {
       delete $scope.selected.params.source;
     }
     else if ($scope.usableSourceNodes.length > 0) {
@@ -29,6 +29,13 @@ angular.module('CyberWar')
     else if ($scope.validColors.length > 0) {
       $scope.selected.params.color = $scope.validColors[0];
     }
+
+    $scope.updateActionCost();
+  }
+
+  // ----------------------------------------------------------------------------
+  $scope.updateActionCost = function() {
+    $scope.actionCost = GameUtil.Action.getCost($scope.selected.action, $scope.selected.params ? $scope.selected.params.source : undefined, $scope.selectedNode.location);
   }
 
   // ----------------------------------------------------------------------------
@@ -44,30 +51,18 @@ angular.module('CyberWar')
 
   // ----------------------------------------------------------------------------
   $scope.getChatToName = function(color) {
-    return GameUtil.findPlayerByColor(GameState.currentGameState.players, color).name;
+    return GameUtil.List.findPlayerByColor(GameState.currentGameState.players, color).name;
   }
 
   // ----------------------------------------------------------------------------
   $scope.ok = function () {
-    modalInstance.close($scope.selected, $scope.selected);
+    $uibModalInstance.close($scope.selected, $scope.selected);
   };
 
   // ----------------------------------------------------------------------------
   $scope.cancel = function () {
-    modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
-
-  // ----------------------------------------------------------------------------
-  var doesActionNeedSource = function(action) {
-    switch (action) {
-      case ActionType.ACQUIRE:
-      case ActionType.MANIPULATE:
-      case ActionType.DENY:
-      case ActionType.EXPLOIT:
-        return true;
-    }
-    return false;
-  }
 
   if ($scope.validActions.length > 0) {
     $scope.selectAction($scope.validActions[0]);

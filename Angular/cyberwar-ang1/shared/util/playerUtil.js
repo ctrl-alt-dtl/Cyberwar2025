@@ -1,0 +1,112 @@
+/*******************************************************************************
+ * A set of helper functions for both server and client-side player logic
+ ******************************************************************************/
+this.PlayerUtil = function(ActionType, Action, List, Network) {
+  //------------------------------------------------------------------------------
+  // Has this player taken their turn?
+  this.hasPlayerTakenTurn = function(player) {
+    // A player has taken their turn if they are an observer, they have been implanted, they have investments, or they have orders
+    return player.isObserver || player.implanted || player.investments || player.orders.length > 0;
+  }
+
+  //------------------------------------------------------------------------------
+  // A player is "eliminated" when they have been effectively cut off from the main network
+  this.isPlayerEliminated = function(gameState, player) {
+    // If the player was previously eliminated, they are still eliminated
+    if (player.wasEliminated) {
+      return true;
+    }
+
+    // Get our currently accessible network
+    var accessibleNetwork = Network.getAccessibleNetwork(gameState.serverNodes, player.color);
+    // Check if we can reach any other base
+    if (canReachOtherBase(accessibleNetwork, player.color)) {
+      // Check if our current network is completely in our own domain
+      var positivelyLinkedNodes = Network.getPositivelyLinkedNodes(player.color, gameState.serverNodes, player.exploitLinks);
+      if (isNetworkCompletelyInDomain(positivelyLinkedNodes, player.color)) {
+        // If a player can't access either the third or fifth node in their domain, they are out
+        if (!canReachNode(accessibleNetwork, player.color, 3) && !canReachNode(accessibleNetwork, player.color, 5)) {
+          // You are cut off in a way that you can't come back
+          return true;
+        }
+
+        // Check if we have acquired all the nodes in our domain that we can reach
+        var networkNeighbors = Network.getNeighborsToNetwork(gameState.serverNodes, positivelyLinkedNodes);
+        if (!hasUnownedNodes(gameState.serverNodes, positivelyLinkedNodes, player.color) &&
+            !isNetworkPartiallyInDomain(networkNeighbors, player.color)) {
+          // Check if we can afford to leave our domain
+          if (!canAffordToLeaveDomain(gameState.roundNumber, networkNeighbors, positivelyLinkedNodes, player.color)) {
+            // We have acquired all we can in our domain and can't get out, we are finished
+            return true;
+          }
+        }
+      }
+      // Otherwise check if there are more nodes for us to acquire
+      else if (!hasUnownedNodes(gameState.serverNodes, accessibleNetwork, player.color)) {
+        // We have nothing left to acquire that we can reach
+        return true;
+      }
+    }
+    // If we can't reach another base, then we're out
+    else {
+      // We have been cut off from everyone else, we are done
+      return true;
+    }
+
+    // The player is not eliminated
+    return false;
+  }
+
+  //------------------------------------------------------------------------------
+  // Is there a player base of a different color in the given network?
+  var canReachOtherBase = function(network, playerColor) {
+    return network.some(location => location.index == 0 && location.color != playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Is the give location in the network?
+  var canReachNode = function(network, color, nodeIndex) {
+    return List.isLocationInList({ color: color, index: nodeIndex }, network);
+  }
+
+  //------------------------------------------------------------------------------
+  // Is the given network completely in the given player color?
+  var isNetworkCompletelyInDomain = function(network, playerColor) {
+    return network.every(location => location.color == playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Is the given network completely in the given player color?
+  var isNetworkPartiallyInDomain = function(network, playerColor) {
+    return network.some(location => location.color == playerColor);
+  }
+
+  //------------------------------------------------------------------------------
+  // Can we afford to acquire a node outside of our domain?
+  var canAffordToLeaveDomain = function(turnNumber, networkNeighbors, positivelyLinkedNodes, playerColor) {
+    // Get all the nodes directly adjacent our domain
+    var domainAdjacentLocations = Network.getDomainAdjacentNodes(playerColor);
+    // Filter out the ones not in our accessible network
+    domainAdjacentLocations = domainAdjacentLocations.filter(location => List.isLocationInList(location, networkNeighbors));
+    // Is there one of the remaining nodes we can afford to acquire?
+    var currentActionPoints = Action.getCurrentActionPoints(turnNumber, positivelyLinkedNodes);
+    return domainAdjacentLocations.some(adjacentLocation => {
+      // Find the node in our domain that could acquire this node
+      var acquiringLocations = Network.getNeighbors(adjacentLocation).filter(neighbor => neighbor.color == playerColor);
+      return acquiringLocations.every(acquiringLocation => Action.getCost(ActionType.ACQUIRE, acquiringLocation, adjacentLocation) <= currentActionPoints);
+    });
+  }
+
+  //------------------------------------------------------------------------------
+  // Look through the list of nodes and see if any are not owned by the given player color
+  var hasUnownedNodes = function(serverNodes, locations, playerColor) {
+    return locations.some(location => {
+      // Ignore player bases since you can't own them
+      if (location.index != 0) {
+        var serverNode = List.getServerNode(serverNodes, location.color, location.index);
+        return serverNode && serverNode.ownerColor != playerColor;
+      }
+      return false;
+    });
+  }
+}

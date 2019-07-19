@@ -1,5 +1,5 @@
-var BASE_BOARD_WIDTH = 912; // Don't change because it will alter the CSS layout.
-var BASE_BOARD_HEIGHT = 1012; // Don't change because it will alter the CSS layout.
+var BASE_BOARD_WIDTH = 945; // Don't change because it will alter the entire layout.
+var BASE_BOARD_HEIGHT = 945; // Don't change because it will alter the entire layout.
 
 var DOMAIN_LAYER_BOARD_ROTATION = 0;
 
@@ -9,32 +9,10 @@ var stage = new Konva.Stage({
   height: BASE_BOARD_HEIGHT
 
 });
-
-// Canvas resize code (need to incorporate)
-/*
-function fitStageIntoParentContainer() {
-  var container = document.querySelector('#stage-parent');
-
-  // now we need to fit stage into parent
-  var containerWidth = container.offsetWidth;
-  // to do this we need to scale the stage
-  var scale = containerWidth / BASE_BOARD_WIDTH;
-
-  stage.width(BASE_BOARD_WIDTH * scale);
-  stage.height(BASE_BOARD_HEIGHT * scale);
-  stage.scale({ x: scale, y: scale });
-  stage.draw();
-}
-
-fitStageIntoParentContainer();
-// adapt the stage on any window resize
-window.addEventListener('resize', fitStageIntoParentContainer);
-*/
-
 var bgLayer = new Konva.Layer();
 var domainsLayer = new Konva.Layer();
 var linksLayer = new Konva.Layer();
-var toolTipLayer = new Konva.Layer();
+// var toolTipLayer = new Konva.Layer();
 
 var konvaHexPositions = {};
 _.each(Color, function(color) {
@@ -90,24 +68,24 @@ var exploitLinksGroup = new Konva.Group({
 
 var imageObj = new Image();
 // background board
-//imageObj.src = 'client/img/BoardNew.png';
-imageObj.src = 'client/img/transparency-1000.png';
+imageObj.src = 'client/img/BoardNew.png';
+//imageObj.src = 'client/img/transparency-1000.png';
 imageObj.onload = function() {
-
+// This is only to offset the background board to align all the game items.
   var bgBoard = new Konva.Image({
-    width: 980,
-    height: 890,
-    x: -35,
-    y: 60,
+    width: 1012,
+    height: 920,
+    x: -34,
+    y: 12,
     image: imageObj
   });
 
-
+//TODO: Uncomment
   // add the shapes to the layer, the order matters (background, links, bases, then servers).
   bgGroup.add(minorBounds1, minorBounds2, minorBounds3, minorBounds4, minorBounds5, minorBounds6);
   bgGroup.add(mainBoundary3, mainBoundary2, mainBoundary1);
   bgGroup.add(tier3Text, tier2Text, tier1Text);
-  bgGroup.add(node1Text, node2Text, node3Text, node5Text, node6Text, node7Text);
+  bgGroup.add(node1Text, node2Text, node3Text, node4Text, node5Text, node6Text, node7Text, node8Text);
   bgGroup.add(rbr1, rbr2, r1r3, r2r5, r5r4, r3r4, r4r6, r4r7, r3r6, r5r7, r6r7, r6r8, r7r8);
   bgGroup.add(pbp1, pbp2, p1p3, p2p5, p5p4, p3p4, p4p6, p4p7, p3p6, p5p7, p6p7, p6p8, p7p8);
   bgGroup.add(bbb1, bbb2, b1b3, b2b5, b5b4, b3b4, b4b6, b4b7, b3b6, b5b7, b6b7, b6b8, b7b8);
@@ -119,11 +97,11 @@ imageObj.onload = function() {
   bgGroup.add(b1g2, b2p1, b3g5, b5p3, b6g7, b7p6, b8g8, b8p8);
   bgGroup.add(y1o2, y2g1, y3o5, y5g3, y6o7, y7g6, y8o8, y8g8);
 
-  bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
+  //bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex);
+  bgLayer.add(bgBoard, boardEdge, tier3, tier2, tier1, bgGroup, centerHex, boardEdgeTop);
 
   //toolTipLayer.add();
-
-  domainsLayer.add(domainsGroup);
+ domainsLayer.add(domainsGroup);
 
   linksLayer.add(exploitLinksGroup, linksGroup);
 
@@ -157,6 +135,8 @@ var drawBoard = function(playerData) {
   linksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
   exploitLinksGroup.rotation(DOMAIN_LAYER_BOARD_ROTATION);
 }
+
+
 
 //---------------------------------------------------------------------------
 var redrawStage = function() {

@@ -36,20 +36,17 @@ this.initializeNewGame = function(newGame) {
 // Update the game state using the given actions
 this.performAction = function(game, playerName, action) {
   var currentTurn = Util.getCurrentTurn(game);
-  var actingPlayer = Util.Shared.findPlayerByName(currentTurn.players, playerName);
+  var actingPlayer = Util.Shared.List.findPlayerByName(currentTurn.players, playerName);
   actingPlayer.investments = action.investments;
   actingPlayer.orders = action.orders;
-  if (allPlayersSubmittedTurns(currentTurn)) {
-    var newTurn = Util.addNewTurn(game, currentTurn);
-    Adjudicator.adjudicateTurn(currentTurn, newTurn);
-  }
+  finishTurn(game, currentTurn);
 };
 
 //------------------------------------------------------------------------------
 // Change the given observer player's color for every turn in the game (so history works with changing colors)
 this.setObserverColor = function(game, playerName, color) {
   game.turns.forEach(turn => {
-    var actingPlayer = Util.Shared.findPlayerByName(turn.players, playerName);
+    var actingPlayer = Util.Shared.List.findPlayerByName(turn.players, playerName);
     if (actingPlayer.isObserver) {
       actingPlayer.color = color;
     }
@@ -57,10 +54,51 @@ this.setObserverColor = function(game, playerName, color) {
 }
 
 //------------------------------------------------------------------------------
+// Change what the observer is viewing of the board
+this.toggleObserverBoardView = function(game, playerName, showFullBoard) {
+  game.turns.forEach(turn => {
+    var actingPlayer = Util.Shared.List.findPlayerByName(turn.players, playerName);
+    if (actingPlayer.isObserver) {
+      // Clear out the player's scanned information
+      actingPlayer.scannedNodes = [];
+      actingPlayer.scannedExploitLinks = [];
+
+      // If we are showing the full board, put every node and exploit link in the player's scanned lists
+      if (showFullBoard) {
+        actingPlayer.scannedNodes = turn.serverNodes.map(serverNode => serverNode);
+        turn.players.forEach(player => player.exploitLinks.forEach(exploitLink => actingPlayer.scannedExploitLinks.push(exploitLink)));
+      }
+    }
+  });
+}
+
+//------------------------------------------------------------------------------
+// Force a player to forfeit the game
+this.forcePlayerForfeit = function(game, color) {
+  var currentTurn = Util.getCurrentTurn(game);
+  var losingPlayer = Util.Shared.List.findPlayerByColor(currentTurn.players, color);
+  // Eliminate the player and remove any orders/investments they were trying to make this turn
+  losingPlayer.wasEliminated = true;
+  delete losingPlayer.investments;
+  delete losingPlayer.orders;
+  // That player might have been the last player taking a turn, so try to take a turn
+  finishTurn(game, currentTurn);
+}
+
+//------------------------------------------------------------------------------
+// If everyone has submitted their turn or been eliminated, then finish the turn
+var finishTurn = function(game, currentTurn) {
+  if (allPlayersSubmittedTurns(currentTurn)) {
+    var newTurn = Util.addNewTurn(game, currentTurn);
+    Adjudicator.adjudicateTurn(currentTurn, newTurn);
+  }
+}
+
+//------------------------------------------------------------------------------
 var allPlayersSubmittedTurns = function(turn) {
   return _.every(turn.players, function(player) {
-    // Check to see if this player was eliminated
-    return Util.Shared.isPlayerEliminated(turn.serverNodes, player) || Util.Shared.hasPlayerTakenTurn(player);
+    // Check to see if this player was eliminated or has taken their turn
+    return Util.Shared.Player.isPlayerEliminated(turn, player) || Util.Shared.Player.hasPlayerTakenTurn(player);
   });
 }
 
@@ -71,11 +109,11 @@ var getOvertLinks = function(serverNodes) {
   var nodesToProcess = [serverNodes[0].location];
   while(nodesToProcess.length > 0) {
     var nodeBeingProcessed = nodesToProcess.shift();
-    if (!Util.Shared.isLocationInList(nodeBeingProcessed, processedNodes)) {
+    if (!Util.Shared.List.isLocationInList(nodeBeingProcessed, processedNodes)) {
       processedNodes.push(nodeBeingProcessed);
-      var neighbors = Util.Shared.getNeighbors(nodeBeingProcessed);
+      var neighbors = Util.Shared.Network.getNeighbors(nodeBeingProcessed);
       _.each(neighbors, function(neighbor) {
-        if (!Util.Shared.isLocationInList(neighbor, processedNodes)) {
+        if (!Util.Shared.List.isLocationInList(neighbor, processedNodes)) {
           overtLinks.push({ nodeA: nodeBeingProcessed, nodeB: neighbor });
           nodesToProcess.push(neighbor);
         }

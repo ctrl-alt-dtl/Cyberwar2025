@@ -1,6 +1,6 @@
 <div class="container">
   <button class="button" id="prev-turn" ng-disabled="isViewingFirstTurn()" ng-click="previous()" title="View previous turn"><</button>
-  <span class="textbox" id="turnNumber">
+  <span class="textbox" id="turnNumber" style="color: white; max-width: 1207px; margin: 0 auto;">
     <!-- If we don't see turn one, make sure it is showing -->
     <span ng-if="!isVisibleTurnNumber(0)">
       <span ng-if="!isCurrentTurn(0)" ng-click="gotoTurn(0)" style="cursor: pointer">{{1}}</span>

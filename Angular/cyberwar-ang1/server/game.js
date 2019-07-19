@@ -71,7 +71,7 @@ function createGame(callback) {
 // A game was deleted, so remove it from the database
 function deleteGame(gid, callback) {
   if (gid !== undefined) {
-    db.remove({ _id: gid }, function(err) {
+    db.deleteOne({ _id: gid }, function(err) {
       if (err) {
         response.send("Error: Could not find game to remove:" + gid);
         return;
@@ -131,6 +131,12 @@ function onConnection(connection) {
       case GameRequest.CHANGE_OBSERVED_PLAYER:
         addLockedAction(gid, { name: 'Change Observer Color', callback: setObserverColor, params: { user: user, color: message.data.color }});
         break;
+      case GameRequest.TOGGLE_OBSERVER_BOARD_VIEW:
+        addLockedAction(gid, { name: 'Toggle Observer Board View', callback: toggleObserverBoardView, params: { user: user, showFullBoard: message.data.showFullBoard }});
+        break;
+      case GameRequest.FORCE_PLAYER_FORFEIT:
+        addLockedAction(gid, { name: 'Force Forfeit', callback: forcePlayerForfeit, params: { user: user, color: message.data.color }});
+        break;
     }
   });
 }
@@ -183,7 +189,29 @@ var setObserverColor = function(gid, game, params) {
     gameController.setObserverColor(game, params.user, params.color);
   }
   else {
-    log.error("User and/or Actions not provided");
+    log.error("User and/or Params not provided");
+  }
+}
+
+//------------------------------------------------------------------------------
+// Handle an observer toggling their board view
+var toggleObserverBoardView = function(gid, game, params) {
+  if (params.user !== undefined && params.showFullBoard !== undefined) {
+    gameController.toggleObserverBoardView(game, params.user, params.showFullBoard);
+  }
+  else {
+    log.error("User and/or Params not provided");
+  }
+}
+
+//------------------------------------------------------------------------------
+// Handle an observer player changing colors
+var forcePlayerForfeit = function(gid, game, params) {
+  if (params.user !== undefined && params.color !== undefined) {
+    gameController.forcePlayerForfeit(game, params.color);
+  }
+  else {
+    log.error("User and/or Params not provided");
   }
 }
 
@@ -249,7 +277,7 @@ var performLockedAction = function(gid, game) {
 // Save the given game object in the db with the given game id
 var saveGame = function(gid, game, finishedCB) {
   //save the game model changes to the database
-  db.update({ _id: gid }, { $set: game }, function(err) {
+  db.updateOne({ _id: gid }, { $set: game }, function(err) {
     if (err) {
       log.error("failed to save new data: " + err);
     }
@@ -261,6 +289,9 @@ var saveGame = function(gid, game, finishedCB) {
 var sendGameToClients = function(gid, finishedCB) {
   // Get the freshest version of the game and send to all clients playing this game
   db.findById(gid).lean().exec(function(err, game) {
+    if (err) {
+      log.error("failed to send game to clients: " + err);
+    }
     if (game) {
       _.each(clients, function(client) {
         if (client.gid === gid) {

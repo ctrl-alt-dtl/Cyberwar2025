@@ -1,10 +1,21 @@
 /* app css stylesheet */
 body {
-    background-color: white;
+
+    background: #242323 url("/client/img/newBackground-01.png") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
+
 .menu {
   list-style: none;
-  border-bottom: 0.1em solid black;
+  border-bottom: 1px solid black;
   margin-bottom: 2em;
   padding: 0 0 0.5em;
 }
@@ -28,128 +39,143 @@ body {
 .center {
     text-align: center;
 }
+
 #stage-parent {
     text-align: center;
-    width: 1680px;
+    width: 1740px;
     height: 1025px;
-    resize: both;
-    margin-left: auto;
-    margin-right: auto;
-    /*background: url('../img/titlebackground-hq.png') no-repeat center; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
     vertical-align: middle;
-    display: block;
 }
+
 #main-view{
     width: 100%;
     height: 100%;
-    padding-top: .5%;
+    padding-top: 1%;
     padding-left: 1%;
     padding-bottom: 1%;
     border-style: solid;
     border-color: orange;
-    border-width: 2px;
-}
-#left_aside {
-    height: 96%;
-    width: 20%;
-    background-color: #E1E1E1;
-    float: left;
-    border-style: solid;
-    border-width: 1px;
+    border-width: 3px;
 }
 
-.round-indicator {
+#text {
+    color: white;
+}
+
+/*
+Left Area UI styling
+ */
+#left_aside {
+    height: 950px;
+    width: 375px;
+    background-color: #4F4E4E;
+    float: left;
+    border: 2px solid black;
+    color: black;
+}
+#left_aside .round-indicator {
     height: 5%;
     width: 100%;
-    background-color: #E1E1E1;
+    font-size: large;
 }
-
-.pressure-indicator {
-    height: 15%;
+#left_aside .reports {
+    height: 5%;
     width: 100%;
-    background-color: #E1E1E1;
+    color: black;
 }
-table.ready-indicator {
+#left_aside ready-indicator {
+    height: 120px;
     width: 100%;
-    height: 80%;
-    font-family: verdana,arial,sans-serif;
-    font-size: 10px;
-    color:#333333;
-    border-width: 1px;
-    border-color: #666666;
-    border-collapse: collapse;
-    table-layout: fixed;
+    display: block;
 }
-table.ready-indicator th {
-    border-width: 2px;
-    padding: 11px;
-    border-style: solid;
-    border-color: #666666;
-    background-color: #dedede;
-    text-align: center;
-}
-table.ready-indicator td {
-    border-width: 2px;
-    padding: 5px;
-    border-style: solid;
-    border-color: #666666;
-    background-color: #ffffff;
-}
-.chat {
+#left_aside chat {
     width: 100%;
-    height: 80%;
-    background-color: #E1E1E1;
+    height: 75%;
+    padding: 10px;
+    border-top: 1px solid black;
+    display: block;
+    color: #e1e1e1;
 }
 
 #effects-window {
     width: 100%;
+    text-align: center;
 }
+#effects-window td.title {
+    width: 400px;
+    height: 30px;
+}
+#effects-window td.header {
+    font-weight: bold;
+    width: 100px;
+}
+#effects-window td.inner {
+    border-right-width: 2px;
+}
+#effects-window td.effect {
+    height: 35px;
+}
+#effects-window td.inner.effect {
+    cursor: pointer;
+}
+#effects-window td.effect.unlocked {
+    background-color: #36A332;
+}
+#effects-window td.effect.partially-unlocked {
+    background-color: #DBA81D;
+}
+#effects-window td.effect.locked {
+    background-color: #B10C00;
+}
+
 .board {
-    height: 100%;
+    height: 945px;
     width: 55%;
     float: left;
-    display: inline-block;
 }
-.ui-area {
-    height: 96%;
-    width: 24%;
-    background-color: #E1E1E1;
+#ui-area {
+    height: 950px;
+    width: 375px;
+    background-color: #4F4E4E;
     float: left;
-    display: inline-block;
-    border: 2px solid;
+    border: 2px solid black;
+    color: black;
 }
 .adjudication{
-    height: 70%;
+   /* height: 70%; */
     width: 100%;
-    background: #E1E1E1;
     position: relative;
     padding-top: 1%;
 }
 .effects{
-    height: 25%;
+    color: black;
     width: 100%;
-    float:top;
-    background: #E1E1E1;
     position: inherit;
+    background-color: #4F4E4E;
 
 }
 .submitBtnArea {
-    height: 5%;
+    height: 6%;
     width: 100%;
-    background: #E1E1E1;
     position: inherit;
-    justify-content: center;
-    display: flex;
-    padding-top: 4%;
+    padding-top: 3%;
+    border-top: 1px black solid;
 }
 .submitBtn {
+    height: 35px;
+    width: 150px;
     background-color: gray;
-    border: 1.5px solid black;
+    border: 2px solid black;
     color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
 }
 .submitBtn:not([disabled]) {
@@ -162,14 +188,12 @@ table.ready-indicator td {
     to {color: white;}
 }
 .minusPlusBtn {
-    background-color: white;
-    border: 1px solid black;
+    background-color: lightgray;
     width: 50%;
     float: left;
     color: black;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 1em;
     cursor: pointer;
     outline: 0;
@@ -179,28 +203,15 @@ table.ready-indicator td {
     color: white;
 }
 .actionPointsNumber {
+    padding-left: 30px;
+    padding-right: 30px;
     font-weight: bold;
     font-size: 28px;
-    align: center;
-    vertical-align: middle !important;
+    vertical-align: middle;
     border-right: none;
-    border-bottom: 1px solid black;
 
 }
-.effectRow1 {
-    background: green;
-    color: white;
-}
-.effectItemGreen {
-    background: green;
-    color: white;
-}
-.effectItemYellow {
-    background: yellow;
-}
-.effectItemRed {
-    background: red;
-}
+
 td {
     border: 1px black solid;
     border-top-style: none;
@@ -209,7 +220,6 @@ td {
 .last {
     border-right: none;
 }
-
 
 #orders-list {
     height: 100%;
@@ -220,10 +230,12 @@ td {
 }
 
 .adjudicationList {
-    border: 1em solid black;
+    border: 1px solid black;
     display: block;
-    padding: .1em 1em;
-    margin-bottom: 1em;
+    padding: 1px;
+    color: #e1e1e1;
+    background: #2e3131;
+    margin-bottom: 1px;
     width: 100%;
     text-align: left;
     text-transform: capitalize;
@@ -241,7 +253,6 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
  */
 .blocks {
     position: relative;
-    display: inline-block;
     border-style: solid;
     border-color: black;
     border-width: 1px;
@@ -253,12 +264,12 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 }
 
 .blocks.paid {
-    background: blue;
+    background: #0735A8;
     float: left;
 }
 
 .blocks.invested {
-    background: yellow;
+    background: #E6DC25;
     float: left;
 }
 
@@ -272,4 +283,91 @@ When the round is finished it'll be a blue color, signifying a permanent choice.
 
 .cyberEffectRed {
     color: crimson;
+}
+
+/*
+Reports Dialog styling
+ */
+.report-container {
+    height: 500px;
+    overflow-y: auto;
+}
+.report-container .exploit-link node-link {
+    display: block;
+}
+
+/*
+Server Status Dialog styling
+ */
+.server-status chat {
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    background-color: dimgray;
+    display: block;
+    color: white;
+}
+
+/*
+Ready Indicator Directive styling
+ */
+ .pressure-indicator {
+     margin-top: -20px;
+}
+.pressure-indicator .ready-indicator {
+    display: inline-block;
+    border-width: 1px;
+    width: 33%;
+    padding: 10px;
+    border-style: solid;
+    border-color: black;
+    background-color: #2abe3d;
+    text-align: center;
+    color: black;
+}
+.pressure-indicator .ready-indicator.not-ready {
+    animation: not-ready .6s linear alternate infinite;
+}
+@keyframes not-ready {
+    from { background-color: #DBA81D; }
+    to { background-color: #E6DC25; }
+}
+.pressure-indicator .ready-indicator.eliminated {
+    background-color: dimgray;
+}
+
+/*
+Chat directive styling
+ */
+.chat-container {
+    height: 100%;
+    background-color: #2e3131;
+    padding: 10px;
+}
+.chat-messages {
+    height: 90%;
+    overflow-y: auto;
+    text-align: left;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+.chat-container form {
+    height: 10%;
+    color: black;
+    position: relative;
+}
+.chat-container form input {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 80%;
+}
+.chat-container form button {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    padding-top: 5px;
+    display: block;
+    color: black;
 }

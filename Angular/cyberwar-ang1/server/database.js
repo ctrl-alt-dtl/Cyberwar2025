@@ -37,10 +37,10 @@ var linkSchema = new Schema({
 
 // Schema for a server node
 var serverNodeSchema = new Schema({
-  location        : nodeLocationSchema,            // The node's location
-  manipulateColor : { type: String, default: '' }, // The manipulated color of this node
-  ownerColor      : { type: String, default: '' }, // The color of the node's owner
-  strength        : { type: Number, default: 0 },  // The current server node strength
+  location        : nodeLocationSchema,                // The node's location
+  manipulateColor : { type: String, default: '' },     // The manipulated color of this node
+  ownerColor      : { type: String, default: '' },     // The color of the node's owner
+  strength        : { type: Number, default: 0 },      // The current server node strength
 }, { _id: false });
 
 // Schema for an action order
@@ -51,17 +51,27 @@ var orderSchema = new Schema({
   cost   : { type: Number, default: 0 }   // How much the order cost the player
 }, { _id: false });
 
+// Schema for a report about the results of an action
+var reportSchema = new Schema({
+  action   : { type: String, default: '' }, // The action performed to generate this report
+  location : nodeLocationSchema,            // The location the action was performed at
+  params   : { type: Schema.Types.Mixed },  // Any extra parameters for the report
+}, { _id: false });
+
 // Schema for a player
 var playerSchema = new Schema({
-  name                : { type: String, default: '' },    // The player's name
-  color               : { type: String, default: '' },    // What color the player is playing as
-  research            : researchSchema,                   // What research this player has done
-  exploitLinks        : [linkSchema],                     // The exploit links this player has
-  scannedNodes        : [serverNodeSchema],               // The list of node information this player has from scanning
-  scannedExploitLinks : [linkSchema],                     // The list of exploit link information this player has from scanning
-  investments         : researchSchema,                   // How much the player invested in each research type this turn
-  orders              : [orderSchema],                    // The actions the player wants to take this turn
-  isObserver          : { type: Boolean, default: false } // Whether this player is an observer or not
+  name                : { type: String, default: '' },     // The player's name
+  color               : { type: String, default: '' },     // What color the player is playing as
+  research            : researchSchema,                    // What research this player has done
+  exploitLinks        : [linkSchema],                      // The exploit links this player has
+  scannedNodes        : [serverNodeSchema],                // The list of node information this player has from scanning
+  scannedExploitLinks : [linkSchema],                      // The list of exploit link information this player has from scanning
+  investments         : researchSchema,                    // How much the player invested in each research type this turn
+  orders              : [orderSchema],                     // The actions the player wants to take this turn
+  isObserver          : { type: Boolean, default: false }, // Whether this player is an observer or not
+  reports             : [reportSchema],                    // The list of reports a player gets each turn
+  implanted           : { type: Boolean, default: false }, // Was the player's base node implanted this turn?
+  wasEliminated       : { type: Boolean, default: false }, // Was this player eliminated on a previous turn
 }, { _id: false });
 
 // Schema that defines the state of the game for one turn

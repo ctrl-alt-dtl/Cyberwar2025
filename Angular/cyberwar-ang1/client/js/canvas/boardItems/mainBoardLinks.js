@@ -14,7 +14,7 @@ var rbr1 = new Konva.Line({
 });
 
 var rbr2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_rBase2Hex_X,
     pt_rBase2Hex_Y,
@@ -43,7 +43,7 @@ var pbp1 = new Konva.Line({
 });
 
 var pbp2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_pBase2Hex_X,
     pt_pBase2Hex_Y,
@@ -72,7 +72,7 @@ var bbb1 = new Konva.Line({
 });
 
 var bbb2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_bBase2Hex_X,
     pt_bBase2Hex_Y,
@@ -101,7 +101,7 @@ var gbg1 = new Konva.Line({
 });
 
 var gbg2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_gBase2Hex_X,
     pt_gBase2Hex_Y,
@@ -130,7 +130,7 @@ var yby1 = new Konva.Line({
 });
 
 var yby2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_yBase2Hex_X,
     pt_yBase2Hex_Y,
@@ -159,7 +159,7 @@ var obo1 = new Konva.Line({
 });
 
 var obo2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_oBase2Hex_X,
     pt_oBase2Hex_Y,
@@ -175,7 +175,7 @@ var obo2 = new Konva.Line({
 
 // TO TIER 3
 var r1r3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r1Hex_X,
     pt_r1Hex_Y,
@@ -190,7 +190,7 @@ var r1r3 = new Konva.Line({
 });
 
 var r2r5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r2Hex_X,
     pt_r2Hex_Y,
@@ -205,7 +205,7 @@ var r2r5 = new Konva.Line({
 });
 
 var p1p3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p1Hex_X,
     pt_p1Hex_Y,
@@ -220,7 +220,7 @@ var p1p3 = new Konva.Line({
 });
 
 var p2p5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p2Hex_X,
     pt_p2Hex_Y,
@@ -235,7 +235,7 @@ var p2p5 = new Konva.Line({
 });
 
 var b1b3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b1Hex_X,
     pt_b1Hex_Y,
@@ -250,7 +250,7 @@ var b1b3 = new Konva.Line({
 });
 
 var b2b5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b2Hex_X,
     pt_b2Hex_Y,
@@ -265,7 +265,7 @@ var b2b5 = new Konva.Line({
 });
 
 var g1g3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g1Hex_X,
     pt_g1Hex_Y,
@@ -280,7 +280,7 @@ var g1g3 = new Konva.Line({
 });
 
 var g2g5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g2Hex_X,
     pt_g2Hex_Y,
@@ -296,7 +296,7 @@ var g2g5 = new Konva.Line({
 
 
 var o1o3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o1Hex_X,
     pt_o1Hex_Y,
@@ -311,7 +311,7 @@ var o1o3 = new Konva.Line({
 });
 
 var o2o5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o2Hex_X,
     pt_o2Hex_Y,
@@ -326,7 +326,7 @@ var o2o5 = new Konva.Line({
 });
 
 var y1y3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y1Hex_X,
     pt_y1Hex_Y,
@@ -341,7 +341,7 @@ var y1y3 = new Konva.Line({
 });
 
 var y2y5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y2Hex_X,
     pt_y2Hex_Y,
@@ -357,7 +357,7 @@ var y2y5 = new Konva.Line({
 
 // TIER 3
 var r3r4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r3Hex_X,
     pt_r3Hex_Y,
@@ -372,7 +372,7 @@ var r3r4 = new Konva.Line({
 });
 
 var r5r4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r5Hex_X,
     pt_r5Hex_Y,
@@ -387,7 +387,7 @@ var r5r4 = new Konva.Line({
 });
 
 var p3p4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p3Hex_X,
     pt_p3Hex_Y,
@@ -402,7 +402,7 @@ var p3p4 = new Konva.Line({
 });
 
 var p5p4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p5Hex_X,
     pt_p5Hex_Y,
@@ -417,7 +417,7 @@ var p5p4 = new Konva.Line({
 });
 
 var b3b4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b3Hex_X,
     pt_b3Hex_Y,
@@ -432,7 +432,7 @@ var b3b4 = new Konva.Line({
 });
 
 var b5b4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b5Hex_X,
     pt_b5Hex_Y,
@@ -447,7 +447,7 @@ var b5b4 = new Konva.Line({
 });
 
 var g3g4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g3Hex_X,
     pt_g3Hex_Y,
@@ -462,7 +462,7 @@ var g3g4 = new Konva.Line({
 });
 
 var g5g4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g5Hex_X,
     pt_g5Hex_Y,
@@ -477,7 +477,7 @@ var g5g4 = new Konva.Line({
 });
 
 var y3y4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y3Hex_X,
     pt_y3Hex_Y,
@@ -492,7 +492,7 @@ var y3y4 = new Konva.Line({
 });
 
 var y5y4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y5Hex_X,
     pt_y5Hex_Y,
@@ -507,7 +507,7 @@ var y5y4 = new Konva.Line({
 });
 
 var o3o4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o3Hex_X,
     pt_o3Hex_Y,
@@ -522,7 +522,7 @@ var o3o4 = new Konva.Line({
 });
 
 var o5o4 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o5Hex_X,
     pt_o5Hex_Y,
@@ -538,7 +538,7 @@ var o5o4 = new Konva.Line({
 
 // TO TIER 2
 var r4r7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r4Hex_X,
     pt_r4Hex_Y,
@@ -553,7 +553,7 @@ var r4r7 = new Konva.Line({
 });
 
 var r5r7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r5Hex_X,
     pt_r5Hex_Y,
@@ -568,7 +568,7 @@ var r5r7 = new Konva.Line({
 });
 
 var r4r6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r4Hex_X,
     pt_r4Hex_Y,
@@ -583,7 +583,7 @@ var r4r6 = new Konva.Line({
 });
 
 var r3r6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r3Hex_X,
     pt_r3Hex_Y,
@@ -599,7 +599,7 @@ var r3r6 = new Konva.Line({
 
 //
 var p4p7 = new Konva.Line({
-//       XS    YS   XE   YE
+//       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p4Hex_X,
     pt_p4Hex_Y,
@@ -614,7 +614,7 @@ var p4p7 = new Konva.Line({
 });
 
 var p5p7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p5Hex_X,
     pt_p5Hex_Y,
@@ -629,7 +629,7 @@ var p5p7 = new Konva.Line({
 });
 
 var p4p6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p4Hex_X,
     pt_p4Hex_Y,
@@ -644,7 +644,7 @@ var p4p6 = new Konva.Line({
 });
 
 var p3p6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p3Hex_X,
     pt_p3Hex_Y,
@@ -660,7 +660,7 @@ var p3p6 = new Konva.Line({
 
 //
 var b4b7 = new Konva.Line({
-//       XS    YS   XE   YE
+//       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b4Hex_X,
     pt_b4Hex_Y,
@@ -675,7 +675,7 @@ var b4b7 = new Konva.Line({
 });
 
 var b5b7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b5Hex_X,
     pt_b5Hex_Y,
@@ -690,7 +690,7 @@ var b5b7 = new Konva.Line({
 });
 
 var b4b6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b4Hex_X,
     pt_b4Hex_Y,
@@ -705,7 +705,7 @@ var b4b6 = new Konva.Line({
 });
 
 var b3b6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b3Hex_X,
     pt_b3Hex_Y,
@@ -721,7 +721,7 @@ var b3b6 = new Konva.Line({
 
 //
 var g4g7 = new Konva.Line({
-//       XS    YS   XE   YE
+//       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g4Hex_X,
     pt_g4Hex_Y,
@@ -736,7 +736,7 @@ var g4g7 = new Konva.Line({
 });
 
 var g5g7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g5Hex_X,
     pt_g5Hex_Y,
@@ -751,7 +751,7 @@ var g5g7 = new Konva.Line({
 });
 
 var g4g6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g4Hex_X,
     pt_g4Hex_Y,
@@ -766,7 +766,7 @@ var g4g6 = new Konva.Line({
 });
 
 var g3g6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g3Hex_X,
     pt_g3Hex_Y,
@@ -782,7 +782,7 @@ var g3g6 = new Konva.Line({
 
 //
 var y4y7 = new Konva.Line({
-//       XS    YS   XE   YE
+//       XS    YS   XE   YE (S=start // E=end)
 points: [
   pt_y4Hex_X,
   pt_y4Hex_Y,
@@ -797,7 +797,7 @@ points: [
 });
 
 var y5y7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y5Hex_X,
     pt_y5Hex_Y,
@@ -812,7 +812,7 @@ var y5y7 = new Konva.Line({
 });
 
 var y4y6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y4Hex_X,
     pt_y4Hex_Y,
@@ -827,7 +827,7 @@ var y4y6 = new Konva.Line({
 });
 
 var y3y6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y3Hex_X,
     pt_y3Hex_Y,
@@ -843,7 +843,7 @@ var y3y6 = new Konva.Line({
 
 //
 var o4o7 = new Konva.Line({
-//       XS    YS   XE   YE
+//       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o4Hex_X,
     pt_o4Hex_Y,
@@ -858,7 +858,7 @@ var o4o7 = new Konva.Line({
 });
 
 var o5o7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o5Hex_X,
     pt_o5Hex_Y,
@@ -873,7 +873,7 @@ var o5o7 = new Konva.Line({
 });
 
 var o4o6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o4Hex_X,
     pt_o4Hex_Y,
@@ -888,7 +888,7 @@ var o4o6 = new Konva.Line({
 });
 
 var o3o6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o3Hex_X,
     pt_o3Hex_Y,
@@ -904,7 +904,7 @@ var o3o6 = new Konva.Line({
 
 // TIER 2
 var r6r7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r6Hex_X,
     pt_r6Hex_Y,
@@ -919,7 +919,7 @@ var r6r7 = new Konva.Line({
 });
 
 var p6p7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p6Hex_X,
     pt_p6Hex_Y,
@@ -934,7 +934,7 @@ var p6p7 = new Konva.Line({
 });
 
 var b6b7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b6Hex_X,
     pt_b6Hex_Y,
@@ -949,7 +949,7 @@ var b6b7 = new Konva.Line({
 });
 
 var g6g7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g6Hex_X,
     pt_g6Hex_Y,
@@ -964,7 +964,7 @@ var g6g7 = new Konva.Line({
 });
 
 var y6y7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y6Hex_X,
     pt_y6Hex_Y,
@@ -979,7 +979,7 @@ var y6y7 = new Konva.Line({
 });
 
 var o6o7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o6Hex_X,
     pt_o6Hex_Y,
@@ -995,7 +995,7 @@ var o6o7 = new Konva.Line({
 
 // TO TIER 1
 var r6r8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r6Hex_X,
     pt_r6Hex_Y,
@@ -1010,7 +1010,7 @@ var r6r8 = new Konva.Line({
 });
 
 var r7r8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r7Hex_X,
     pt_r7Hex_Y,
@@ -1025,7 +1025,7 @@ var r7r8 = new Konva.Line({
 });
 
 var p6p8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p6Hex_X,
     pt_p6Hex_Y,
@@ -1040,7 +1040,7 @@ var p6p8 = new Konva.Line({
 });
 
 var p7p8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_p7Hex_X,
     pt_p7Hex_Y,
@@ -1055,7 +1055,7 @@ var p7p8 = new Konva.Line({
 });
 
 var b6b8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b6Hex_X,
     pt_b6Hex_Y,
@@ -1070,7 +1070,7 @@ var b6b8 = new Konva.Line({
 });
 
 var b7b8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b7Hex_X,
     pt_b7Hex_Y,
@@ -1085,7 +1085,7 @@ var b7b8 = new Konva.Line({
 });
 
 var g6g8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g6Hex_X,
     pt_g6Hex_Y,
@@ -1100,7 +1100,7 @@ var g6g8 = new Konva.Line({
 });
 
 var g7g8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_g7Hex_X,
     pt_g7Hex_Y,
@@ -1115,7 +1115,7 @@ var g7g8 = new Konva.Line({
 });
 
 var y6y8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y6Hex_X,
     pt_y6Hex_Y,
@@ -1130,7 +1130,7 @@ var y6y8 = new Konva.Line({
 });
 
 var y7y8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y7Hex_X,
     pt_y7Hex_Y,
@@ -1145,7 +1145,7 @@ var y7y8 = new Konva.Line({
 });
 
 var o6o8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o6Hex_X,
     pt_o6Hex_Y,
@@ -1160,7 +1160,7 @@ var o6o8 = new Konva.Line({
 });
 
 var o7o8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_o7Hex_X,
     pt_o7Hex_Y,
@@ -1176,7 +1176,7 @@ var o7o8 = new Konva.Line({
 
 // Inter-Domain Links
 var r1p2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r1Hex_X,
     pt_r1Hex_Y,
@@ -1191,7 +1191,7 @@ var r1p2 = new Konva.Line({
 });
 
 var r2o1 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r2Hex_X,
     pt_r2Hex_Y,
@@ -1206,7 +1206,7 @@ var r2o1 = new Konva.Line({
 });
 
 var r3p5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r3Hex_X,
     pt_r3Hex_Y,
@@ -1221,7 +1221,7 @@ var r3p5 = new Konva.Line({
 });
 
 var r5o3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r5Hex_X,
     pt_r5Hex_Y,
@@ -1236,7 +1236,7 @@ var r5o3 = new Konva.Line({
 });
 
 var r6p7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r6Hex_X,
     pt_r6Hex_Y,
@@ -1251,7 +1251,7 @@ var r6p7 = new Konva.Line({
 });
 
 var r7o6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r7Hex_X,
     pt_r7Hex_Y,
@@ -1266,7 +1266,7 @@ var r7o6 = new Konva.Line({
 });
 
 var r8p8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r8Hex_X,
     pt_r8Hex_Y,
@@ -1281,7 +1281,7 @@ var r8p8 = new Konva.Line({
 });
 
 var r8o8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_r8Hex_X,
     pt_r8Hex_Y,
@@ -1297,7 +1297,7 @@ var r8o8 = new Konva.Line({
 
 // Inter-Domain Links 2
 var b1g2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b1Hex_X,
     pt_b1Hex_Y,
@@ -1312,7 +1312,7 @@ var b1g2 = new Konva.Line({
 });
 
 var b2p1 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b2Hex_X,
     pt_b2Hex_Y,
@@ -1327,7 +1327,7 @@ var b2p1 = new Konva.Line({
 });
 
 var b3g5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b3Hex_X,
     pt_b3Hex_Y,
@@ -1342,7 +1342,7 @@ var b3g5 = new Konva.Line({
 });
 
 var b5p3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b5Hex_X,
     pt_b5Hex_Y,
@@ -1357,7 +1357,7 @@ var b5p3 = new Konva.Line({
 });
 
 var b6g7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b6Hex_X,
     pt_b6Hex_Y,
@@ -1372,7 +1372,7 @@ var b6g7 = new Konva.Line({
 });
 
 var b7p6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b7Hex_X,
     pt_b7Hex_Y,
@@ -1387,7 +1387,7 @@ var b7p6 = new Konva.Line({
 });
 
 var b8g8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b8Hex_X,
     pt_b8Hex_Y,
@@ -1402,7 +1402,7 @@ var b8g8 = new Konva.Line({
 });
 
 var b8p8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_b8Hex_X,
     pt_b8Hex_Y,
@@ -1418,7 +1418,7 @@ var b8p8 = new Konva.Line({
 
 // Inter-Domain Links 3
 var y1o2 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y1Hex_X,
     pt_y1Hex_Y,
@@ -1433,7 +1433,7 @@ var y1o2 = new Konva.Line({
 });
 
 var y2g1 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y2Hex_X,
     pt_y2Hex_Y,
@@ -1448,7 +1448,7 @@ var y2g1 = new Konva.Line({
 });
 
 var y3o5 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y3Hex_X,
     pt_y3Hex_Y,
@@ -1463,7 +1463,7 @@ var y3o5 = new Konva.Line({
 });
 
 var y5g3 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y5Hex_X,
     pt_y5Hex_Y,
@@ -1478,7 +1478,7 @@ var y5g3 = new Konva.Line({
 });
 
 var y6o7 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y6Hex_X,
     pt_y6Hex_Y,
@@ -1493,7 +1493,7 @@ var y6o7 = new Konva.Line({
 });
 
 var y7g6 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y7Hex_X,
     pt_y7Hex_Y,
@@ -1508,7 +1508,7 @@ var y7g6 = new Konva.Line({
 });
 
 var y8o8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y8Hex_X,
     pt_y8Hex_Y,
@@ -1523,7 +1523,7 @@ var y8o8 = new Konva.Line({
 });
 
 var y8g8 = new Konva.Line({
-  //       XS    YS   XE   YE
+  //       XS    YS   XE   YE (S=start // E=end)
   points: [
     pt_y8Hex_X,
     pt_y8Hex_Y,

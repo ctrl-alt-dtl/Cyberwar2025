@@ -1,5 +1,5 @@
 angular.module('CyberWar')
-.service('GameState', ['CurrentInvestments', 'CurrentOrders', 'GameUtil', function(CurrentInvestments, CurrentOrders, GameUtil) {
+.service('GameState', function(CurrentInvestments, CurrentOrders, GameUtil) {
   var cbListener = new Gambit.CallbackListener();
 
   //---------------------------------------------------------------------------
@@ -14,38 +14,66 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   this.gameStateUpdated = function(gameData, turnNumber, latestTurnNumber) {
-    var updateGameState = shouldUpdateGameState(this, gameData, turnNumber, latestTurnNumber);
+    var updateCurrentPlayer = shouldUpdateCurrentPlayer(this, gameData, turnNumber, latestTurnNumber);
     // Always update the latest turn number so our history tracker is accurate
     this.latestTurnNumber = latestTurnNumber;
-    if (updateGameState) {
+    this.currentGameState = gameData;
+    if (updateCurrentPlayer) {
       this.currentTurnNumber = turnNumber;
-      this.currentGameState = gameData;
-      this.currentPlayerData = GameUtil.findPlayerByName(gameData.players, this.currentPlayer);
+      this.currentPlayerData = GameUtil.List.findPlayerByName(gameData.players, this.currentPlayer);
       if (!this.currentPlayerData.isObserver) {
         modifyPlayerDataForNonObserver(this);
       }
       else {
         modifyPlayerDataForObserver(this);
       }
-      console.log("Turn Number: " + turnNumber);
     }
     cbListener.triggerAll();
   }
 
   //---------------------------------------------------------------------------
-  this.submittedTurn = function() {
-    return this.currentPlayerData && GameUtil.hasPlayerTakenTurn(this.currentPlayerData);
+  this.isEliminated = function() {
+    return this.currentPlayerData && GameUtil.Player.isPlayerEliminated(this.currentGameState, this.currentPlayerData);
+  }
+
+  //---------------------------------------------------------------------------
+  this.hasSubmittedTurn = function() {
+    return this.currentPlayerData && GameUtil.Player.hasPlayerTakenTurn(this.currentPlayerData);
+  }
+
+  //---------------------------------------------------------------------------
+  this.isImplanted = function() {
+    return this.currentPlayerData && this.currentPlayerData.implanted;
   }
 
   //---------------------------------------------------------------------------
   this.isObserver = function() {
-    return !this.currentPlayerData || this.currentPlayerData.isObserver;
+    return this.currentPlayerData && this.currentPlayerData.isObserver;
+  }
+
+  //---------------------------------------------------------------------------
+  this.isGameOver = function() {
+    // The game is over if at most one player is not eliminated
+    if (this.currentGameState) {
+      var numberOfActivePlayers = this.currentGameState.players.reduce((count, player) => {
+        if (!player.isObserver && !GameUtil.Player.isPlayerEliminated(this.currentGameState, player)) {
+          ++count;
+        }
+        return count;
+      }, 0);
+      return numberOfActivePlayers <= 1;
+    }
+    return false;
   }
 
   //---------------------------------------------------------------------------
   this.viewingTurnInHistory = function(turnNumber) {
     // If we aren't looking at the latest turn, mark the desired turn number to view for future game updates
     if (turnNumber != this.latestTurnNumber) {
+      // If we weren't previously looking at history, and we haven't submitted our turn, store our previous actions
+      if (!this.viewingTurn && !this.hasSubmittedTurn()) {
+        this.previousActions = { investments: CurrentInvestments.getInvestments(), orders: CurrentOrders.getOrders() };
+      }
       this.viewingTurn = turnNumber;
     }
     // Otherwise, unmark the desired turn
@@ -85,18 +113,15 @@ angular.module('CyberWar')
   }
 
   //---------------------------------------------------------------------------
-  // Do we need to update our current game state or should we ignore it?
-  var shouldUpdateGameState = function(GameState, newGameData, turnNumber, latestTurnNumber) {
-    // If we are an observer and our player color changed, then always update the game state
+  // Do we need to update our current player's game state or should we ignore it?
+  var shouldUpdateCurrentPlayer = function(GameState, newGameData, turnNumber, latestTurnNumber) {
+    // If we are an observer, then always update the game state
     if (GameState.currentPlayerData && GameState.currentPlayerData.isObserver) {
-      var newPlayerData = GameUtil.findPlayerByName(newGameData.players, GameState.currentPlayer);
-      if (GameState.currentPlayerData.color != newPlayerData.color) {
-        return true;
-      }
+      return true;
     }
     // If we aren't viewing a particular turn in history,
     // then update the game state if our current turn differs from the new latest turn
-    // or if the current player's investments/orders differ from what we last stored
+    // or if the current player's eliminated state/investments/orders differ from what we last stored
     if (GameState.viewingTurn === undefined) {
       return GameState.currentTurnNumber != latestTurnNumber || didPlayerTurnSubmissionChange(GameState, newGameData);
     }
@@ -107,8 +132,9 @@ angular.module('CyberWar')
   //---------------------------------------------------------------------------
   // Did the player's investments or orders change between our current game state and the incoming new game data?
   var didPlayerTurnSubmissionChange = function(GameState, newGameData) {
-    var newPlayerData = GameUtil.findPlayerByName(newGameData.players, GameState.currentPlayer);
-    return !areInvestmentsSame(GameState.currentPlayerData.investments, newPlayerData.investments) ||
+    var newPlayerData = GameUtil.List.findPlayerByName(newGameData.players, GameState.currentPlayer);
+    return GameState.currentPlayerData.wasEliminated != newPlayerData.wasEliminated ||
+      !areInvestmentsSame(GameState.currentPlayerData.investments, newPlayerData.investments) ||
       !areOrdersSame(GameState.currentPlayerData.orders, newPlayerData.orders);
   }
 
@@ -139,15 +165,15 @@ angular.module('CyberWar')
 
   //---------------------------------------------------------------------------
   var modifyPlayerDataForNonObserver = function(GameState) {
-    GameState.positivelyLinkedNodes = GameUtil.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
+    GameState.positivelyLinkedNodes = GameUtil.Network.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
     // If we have submitted our turn, then show the investments and orders we submitted
-    if (GameState.submittedTurn()) {
+    if (GameState.hasSubmittedTurn() || GameState.isEliminated()) {
       GameState.currentActionPoints = 0;
-      CurrentInvestments.setInvestments(GameState.currentPlayerData.investments);
+      CurrentInvestments.setInvestments(GameState.currentPlayerData.investments || {});
       CurrentOrders.setOrders(GameState.currentPlayerData.orders);
     }
     else {
-      GameState.currentActionPoints = getCurrentActionPoints(GameState.currentTurnNumber, GameState.currentPlayerData, GameState.positivelyLinkedNodes);
+      GameState.currentActionPoints = GameUtil.Action.getCurrentActionPoints(GameState.currentTurnNumber, GameState.positivelyLinkedNodes);
       var investments = {};
       _.each(ResearchType, function(type) { investments[type] = 0 }, GameState);
       CurrentInvestments.setInvestments(investments);
@@ -168,42 +194,28 @@ angular.module('CyberWar')
   //---------------------------------------------------------------------------
   var modifyPlayerDataForObserver = function(GameState) {
     // Find the observed player and copy his current game state into our current game state
-    var observedPlayer = GameUtil.findPlayerByColor(GameState.currentGameState.players, GameState.currentPlayerData.color);
+    var observedPlayer = GameUtil.List.findPlayerByColor(GameState.currentGameState.players, GameState.currentPlayerData.color);
     GameState.currentPlayerData.research = observedPlayer.research;
     GameState.currentPlayerData.exploitLinks = observedPlayer.exploitLinks;
-    GameState.currentPlayerData.scannedNodes = observedPlayer.scannedNodes;
-    GameState.currentPlayerData.scannedExploitLinks = observedPlayer.scannedExploitLinks;
-    if (observedPlayer.investments) {
+    GameState.currentPlayerData.isViewingFullBoard = GameState.currentPlayerData.scannedNodes.length > 0 || GameState.currentPlayerData.scannedExploitLinks > 0;
+    GameState.currentPlayerData.scannedNodes = GameState.currentPlayerData.isViewingFullBoard ? GameState.currentPlayerData.scannedNodes : observedPlayer.scannedNodes;
+    GameState.currentPlayerData.scannedExploitLinks = GameState.currentPlayerData.isViewingFullBoard ? GameState.currentPlayerData.scannedExploitLinks : observedPlayer.scannedExploitLinks;
+    GameState.positivelyLinkedNodes = GameUtil.Network.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
+    if (GameUtil.Player.hasPlayerTakenTurn(observedPlayer)) {
       GameState.currentActionPoints = 0;
       CurrentInvestments.setInvestments(observedPlayer.investments);
       CurrentOrders.setOrders(observedPlayer.orders);
     }
+    else if (GameUtil.Player.isPlayerEliminated(GameState.currentGameState, observedPlayer)) {
+      GameState.currentActionPoints = 0;
+      CurrentInvestments.setInvestments({});
+      CurrentOrders.setOrders([]);
+    }
     else {
-      var positivelyLinkedNodes = GameUtil.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
-      GameState.currentActionPoints = getCurrentActionPoints(GameState.currentTurnNumber, observedPlayer, positivelyLinkedNodes);
+      var positivelyLinkedNodes = GameUtil.Network.getPositivelyLinkedNodes(GameState.currentPlayerData.color, GameState.currentGameState.serverNodes, GameState.currentPlayerData.exploitLinks);
+      GameState.currentActionPoints = GameUtil.Action.getCurrentActionPoints(GameState.currentTurnNumber, positivelyLinkedNodes);
       CurrentInvestments.setInvestments({});
       CurrentOrders.setOrders([]);
     }
   }
-
-  //---------------------------------------------------------------------------
-  var getCurrentActionPoints = function(turnNumber, playerData, positivelyLinkedNodes) {
-    // Everyone gets 3 points on the first turn
-    if (turnNumber === 0) {
-      return 3;
-    }
-
-    // After that it's one for every acquired or exploited node
-    var calculatedAP = positivelyLinkedNodes.length - 1;
-    if (positivelyLinkedNodes.length > 1) {
-      // Should be a 1; however, if players do not acquire two nodes at the very start, give them two APs to
-      // catch up.
-      return Math.max(calculatedAP, 2);
-    }
-
-    // If player loses all node links. Reinstate 1 AP to allow for player to recontinue game. HAIL MARY RULE!
-    // This is a temporary rule just to allow play to continue for teaching. I need to address the knock out mechanic
-    // in the server.
-    return 2;
-  }
-}]);
+});
