@@ -43,8 +43,24 @@ this.addNewTurn = function(game, turnToCopy) {
 
   // Reset player information every round
   newTurn.players.forEach((player) => {
-    player.scannedNodes = [];
-    player.scannedExploitLinks = [];
+    var wasObserverViewingFullBoard = player.isObserver && player.scannedNodes.length > 0;
+
+    // Make sure observers viewing the full board are still viewing the full board
+    // Otherwise just wipe out the scanned nodes from the previous turn
+    var newScannedNodes = [];
+    if (wasObserverViewingFullBoard) {
+      newScannedNodes = newTurn.serverNodes.map(serverNode => serverNode);
+    }
+    player.scannedNodes = newScannedNodes;
+
+    // Make sure observers viewing the full board are still viewing the full board
+    // Otherwise just wipe out the scanned exploit links from the previous turn
+    var newScannedExploitLinks = [];
+    if (wasObserverViewingFullBoard) {
+      newTurn.players.forEach(player => player.exploitLinks.forEach(exploitLink => newScannedExploitLinks.push(exploitLink)));
+    }
+    player.scannedExploitLinks = newScannedExploitLinks;
+
     player.reports = [];
     delete player.investments;
     delete player.orders;
