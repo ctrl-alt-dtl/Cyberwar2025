@@ -6,4 +6,4 @@ Graduation Date: 15 December 2017
 
 Created and developed by:
 - David "Ty" Long (dtlong@nps.edu)
-- Chris Mulch (cmmulch@nps.edu)
+- Chris Mulch
