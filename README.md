@@ -15,5 +15,3 @@ Cyberspace operations are an increasingly important mission focus and warfightin
 ___
 #### Keywords
 cyber education, cyber training, cyber wargaming, computer-based simulation, virtual simulation, educational courses, multiplayer, serious games, cyberwar, cyber domain, cyberspace operations, cyber doctrine, cyber policy, computer network exploitation
-
-###### Unclassified//FOUO
