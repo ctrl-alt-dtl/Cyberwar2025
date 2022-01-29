@@ -7,7 +7,7 @@ A Defense Analysis Thesis/Capstone Wargame
 ##### Revised and Updated: 20 July 2019
 
 Created and developed by:
-- David "Ty" Long (dtlong@nps.edu) or (dtylerlong@gmail.com)
+- David "Ty" Long (dtylerlong@gmail.com)
 - Chris Mulch
 
 ## Abstract
